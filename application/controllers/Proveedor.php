@@ -91,8 +91,8 @@ class Proveedor extends CI_controller
 			$datosPersona["tipoPersona"] = 3; // Se especifica el tipo de persona como 3 para Proveedor
 
 			$datosProveedor["documento"] = $datosPersona["documento"];
-			$datosProveedor["nombrecontacto"] = $this->input->post("nombreContacto");
-			$datosProveedor["diavisita"] = $this->input->post("diaVisita");
+			$datosProveedor["nombreContacto"] = $this->input->post("nombreContacto");
+			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
 
 

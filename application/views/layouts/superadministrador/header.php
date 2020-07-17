@@ -31,6 +31,10 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+	<!-- Sweet Alert 2: mensajes animados -->
+	<link href="<?php echo base_url();?>assets/plugins/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
+
+
     <!-- Select2 -->
     <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/plugins/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"

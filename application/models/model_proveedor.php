@@ -4,21 +4,23 @@ class model_proveedor extends Ci_model
 {
 
 
+	public $tablaPersona = 'persona';
+	public $tablaProveedor = 'proveedor';
+	public $tablaTipoDocumento = 'tipodocumento';
+	public $tablaTipoPersona = 'tipopersona';
+
+
+	public $documentoPK = 'documento';
+	public $idProveedorPK = 'idProveedor';
+	public $idTipodocumentoPK = 'idTipoDocumento';
+	public $idTipoPersonaPK = 'idTipoPersona';
+	public $personaDocumento = 'personaDocumento';
+
+	public $tipoDocumentoPersona = 'tipoDocumento';
+
 	public function _construct()
 	{
-		$tablaPersona = 'persona';
-		$tablaProveedor = 'proveedor';
-		$tablaTipoDocumento = 'tipodocumento';
-		$tablaTipoPersona = 'tipopersona';
-
-
-		$documentoPK = 'documento';
-		$idProveedorPK = 'idProveedor';
-		$idTipodocumentoPK = 'idTipoDocumento';
-		$idTipoPersonaPK = 'idTipoPersona';
-		$personaDocumento = 'personaDocumento';
-
-		$tipoDocumentoPersona = 'tipoDocumento';
+		
 	}
 
 
@@ -33,7 +35,7 @@ class model_proveedor extends Ci_model
 	function insertarProveedor($datosProveedor){
 
 		$this->db->insert($this->tablaProveedor, $datosProveedor);
-		return $this->db->insert_id();
+		 return $this->db->insert_id();
 	}
 
 }
