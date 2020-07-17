@@ -1,0 +1,58 @@
+  .mifuente {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 80px;
+    text-transform: none !important;
+    color: #85CEFF !important;
+  }
+
+  .logo
+  {
+    left: 50px !important;
+  }
+
+  .horario {
+    color: green !important;
+  }
+
+
+   .carousel-item  {
+    height: 100hv !important;
+    min-height: 300px !important;
+    background: no-repeat center center scroll !important ;
+    background-size: cover !important;
+    
+  }
+  .carousel-caption{
+
+    bottom: 270px !important;
+    
+   
+ 
+     
+    
+  }
+
+  .carousel-caption h5 { 
+
+   font-size: 45px;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+ 
+    
+    font-weight: bold;
+    background-color:rgba(113, 188, 66, 0.10) !important;
+    display: inline; 
+  }
+
+  .carousel-caption p{
+
+   
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.9;
+    background-color:rgba(113, 188, 66, 0.10) !important;
+   
+  
+  }
+
+  
