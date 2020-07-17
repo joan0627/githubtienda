@@ -7,7 +7,7 @@ class Proveedor extends CI_controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('model_usuario');
+		$this->load->model('model_proveedor');
 		$this->load->database();
 		$this->load->helper("url");
 		$this->load->library('form_validation');
@@ -45,14 +45,7 @@ class Proveedor extends CI_controller
 		
 	}
 	
-	public function registrarproveedor()
-	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/registroProveedor_view');
-		$this->load->view('layouts/footer');
-		
-	}
+
 
 	public function actualizarproveedor()
 	{
@@ -69,6 +62,75 @@ class Proveedor extends CI_controller
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/formularios/verdetalleproveedor_view');
 		$this->load->view('layouts/footer');
+		
+	}
+
+	public function registrarproveedor()
+	{
+	
+		$datosCarga["tipoDocumento"]= $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
+		$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombrecontacto"] =
+		$datosCarga["diavisita"] = $datosCarga["observaciones"] = "";
+
+	
+		
+		//Campos del formulario
+		if ($this->input->server("REQUEST_METHOD") == "POST") {
+
+			/*Arreglos para guardar informacion en las dos tablas: Persona y Proveedor
+			Aqui se necesitan dos arreglos diferentes ya que los datos van 
+			para dos tablas diferentes
+			*/
+			$datosPersona["tipoDocumento"] = $this->input->post("tipoDocumento");
+			$datosPersona["documento"] = $this->input->post("documento");
+			$datosPersona["nombre"] = $this->input->post("nombre");
+			$datosPersona["telefono"] = $this->input->post("telefono");
+			$datosPersona["celular"] = $this->input->post("celular");
+			$datosPersona["direccion"] = $this->input->post("direccion");
+			$datosPersona["correo"] = $this->input->post("correo");
+			$datosPersona["tipoPersona"] = 3; // Se especifica el tipo de persona como 3 para Proveedor
+
+			$datosProveedor["documento"] = $datosPersona["documento"];
+			$datosProveedor["nombrecontacto"] = $this->input->post("nombreContacto");
+			$datosProveedor["diavisita"] = $this->input->post("diaVisita");
+			$datosProveedor["observaciones"] = $this->input->post("observaciones");
+
+
+			/*Arreglos para cargar la información a los campos 
+			 Aqui no necesitamos dos arreglos diferentes con sólo un arreglo 
+			 podemos cargar los datos a los campos
+		
+
+			$datosCarga["documento"] = $this->input->post("documento");
+			$datosCarga["tipoDocumento"] = $this->input->post("tipoDocumento");
+			$datosCarga["nombre"] = $this->input->post("nombre");
+			$datosCarga["telefono"] = $this->input->post("telefono");
+			$datosCarga["celular"] = $this->input->post("celular");
+			$datosCarga["direccion"] = $this->input->post("direccion");
+			$datosCarga["correo"] = $this->input->post("correo");
+		
+			$datosCarga["username"] = $this->input->post("username");
+			$datosCarga["contrasena"] = $this->input->post("contrasena");
+			$datosCarga["rol"] = $this->input->post("rol");
+
+	*/
+
+			if ($this->form_validation->run()) {
+			
+				
+				$this->model_proveedor->insertarPersona($datosPersona);
+				$this->model_proveedor->insertarProveedor($datosProveedor);
+				//redirect("proveedor/listaproveedoresu");
+			}
+			
+	
+			
+		}
+
+		$this->load->view('layouts/superadministrador/header');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/formularios/registroProveedor_view',$datosCarga);
+		$this->load->view('layouts/footer');	
 		
 	}
 

@@ -10,8 +10,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="#">Proveedor</a></li>
+                        <li class="breadcrumb-item active">Registro de proveedores</li>
                     </ol>
                 </div>
             </div>
@@ -58,6 +58,7 @@
                                 <label>Documento</label> <label style="color: red;"> * </label>
                                 <input name="documento" type="text" class="form-control "
                                     placeholder="Ingrese el documento ">
+									<?php echo form_error('documento','<p class="text-danger">','</p>'); ?>
                             </div>
                         </div>
                     </div>
@@ -68,6 +69,7 @@
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> *</label>
                                 <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre">
+								<?php echo form_error('nombre','<p class="text-danger">','</p>'); ?>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -84,7 +86,8 @@
                             <div class="form-group">
                                 <label>Celular</label> <label style="color: red;"> *</label>
                                 <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular">
-                            </div>
+								<?php echo form_error('celular','<p class="text-danger">','</p>');?>
+							</div>
 
                         </div>
                         <div class="col-md-6">
@@ -107,6 +110,7 @@
                                 <label>Nombre contacto</label> <label style="color: red;"> *</label>
                                 <input name="nombreContacto" type="text" class="form-control"
                                     placeholder="Ingrese el nombre del contacto">
+									<?php echo form_error('nombreContacto','<p class="text-danger">','</p>');?>
                             </div>
                         </div>
 
@@ -122,6 +126,7 @@
                                     <label>Dia visita</label> <label style="color: red;"> *</label>
                                     <input name="diaVisita" type="text" class="form-control"
                                         placeholder="Ingrese el dia de visita">
+										<?php echo form_error('diaVisita','<p class="text-danger">','</p>');?>
                                 </div>
 							</div>
 							

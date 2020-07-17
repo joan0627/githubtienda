@@ -12,7 +12,7 @@ class Agenda extends CI_Controller {
 
 	public function calendario()
 	{
-		$this->load->view('layouts/superadministrador/header');
+        $this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/formularios/calendario_view.php');
 		
