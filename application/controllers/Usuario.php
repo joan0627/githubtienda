@@ -33,9 +33,10 @@ class Usuario extends CI_controller
 	public function index()
 	{
 		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/aside');
-		$this->load->view('listausuarios_view');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('errors/pagina404_view');
 		$this->load->view('layouts/footer');
+				
 		
 	}
 

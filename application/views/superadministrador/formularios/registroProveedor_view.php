@@ -129,7 +129,7 @@
                             <div class="form-group">
                                 <label>Observaciones</label>
                                 <textarea class="form-control" rows="2"
-                                    placeholder="Escribe una observación sobre tu proveedor..." name="vision"></textarea>
+                                    placeholder="Escribe una observación sobre tu proveedor..." name="observaciones"></textarea>
                             </div>
                         </div>
 
