@@ -143,14 +143,15 @@
 					<div class="card-footer">
 
 
-
-
 						<button type="submit" name="botonRegistroProveedor" class="btn btn-success col-2">Registrar</button>
 						<a href="listaproveedoresu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
-
+						<button type="button" class="btn btn-success col-2" id="msg-exito">Prueba</button>
+						
 
 
 					</div>
+
+
 
 					<!--Fin del footer del contenido-->
 

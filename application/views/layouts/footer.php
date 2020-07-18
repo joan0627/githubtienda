@@ -18,6 +18,28 @@
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="assets/plugins/plugins/bootstrap/js/bootstrap.min.js"></script>
+	
+
+
+
+
+
+
+
+
+
+
+	
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
 	$.widget.bridge('uibutton', $.ui.button)
@@ -54,8 +76,11 @@
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.full.min.js"></script>
 
+<!-- Link de nuestro codigo js -->
+<script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
+
 <!-- Plugin Sweet Alert 2: mensajes animados y popper-->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/ssweetalert2.all.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/popper/popper.min.js"></script>
 
 <!-- fullCalendar 2.2.5 -->
@@ -84,18 +109,6 @@
 	})
 </script>
 
-
-<script>
-	$("#botonRegistroProveedor").click(function() {
-		swal.fire({
-			type: 'success',
-			title: 'Mensaje',
-			text: 'Registrado con exito'
-
-		});
-
-	});
-</script>
 
 
 <script>
