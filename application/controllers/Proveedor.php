@@ -6,6 +6,10 @@ class Proveedor extends CI_controller
 
 	public function __construct()
 	{
+
+		/*************************************************************/
+		// **Aqui se cargan todas las librerias que vamos a utilizar // **
+		/*************************************************************/
 		parent::__construct();
 		$this->load->model('model_proveedor');
 		$this->load->database();
@@ -42,7 +46,7 @@ class Proveedor extends CI_controller
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/general/listadoProveedores_view', $datosPersona);
 		$this->load->view('layouts/footer');
-	} 
+	}
 
 	public function registrarproveedor()
 	{
@@ -94,13 +98,16 @@ class Proveedor extends CI_controller
 
 	*/
 
+
+			/*************************************************************/
+			// **			Validacion de los campos					 // **
+			/*************************************************************/
 			if ($this->form_validation->run()) {
 
 
 				$this->model_proveedor->insertarPersona($datosPersona);
 				$this->model_proveedor->insertarProveedor($datosProveedor);
 				redirect("Proveedor/listaproveedoresu");
-
 			}
 		}
 
@@ -142,27 +149,29 @@ class Proveedor extends CI_controller
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 
 
-			$datosPersona["tipoDocumento"] = $this->input->post("tipoDocumento");
-			$datosPersona["documento"] = $this->input->post("documento");
+
+			//Estos arreglos toman los valores de los input
 			$datosPersona["nombre"] = $this->input->post("nombre");
 			$datosPersona["telefono"] = $this->input->post("telefono");
 			$datosPersona["celular"] = $this->input->post("celular");
 			$datosPersona["direccion"] = $this->input->post("direccion");
 			$datosPersona["correo"] = $this->input->post("correo");
 
-
-			$datosProveedor["documento"] = $datosPersona["documento"];
 			$datosProveedor["nombreContacto"] = $this->input->post("nombreContacto");
 			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
 
-			if (isset($documento)) {
-				$this->model_proveedor->actualizarPersona($documento, $datosPersona);
-				$this->model_proveedor->actualizarProveedor($documento, $datosProveedor);
-				redirect("Proveedor/listaproveedoresu");
+
+			if ($this->form_validation->run()) {
+				if (isset($documento)) {
+
+
+					$this->model_proveedor->actualizarPersona($documento, $datosPersona);
+					$this->model_proveedor->actualizarProveedor($documento, $datosProveedor);
+					redirect("Proveedor/listaproveedoresu");
+				}
 			}
 		}
-
 	}
 
 	public function verdetalleProveedor($documento = "")
@@ -179,9 +188,7 @@ class Proveedor extends CI_controller
 				$this->load->view('layouts/superadministrador/aside');
 				$this->load->view('superadministrador/formularios/verdetalleProveedor_view', array('clave' => $resultado));
 				$this->load->view('layouts/footer');
-			} 
+			}
 		}
-
-
 	}
 }
