@@ -38,16 +38,58 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Tipo de documento</label> <label style="color: red;"> *</label>
+							<label>Tipo de documento</label>
                                 <select name="tipoDocumento" class="form-control">
 
-                                    <option hidden selected>Nit</option>
-                                    <option value="1">Cédula de ciudadanía</option>
-                                    <option value="2">Cédula de extranjería</option>
-                                    <option value="3">Pasaporte</option>
-                                    <option value="4">Tarjeta de identidad</option>
-                                    <option value="5">Registro civil</option>
-                                    <option value="5">Nit</option>
+                                    <option value="<?php echo ($clave['tipoDocumento']) ?>">
+                                        <?php 
+
+									switch ($clave['tipoDocumento']) {
+										case 1 :
+										echo "Cédula de ciudadanía";
+										
+										echo '<option value="2">Cédula de extranjería</option>';
+										echo  '<option value="3">Pasaporte</option>';
+										echo '<option value="4">Tarjeta de identidad</option>';
+										echo  '<option value="5">Registro civil</option>';
+										break;
+										case 2:
+										echo "Cédula de extranjería";
+									
+										echo '<option value="1">Cédula de ciudadanía</option>';
+										echo  '<option value="3">Pasaporte</option>';
+										echo '<option value="4">Tarjeta de identidad</option>';
+										echo  '<option value="5">Registro civil</option>';
+										break;
+										case 3:
+										echo "Pasaporte";
+									
+										echo '<option value="1">Cédula de ciudadanía</option>';
+										echo  '<option value="2">Cédula de extranjería</option>';
+										echo '<option value="4">Tarjeta de identidad</option>';
+										echo  '<option value="5">Registro civil</option>';
+										break;
+										case 4:
+										echo "Tarjeta de identidad";
+										
+										echo '<option value="1">Cédula de ciudadanía</option>';
+										echo  '<option value="2">Cédula de extranjería</option>';
+										echo '<option value="3">Pasaporte</option>';
+										echo  '<option value="5">Registro civil</option>';
+										break;
+										case 5:
+										echo "Registro civil";
+									
+										echo '<option value="1">Cédula de ciudadanía</option>';
+										echo  '<option value="2">Cédula de extranjería</option>';
+										echo '<option value="3">Pasaporte</option>';
+										echo  '<option value="4">Tarjeta de identidad</option>';
+										break;
+										}
+									
+										?>
+                                    </option>
+
                                 </select>
 
                             </div>
@@ -57,7 +99,7 @@
 
                                 <label>Documento</label> <label style="color: red;"> * </label>
                                 <input name="documento" type="text" class="form-control "
-                                    placeholder="Ingrese el documento " value="41524124151">
+                                    placeholder="Ingrese el documento " value="<?php echo $clave['documento']; ?>">
                             </div>
                         </div>
                     </div>
@@ -68,7 +110,7 @@
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> *</label>
                                 <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
-                                    value="Soya">
+                                    value="<?php echo $clave['nombre']; ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -76,7 +118,7 @@
                             <div class="form-group">
                                 <label>Teléfono</label>
                                 <input name="telefono" type="text" class="form-control"
-                                    placeholder="Ingrese el teléfono" value="4525645">
+                                    placeholder="Ingrese el teléfono" value="<?php echo $clave['telefono']; ?>">
                             </div>
                         </div>
                     </div>
@@ -85,7 +127,7 @@
                             <div class="form-group">
                                 <label>Celular</label> <label style="color: red;"> *</label>
                                 <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular"
-                                    value="301747458">
+                                    value="<?php echo $clave['celular']; ?>">
                             </div>
 
                         </div>
@@ -93,7 +135,7 @@
                             <div class="form-group">
                                 <label>Dirección</label>
                                 <input name="direccion" type="text" class="form-control"
-                                    placeholder="Ingrese la dirección" value="Carrera 80 madera">
+                                    placeholder="Ingrese la dirección" value="<?php echo $clave['direccion']; ?>">
                             </div>
                         </div>
                     </div>
@@ -102,14 +144,14 @@
                             <div class="form-group">
                                 <label>Correo</label>
                                 <input name="correo" type="email" class="form-control" placeholder="Ingrese el correo"
-                                    value="soya@gmail.com">
+                                    value="<?php echo $clave['correo'];?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nombre contacto</label> <label style="color: red;"> *</label>
                                 <input name="nombreContacto" type="text" class="form-control"
-                                    placeholder="Ingrese el celular" value="Alejandro Quintana">
+                                    placeholder="Ingrese el celular" value="<?php echo $clave['nombreContacto'];?>">
                             </div>
                         </div>
 
@@ -123,15 +165,15 @@
                             <div class="form-group">
                                 <label>Dia visita</label>
                                 <input name="diaVisita" type="text" class="form-control"
-                                    placeholder="Ingrese la dirección" value="Lunes">
+                                    placeholder="Ingrese la dirección" value="<?php echo $clave['diaVisita'];?>">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Observaciones</label>
-                                <textarea class="form-control" rows="2" placeholder="" name="vision"
-                                    >Este proveedor me vende más barato y es muy cumplido.</textarea>
+                                <textarea class="form-control" rows="2" placeholder="" name="observaciones"
+                                    ><?php echo $clave['observaciones'];?></textarea>
                             </div>
 
                         </div>
@@ -151,7 +193,7 @@
 
                     <button type="submit" id="botonActualizarProveedor"
                         class="btn btn-success col-2">Actualizar</button>
-                    <a href="listaproveedoresu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
+						<a href="<?php echo base_url();?>Proveedor/listaproveedoresu" class="btn btn-success col-2">Atrás</a>
 
 
                     <!--Fin del footer del contenido-->

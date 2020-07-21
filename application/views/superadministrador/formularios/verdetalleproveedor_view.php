@@ -38,9 +38,29 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Tipo de documento</label> 
-                                <input name="documento" type="text" class="form-control "
-                                    placeholder="Ingrese el documento " value="Nit" Readonly="Readonly">
+							<label>Tipo de documento</label>
+								<input readonly="readonly" name="tipoDocumento" type="text" class="form-control"
+									placeholder="" value="<?php 
+
+									switch ($clave['tipoDocumento']) 
+									{
+										case 1:
+										echo 'Cédula de ciudadanía';
+										break;
+										case 2:
+										echo 'Cédula de extranjería';
+										break;
+										case 3:
+										echo 'Pasaporte';
+										break;
+										case 4:
+										echo 'Tarjeta de identidad';
+										break;
+										case 5:
+										echo 'Registro civil';
+										break;
+									}
+									?>">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -48,7 +68,7 @@
 
                                 <label>Documento</label> 
                                 <input name="documento" type="text" class="form-control "
-                                    placeholder="Ingrese el documento " value="41524124151" Readonly="Readonly">
+                                    placeholder="" value="<?php echo $clave['documento']; ?>" Readonly="Readonly">
                             </div>
                         </div>
                     </div>
@@ -58,8 +78,8 @@
 
                             <div class="form-group">
                                 <label>Nombre</label> 
-                                <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
-                                    value="Soya" Readonly="Readonly">
+                                <input name="nombre" type="text" class="form-control" placeholder=""
+                                    value="<?php echo $clave['nombre']; ?>" Readonly="Readonly">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -67,7 +87,7 @@
                             <div class="form-group">
                                 <label>Teléfono</label>
                                 <input name="telefono" type="text" class="form-control"
-                                    placeholder="Ingrese el teléfono" value="4525645" Readonly="Readonly">
+                                    placeholder="" value="<?php echo $clave['telefono']; ?>" Readonly="Readonly">
                             </div>
                         </div>
                     </div>
@@ -76,7 +96,7 @@
                             <div class="form-group">
                                 <label>Celular</label> 
                                 <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular"
-                                    value="301747458" Readonly="Readonly">
+                                    value="<?php echo $clave['celular']; ?>" Readonly="Readonly">
                             </div>
 
                         </div>
@@ -84,7 +104,7 @@
                             <div class="form-group">
                                 <label>Dirección</label>
                                 <input name="direccion" type="text" class="form-control"
-                                    placeholder="Ingrese la dirección" value="Carrera 80 madera" Readonly="Readonly">
+                                    placeholder="" value="<?php echo $clave['direccion']; ?>" Readonly="Readonly">
                             </div>
                         </div>
                     </div>
@@ -93,14 +113,14 @@
                             <div class="form-group">
                                 <label>Correo</label>
                                 <input name="correo" type="email" class="form-control" placeholder="Ingrese el correo"
-                                    value="soya@gmail.com" Readonly="Readonly">
+                                    value="<?php echo $clave['correo']; ?>" Readonly="Readonly">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nombre contacto</label> 
                                 <input name="nombreContacto" type="text" class="form-control"
-                                    placeholder="Ingrese el celular" value="Alejandro Quintana" Readonly="Readonly">
+                                    placeholder="" value="<?php echo $clave['nombreContacto']; ?>" Readonly="Readonly">
                             </div>
                         </div>
 
@@ -112,7 +132,7 @@
                             <div class="form-group">
                                 <label>Dia visita</label>
                                 <input name="diaVisita" type="text" class="form-control"
-                                    placeholder="Ingrese la dirección" value="Lunes" Readonly="Readonly">
+                                    placeholder="" value="<?php echo $clave['diaVisita']; ?>" Readonly="Readonly">
                             </div>
                         </div>
 
@@ -120,7 +140,7 @@
                             <div class="form-group">
                                 <label>Observaciones</label>
                                 <textarea class="form-control" rows="2" placeholder="" name="vision"
-                                    readOnly="readonly">Este proveedor me vende más barato y es muy cumplido.</textarea>
+                                    readOnly="readonly"><?php echo $clave['observaciones']; ?></textarea>
                             </div>
 
                         </div>
@@ -129,9 +149,9 @@
 
                         <!--Inicio del footer del contenido-->
                         <br>
-                        <a href="listaproveedoresu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <a href="<?php echo base_url();?>Proveedor/listaproveedoresu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
-
+						
                         <!--Fin del footer del contenido-->
 
 

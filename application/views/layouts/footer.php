@@ -33,13 +33,6 @@
 
 
 
-
-
-
-
-
-	
-
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
 	$.widget.bridge('uibutton', $.ui.button)
@@ -80,7 +73,7 @@
 <script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
 
 <!-- Plugin Sweet Alert 2: mensajes animados y popper-->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/popper/popper.min.js"></script>
 
 <!-- fullCalendar 2.2.5 -->
