@@ -59,9 +59,6 @@
 									placeholder="Ingrese el documento "	>
 									<?php echo form_error('documento','<p class="text-danger">','</p>'); ?>
 
-
-									
-
 							</div>
 				
 						
@@ -102,7 +99,7 @@
 
                             <div class="form-group">
                                 <label>Celular</label> <label style="color: red;"> *</label>
-								<input name="celular" type="text" class="form-control" placeholder="Ingrese el celular">
+								<input name="celular" type="text" class="form-control" placeholder="Ingrese el celular" value="<?php echo $celular;?>">
 								<?php echo form_error('celular','<p class="text-danger">','</p>');?>
                             </div>
 

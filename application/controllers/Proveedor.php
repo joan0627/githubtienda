@@ -48,7 +48,7 @@ class Proveedor extends CI_controller
 		$this->load->view('layouts/footer');
 	}
 
-	public function registrarproveedor()
+	public function registrar()
 	{
 
 		$datosCarga["tipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
@@ -113,13 +113,15 @@ class Proveedor extends CI_controller
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/registroProveedor_view', $datosCarga);
+		$this->load->view('superadministrador/formularios/registrarProveedor_view', $datosCarga);
 		$this->load->view('layouts/footer');
 	}
 
-	public function actualizarProveedore($documento = "")
+	public function actualizar($documento = "")
+	
 	{
 
+	
 		if (isset($documento)) {
 
 			$resultado = $this->model_proveedor->buscarPersonaProveedor($documento);
@@ -134,7 +136,8 @@ class Proveedor extends CI_controller
 
 				//$this->model_usuario->actualizarPersona($idUsuario, $data);
 
-			} else {
+			} 
+			else {
 				$this->load->view('layouts/superadministrador/header');
 				$this->load->view('layouts/aside');
 				$this->load->view('errors/pagina404_view');
@@ -149,7 +152,6 @@ class Proveedor extends CI_controller
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 
 
-
 			//Estos arreglos toman los valores de los input
 			$datosPersona["nombre"] = $this->input->post("nombre");
 			$datosPersona["telefono"] = $this->input->post("telefono");
@@ -161,8 +163,20 @@ class Proveedor extends CI_controller
 			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
 
+			$datosCarga["nombre"] = $this->input->post("nombre");
+			$datosCarga["telefono"] = $this->input->post("telefono");
+			$datosCarga["celular"] = $this->input->post("celular");
+			$datosCarga["direccion"] = $this->input->post("direccion");
+			$datosCarga["correo"] = $this->input->post("correo");
+	        $datosCarga["nombreContacto"] = $this->input->post("nombreContacto");
+			$datosCarga["diaVisita"] = $this->input->post("diaVisita");
+			$datosCarga["observaciones"] = $this->input->post("observaciones");
+
+			echo var_dump($datosCarga);
+
 
 			if ($this->form_validation->run()) {
+				
 				if (isset($documento)) {
 
 
@@ -170,11 +184,28 @@ class Proveedor extends CI_controller
 					$this->model_proveedor->actualizarProveedor($documento, $datosProveedor);
 					redirect("Proveedor/listaproveedoresu");
 				}
+
 			}
+
+			
+
+
+			
+
+		$this->load->view('layouts/superadministrador/header');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/formularios/actualizarProveedor_view', $datosCarga);
+		$this->load->view('layouts/footer');
+
+	
+			
 		}
+		
+	
+
 	}
 
-	public function verdetalleProveedor($documento = "")
+	public function detalle($documento = "")
 	{
 
 		if (isset($documento)) {

@@ -11,9 +11,6 @@ class Usuario extends CI_controller
 		$this->load->helper("url");
 		$this->load->library('form_validation');
 
-
-
-
 		//Validaciones para los campos de la tabla Persona
 		$this->form_validation->set_rules('documento', 'documento', 'required');
 		$this->form_validation->set_rules('tipoDocumento', 'tipo documento', 'required');

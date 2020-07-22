@@ -47,7 +47,7 @@
 
 				<div class="col-auto">
 
-					<a href="registrarproveedor" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear proveedor</a>
+					<a href="registrar" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear proveedor</a>
 				</div>
 
 
@@ -143,7 +143,7 @@
 
 
 								<td class="project-actions text-right ">
-									<a class="btn btn-primary btn-sm" href="verdetalleProveedor/<?php  echo $d->documento;?>">
+									<a class="btn btn-primary btn-sm" href="detalle/<?php  echo $d->documento;?>">
 										<i class="fas fa-eye"></i>
 										</i>
 										Ver
@@ -151,7 +151,7 @@
 
 
 
-									<a class="btn btn-info btn-sm" href="actualizarproveedore/<?php  echo $d->documento;?>">
+									<a class="btn btn-info btn-sm" href="actualizar/<?php  echo $d->documento;?>">
 
 										<i class="fas fa-pencil-alt">
 										</i>

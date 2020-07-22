@@ -68,7 +68,7 @@
 							<div class="form-group">
 
 								<label>Documento</label>
-								<input name="documento" type="text" class="form-control " placeholder="Ingrese el documento " readonly="readonly" value="<?php echo $clave['documento']; ?>">
+								<input name="documento" type="text" class="form-control " placeholder="Ingrese el documento " readonly="readonly" value="<?php  ?>">
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,12 @@
 
 							<div class="form-group">
 								<label>Nombre</label> <label style="color: red;"> *</label>
-								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" value="<?php echo $clave['nombre']; ?>">
+								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" value="<?php
+								if($clave['nombre']  != "")
+								{
+									echo $clave['nombre'];
+								}
+								?>">
 								<?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
