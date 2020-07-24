@@ -79,10 +79,10 @@
 							<div class="form-group">
 								<label>Nombre</label> <label style="color: red;"> *</label>
 								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" value="<?php
-								if($clave['nombre']  != "")
-								{
+								
+								
 									echo $clave['nombre'];
-								}
+								
 								?>">
 								<?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
 							</div>

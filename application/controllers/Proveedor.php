@@ -120,14 +120,20 @@ class Proveedor extends CI_controller
 	public function actualizar($documento = "")
 	
 	{
-
+		
+		
+		echo "Primera fase";
 	
 		if (isset($documento)) {
 
 			$resultado = $this->model_proveedor->buscarPersonaProveedor($documento);
 
-
+			echo "Segunda fase";
+	
 			if (isset($resultado)) {
+
+				echo "Tercera fase";
+
 
 				$this->load->view('layouts/superadministrador/header');
 				$this->load->view('layouts/superadministrador/aside');
@@ -135,23 +141,25 @@ class Proveedor extends CI_controller
 				$this->load->view('layouts/footer');
 
 				//$this->model_usuario->actualizarPersona($idUsuario, $data);
-
+			
 			} 
 			else {
 				$this->load->view('layouts/superadministrador/header');
-				$this->load->view('layouts/aside');
+				$this->load->view('layouts/superadministrador/aside');
 				$this->load->view('errors/pagina404_view');
 				$this->load->view('layouts/footer');
 
-				//Hacer esta validacion
-
-
+		
 			}
-		}
+
+
+
+
+		
 
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
-
-
+			echo "Cuarta fase";
+ 
 			//Estos arreglos toman los valores de los input
 			$datosPersona["nombre"] = $this->input->post("nombre");
 			$datosPersona["telefono"] = $this->input->post("telefono");
@@ -177,29 +185,31 @@ class Proveedor extends CI_controller
 
 			if ($this->form_validation->run()) {
 				
-				if (isset($documento)) {
+		
 
 
 					$this->model_proveedor->actualizarPersona($documento, $datosPersona);
 					$this->model_proveedor->actualizarProveedor($documento, $datosProveedor);
 					redirect("Proveedor/listaproveedoresu");
-				}
+			
+
+			}
+			else 
+			{
+				
 
 			}
 
-			
+		
+		
+		}
 
+		
+	}
 
-			
-
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/actualizarProveedor_view', $datosCarga);
-		$this->load->view('layouts/footer');
+		echo "Validaciones malas";
 
 	
-			
-		}
 		
 	
 
