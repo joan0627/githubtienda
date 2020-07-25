@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Codigo</label> <label style="color: red;"> * </label>
+                                <label>Código</label> <label style="color: red;"> * </label>
 								<input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo ">
 								<?php echo form_error('codigo', '<p class="text-danger">', '</p>'); ?>
                             </div>
@@ -69,16 +69,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-								<label>Categoria</label> <label style="color: red;"> *</label>
+								<label>Categoría</label> <label style="color: red;"> *</label>
                                 <select name="categoria" class="form-control">
 
-									<option hidden selected>-Seleccione la categoria-</option>
+									<option Value="" hidden selected>-Seleccione la categoría-</option>
 									<option value="1">Alimento</option>
 									<option value="2">Accesorios</option>
                                     <option value="3">Aseo</option>
-									<?php echo form_error('categoria', '<p class="text-danger">', '</p>'); ?>
-
 								</select>
+								<?php echo form_error('categoria', '<p class="text-danger">', '</p>'); ?>
 								
                             </div>
                         </div>
@@ -96,7 +95,7 @@
                                 <label>Marca</label> <label style="color: red;"> *</label>
                                 <select name="marca" class="form-control">
 
-									<option hidden selected>-Seleccione la marca-</option>
+									<option Value="" hidden selected>-Seleccione la marca-</option>
 									<option value="1">Nutrican</option>
                                     <option value="2">Cipa</option>
                                     <option value="3">Petis</option>
@@ -115,12 +114,10 @@
                                 <label>Proveedor</label> <label style="color: red;"> *</label>
                                 <select name="proveedor" class="form-control">
 
-                                    <option hidden selected>-Seleccione el proveedor-</option>
-                                    <option value="1">Kanú</option>
-                                    <option value="2">Alberto Perez</option>
-                                    <option value="2">Solla S.A</option>
-									<option value="2">Novaventa</option>
-									<option value="2">Desconocido</option>
+                                    <option Value="" hidden selected>-Seleccione el proveedor-</option>
+                                    <option value="15">Carlos</option>
+                                    <option value="16">Sebastian</option>
+                                    <option value="17">Evis</option>
 								</select>
 								<?php echo form_error('proveedor', '<p class="text-danger">', '</p>'); ?>
 
@@ -144,11 +141,21 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group">
+						<div class="form-group">
+                                <label>Valor de medida</label>
+                                <input name="valorDeMedida" type="text" class="form-control"
+									placeholder="Ingrese el valor de medida">
+									<?php echo form_error('valorDeMedida', '<p class="text-danger">', '</p>'); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+						<div class="form-group">
                                 <label>Unidad de medida</label>
                                 <select name="unidaDeMedida" class="form-control">
 
-                                    <option hidden selected>-Seleccione la unidad de medida-</option>
+                                    <option Value="" hidden selected>-Seleccione la unidad de medida-</option>
                                     <option value="1">Kilogramo</option>
 									<option value="2">Unidad</option>
 									<option value="3">Paquete</option>
@@ -158,22 +165,12 @@
 								<?php echo form_error('unidaDeMedida', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Valor de medida</label>
-                                <input name="valorDeMedida" type="text" class="form-control"
-									placeholder="Ingrese el valor de medida">
-									<?php echo form_error('valorDeMedida', '<p class="text-danger">', '</p>'); ?>
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Presentación</label> <label style="color: red;"> * </label>
                                 <select name="presentacion" class="form-control">
 
-                                    <option hidden selected>-Seleccione la presentacion-</option>
+                                    <option Value="" hidden selected>-Seleccione la presentacion-</option>
                                     <option value="1">Bolsa</option>
                                     <option value="2">Paquete</option>
                                     <option value="3">Botella</option>
@@ -201,9 +198,9 @@
                                     </span>
                                 </div>
 								<input type="number" class="form-control" placeholder="Ingrese el precio de costo del producto" name="costo" onKeyUp="CalcularPrecioVenta()">
-								<?php echo form_error('costo', '<p class="text-danger">', '</p>'); ?>
 
-                            </div>
+							</div>
+							<?php echo form_error('costo', '<p class="text-danger">', '</p>'); ?>
 
                         </div>
 
@@ -217,15 +214,13 @@
                                     </span>
                                 </div>
 								<input type="number" class="form-control" placeholder="Ingrese el porcentaje de utilidad" name="utilidad" onKeyUp="CalcularPrecioVenta()">
-								<?php echo form_error('utilidad', '<p class="text-danger">', '</p>'); ?>
-
                             </div>
-
+							<?php echo form_error('utilidad', '<span class="text-danger">', '</span>'); ?>
                         </div>
 
                         <div class="col-md-4">
 
-                            <label>Precio de venta</label> <label style="color: red;"> * </label>
+                            <label>Precio de venta</label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">

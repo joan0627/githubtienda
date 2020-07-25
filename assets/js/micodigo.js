@@ -19,7 +19,7 @@ function CalcularPrecioVenta() {
 		costo = (isNaN(parseInt(costo)))? 0 : parseInt(costo);
 		utilidad = (isNaN(parseInt(utilidad)))? 0 : parseInt(utilidad);
 		var precio=costo/(1-(utilidad/100));
-		precio=Math.trunc(precio);
+		precio=precio.toFixed(2);
 		document.producto.precioVenta.value =precio;
 	}
 	//Si se produce un error no hacemos nada

@@ -19,15 +19,15 @@ class Producto extends CI_controller
 
 
 		//Validaciones para los campos de la tabla Producto
-		$this->form_validation->set_rules('codigo', 'codigo', 'required');
+		$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[producto.idProducto]');
 		$this->form_validation->set_rules('nombre', 'nombre', 'required');
 
-		$this->form_validation->set_rules('categoria', 'categoria', 'required');
+		$this->form_validation->set_rules('categoria', 'categoría', 'required');
 		$this->form_validation->set_rules('marca', 'marca', 'required');
 		$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
 		$this->form_validation->set_rules('existencia', 'existencia', 'required');
-		$this->form_validation->set_rules('unidaDeMedida', 'unidaDeMedida', 'required');
-		$this->form_validation->set_rules('valorDeMedida', 'valorDeMedida', 'required');
+		$this->form_validation->set_rules('unidaDeMedida', 'unidad de medida', 'required');
+		$this->form_validation->set_rules('valorDeMedida', 'valor de medida', 'required');
 		$this->form_validation->set_rules('presentacion', 'presentación', 'required');
 		$this->form_validation->set_rules('costo', 'costo', 'required');
 		$this->form_validation->set_rules('utilidad', 'utilidad', 'required');
@@ -62,6 +62,7 @@ class Producto extends CI_controller
 			$datosPersona["presentacion"] = $this->input->post("presentacion");
 			$datosPersona["costo"] = $this->input->post("costo");
 			$datosPersona["utilidad"] = $this->input->post("utilidad");
+			$datosPersona["precio"] = $this->input->post("precioVenta");
 
 
 			/*************************************************************/
