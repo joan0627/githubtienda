@@ -32,7 +32,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form" method="POST">
+            <form role="form" name="producto" method="POST">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -200,7 +200,7 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-								<input type="number" class="form-control" placeholder="Ingrese el precio de costo del producto" name="costo" onchange="sumar(this.value);">
+								<input type="number" class="form-control" placeholder="Ingrese el precio de costo del producto" name="costo" onKeyUp="CalcularPrecioVenta()">
 								<?php echo form_error('costo', '<p class="text-danger">', '</p>'); ?>
 
                             </div>
@@ -216,7 +216,7 @@
 									<i class="fas fa-percentage"></i>
                                     </span>
                                 </div>
-								<input type="number" class="form-control" placeholder="Ingrese el porcentaje de utilidad" name="utilidad" onchange="sumar(this.value);">
+								<input type="number" class="form-control" placeholder="Ingrese el porcentaje de utilidad" name="utilidad" onKeyUp="CalcularPrecioVenta()">
 								<?php echo form_error('utilidad', '<p class="text-danger">', '</p>'); ?>
 
                             </div>
