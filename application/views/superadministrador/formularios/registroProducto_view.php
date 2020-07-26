@@ -40,7 +40,8 @@
                             <div class="form-group">
 
                                 <label>Código</label> <label style="color: red;"> * </label>
-								<input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo ">
+								<input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo "
+								value="<?php echo $idProducto;?>">
 								<?php echo form_error('codigo', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -49,7 +50,8 @@
 
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> *</label>
-								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre">
+								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
+								value="<?php echo $nombreProducto;?>">
 								<?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -60,7 +62,7 @@
                             <div class="form-group">
                                 <label>Descripción</label>
                                 <textarea class="form-control" rows="2"
-									placeholder="Escribe una descripción del producto ..." name="descripcion"></textarea>
+									placeholder="Escribe una descripción del producto ..." name="descripcion"><?php echo $descripcion;?></textarea>
 									
                             </div>
                         </div>
@@ -70,8 +72,8 @@
                             <div class="form-group">
 
 								<label>Categoría</label> <label style="color: red;"> *</label>
-                                <select name="categoria" class="form-control">
-
+                                <select name="categoria" class="form-control" > 
+								 	
 									<option Value="" hidden selected>-Seleccione la categoría-</option>
 									<option value="1">Alimento</option>
 									<option value="2">Accesorios</option>
@@ -135,7 +137,7 @@
                             <div class="form-group">
                                 <label>Existencia</label> <label style="color: red;"> * </label>
                                 <input name="existencia" type="text" class="form-control"
-									placeholder="Ingrese la existencia">
+									placeholder="Ingrese la existencia" value="<?php echo $existencia;?>">
 									<?php echo form_error('existencia', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -144,7 +146,7 @@
 						<div class="form-group">
                                 <label>Valor de medida</label>
                                 <input name="valorDeMedida" type="text" class="form-control"
-									placeholder="Ingrese el valor de medida">
+									placeholder="Ingrese el valor de medida" value="<?php echo $valorMedida;?>">
 									<?php echo form_error('valorDeMedida', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -197,7 +199,8 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-								<input type="number" class="form-control" placeholder="Ingrese el precio de costo del producto" name="costo" onKeyUp="CalcularPrecioVenta()">
+								<input type="number" class="form-control" placeholder="Ingrese el precio de costo del producto" name="costo" onKeyUp="CalcularPrecioVenta()"
+								value="<?php echo $costo;?>">
 
 							</div>
 							<?php echo form_error('costo', '<p class="text-danger">', '</p>'); ?>
@@ -213,7 +216,8 @@
 									<i class="fas fa-percentage"></i>
                                     </span>
                                 </div>
-								<input type="number" class="form-control" placeholder="Ingrese el porcentaje de utilidad" name="utilidad" onKeyUp="CalcularPrecioVenta()">
+								<input type="number" class="form-control" placeholder="Ingrese el porcentaje de utilidad" name="utilidad" 
+								onKeyUp="CalcularPrecioVenta()" value="<?php echo $utilidad;?>">
                             </div>
 							<?php echo form_error('utilidad', '<span class="text-danger">', '</span>'); ?>
                         </div>
@@ -228,7 +232,7 @@
                                     </span>
                                 </div>
 								<input type="text" class="form-control" placeholder="" readOnly="readonly" 
-								id="total" name="precioVenta" >
+								id="total" name="precioVenta" value="<?php echo $precio;?>">
 
                             </div>
 
@@ -248,8 +252,9 @@
 
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="cargaimagenproducto" name="cargaimagenproducto">
-                                        <label class="custom-file-label" for="exampleInputFile"></label>
+										<input type="file" class="custom-file-input" id="cargaimagenproducto" name="cargaimagenproducto">
+										
+										<label class="custom-file-label" for="exampleInputFile"></label>
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="">Cargar</span>

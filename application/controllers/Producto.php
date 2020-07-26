@@ -31,15 +31,17 @@ class Producto extends CI_controller
 		$this->form_validation->set_rules('presentacion', 'presentación', 'required');
 		$this->form_validation->set_rules('costo', 'costo', 'required');
 		$this->form_validation->set_rules('utilidad', 'utilidad', 'required');
+	
+
 
 	}
 
 	public function registrarproductosu()
 	{
 
-		$datosCarga["codigo"] = $datosCarga["nombre"] = $datosCarga["descripcion"] = $datosCarga["categoria"] =
-			$datosCarga["marca"] = $datosCarga["proveedor"] = $datosCarga["existencia"] = $datosCarga["unidaDeMedida"] =
-			$datosCarga["valorDeMedida"] = $datosCarga["presentacion"] = $datosCarga["costo"] = $datosCarga["utilidad"] = "";
+		$datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcion"] = $datosCarga["categoria"] =
+			$datosCarga["marca"] = $datosCarga["proveedor"] = $datosCarga["existencia"] = $datosCarga["unidadMedida"] =
+			$datosCarga["valorMedida"] = $datosCarga["presentacion"] = $datosCarga["costo"] = $datosCarga["utilidad"] = $datosCarga["precio"] =  "";
 
 
 
@@ -48,60 +50,74 @@ class Producto extends CI_controller
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 
 			/*Arreglos para guardar informacion en las dos tabla: Producto
-			solo se sutiliza un arreglo por que solo es una tabla.
+			solo se sutiliza un arreglo por que solo es una roducto
 			*/
-			$datosPersona["idProducto"] = $this->input->post("codigo");
-			$datosPersona["nombreProducto"] = $this->input->post("nombre");
-			$datosPersona["descripcion"] = $this->input->post("descripcion");
-			$datosPersona["categoria"] = $this->input->post("categoria");
-			$datosPersona["marca"] = $this->input->post("marca");
-			$datosPersona["proveedor"] = $this->input->post("proveedor");
-			$datosPersona["existencia"] = $this->input->post("existencia");
-			$datosPersona["unidadMedida"] = $this->input->post("unidaDeMedida");
-			$datosPersona["valorMedida"] = $this->input->post("valorDeMedida");
-			$datosPersona["presentacion"] = $this->input->post("presentacion");
-			$datosPersona["costo"] = $this->input->post("costo");
-			$datosPersona["utilidad"] = $this->input->post("utilidad");
-			$datosPersona["precio"] = $this->input->post("precioVenta");
+			$datosProducto["idProducto"] = $this->input->post("codigo");
+			$datosProducto["nombreProducto"] = $this->input->post("nombre");
+			$datosProducto["descripcion"] = $this->input->post("descripcion");
+			$datosProducto["categoria"] = $this->input->post("categoria");
+			$datosProducto["marca"] = $this->input->post("marca");
+			$datosProducto["proveedor"] = $this->input->post("proveedor");
+			$datosProducto["existencia"] = $this->input->post("existencia");
+			$datosProducto["unidadMedida"] = $this->input->post("unidaDeMedida");
+			$datosProducto["valorMedida"] = $this->input->post("valorDeMedida");
+			$datosProducto["presentacion"] = $this->input->post("presentacion");
+			$datosProducto["costo"] = $this->input->post("costo");
+			$datosProducto["utilidad"] = $this->input->post("utilidad");
+			$datosProducto["precio"] = $this->input->post("precioVenta");
 
 
+
+			
 			//Cargar la imagen 
 			$mi_archivo = 'cargaimagenproducto';
 			$config['upload_path'] = "assets/img/productos";
 			//$config['file_name'] = "nombre_archivo";
-			$config['allowed_types'] = "jpg|png";
+			$config['allowed_types'] = "jpg|png|jpeg";
 			$config['max_size'] = "5000";
 			$config['max_width'] = "2000";
 			$config['max_height'] = "2000";
 	
 			$this->load->library('upload', $config);
 			
-			if (!$this->upload->do_upload($mi_archivo)) {
-				//*** ocurrio un error
-				
-				echo $this->upload->display_errors();
-				return;
-			}
+			$this->upload->do_upload($mi_archivo);
 	
+
+			
+
 			//var_dump( $this->upload->data());
 
 			$file_data = $this->upload->data();
 
 			//Cargar la ruta al arreglo de datos que se va insertar en la base de datos
-			$datosPersona["imagen"] = base_url()."assets/img/productos/".$file_data['file_name'];
+			$datosProducto["imagen"] = base_url() . "assets/img/productos/" . $file_data['file_name'];
 
-		
+			//Se mantienen los datos al hacer una validació//
+			$datosCarga["idProducto"] = $this->input->post("codigo");
+			$datosCarga["nombreProducto"] = $this->input->post("nombre");
+			$datosCarga["descripcion"] = $this->input->post("descripcion");
+			$datosCarga["categoria"] = $this->input->post("categoria");
+			$datosCarga["marca"] = $this->input->post("marca");
+			$datosCarga["proveedor"] = $this->input->post("proveedor");
+			$datosCarga["existencia"] = $this->input->post("existencia");
+			$datosCarga["unidadMedida"] = $this->input->post("unidaDeMedida");
+			$datosCarga["valorMedida"] = $this->input->post("valorDeMedida");
+			$datosCarga["presentacion"] = $this->input->post("presentacion");
+			$datosCarga["costo"] = $this->input->post("costo");
+			$datosCarga["utilidad"] = $this->input->post("utilidad");
+			$datosCarga["precio"] = $this->input->post("precioVenta");
 
-			
-		
+
 			/*************************************************************/
 			// **			Validaciónn de los campos					 // **
 			/*************************************************************/
 			if ($this->form_validation->run()) {
 
-				$this->model_producto->insertarProducto($datosPersona);
+				$this->model_producto->insertarProducto($datosProducto);
 				redirect("Producto/listaproductosu");
 			}
+
+
 		}
 
 		$this->load->view('layouts/superadministrador/header');
