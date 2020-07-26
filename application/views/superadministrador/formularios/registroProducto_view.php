@@ -32,7 +32,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form" name="producto" method="POST">
+            <form role="form" action="" name="producto" method="POST"  enctype="multipart/form-data">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -248,7 +248,7 @@
 
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                                        <input type="file" class="custom-file-input" name="cargaimagenproducto">
                                         <label class="custom-file-label" for="exampleInputFile"></label>
                                     </div>
                                     <div class="input-group-append">

@@ -65,11 +65,39 @@ class Producto extends CI_controller
 			$datosPersona["precio"] = $this->input->post("precioVenta");
 
 
+			//Cargar la imagen 
+			$mi_archivo = 'cargaimagenproducto';
+			$config['upload_path'] = "assets/img/productos";
+			//$config['file_name'] = "nombre_archivo";
+			$config['allowed_types'] = "jpg|png";
+			$config['max_size'] = "5000";
+			$config['max_width'] = "2000";
+			$config['max_height'] = "2000";
+	
+			$this->load->library('upload', $config);
+			
+			if (!$this->upload->do_upload($mi_archivo)) {
+				//*** ocurrio un error
+				
+				echo $this->upload->display_errors();
+				return;
+			}
+	
+			//var_dump( $this->upload->data());
+
+			$file_data = $this->upload->data();
+
+			//Cargar la ruta al arreglo de datos que se va insertar en la base de datos
+			$datosPersona["imagen"] = base_url()."assets/img/productos/".$file_data['file_name'];
+
+		
+
+			
+		
 			/*************************************************************/
 			// **			Validaciónn de los campos					 // **
 			/*************************************************************/
 			if ($this->form_validation->run()) {
-
 
 				$this->model_producto->insertarProducto($datosPersona);
 				redirect("Producto/listaproductosu");
@@ -129,6 +157,11 @@ class Producto extends CI_controller
 		$this->load->view('layouts/footer');
 		
 	}
+
+
+
+
+	
 
 }
 
