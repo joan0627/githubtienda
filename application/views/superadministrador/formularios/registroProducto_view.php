@@ -248,7 +248,7 @@
 
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="cargaimagenproducto">
+                                        <input type="file" class="custom-file-input" id="cargaimagenproducto" name="cargaimagenproducto">
                                         <label class="custom-file-label" for="exampleInputFile"></label>
                                     </div>
                                     <div class="input-group-append">
@@ -262,7 +262,8 @@
                             <div class="form-group">
                                 <label>Vista previa de la imagen</label>
                                 <div class="timeline-body">
-                                    <img src="http://placehold.it/250x200" alt="...">
+									<img style="width: 250px; height: 200px;" id="vistapreviaproducto" src="http://placehold.it/250x200" alt="...">
+								
 
                                 </div>
                             </div>
