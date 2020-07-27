@@ -73,11 +73,38 @@
 
 								<label>Categoría</label> <label style="color: red;"> *</label>
                                 <select name="categoria" class="form-control" > 
-								 	
-									<option Value="" hidden selected>-Seleccione la categoría-</option>
-									<option value="1">Alimento</option>
-									<option value="2">Accesorios</option>
-                                    <option value="3">Aseo</option>
+							
+								<?php 
+
+									switch ($clave['categoria']) {
+										case 1 :
+										echo "Alimento";
+										
+										echo '<option value="1">Alimento</option>';
+										echo  '<option value="2">Accesorios</option>';
+										echo '<option value="3">Aseo</option>';
+										break;
+										case 2:
+										echo "Accesorios";
+									
+										echo '<option value="1">Alimento</option>';
+										echo  '<option value="2">Accesorios</option>';
+										echo '<option value="3">Aseo</option>';
+										break;
+										case 3:
+										echo "Aseo";
+									
+										echo '<option value="1">Alimento</option>';
+										echo  '<option value="2">Accesorios</option>';
+										echo '<option value="3">Aseo</option>';
+										break;
+										
+										}
+									
+										?>
+								
+
+								//
 								</select>
 								<?php echo form_error('categoria', '<p class="text-danger">', '</p>'); ?>
 								
