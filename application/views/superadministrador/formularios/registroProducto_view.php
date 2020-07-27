@@ -11,8 +11,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="#">Productos</a></li>
+                        <li class="breadcrumb-item active">Registro de producto</li>
                     </ol>
                 </div>
             </div>
@@ -136,15 +136,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Existencia</label> <label style="color: red;"> * </label>
-                                <input name="existencia" type="text" class="form-control"
-									placeholder="Ingrese la existencia" value="<?php echo $existencia;?>">
+                                <input name="existencia" type="number" class="form-control"
+									placeholder="Ingrese la existencia" value="<?php echo $existencia;?>" min="1">
 									<?php echo form_error('existencia', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
 						<div class="form-group">
-                                <label>Valor de medida</label>
+                                <label>Valor de medida</label><label style="color: red;"> * </label>
                                 <input name="valorDeMedida" type="text" class="form-control"
 									placeholder="Ingrese el valor de medida" value="<?php echo $valorMedida;?>">
 									<?php echo form_error('valorDeMedida', '<p class="text-danger">', '</p>'); ?>
@@ -154,7 +154,7 @@
                     <div class="row">
                         <div class="col-md-6">
 						<div class="form-group">
-                                <label>Unidad de medida</label>
+                                <label>Unidad de medida</label><label style="color: red;"> * </label>
                                 <select name="unidaDeMedida" class="form-control">
 
                                     <option Value="" hidden selected>-Seleccione la unidad de medida-</option>
@@ -217,7 +217,7 @@
                                     </span>
                                 </div>
 								<input type="number" class="form-control" placeholder="Ingrese el porcentaje de utilidad" name="utilidad" 
-								onKeyUp="CalcularPrecioVenta()" value="<?php echo $utilidad;?>">
+								onKeyUp="CalcularPrecioVenta()" value="<?php echo $utilidad;?>" min ="1" max="99">
                             </div>
 							<?php echo form_error('utilidad', '<span class="text-danger">', '</span>'); ?>
                         </div>
@@ -267,7 +267,7 @@
                             <div class="form-group">
                                 <label>Vista previa de la imagen</label>
                                 <div class="timeline-body">
-									<img style="width: 250px; height: 200px;" id="vistapreviaproducto" src="http://placehold.it/250x200" alt="...">
+									<img style="width: 250px; height: 200px;" id="vistapreviaproducto" src="http://placehold.it/250x200" alt="¡El archivo no es compatible!">
 								
 
                                 </div>
