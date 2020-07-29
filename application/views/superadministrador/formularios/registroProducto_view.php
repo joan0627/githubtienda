@@ -41,7 +41,7 @@
 
                                 <label>Código</label> <label style="color: red;"> * </label>
 								<input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo "
-								value="<?php echo $idProducto;?>">
+								value="">
 								<?php echo form_error('codigo', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> *</label>
 								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
-								value="<?php echo $nombreProducto;?>">
+								value="">
 								<?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label>Descripción</label>
                                 <textarea class="form-control" rows="2"
-									placeholder="Escribe una descripción del producto ..." name="descripcion"><?php echo $descripcion;?></textarea>
+									placeholder="Escribe una descripción del producto ..." name="descripcion"></textarea>
 									
                             </div>
                         </div>
@@ -73,38 +73,35 @@
 
 								<label>Categoría</label> <label style="color: red;"> *</label>
                                 <select name="categoria" class="form-control" > 
-							
-								<?php 
 
-									switch ($clave['categoria']) {
-										case 1 :
-										echo "Alimento";
-										
-										echo '<option value="1">Alimento</option>';
-										echo  '<option value="2">Accesorios</option>';
-										echo '<option value="3">Aseo</option>';
-										break;
-										case 2:
-										echo "Accesorios";
-									
-										echo '<option value="1">Alimento</option>';
-										echo  '<option value="2">Accesorios</option>';
-										echo '<option value="3">Aseo</option>';
-										break;
-										case 3:
-										echo "Aseo";
-									
-										echo '<option value="1">Alimento</option>';
-										echo  '<option value="2">Accesorios</option>';
-										echo '<option value="3">Aseo</option>';
-										break;
-										
-										}
-									
-										?>
-								
+								<?php if ($categoria!=""): ?>
+										<?php foreach ($categorias as $clave => $valor) : ?>
+											<?php if($categoria==$valor->idCategoria) : ?>
+											
+												<option  hidden value=" <?php echo  $valor->idCategoria; ?>" selected>
+												<?php 
+												
+												
+												echo  $valor->descripcion;?></option>
+												<?php
+												foreach ($categorias as $clave => $valor) : ?>
+													
 
-								//
+													<option  value=" <?php echo  $valor->idCategoria; ?>">
+													<?php echo  $valor->descripcion; ?></option>
+				
+												<?php endforeach;?>
+												
+											<?php endif;  ?>
+										<?php endforeach; ?> 
+								<?php else :
+									foreach ($categorias as $clave => $valor) : ?>
+											<option value="" selected hidden>-Seleccione una categoría-</option>;
+											<option value=" <?php echo  $valor->idCategoria; ?>">
+											<?php echo  $valor->descripcion; ?></option>
+		
+										<?php endforeach;?>
+									<?php endif?>
 								</select>
 								<?php echo form_error('categoria', '<p class="text-danger">', '</p>'); ?>
 								
@@ -124,11 +121,12 @@
                                 <label>Marca</label> <label style="color: red;"> *</label>
                                 <select name="marca" class="form-control">
 
-									<option Value="" hidden selected>-Seleccione la marca-</option>
-									<option value="1">Nutrican</option>
-                                    <option value="2">Cipa</option>
-                                    <option value="3">Petis</option>
-                                    <option value="4">Dog chow</option>
+								<?php 
+								foreach ($marcas as $clave => $valor) : ?>
+
+									<option value=" <?php echo  $valor->idMarca	 ?>"><?php echo  $valor->descripcion; ?></option>
+
+								<?php endforeach; ?>
 								</select>
 								<?php echo form_error('marca', '<p class="text-danger">', '</p>'); ?>
 
@@ -143,10 +141,12 @@
                                 <label>Proveedor</label> <label style="color: red;"> *</label>
                                 <select name="proveedor" class="form-control">
 
-                                    <option Value="" hidden selected>-Seleccione el proveedor-</option>
-                                    <option value="15">Carlos</option>
-                                    <option value="16">Sebastian</option>
-                                    <option value="17">Evis</option>
+								<?php 
+								foreach ($proveedores as $clave => $valor) : ?>
+
+									<option value=" <?php echo  $valor->documento	 ?>"><?php echo  $valor->nombreContacto; ?></option>
+
+								<?php endforeach; ?>
 								</select>
 								<?php echo form_error('proveedor', '<p class="text-danger">', '</p>'); ?>
 
@@ -164,7 +164,7 @@
                             <div class="form-group">
                                 <label>Existencia</label> <label style="color: red;"> * </label>
                                 <input name="existencia" type="number" class="form-control"
-									placeholder="Ingrese la existencia" value="<?php echo $existencia;?>" min="1">
+									placeholder="Ingrese la existencia" value="" min="1">
 									<?php echo form_error('existencia', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
 						<div class="form-group">
                                 <label>Valor de medida</label><label style="color: red;"> * </label>
                                 <input name="valorDeMedida" type="text" class="form-control"
-									placeholder="Ingrese el valor de medida" value="<?php echo $valorMedida;?>">
+									placeholder="Ingrese el valor de medida" value="">
 									<?php echo form_error('valorDeMedida', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -184,12 +184,12 @@
                                 <label>Unidad de medida</label><label style="color: red;"> * </label>
                                 <select name="unidaDeMedida" class="form-control">
 
-                                    <option Value="" hidden selected>-Seleccione la unidad de medida-</option>
-                                    <option value="1">Kilogramo</option>
-									<option value="2">Unidad</option>
-									<option value="3">Paquete</option>
-									<option value="4">Libras</option>
-									<option value="5">Mililitros </option>
+								<?php 
+								foreach ($unidadesmedidas as $clave => $valor) : ?>
+
+									<option value=" <?php echo  $valor->idUnidadMedida	 ?>"><?php echo  $valor->descripcion; ?></option>
+
+								<?php endforeach; ?>
 								</select>
 								<?php echo form_error('unidaDeMedida', '<p class="text-danger">', '</p>'); ?>
                             </div>
@@ -199,11 +199,12 @@
                                 <label>Presentación</label> <label style="color: red;"> * </label>
                                 <select name="presentacion" class="form-control">
 
-                                    <option Value="" hidden selected>-Seleccione la presentacion-</option>
-                                    <option value="1">Bolsa</option>
-                                    <option value="2">Paquete</option>
-                                    <option value="3">Botella</option>
-                                    <option value="4">Caja</option>
+								<?php 
+								foreach ($presentaciones as $clave => $valor) : ?>
+
+									<option value=" <?php echo  $valor->idPresentacion	 ?>"><?php echo  $valor->descripcion; ?></option>
+
+								<?php endforeach; ?>
 								</select>
 								<?php echo form_error('presentacion', '<p class="text-danger">', '</p>'); ?>
                             </div>
@@ -227,7 +228,7 @@
                                     </span>
                                 </div>
 								<input type="number" class="form-control" placeholder="Ingrese el precio de costo del producto" name="costo" onKeyUp="CalcularPrecioVenta()"
-								value="<?php echo $costo;?>">
+								value="">
 
 							</div>
 							<?php echo form_error('costo', '<p class="text-danger">', '</p>'); ?>
@@ -244,7 +245,7 @@
                                     </span>
                                 </div>
 								<input type="number" class="form-control" placeholder="Ingrese el porcentaje de utilidad" name="utilidad" 
-								onKeyUp="CalcularPrecioVenta()" value="<?php echo $utilidad;?>" min ="1" max="99">
+								onKeyUp="CalcularPrecioVenta()" value="" min ="1" max="99">
                             </div>
 							<?php echo form_error('utilidad', '<span class="text-danger">', '</span>'); ?>
                         </div>
@@ -259,7 +260,7 @@
                                     </span>
                                 </div>
 								<input type="text" class="form-control" placeholder="" readOnly="readonly" 
-								id="total" name="precioVenta" value="<?php echo $precio;?>">
+								id="total" name="precioVenta" value="">
 
                             </div>
 

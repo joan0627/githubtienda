@@ -39,12 +39,15 @@ class Producto extends CI_controller
 	public function registrarproductosu()
 	{
 
-		$datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcion"] = $datosCarga["categoria"] =
+		    $datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcion"] = $datosCarga["categoria"] =
 			$datosCarga["marca"] = $datosCarga["proveedor"] = $datosCarga["existencia"] = $datosCarga["unidadMedida"] =
 			$datosCarga["valorMedida"] = $datosCarga["presentacion"] = $datosCarga["costo"] = $datosCarga["utilidad"] = $datosCarga["precio"] =  "";
 
-
-
+			$datosCarga['categorias'] = $this->model_producto->buscarTodasCategorias();
+			$datosCarga['marcas'] = $this->model_producto->buscarTodasMarcas();
+			$datosCarga['proveedores'] = $this->model_producto->buscarProveedores();
+			$datosCarga['unidadesmedidas'] = $this->model_producto->buscarUnidadesMedidas();
+			$datosCarga['presentaciones'] = $this->model_producto->buscarPresentaciones();
 
 		//Campos del formulario
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
@@ -66,9 +69,6 @@ class Producto extends CI_controller
 			$datosProducto["utilidad"] = $this->input->post("utilidad");
 			$datosProducto["precio"] = $this->input->post("precioVenta");
 
-
-
-			
 			//Cargar la imagen 
 			$mi_archivo = 'cargaimagenproducto';
 			$config['upload_path'] = "assets/img/productos";
@@ -83,7 +83,6 @@ class Producto extends CI_controller
 			$this->upload->do_upload($mi_archivo);
 	
 
-			
 
 			//var_dump( $this->upload->data());
 
@@ -120,9 +119,11 @@ class Producto extends CI_controller
 
 		}
 
+	
+
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/registroProducto_view', $datosCarga);
+		$this->load->view('superadministrador/formularios/registroProducto_view', $datosCarga );
 		$this->load->view('layouts/footer');
 	}
 
