@@ -37,7 +37,7 @@ function CalcularPrecioVenta() {
           $('#vistapreviaproducto').attr('src', e.target.result); // Renderizamos la imagen
       }
       reader.readAsDataURL(input.files[0]);
-    }
+	}
   }
 
   $('#cargaimagenproducto').change(function () {

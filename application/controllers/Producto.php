@@ -26,7 +26,7 @@ class Producto extends CI_controller
 		$this->form_validation->set_rules('marca', 'marca', 'required');
 		$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
 		$this->form_validation->set_rules('existencia', 'existencia', 'required');
-		$this->form_validation->set_rules('unidaDeMedida', 'unidad de medida', 'required');
+		$this->form_validation->set_rules('unidadDeMedida', 'unidad de medida', 'required');
 		$this->form_validation->set_rules('valorDeMedida', 'valor de medida', 'required');
 		$this->form_validation->set_rules('presentacion', 'presentación', 'required');
 		$this->form_validation->set_rules('costo', 'costo', 'required');
@@ -43,6 +43,8 @@ class Producto extends CI_controller
 			$datosCarga["marca"] = $datosCarga["proveedor"] = $datosCarga["existencia"] = $datosCarga["unidadMedida"] =
 			$datosCarga["valorMedida"] = $datosCarga["presentacion"] = $datosCarga["costo"] = $datosCarga["utilidad"] = $datosCarga["precio"] =  "";
 
+			$datosCarga["img"] ="http://placehold.it/250x200";
+			
 			$datosCarga['categorias'] = $this->model_producto->buscarTodasCategorias();
 			$datosCarga['marcas'] = $this->model_producto->buscarTodasMarcas();
 			$datosCarga['proveedores'] = $this->model_producto->buscarProveedores();
@@ -62,7 +64,7 @@ class Producto extends CI_controller
 			$datosProducto["marca"] = $this->input->post("marca");
 			$datosProducto["proveedor"] = $this->input->post("proveedor");
 			$datosProducto["existencia"] = $this->input->post("existencia");
-			$datosProducto["unidadMedida"] = $this->input->post("unidaDeMedida");
+			$datosProducto["unidadMedida"] = $this->input->post("unidadDeMedida");
 			$datosProducto["valorMedida"] = $this->input->post("valorDeMedida");
 			$datosProducto["presentacion"] = $this->input->post("presentacion");
 			$datosProducto["costo"] = $this->input->post("costo");
@@ -72,7 +74,7 @@ class Producto extends CI_controller
 			//Cargar la imagen 
 			$mi_archivo = 'cargaimagenproducto';
 			$config['upload_path'] = "assets/img/productos";
-			//$config['file_name'] = "nombre_archivo";
+			//$config['file_name'] = "Nombre_File";
 			$config['allowed_types'] = "jpg|png|jpeg";
 			$config['max_size'] = "5000";
 			$config['max_width'] = "2000";
@@ -91,7 +93,7 @@ class Producto extends CI_controller
 			//Cargar la ruta al arreglo de datos que se va insertar en la base de datos
 			$datosProducto["imagen"] = base_url() . "assets/img/productos/" . $file_data['file_name'];
 
-			//Se mantienen los datos al hacer una validació//
+			//Se mantienen los datos al hacer una validación//
 			$datosCarga["idProducto"] = $this->input->post("codigo");
 			$datosCarga["nombreProducto"] = $this->input->post("nombre");
 			$datosCarga["descripcion"] = $this->input->post("descripcion");
@@ -99,16 +101,21 @@ class Producto extends CI_controller
 			$datosCarga["marca"] = $this->input->post("marca");
 			$datosCarga["proveedor"] = $this->input->post("proveedor");
 			$datosCarga["existencia"] = $this->input->post("existencia");
-			$datosCarga["unidadMedida"] = $this->input->post("unidaDeMedida");
+			$datosCarga["unidadMedida"] = $this->input->post("unidadDeMedida");
 			$datosCarga["valorMedida"] = $this->input->post("valorDeMedida");
 			$datosCarga["presentacion"] = $this->input->post("presentacion");
 			$datosCarga["costo"] = $this->input->post("costo");
 			$datosCarga["utilidad"] = $this->input->post("utilidad");
 			$datosCarga["precio"] = $this->input->post("precioVenta");
 
+			$rutaImagen = $datosProducto["imagen"] = base_url() . "assets/img/productos/" . $file_data['file_name'];
+
+			$datosCarga["img"] = $rutaImagen;
+
+
 
 			/*************************************************************/
-			// **			Validaciónn de los campos					 // **
+			// **			Validaciónn de los campos					**// 
 			/*************************************************************/
 			if ($this->form_validation->run()) {
 
