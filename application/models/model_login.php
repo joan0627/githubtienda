@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_login extends CI_Model {
 
-	
+	#prueba de git desde vs 30/07/2020
 	
 	public function login($username,$password)
 	{
