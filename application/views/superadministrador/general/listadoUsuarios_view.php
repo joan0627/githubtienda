@@ -92,7 +92,7 @@
                     <thead>
                         <tr>
                             <th>
-                                Documento
+                                Id
                             </th>
                             <th>
                                 Nombre completo

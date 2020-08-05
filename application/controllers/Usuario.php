@@ -12,8 +12,6 @@ class Usuario extends CI_controller
 		$this->load->library('form_validation');
 
 		//Validaciones para los campos de la tabla Persona
-		$this->form_validation->set_rules('documento', 'documento', 'required');
-		$this->form_validation->set_rules('tipoDocumento', 'tipo documento', 'required');
 		$this->form_validation->set_rules('nombre', 'nombre completo', 'required');
 		$this->form_validation->set_rules('celular', 'celular', 'required');
 
@@ -49,8 +47,7 @@ class Usuario extends CI_controller
 	public function crearusuariosu()
 	{
 
-		$datosCarga["documento"] = $datosCarga["tipoDocumento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
-			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["username"] =
+			$datosCarga["nombre"]  = $datosCarga["celular"] =  $datosCarga["username"] =
 			$datosCarga["contrasena"] = $datosCarga["rol"] = "";
 
 
@@ -62,13 +59,9 @@ class Usuario extends CI_controller
 			Aqui se necesitan dos arreglos diferentes ya que los datos van 
 			para dos tablas diferentes
 			*/
-			$datosPersona["documento"] = $this->input->post("documento");
-			$datosPersona["tipoDocumento"] = $this->input->post("tipoDocumento");
+			
 			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["telefono"] = $this->input->post("telefono");
 			$datosPersona["celular"] = $this->input->post("celular");
-			$datosPersona["direccion"] = $this->input->post("direccion");
-			$datosPersona["correo"] = $this->input->post("correo");
 			$datosPersona["tipoPersona"] = 1;
 
 			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
@@ -82,13 +75,9 @@ class Usuario extends CI_controller
 			 podemos cargar los datos a los campos
 			*/
 
-			$datosCarga["documento"] = $this->input->post("documento");
-			$datosCarga["tipoDocumento"] = $this->input->post("tipoDocumento");
+			
 			$datosCarga["nombre"] = $this->input->post("nombre");
-			$datosCarga["telefono"] = $this->input->post("telefono");
 			$datosCarga["celular"] = $this->input->post("celular");
-			$datosCarga["direccion"] = $this->input->post("direccion");
-			$datosCarga["correo"] = $this->input->post("correo");
 
 			$datosCarga["username"] = $this->input->post("username");
 			$datosCarga["contrasena"] = $this->input->post("contrasena");
@@ -143,13 +132,10 @@ class Usuario extends CI_controller
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 
 
-			$datosPersona["documento"] =  $this->input->post("documento");
-			$datosPersona["tipoDocumento"] = $this->input->post("tipoDocumento");
+			
 			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["telefono"] = $this->input->post("telefono");
 			$datosPersona["celular"] = $this->input->post("celular");
-			$datosPersona["direccion"] = $this->input->post("direccion");
-			$datosPersona["correo"] = $this->input->post("correo");
+			
 
 			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
 			$datosUsuario["username"] = $this->input->post("username");
@@ -194,13 +180,10 @@ class Usuario extends CI_controller
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 
 
-			$datosPersona["documento"] =  $this->input->post("documento");
-			$datosPersona["tipoDocumento"] = $this->input->post("tipoDocumento");
+			
 			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["telefono"] = $this->input->post("telefono");
 			$datosPersona["celular"] = $this->input->post("celular");
-			$datosPersona["direccion"] = $this->input->post("direccion");
-			$datosPersona["correo"] = $this->input->post("correo");
+			
 
 			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
 			$datosUsuario["username"] = $this->input->post("username");
@@ -234,11 +217,6 @@ class Usuario extends CI_controller
 
 
 	/* Inicio de métodos del rol de  Administrador */
-
-	
-	
-	
-
 
 
 	/* Fin de métodos del rol de  Administrador */
