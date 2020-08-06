@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2020 a las 00:02:30
+-- Tiempo de generación: 06-08-2020 a las 22:03:21
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `carrusel` (
-  `idcarrusel` int(11) NOT NULL,
-  `ruta` varchar(45) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `idCarrusel` int(11) NOT NULL,
+  `ruta` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -41,17 +41,15 @@ CREATE TABLE `carrusel` (
 CREATE TABLE `categoria` (
   `idCategoria` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`idCategoria`, `descripcion`) VALUES
-(1, 'alimento para gatos '),
-(2, 'alimento para perros'),
-(3, 'accesorios'),
-(4, 'aseo');
+(1, 'Alimentos'),
+(2, 'Accesorios');
 
 -- --------------------------------------------------------
 
@@ -61,23 +59,29 @@ INSERT INTO `categoria` (`idCategoria`, `descripcion`) VALUES
 
 CREATE TABLE `cita` (
   `idCita` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL,
-  `asunto` varchar(45) NOT NULL,
+  `cliente` varchar(20) NOT NULL,
+  `asunto` int(11) NOT NULL,
   `fechaCita` date NOT NULL,
-  `horaCita` time NOT NULL,
+  `HoraCita` time NOT NULL,
   `observaciones` varchar(45) NOT NULL,
-  `idServicio` int(11) NOT NULL,
-  `estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idEstado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `cita`
+-- Estructura de tabla para la tabla `cliente`
 --
 
-INSERT INTO `cita` (`idCita`, `cliente`, `asunto`, `fechaCita`, `horaCita`, `observaciones`, `idServicio`, `estado`) VALUES
-(14, 13, 'Peluqueria Canina 02:00 pm', '2020-06-30', '11:00:00', 'Perro grande', 2, 7),
-(15, 14, 'Peluqueria Canina ', '2020-06-30', '12:00:00', 'Perro pequeño', 2, 7),
-(16, 16, 'cita vacunacion', '2020-06-30', '03:31:00', 'vacunacion felina', 3, 7);
+CREATE TABLE `cliente` (
+  `TipoDocumento` int(11) NOT NULL,
+  `documento` varchar(20) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `celular` varchar(20) NOT NULL,
+  `direccion` varchar(45) DEFAULT NULL,
+  `correo` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -87,12 +91,12 @@ INSERT INTO `cita` (`idCita`, `cliente`, `asunto`, `fechaCita`, `horaCita`, `obs
 
 CREATE TABLE `compras` (
   `idCompras` int(11) NOT NULL,
-  `proveedor` int(11) NOT NULL,
+  `documentoProveedor` varchar(45) NOT NULL,
   `facturaProveedor` varchar(45) NOT NULL,
-  `fechafacturaProveedor` date NOT NULL,
-  `fechaRegistroCompra` date NOT NULL DEFAULT current_timestamp(),
+  `fechaFacturaProveedor` date NOT NULL,
+  `fechaRegistroCompra` date NOT NULL,
   `estado` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -102,8 +106,10 @@ CREATE TABLE `compras` (
 
 CREATE TABLE `contacto` (
   `idContacto` int(11) NOT NULL,
-  `descripcion` int(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `direccion` varchar(45) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `correo` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -118,7 +124,21 @@ CREATE TABLE `detallecompra` (
   `cantidad` int(11) NOT NULL,
   `costoProducto` int(11) NOT NULL,
   `iva` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detallefactura`
+--
+
+CREATE TABLE `detallefactura` (
+  `idDetalleproductofactura` int(11) NOT NULL,
+  `factura` int(11) NOT NULL,
+  `producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precioVenta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -128,34 +148,21 @@ CREATE TABLE `detallecompra` (
 
 CREATE TABLE `detallemascotacliente` (
   `idDetalleMascotaCliente` int(11) NOT NULL,
-  `documentoCliente` varchar(20) NOT NULL,
-  `idmascota` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `detallemascotacliente`
---
-
-INSERT INTO `detallemascotacliente` (`idDetalleMascotaCliente`, `documentoCliente`, `idmascota`) VALUES
-(13, '1001661421', 3),
-(14, '1001661421', 2),
-(15, '71224697', 4),
-(16, '71224697', 1);
+  `idMascota` int(11) NOT NULL,
+  `documentoCliente` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalleproductofactura`
+-- Estructura de tabla para la tabla `detalleproveedormarca`
 --
 
-CREATE TABLE `detalleproductofactura` (
-  `idDetalleproductofactura` int(11) NOT NULL,
-  `factura` int(11) NOT NULL,
-  `producto` int(11) DEFAULT NULL,
-  `cantidad` int(11) NOT NULL,
-  `descuento` int(11) NOT NULL,
-  `precioVenta` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `detalleproveedormarca` (
+  `idDetalleProveedorMarca` int(11) NOT NULL,
+  `documentoProveedor` varchar(45) NOT NULL,
+  `idMarca` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -168,8 +175,8 @@ CREATE TABLE `detalleserviciofactura` (
   `factura` int(11) NOT NULL,
   `idServicio` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precioventa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `precioVenta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -182,10 +189,10 @@ CREATE TABLE `detallevacunamascota` (
   `idMascota` int(11) NOT NULL,
   `idVacuna` int(11) NOT NULL,
   `dosis` int(11) NOT NULL,
-  `fechaAplicacion` datetime NOT NULL,
-  `fechaProxima` datetime NOT NULL,
-  `observaciones` varchar(80) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `fechaAplicacion` date NOT NULL,
+  `fechaProxima` date NOT NULL,
+  `observaciones` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -196,18 +203,7 @@ CREATE TABLE `detallevacunamascota` (
 CREATE TABLE `estado` (
   `idEstado` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `estado`
---
-
-INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
-(1, 'Atendido'),
-(2, 'Cancelado'),
-(3, 'No asistio'),
-(4, 'En proceso'),
-(7, 'Programado');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -217,13 +213,13 @@ INSERT INTO `estado` (`idEstado`, `descripcion`) VALUES
 
 CREATE TABLE `factura` (
   `idFactura` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fecha` datetime NOT NULL,
   `vendedor` int(11) NOT NULL,
+  `documentoCliente` varchar(20) NOT NULL,
   `descuentoTotal` int(11) NOT NULL,
   `formaPago` int(11) NOT NULL,
-  `nComprobante` int(11) DEFAULT NULL,
-  `cita` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nComprobante` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -234,16 +230,7 @@ CREATE TABLE `factura` (
 CREATE TABLE `formapago` (
   `idFormaPago` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `formapago`
---
-
-INSERT INTO `formapago` (`idFormaPago`, `descripcion`) VALUES
-(1, 'Efectivo'),
-(2, 'tarjeta de credito'),
-(3, 'transferencia');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -253,11 +240,11 @@ INSERT INTO `formapago` (`idFormaPago`, `descripcion`) VALUES
 
 CREATE TABLE `horario` (
   `idhorario` int(11) NOT NULL,
-  `diaInicio` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
-  `diaFin` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `diaInicio` varchar(10) NOT NULL,
+  `diaFin` varchar(10) NOT NULL,
   `horaInicio` time NOT NULL,
   `horaFin` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -267,15 +254,8 @@ CREATE TABLE `horario` (
 
 CREATE TABLE `marca` (
   `idMarca` int(11) NOT NULL,
-  `descripcion` varchar(45) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `marca`
---
-
-INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
-(1, 'IPRA');
+  `descripcion` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -285,26 +265,16 @@ INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
 
 CREATE TABLE `mascota` (
   `idMascota` int(11) NOT NULL,
-  `tipoMascota` int(11) NOT NULL,
+  `idTipoMascota` int(11) NOT NULL,
   `nombreMascota` varchar(45) NOT NULL,
-  `raza` int(11) NOT NULL,
-  `sexo` varchar(11) NOT NULL,
-  `fechaCumpleanos` date NOT NULL,
-  `peso` float NOT NULL,
-  `unidadMedida` int(11) NOT NULL,
+  `sexo` varchar(15) NOT NULL,
+  `idraza` int(11) NOT NULL,
+  `peso` double DEFAULT NULL,
+  `fechaCumpleanos` date DEFAULT NULL,
+  `edad` varchar(20) NOT NULL,
   `observaciones` varchar(45) DEFAULT NULL,
-  `estado` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `mascota`
---
-
-INSERT INTO `mascota` (`idMascota`, `tipoMascota`, `nombreMascota`, `raza`, `sexo`, `fechaCumpleanos`, `peso`, `unidadMedida`, `observaciones`, `estado`) VALUES
-(1, 2, 'Popi', 3, 'Hembra', '2020-05-01', 4, 1, 'felino joven enfermo moquillo', '1'),
-(2, 1, 'Rambu', 1, 'Macho', '2020-04-01', 10, 1, 'perro grande enfermo de gripa', '1'),
-(3, 2, 'pelos', 3, 'Macho', '2020-03-03', 12, 1, 'gato mediano enfermo de dolor estomago', '1'),
-(4, 1, 'Bruno', 2, 'Macho', '2020-03-01', 25, 1, 'perro con lagrimeo en los ojos ', '1');
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -313,46 +283,9 @@ INSERT INTO `mascota` (`idMascota`, `tipoMascota`, `nombreMascota`, `raza`, `sex
 --
 
 CREATE TABLE `mision` (
-  `idMision` int(11) NOT NULL,
-  `descripcion` int(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `persona`
---
-
-CREATE TABLE `persona` (
-  `documento` varchar(20) NOT NULL,
-  `tipoDocumento` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `celular` varchar(20) NOT NULL,
-  `direccion` varchar(45) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `tipoPersona` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `persona`
---
-
-INSERT INTO `persona` (`documento`, `tipoDocumento`, `nombre`, `telefono`, `celular`, `direccion`, `correo`, `tipoPersona`) VALUES
-('1001661421', 1, 'Luis David Sánchez cano', '2222222', '3017474883', 'Carrera 80', 'Davix.sevas@gmail.com', 1),
-('71224697', 1, 'Fredy Gil', '2245217', '3115823694', 'cra 36 2055', 'fredybol36@gmail.com', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `precioproducto`
---
-
-CREATE TABLE `precioproducto` (
-  `idPrecioProducto` int(11) NOT NULL,
-  `registroPrecio` int(11) NOT NULL,
-  `producto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idmision` int(11) NOT NULL,
+  `descripcion` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -363,17 +296,7 @@ CREATE TABLE `precioproducto` (
 CREATE TABLE `preguntaseguridad` (
   `idPreguntaSeguridad` int(11) NOT NULL,
   `pregunta` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `preguntaseguridad`
---
-
-INSERT INTO `preguntaseguridad` (`idPreguntaSeguridad`, `pregunta`) VALUES
-(1, 'En que año nacio su padre'),
-(2, 'En que año nacio su madre'),
-(3, 'Nombre del primer colegio'),
-(4, 'Nombre de su primera mascota');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -383,18 +306,8 @@ INSERT INTO `preguntaseguridad` (`idPreguntaSeguridad`, `pregunta`) VALUES
 
 CREATE TABLE `presentacion` (
   `idPresentacion` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `presentacion`
---
-
-INSERT INTO `presentacion` (`idPresentacion`, `descripcion`) VALUES
-(1, 'bolsa'),
-(2, 'paquete'),
-(3, 'botella'),
-(4, 'frasco');
+  `descripcion` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -406,18 +319,18 @@ CREATE TABLE `producto` (
   `idProducto` int(11) NOT NULL,
   `nombreProducto` varchar(45) NOT NULL,
   `descripcion` varchar(80) DEFAULT NULL,
-  `categoria` int(11) NOT NULL,
+  `idCategoria` int(11) NOT NULL,
   `marca` int(11) NOT NULL,
-  `proveedor` int(11) NOT NULL,
+  `idPresentacion` int(11) NOT NULL,
+  `valorMedida` double NOT NULL,
+  `idUnidadMedida` int(11) NOT NULL,
   `existencia` int(11) NOT NULL,
-  `unidadMedida` int(11) NOT NULL,
-  `valorMedida` float NOT NULL,
-  `presentacion` int(11) NOT NULL,
-  `costo` int(11) NOT NULL,
-  `utilidad` float NOT NULL,
-  `precio` int(11) NOT NULL,
-  `imagen` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `indicaciones` varchar(45) DEFAULT NULL,
+  `contradindicaciones` varchar(45) DEFAULT NULL,
+  `fechaCaducidad` date DEFAULT NULL,
+  `aplicacion` varchar(45) DEFAULT NULL,
+  `precio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -426,12 +339,17 @@ CREATE TABLE `producto` (
 --
 
 CREATE TABLE `proveedor` (
-  `idProveedor` int(11) NOT NULL,
-  `documento` varchar(20) NOT NULL,
-  `nombreConctato` varchar(45) NOT NULL,
-  `diaVisita` varchar(45) NOT NULL,
+  `documento` varchar(45) NOT NULL,
+  `idTipoDocumento` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `celular` varchar(45) DEFAULT NULL,
+  `direccion` varchar(45) DEFAULT NULL,
+  `correo` varchar(45) NOT NULL,
+  `nombreContacto` varchar(45) NOT NULL,
+  `diaVisita` varchar(45) DEFAULT NULL,
   `observaciones` varchar(80) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -441,8 +359,8 @@ CREATE TABLE `proveedor` (
 
 CREATE TABLE `quienessomos` (
   `idquienesSomos` int(11) NOT NULL,
-  `descripcion` varchar(120) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `descripcion` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -451,42 +369,9 @@ CREATE TABLE `quienessomos` (
 --
 
 CREATE TABLE `raza` (
-  `idRaza` int(11) NOT NULL,
-  `descripcion` varchar(45) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `raza`
---
-
-INSERT INTO `raza` (`idRaza`, `descripcion`) VALUES
-(1, 'Pitbull'),
-(2, 'Pastor aleman'),
-(3, 'Angora');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `registroprecio`
---
-
-CREATE TABLE `registroprecio` (
-  `idRegistroPrecio` int(11) NOT NULL,
-  `motivoCambio` varchar(45) NOT NULL,
-  `nuevoPrecio` int(11) NOT NULL,
-  `fechaInicial` datetime NOT NULL DEFAULT current_timestamp(),
-  `fechaFinal` datetime DEFAULT current_timestamp(),
-  `estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `registroprecio`
---
-
-INSERT INTO `registroprecio` (`idRegistroPrecio`, `motivoCambio`, `nuevoPrecio`, `fechaInicial`, `fechaFinal`, `estado`) VALUES
-(1, 'primer precio peluqueria felina', 20000, '2020-05-23 10:29:07', '2020-07-31 00:00:00', 0),
-(2, 'Primer precio peluqueria canina', 53000, '2020-05-23 10:29:15', NULL, 1),
-(3, '2do precio Peluqueria felina', 40000, '2020-05-23 10:29:24', NULL, 1);
+  `idraza` int(11) NOT NULL,
+  `descripcion` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -496,10 +381,10 @@ INSERT INTO `registroprecio` (`idRegistroPrecio`, `motivoCambio`, `nuevoPrecio`,
 
 CREATE TABLE `respuesta` (
   `idRespuesta` int(11) NOT NULL,
-  `preguntaSeguridad` int(11) NOT NULL,
-  `usuario` int(11) NOT NULL,
+  `idPreguntaSeguridad` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
   `respuesta` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -510,15 +395,7 @@ CREATE TABLE `respuesta` (
 CREATE TABLE `rol` (
   `idRol` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `rol`
---
-
-INSERT INTO `rol` (`idRol`, `descripcion`) VALUES
-(1, 'Administrador'),
-(2, 'Empleado');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -529,24 +406,13 @@ INSERT INTO `rol` (`idRol`, `descripcion`) VALUES
 CREATE TABLE `servicio` (
   `idServicio` int(11) NOT NULL,
   `nombreServicio` varchar(45) NOT NULL,
-  `responsable` int(11) NOT NULL,
+  `idTipoServicio` int(11) NOT NULL,
   `descripcion` varchar(80) NOT NULL,
   `recomendacionesPrevias` varchar(80) NOT NULL,
   `recomendacionesPosteriores` varchar(80) NOT NULL,
   `precio` int(11) NOT NULL,
-  `imagenServicio` varchar(20) NOT NULL,
-  `estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `servicio`
---
-
-INSERT INTO `servicio` (`idServicio`, `nombreServicio`, `responsable`, `descripcion`, `recomendacionesPrevias`, `recomendacionesPosteriores`, `precio`, `imagenServicio`, `estado`) VALUES
-(1, 'Peluqueria felina', 0, 'peluqueria general para gatos ', 'traer el gato con el carnet de las vacunas ', 'no bañar al gato por una semana ', 0, '', 1),
-(2, 'peluqueria canina ', 0, 'baño general de perros ', 'traer el carnet de las vacunas ', 'no bañarlo por dos semanas', 0, '', 1),
-(3, 'Vacuna gatos', 0, 'servicio de vacunacion ', 'traer todo el carnet de las vacunas ', 'retomar alimentacion de calidad ', 0, '', 1),
-(4, 'Vacunas perros', 0, 'vacunacion para perros', 'traer el carnet para vacunas', 'traerlo bañado', 0, '', 1);
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -557,18 +423,7 @@ INSERT INTO `servicio` (`idServicio`, `nombreServicio`, `responsable`, `descripc
 CREATE TABLE `tipodocumento` (
   `idTipoDocumento` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tipodocumento`
---
-
-INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
-(1, 'Cédula de ciudadanía'),
-(2, 'Cédula de extranjería'),
-(3, 'Pasaporte'),
-(4, 'Tarjeta de identidad'),
-(5, 'Registro civil');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -579,54 +434,18 @@ INSERT INTO `tipodocumento` (`idTipoDocumento`, `descripcion`) VALUES
 CREATE TABLE `tipomascota` (
   `idTipoMascota` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tipomascota`
---
-
-INSERT INTO `tipomascota` (`idTipoMascota`, `descripcion`) VALUES
-(1, 'Perro'),
-(2, 'Gato');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipopersona`
+-- Estructura de tabla para la tabla `tiposervicio`
 --
 
-CREATE TABLE `tipopersona` (
-  `idTipoPersona` int(11) NOT NULL,
+CREATE TABLE `tiposervicio` (
+  `idTipoServicio` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tipopersona`
---
-
-INSERT INTO `tipopersona` (`idTipoPersona`, `descripcion`) VALUES
-(1, 'Usuario'),
-(2, 'cliente'),
-(3, 'proveedor');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipovacuna`
---
-
-CREATE TABLE `tipovacuna` (
-  `idTipoVacuna` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tipovacuna`
---
-
-INSERT INTO `tipovacuna` (`idTipoVacuna`, `descripcion`) VALUES
-(1, 'vacuna felinos'),
-(2, 'vacuna caninos');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -637,18 +456,7 @@ INSERT INTO `tipovacuna` (`idTipoVacuna`, `descripcion`) VALUES
 CREATE TABLE `unidadmedida` (
   `idUnidadMedida` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `unidadmedida`
---
-
-INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`) VALUES
-(1, 'kilogramos'),
-(2, 'unidad'),
-(3, 'paquete'),
-(4, 'libras'),
-(5, 'mililitros');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -658,51 +466,14 @@ INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`) VALUES
 
 CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
-  `personaDocumento` varchar(20) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `celular` varchar(45) DEFAULT NULL,
   `nombreUsuario` varchar(45) NOT NULL,
   `contrasena` varchar(45) NOT NULL,
-  `rol` int(11) NOT NULL,
-  `fechaRegistro` date NOT NULL DEFAULT current_timestamp(),
-  `estado` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`idUsuario`, `personaDocumento`, `nombreUsuario`, `contrasena`, `rol`, `fechaRegistro`, `estado`) VALUES
-(23, '1001661421', 'Kingcano', '12345469813611', 1, '2020-06-03', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vacuna`
---
-
-CREATE TABLE `vacuna` (
-  `idVacuna` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `marca` int(11) NOT NULL,
-  `presentacion` int(11) NOT NULL,
-  `tipoVacuna` int(11) NOT NULL,
-  `valorMedida` int(11) NOT NULL,
-  `unidadMedida` int(11) NOT NULL,
-  `fechaCaducidad` date NOT NULL,
-  `calendario` varchar(80) NOT NULL,
-  `indicaciones` varchar(80) NOT NULL,
-  `contraindicaciones` varchar(80) NOT NULL,
-  `existencias` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `vacuna`
---
-
-INSERT INTO `vacuna` (`idVacuna`, `nombre`, `marca`, `presentacion`, `tipoVacuna`, `valorMedida`, `unidadMedida`, `fechaCaducidad`, `calendario`, `indicaciones`, `contraindicaciones`, `existencias`) VALUES
-(4, 'Parvovirus', 1, 4, 1, 1, 5, '2020-06-30', '', 'Se debe de tomar en cuenta el carnet de vacunacion ', '', 10),
-(5, 'Distemper', 1, 1, 2, 1, 5, '0000-00-00', '', 'inyectable', 'ninguna', 6),
-(6, 'Triplefelina', 1, 1, 1, 1, 5, '0000-00-00', '', 'inyectable', '', 8),
-(7, 'Triplefelina', 1, 1, 1, 1, 5, '0000-00-00', '', 'Inyectable', '', 6);
+  `idRol` int(11) NOT NULL,
+  `fechaRegistro` date NOT NULL,
+  `estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -711,9 +482,9 @@ INSERT INTO `vacuna` (`idVacuna`, `nombre`, `marca`, `presentacion`, `tipoVacuna
 --
 
 CREATE TABLE `vision` (
-  `idVision` int(11) NOT NULL,
-  `descripcion` int(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `idvision` int(11) NOT NULL,
+  `descripcion` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Índices para tablas volcadas
@@ -723,7 +494,7 @@ CREATE TABLE `vision` (
 -- Indices de la tabla `carrusel`
 --
 ALTER TABLE `carrusel`
-  ADD PRIMARY KEY (`idcarrusel`);
+  ADD PRIMARY KEY (`idCarrusel`);
 
 --
 -- Indices de la tabla `categoria`
@@ -736,16 +507,23 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`idCita`),
-  ADD KEY `FK_CITA_SERVICIO` (`idServicio`),
-  ADD KEY `FK_CITA_ESTADO` (`estado`),
-  ADD KEY `FK_CITA_DETALLEMASCOTACLIENTE` (`cliente`);
+  ADD KEY `fk_Cita_Servicio_idx` (`asunto`),
+  ADD KEY `fk_Cita_Estado1_idx` (`idEstado`),
+  ADD KEY `fk_Cita_DetalleMascotaCliente1_idx` (`cliente`);
+
+--
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`documento`),
+  ADD KEY `fk_Cliente_TipoDocumento1_idx` (`TipoDocumento`);
 
 --
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
   ADD PRIMARY KEY (`idCompras`),
-  ADD KEY `FK_COMPRAS_PROVEEDOR` (`proveedor`);
+  ADD KEY `fk_Compras_Proveedor1_idx` (`documentoProveedor`);
 
 --
 -- Indices de la tabla `contacto`
@@ -758,40 +536,48 @@ ALTER TABLE `contacto`
 --
 ALTER TABLE `detallecompra`
   ADD PRIMARY KEY (`idDetalleCompra`),
-  ADD KEY `FK_DETALLECOMPRA_COMPRAS` (`idCompra`),
-  ADD KEY `FK_DETALLECOMPRA_PRODUCTO` (`idProducto`);
+  ADD KEY `fk_DetalleCompra_Compras1_idx` (`idCompra`),
+  ADD KEY `fk_DetalleCompra_Producto1_idx` (`idProducto`);
+
+--
+-- Indices de la tabla `detallefactura`
+--
+ALTER TABLE `detallefactura`
+  ADD PRIMARY KEY (`idDetalleproductofactura`),
+  ADD KEY `Fk_detalleproductofactura_Producto_idx` (`producto`),
+  ADD KEY `fk_detalleproductofactura_Factura_idx` (`factura`);
 
 --
 -- Indices de la tabla `detallemascotacliente`
 --
 ALTER TABLE `detallemascotacliente`
   ADD PRIMARY KEY (`idDetalleMascotaCliente`),
-  ADD UNIQUE KEY `mascota` (`idmascota`),
-  ADD KEY `FK_DETALLEMASCOTACLIENTE_PERSONA` (`documentoCliente`);
+  ADD KEY `fk_DetalleMascotaCliente_Mascota1_idx` (`idMascota`),
+  ADD KEY `fk_DetalleMascotaCliente_Cliente1_idx` (`documentoCliente`);
 
 --
--- Indices de la tabla `detalleproductofactura`
+-- Indices de la tabla `detalleproveedormarca`
 --
-ALTER TABLE `detalleproductofactura`
-  ADD PRIMARY KEY (`idDetalleproductofactura`),
-  ADD KEY `FK_DETALLEFACTURA_FACTURA` (`factura`),
-  ADD KEY `FK_DETALLEFACTURA_PRODUCTO` (`producto`);
+ALTER TABLE `detalleproveedormarca`
+  ADD PRIMARY KEY (`idDetalleProveedorMarca`),
+  ADD KEY `fk_DetalleProveedorMarca_Marca1_idx` (`idMarca`),
+  ADD KEY `fk_DetalleProveedorMarca_Proveedor1_idx` (`documentoProveedor`);
 
 --
 -- Indices de la tabla `detalleserviciofactura`
 --
 ALTER TABLE `detalleserviciofactura`
   ADD PRIMARY KEY (`idDetalleserviciofactura`),
-  ADD KEY `FK_DETALLESERVICIOFACTURA_FACTURA` (`factura`),
-  ADD KEY `FK_DETALLESERVICIOFACTURA_SERVICIO` (`idServicio`);
+  ADD KEY `fk_detalleserviciofactura_Servicio_idx` (`idServicio`),
+  ADD KEY `fk_detalleserviciofactura_Factura_idx` (`factura`);
 
 --
 -- Indices de la tabla `detallevacunamascota`
 --
 ALTER TABLE `detallevacunamascota`
   ADD PRIMARY KEY (`idDetalleVacunaMascota`),
-  ADD KEY `FK_DETALLEVACUNAMASCOTA_MASCOTA` (`idMascota`),
-  ADD KEY `FK_DETALLEVACUNAMASCOTA_VACUNA` (`idVacuna`);
+  ADD KEY `fk_DetalleVacunaMascota_Mascota1_idx` (`idMascota`),
+  ADD KEY `fk_DetalleVacunaMascota_Producto_idx` (`idVacuna`);
 
 --
 -- Indices de la tabla `estado`
@@ -804,9 +590,9 @@ ALTER TABLE `estado`
 --
 ALTER TABLE `factura`
   ADD PRIMARY KEY (`idFactura`),
-  ADD KEY `FK_FACTURA_FORMAPAGO` (`formaPago`),
-  ADD KEY `FK_FACTURA_CITA` (`cita`),
-  ADD KEY `FK_FACTURA_USUARIO` (`vendedor`);
+  ADD KEY `fk_Factura_Vendedor_idx` (`vendedor`),
+  ADD KEY `fk_Factura_FormaPago_idx` (`formaPago`),
+  ADD KEY `fk_Factura_Cliente1_idx` (`documentoCliente`);
 
 --
 -- Indices de la tabla `formapago`
@@ -831,25 +617,14 @@ ALTER TABLE `marca`
 --
 ALTER TABLE `mascota`
   ADD PRIMARY KEY (`idMascota`),
-  ADD KEY `FK_MASCOTA_TIPOMASCOTA` (`tipoMascota`),
-  ADD KEY `FK_MASCOTA_RAZA` (`raza`),
-  ADD KEY `FK_MASCOTA_UNIDADMEDIDA` (`unidadMedida`);
+  ADD KEY `fk_Mascota_Raza1_idx` (`idraza`),
+  ADD KEY `fk_Mascota_TipoMascota1_idx` (`idTipoMascota`);
 
 --
--- Indices de la tabla `persona`
+-- Indices de la tabla `mision`
 --
-ALTER TABLE `persona`
-  ADD PRIMARY KEY (`documento`),
-  ADD KEY `FK_PERSONA_TIPODOCUMENTO` (`tipoDocumento`),
-  ADD KEY `FK_PERSONA_TIPOPERSONA` (`tipoPersona`);
-
---
--- Indices de la tabla `precioproducto`
---
-ALTER TABLE `precioproducto`
-  ADD PRIMARY KEY (`idPrecioProducto`),
-  ADD KEY `FK_PRECIOPRODUCTO_PRODUCTO` (`producto`),
-  ADD KEY `FK_PRECIOPRODUCTO_REGISTROPRECIO` (`registroPrecio`);
+ALTER TABLE `mision`
+  ADD PRIMARY KEY (`idmision`);
 
 --
 -- Indices de la tabla `preguntaseguridad`
@@ -868,17 +643,17 @@ ALTER TABLE `presentacion`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`idProducto`),
-  ADD KEY `FK_PRODUCTO_PRESENTACION` (`presentacion`),
-  ADD KEY `FK_PRODUCTO_UNIDADMEDIDA` (`unidadMedida`),
-  ADD KEY `FK_PRODUCTO_CATEGORIA` (`categoria`),
-  ADD KEY `FK_PRODUCTO_MARCA` (`marca`);
+  ADD KEY `fk_Producto_Categoria1_idx` (`idCategoria`),
+  ADD KEY `fk_Producto_UnidadMedida1_idx` (`idUnidadMedida`),
+  ADD KEY `fk_Producto_Presentacion1_idx` (`idPresentacion`),
+  ADD KEY `fk_Producto_Marca_idx` (`marca`);
 
 --
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`idProveedor`),
-  ADD KEY `FK_PROVEEDOR_PERSONA` (`documento`);
+  ADD PRIMARY KEY (`documento`),
+  ADD KEY `fk_Proveedor_TipoDocumento1_idx` (`idTipoDocumento`);
 
 --
 -- Indices de la tabla `quienessomos`
@@ -890,21 +665,15 @@ ALTER TABLE `quienessomos`
 -- Indices de la tabla `raza`
 --
 ALTER TABLE `raza`
-  ADD PRIMARY KEY (`idRaza`);
-
---
--- Indices de la tabla `registroprecio`
---
-ALTER TABLE `registroprecio`
-  ADD PRIMARY KEY (`idRegistroPrecio`);
+  ADD PRIMARY KEY (`idraza`);
 
 --
 -- Indices de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
   ADD PRIMARY KEY (`idRespuesta`),
-  ADD KEY `FK_RESPUESTA_PREGUNTASEGURIDAD` (`preguntaSeguridad`),
-  ADD KEY `FK_RESPUESTA_USUARIO` (`usuario`);
+  ADD KEY `fk_Respuesta_PreguntaSeguridad1_idx` (`idPreguntaSeguridad`),
+  ADD KEY `fk_Respuesta_Usuario1_idx` (`idUsuario`);
 
 --
 -- Indices de la tabla `rol`
@@ -916,7 +685,8 @@ ALTER TABLE `rol`
 -- Indices de la tabla `servicio`
 --
 ALTER TABLE `servicio`
-  ADD PRIMARY KEY (`idServicio`);
+  ADD PRIMARY KEY (`idServicio`),
+  ADD KEY `fk_Servicio_TipoServicio_idx` (`idTipoServicio`);
 
 --
 -- Indices de la tabla `tipodocumento`
@@ -931,16 +701,10 @@ ALTER TABLE `tipomascota`
   ADD PRIMARY KEY (`idTipoMascota`);
 
 --
--- Indices de la tabla `tipopersona`
+-- Indices de la tabla `tiposervicio`
 --
-ALTER TABLE `tipopersona`
-  ADD PRIMARY KEY (`idTipoPersona`);
-
---
--- Indices de la tabla `tipovacuna`
---
-ALTER TABLE `tipovacuna`
-  ADD PRIMARY KEY (`idTipoVacuna`);
+ALTER TABLE `tiposervicio`
+  ADD PRIMARY KEY (`idTipoServicio`);
 
 --
 -- Indices de la tabla `unidadmedida`
@@ -953,24 +717,14 @@ ALTER TABLE `unidadmedida`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `FK_USUARIO_PERSONA` (`personaDocumento`),
-  ADD KEY `FK_USUARIO_ROL` (`rol`);
-
---
--- Indices de la tabla `vacuna`
---
-ALTER TABLE `vacuna`
-  ADD PRIMARY KEY (`idVacuna`),
-  ADD KEY `FK_VACUNA_TIPOVACUNA` (`tipoVacuna`),
-  ADD KEY `FK_VACUNA_MARCA` (`marca`),
-  ADD KEY `FK_VACUNAPRESENTACION_PRESENTACION` (`presentacion`),
-  ADD KEY `FK_VACUNA_UNIDADMEDIDA` (`unidadMedida`);
+  ADD UNIQUE KEY `contrasena_UNIQUE` (`contrasena`),
+  ADD KEY `fk_Usuario_Rol1_idx` (`idRol`);
 
 --
 -- Indices de la tabla `vision`
 --
 ALTER TABLE `vision`
-  ADD PRIMARY KEY (`idVision`);
+  ADD PRIMARY KEY (`idvision`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -980,25 +734,25 @@ ALTER TABLE `vision`
 -- AUTO_INCREMENT de la tabla `carrusel`
 --
 ALTER TABLE `carrusel`
-  MODIFY `idcarrusel` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCarrusel` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `idCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idCita` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `idCompras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idCompras` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `contacto`
@@ -1010,19 +764,13 @@ ALTER TABLE `contacto`
 -- AUTO_INCREMENT de la tabla `detallemascotacliente`
 --
 ALTER TABLE `detallemascotacliente`
-  MODIFY `idDetalleMascotaCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idDetalleMascotaCliente` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `detalleproductofactura`
+-- AUTO_INCREMENT de la tabla `detalleproveedormarca`
 --
-ALTER TABLE `detalleproductofactura`
-  MODIFY `idDetalleproductofactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `detalleserviciofactura`
---
-ALTER TABLE `detalleserviciofactura`
-  MODIFY `idDetalleserviciofactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `detalleproveedormarca`
+  MODIFY `idDetalleProveedorMarca` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detallevacunamascota`
@@ -1034,19 +782,19 @@ ALTER TABLE `detallevacunamascota`
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `formapago`
 --
 ALTER TABLE `formapago`
-  MODIFY `idFormaPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idFormaPago` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
@@ -1058,37 +806,31 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `idMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMarca` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `precioproducto`
+-- AUTO_INCREMENT de la tabla `mision`
 --
-ALTER TABLE `precioproducto`
-  MODIFY `idPrecioProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `mision`
+  MODIFY `idmision` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntaseguridad`
 --
 ALTER TABLE `preguntaseguridad`
-  MODIFY `idPreguntaSeguridad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPreguntaSeguridad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `presentacion`
 --
 ALTER TABLE `presentacion`
-  MODIFY `idPresentacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idPresentacion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `quienessomos`
@@ -1100,79 +842,61 @@ ALTER TABLE `quienessomos`
 -- AUTO_INCREMENT de la tabla `raza`
 --
 ALTER TABLE `raza`
-  MODIFY `idRaza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `registroprecio`
---
-ALTER TABLE `registroprecio`
-  MODIFY `idRegistroPrecio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idraza` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-  MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio`
 --
 ALTER TABLE `servicio`
-  MODIFY `idServicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idServicio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipodocumento`
 --
 ALTER TABLE `tipodocumento`
-  MODIFY `idTipoDocumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idTipoDocumento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipomascota`
 --
 ALTER TABLE `tipomascota`
-  MODIFY `idTipoMascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTipoMascota` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipopersona`
+-- AUTO_INCREMENT de la tabla `tiposervicio`
 --
-ALTER TABLE `tipopersona`
-  MODIFY `idTipoPersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `tipovacuna`
---
-ALTER TABLE `tipovacuna`
-  MODIFY `idTipoVacuna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `tiposervicio`
+  MODIFY `idTipoServicio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `unidadmedida`
 --
 ALTER TABLE `unidadmedida`
-  MODIFY `idUnidadMedida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUnidadMedida` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT de la tabla `vacuna`
---
-ALTER TABLE `vacuna`
-  MODIFY `idVacuna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `vision`
 --
 ALTER TABLE `vision`
-  MODIFY `idVision` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idvision` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -1182,118 +906,112 @@ ALTER TABLE `vision`
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD CONSTRAINT `FK_CITA_DETALLEMASCOTACLIENTE` FOREIGN KEY (`cliente`) REFERENCES `detallemascotacliente` (`idDetalleMascotaCliente`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_CITA_ESTADO` FOREIGN KEY (`estado`) REFERENCES `estado` (`idEstado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_CITA_SERVICIO` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`idServicio`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Cita_Cliente` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`documento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Cita_Estado` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Cita_Servicio` FOREIGN KEY (`asunto`) REFERENCES `servicio` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD CONSTRAINT `fk_Cliente_TipoDocumento1` FOREIGN KEY (`TipoDocumento`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `compras`
 --
 ALTER TABLE `compras`
-  ADD CONSTRAINT `FK_COMPRAS_PROVEEDOR` FOREIGN KEY (`proveedor`) REFERENCES `proveedor` (`idProveedor`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Compras_Proveedor1` FOREIGN KEY (`documentoProveedor`) REFERENCES `proveedor` (`documento`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detallecompra`
 --
 ALTER TABLE `detallecompra`
-  ADD CONSTRAINT `FK_DETALLECOMPRA_COMPRAS` FOREIGN KEY (`idCompra`) REFERENCES `compras` (`idCompras`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_DETALLECOMPRA_PRODUCTO` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_DetalleCompra_Compras1` FOREIGN KEY (`idCompra`) REFERENCES `compras` (`idCompras`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_DetalleCompra_Producto1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detallefactura`
+--
+ALTER TABLE `detallefactura`
+  ADD CONSTRAINT `Fk_detalleproductofactura_Producto` FOREIGN KEY (`producto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_detalleproductofactura_Factura` FOREIGN KEY (`factura`) REFERENCES `factura` (`idFactura`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detallemascotacliente`
 --
 ALTER TABLE `detallemascotacliente`
-  ADD CONSTRAINT `FK_DETALLEMASCOTACLIENTE_MASCOTA` FOREIGN KEY (`idmascota`) REFERENCES `mascota` (`idMascota`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_DETALLEMASCOTACLIENTE_PERSONA` FOREIGN KEY (`documentoCliente`) REFERENCES `persona` (`documento`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_DetalleMascotaCliente_Cliente1` FOREIGN KEY (`documentoCliente`) REFERENCES `cliente` (`documento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_DetalleMascotaCliente_Mascota1` FOREIGN KEY (`idMascota`) REFERENCES `mascota` (`idMascota`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `detalleproductofactura`
+-- Filtros para la tabla `detalleproveedormarca`
 --
-ALTER TABLE `detalleproductofactura`
-  ADD CONSTRAINT `FK_DETALLEFACTURA_FACTURA` FOREIGN KEY (`factura`) REFERENCES `factura` (`idFactura`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_DETALLEFACTURA_PRODUCTO` FOREIGN KEY (`producto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
+ALTER TABLE `detalleproveedormarca`
+  ADD CONSTRAINT `fk_DetalleProveedorMarca_Marca1` FOREIGN KEY (`idMarca`) REFERENCES `marca` (`idMarca`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_DetalleProveedorMarca_Proveedor1` FOREIGN KEY (`documentoProveedor`) REFERENCES `proveedor` (`documento`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalleserviciofactura`
 --
 ALTER TABLE `detalleserviciofactura`
-  ADD CONSTRAINT `FK_DETALLESERVICIOFACTURA_FACTURA` FOREIGN KEY (`factura`) REFERENCES `factura` (`idFactura`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_DETALLESERVICIOFACTURA_SERVICIO` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`idServicio`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_detalleserviciofactura_Factura` FOREIGN KEY (`factura`) REFERENCES `factura` (`idFactura`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_detalleserviciofactura_Servicio` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`idServicio`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detallevacunamascota`
 --
 ALTER TABLE `detallevacunamascota`
-  ADD CONSTRAINT `FK_DETALLEVACUNAMASCOTA_MASCOTA` FOREIGN KEY (`idMascota`) REFERENCES `mascota` (`idMascota`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_DETALLEVACUNAMASCOTA_VACUNA` FOREIGN KEY (`idVacuna`) REFERENCES `vacuna` (`idVacuna`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_DetalleVacunaMascota_Mascota` FOREIGN KEY (`idMascota`) REFERENCES `mascota` (`idMascota`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_DetalleVacunaMascota_Producto` FOREIGN KEY (`idVacuna`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `factura`
 --
 ALTER TABLE `factura`
-  ADD CONSTRAINT `FK_FACTURA_CITA` FOREIGN KEY (`cita`) REFERENCES `cita` (`idCita`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_FACTURA_FORMAPAGO` FOREIGN KEY (`formaPago`) REFERENCES `formapago` (`idFormaPago`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_FACTURA_USUARIO` FOREIGN KEY (`vendedor`) REFERENCES `usuario` (`idUsuario`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Factura_Cliente` FOREIGN KEY (`documentoCliente`) REFERENCES `cliente` (`documento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Factura_FormaPago` FOREIGN KEY (`formaPago`) REFERENCES `formapago` (`idFormaPago`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Factura_Vendedor` FOREIGN KEY (`vendedor`) REFERENCES `usuario` (`idUsuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  ADD CONSTRAINT `FK_MASCOTA_RAZA` FOREIGN KEY (`raza`) REFERENCES `raza` (`idRaza`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_MASCOTA_TIPOMASCOTA` FOREIGN KEY (`tipoMascota`) REFERENCES `tipomascota` (`idTipoMascota`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_MASCOTA_UNIDADMEDIDA` FOREIGN KEY (`unidadMedida`) REFERENCES `unidadmedida` (`idUnidadMedida`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `persona`
---
-ALTER TABLE `persona`
-  ADD CONSTRAINT `FK_PERSONA_TIPODOCUMENTO` FOREIGN KEY (`tipoDocumento`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_PERSONA_TIPOPERSONA` FOREIGN KEY (`tipoPersona`) REFERENCES `tipopersona` (`idTipoPersona`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `precioproducto`
---
-ALTER TABLE `precioproducto`
-  ADD CONSTRAINT `FK_PRECIOPRODUCTO_PRODUCTO` FOREIGN KEY (`producto`) REFERENCES `producto` (`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_PRECIOPRODUCTO_REGISTROPRECIO` FOREIGN KEY (`registroPrecio`) REFERENCES `registroprecio` (`idRegistroPrecio`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Mascota_Raza` FOREIGN KEY (`idraza`) REFERENCES `raza` (`idraza`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Mascota_TipoMascota` FOREIGN KEY (`idTipoMascota`) REFERENCES `tipomascota` (`idTipoMascota`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `FK_PRODUCTO_CATEGORIA` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`idCategoria`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_PRODUCTO_MARCA` FOREIGN KEY (`marca`) REFERENCES `marca` (`idMarca`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_PRODUCTO_PRESENTACION` FOREIGN KEY (`presentacion`) REFERENCES `presentacion` (`idPresentacion`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_PRODUCTO_UNIDADMEDIDA` FOREIGN KEY (`unidadMedida`) REFERENCES `unidadmedida` (`idUnidadMedida`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Producto_Categoria` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Producto_Marca` FOREIGN KEY (`marca`) REFERENCES `marca` (`idMarca`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Producto_Presentacion` FOREIGN KEY (`idPresentacion`) REFERENCES `presentacion` (`idPresentacion`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Producto_UnidadMedida1` FOREIGN KEY (`idUnidadMedida`) REFERENCES `unidadmedida` (`idUnidadMedida`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD CONSTRAINT `FK_PROVEEDOR_PERSONA` FOREIGN KEY (`documento`) REFERENCES `persona` (`documento`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Proveedor_TipoDocumento1` FOREIGN KEY (`idTipoDocumento`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-  ADD CONSTRAINT `FK_RESPUESTA_PREGUNTASEGURIDAD` FOREIGN KEY (`preguntaSeguridad`) REFERENCES `preguntaseguridad` (`idPreguntaSeguridad`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_RESPUESTA_USUARIO` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`idUsuario`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Respuesta_PreguntaSeguridad1` FOREIGN KEY (`idPreguntaSeguridad`) REFERENCES `preguntaseguridad` (`idPreguntaSeguridad`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_Respuesta_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `servicio`
+--
+ALTER TABLE `servicio`
+  ADD CONSTRAINT `fk_Servicio_TipoServicio` FOREIGN KEY (`idTipoServicio`) REFERENCES `tiposervicio` (`idTipoServicio`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `FK_USUARIO_PERSONA` FOREIGN KEY (`personaDocumento`) REFERENCES `persona` (`documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_USUARIO_ROL` FOREIGN KEY (`rol`) REFERENCES `rol` (`idRol`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `vacuna`
---
-ALTER TABLE `vacuna`
-  ADD CONSTRAINT `FK_VACUNAPRESENTACION_PRESENTACION` FOREIGN KEY (`presentacion`) REFERENCES `presentacion` (`idPresentacion`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_VACUNA_MARCA` FOREIGN KEY (`marca`) REFERENCES `marca` (`idMarca`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_VACUNA_TIPOVACUNA` FOREIGN KEY (`tipoVacuna`) REFERENCES `tipovacuna` (`idTipoVacuna`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_VACUNA_UNIDADMEDIDA` FOREIGN KEY (`unidadMedida`) REFERENCES `unidadmedida` (`idUnidadMedida`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_Usuario_Rol` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

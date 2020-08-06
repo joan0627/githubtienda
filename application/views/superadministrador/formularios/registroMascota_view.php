@@ -143,20 +143,20 @@
                                 <label>Edad</label>
                                 <input name="peso" type="text" class="form-control" placeholder="Ingrese la edad">
                             </div>
-						</div>
-						
-						<div class="col-md-4">
-						<div class="form-group">
-                                    <label>Tiempo</label> <label style="color: red;"> *</label>
-                                    <select class="form-control " style="width: 100%;">
-                                        <option selected="selected">-Seleccione el tiempo de edad-</option>
-                                        <option>Dia(s)</option>
-                                        <option>Semana(s)</option>
-                                        <option>Mes(es)</option>
-                                        <option>Año(s)</option>
+                        </div>
 
-                                    </select>
-                                </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Tiempo</label> <label style="color: red;"> *</label>
+                                <select class="form-control " style="width: 100%;">
+                                    <option selected="selected">-Seleccione el tiempo de edad-</option>
+                                    <option>Dia(s)</option>
+                                    <option>Semana(s)</option>
+                                    <option>Mes(es)</option>
+                                    <option>Año(s)</option>
+
+                                </select>
+                            </div>
                         </div>
 
                     </div>

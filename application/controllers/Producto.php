@@ -85,14 +85,30 @@ class Producto extends CI_controller
 			$this->upload->do_upload($mi_archivo);
 	
 
-
-			//var_dump( $this->upload->data());
-
 			$file_data = $this->upload->data();
 
-			//Cargar la ruta al arreglo de datos que se va insertar en la base de datos
-			$datosProducto["imagen"] = base_url() . "assets/img/productos/" . $file_data['file_name'];
+			if($file_data['file_name']=="")
+			{
+				
+				$rutaImagen = $datosProducto["imagen"] = base_url() . "assets/img/productos/" . $file_data['file_name'];
+				$datosCarga["img"] = $rutaImagen;
+	
+			}
 
+			else
+			{
+				
+			}
+
+
+		
+
+			//Cargar la ruta al arreglo de datos que se va insertar en la base de datos
+			$datosProducto["imagen"] = base_url()."assets/img/productos/".$file_data['file_name'];
+
+
+			
+		
 			//Se mantienen los datos al hacer una validación//
 			$datosCarga["idProducto"] = $this->input->post("codigo");
 			$datosCarga["nombreProducto"] = $this->input->post("nombre");
@@ -108,9 +124,7 @@ class Producto extends CI_controller
 			$datosCarga["utilidad"] = $this->input->post("utilidad");
 			$datosCarga["precio"] = $this->input->post("precioVenta");
 
-			$rutaImagen = $datosProducto["imagen"] = base_url() . "assets/img/productos/" . $file_data['file_name'];
-
-			$datosCarga["img"] = $rutaImagen;
+		
 
 
 

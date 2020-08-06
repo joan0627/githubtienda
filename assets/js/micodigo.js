@@ -1,7 +1,7 @@
 /*Este es el codigo de los mensajes de alertas
 Utilizando sweet alert 2*/
 
-$("#botonRegistroProveedor").click(function(){
+$("#botonRegistroProducto").click(function(){
 	Swal.fire({        
 		type: 'success',
 		title: 'Éxito',
@@ -31,19 +31,25 @@ function CalcularPrecioVenta() {
 
 
  function readImage (input) {
+	
     if (input.files && input.files[0]) {
-      var reader = new FileReader();
+	  var reader = new FileReader();
+	
       reader.onload = function (e) {
           $('#vistapreviaproducto').attr('src', e.target.result); // Renderizamos la imagen
       }
-      reader.readAsDataURL(input.files[0]);
+	  reader.readAsDataURL(input.files[0]);
+	
 	}
+	
   }
 
   $('#cargaimagenproducto').change(function () {
-    // Código a ejecutar cuando se detecta un cambio de archivO
-    readImage(this);
+	// Código a ejecutar cuando se detecta un cambio de archivO 
+	readImage(this);
+	
   });
+
 
   
 

@@ -1,18 +1,12 @@
 <?php
 
 class model_usuario extends Ci_model {
-	public $tablaPersona = 'persona';
+
 	public $tablaUsuario = 'usuario';
-	public $tablaTipoDocumento = 'tipodocumento';
-	public $tablaTipoPersona = 'tipopersona';
 
-	public $idUsuarioPK= 'idUsuario';
-	public $documentoPK = 'documento';
-	public $idTipodocumentoPK = 'idTipoDocumento';
-	public $idTipoUsuarioPK= 'idTipoPersona';
-	public $personaDocumento= 'personaDocumento';
 
-	public $tipoDocumentoPersona= 'tipoDocumento';
+public $idUsuarioPK= 'idUsuario';
+
 
 	public function _construct() {
 	
