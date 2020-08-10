@@ -1,1019 +1,608 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-08-2020 a las 22:03:21
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.5
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `tiendadb`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `carrusel`
---
-
-CREATE TABLE `carrusel` (
-  `idCarrusel` int(11) NOT NULL,
-  `ruta` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `idCategoria` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`idCategoria`, `descripcion`) VALUES
-(1, 'Alimentos'),
-(2, 'Accesorios');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cita`
---
-
-CREATE TABLE `cita` (
-  `idCita` int(11) NOT NULL,
-  `cliente` varchar(20) NOT NULL,
-  `asunto` int(11) NOT NULL,
-  `fechaCita` date NOT NULL,
-  `HoraCita` time NOT NULL,
-  `observaciones` varchar(45) NOT NULL,
-  `idEstado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cliente`
---
-
-CREATE TABLE `cliente` (
-  `TipoDocumento` int(11) NOT NULL,
-  `documento` varchar(20) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `telefono` varchar(20) DEFAULT NULL,
-  `celular` varchar(20) NOT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
-  `correo` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `compras`
---
-
-CREATE TABLE `compras` (
-  `idCompras` int(11) NOT NULL,
-  `documentoProveedor` varchar(45) NOT NULL,
-  `facturaProveedor` varchar(45) NOT NULL,
-  `fechaFacturaProveedor` date NOT NULL,
-  `fechaRegistroCompra` date NOT NULL,
-  `estado` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `contacto`
---
-
-CREATE TABLE `contacto` (
-  `idContacto` int(11) NOT NULL,
-  `direccion` varchar(45) NOT NULL,
-  `telefono` varchar(15) NOT NULL,
-  `correo` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detallecompra`
---
-
-CREATE TABLE `detallecompra` (
-  `idDetalleCompra` int(11) NOT NULL,
-  `idCompra` int(11) NOT NULL,
-  `idProducto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `costoProducto` int(11) NOT NULL,
-  `iva` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detallefactura`
---
-
-CREATE TABLE `detallefactura` (
-  `idDetalleproductofactura` int(11) NOT NULL,
-  `factura` int(11) NOT NULL,
-  `producto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `precioVenta` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detallemascotacliente`
---
-
-CREATE TABLE `detallemascotacliente` (
-  `idDetalleMascotaCliente` int(11) NOT NULL,
-  `idMascota` int(11) NOT NULL,
-  `documentoCliente` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalleproveedormarca`
---
-
-CREATE TABLE `detalleproveedormarca` (
-  `idDetalleProveedorMarca` int(11) NOT NULL,
-  `documentoProveedor` varchar(45) NOT NULL,
-  `idMarca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detalleserviciofactura`
---
-
-CREATE TABLE `detalleserviciofactura` (
-  `idDetalleserviciofactura` int(11) NOT NULL,
-  `factura` int(11) NOT NULL,
-  `idServicio` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `precioVenta` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `detallevacunamascota`
---
-
-CREATE TABLE `detallevacunamascota` (
-  `idDetalleVacunaMascota` int(11) NOT NULL,
-  `idMascota` int(11) NOT NULL,
-  `idVacuna` int(11) NOT NULL,
-  `dosis` int(11) NOT NULL,
-  `fechaAplicacion` date NOT NULL,
-  `fechaProxima` date NOT NULL,
-  `observaciones` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estado`
---
-
-CREATE TABLE `estado` (
-  `idEstado` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `factura`
---
-
-CREATE TABLE `factura` (
-  `idFactura` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
-  `vendedor` int(11) NOT NULL,
-  `documentoCliente` varchar(20) NOT NULL,
-  `descuentoTotal` int(11) NOT NULL,
-  `formaPago` int(11) NOT NULL,
-  `nComprobante` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `formapago`
---
-
-CREATE TABLE `formapago` (
-  `idFormaPago` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `horario`
---
-
-CREATE TABLE `horario` (
-  `idhorario` int(11) NOT NULL,
-  `diaInicio` varchar(10) NOT NULL,
-  `diaFin` varchar(10) NOT NULL,
-  `horaInicio` time NOT NULL,
-  `horaFin` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `marca`
---
-
-CREATE TABLE `marca` (
-  `idMarca` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `mascota`
---
-
-CREATE TABLE `mascota` (
-  `idMascota` int(11) NOT NULL,
-  `idTipoMascota` int(11) NOT NULL,
-  `nombreMascota` varchar(45) NOT NULL,
-  `sexo` varchar(15) NOT NULL,
-  `idraza` int(11) NOT NULL,
-  `peso` double DEFAULT NULL,
-  `fechaCumpleanos` date DEFAULT NULL,
-  `edad` varchar(20) NOT NULL,
-  `observaciones` varchar(45) DEFAULT NULL,
-  `estado` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `mision`
---
-
-CREATE TABLE `mision` (
-  `idmision` int(11) NOT NULL,
-  `descripcion` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `preguntaseguridad`
---
-
-CREATE TABLE `preguntaseguridad` (
-  `idPreguntaSeguridad` int(11) NOT NULL,
-  `pregunta` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `presentacion`
---
-
-CREATE TABLE `presentacion` (
-  `idPresentacion` int(11) NOT NULL,
-  `descripcion` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `producto`
---
-
-CREATE TABLE `producto` (
-  `idProducto` int(11) NOT NULL,
-  `nombreProducto` varchar(45) NOT NULL,
-  `descripcion` varchar(80) DEFAULT NULL,
-  `idCategoria` int(11) NOT NULL,
-  `marca` int(11) NOT NULL,
-  `idPresentacion` int(11) NOT NULL,
-  `valorMedida` double NOT NULL,
-  `idUnidadMedida` int(11) NOT NULL,
-  `existencia` int(11) NOT NULL,
-  `indicaciones` varchar(45) DEFAULT NULL,
-  `contradindicaciones` varchar(45) DEFAULT NULL,
-  `fechaCaducidad` date DEFAULT NULL,
-  `aplicacion` varchar(45) DEFAULT NULL,
-  `precio` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `proveedor`
---
-
-CREATE TABLE `proveedor` (
-  `documento` varchar(45) NOT NULL,
-  `idTipoDocumento` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `telefono` varchar(45) NOT NULL,
-  `celular` varchar(45) DEFAULT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
-  `correo` varchar(45) NOT NULL,
-  `nombreContacto` varchar(45) NOT NULL,
-  `diaVisita` varchar(45) DEFAULT NULL,
-  `observaciones` varchar(80) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `quienessomos`
---
-
-CREATE TABLE `quienessomos` (
-  `idquienesSomos` int(11) NOT NULL,
-  `descripcion` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `raza`
---
-
-CREATE TABLE `raza` (
-  `idraza` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `respuesta`
---
-
-CREATE TABLE `respuesta` (
-  `idRespuesta` int(11) NOT NULL,
-  `idPreguntaSeguridad` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `respuesta` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `rol`
---
-
-CREATE TABLE `rol` (
-  `idRol` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `servicio`
---
-
-CREATE TABLE `servicio` (
-  `idServicio` int(11) NOT NULL,
-  `nombreServicio` varchar(45) NOT NULL,
-  `idTipoServicio` int(11) NOT NULL,
-  `descripcion` varchar(80) NOT NULL,
-  `recomendacionesPrevias` varchar(80) NOT NULL,
-  `recomendacionesPosteriores` varchar(80) NOT NULL,
-  `precio` int(11) NOT NULL,
-  `estado` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipodocumento`
---
-
-CREATE TABLE `tipodocumento` (
-  `idTipoDocumento` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipomascota`
---
-
-CREATE TABLE `tipomascota` (
-  `idTipoMascota` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tiposervicio`
---
-
-CREATE TABLE `tiposervicio` (
-  `idTipoServicio` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `unidadmedida`
---
-
-CREATE TABLE `unidadmedida` (
-  `idUnidadMedida` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `celular` varchar(45) DEFAULT NULL,
-  `nombreUsuario` varchar(45) NOT NULL,
-  `contrasena` varchar(45) NOT NULL,
-  `idRol` int(11) NOT NULL,
-  `fechaRegistro` date NOT NULL,
-  `estado` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vision`
---
-
-CREATE TABLE `vision` (
-  `idvision` int(11) NOT NULL,
-  `descripcion` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `carrusel`
---
-ALTER TABLE `carrusel`
-  ADD PRIMARY KEY (`idCarrusel`);
-
---
--- Indices de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idCategoria`);
-
---
--- Indices de la tabla `cita`
---
-ALTER TABLE `cita`
-  ADD PRIMARY KEY (`idCita`),
-  ADD KEY `fk_Cita_Servicio_idx` (`asunto`),
-  ADD KEY `fk_Cita_Estado1_idx` (`idEstado`),
-  ADD KEY `fk_Cita_DetalleMascotaCliente1_idx` (`cliente`);
-
---
--- Indices de la tabla `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`documento`),
-  ADD KEY `fk_Cliente_TipoDocumento1_idx` (`TipoDocumento`);
-
---
--- Indices de la tabla `compras`
---
-ALTER TABLE `compras`
-  ADD PRIMARY KEY (`idCompras`),
-  ADD KEY `fk_Compras_Proveedor1_idx` (`documentoProveedor`);
-
---
--- Indices de la tabla `contacto`
---
-ALTER TABLE `contacto`
-  ADD PRIMARY KEY (`idContacto`);
-
---
--- Indices de la tabla `detallecompra`
---
-ALTER TABLE `detallecompra`
-  ADD PRIMARY KEY (`idDetalleCompra`),
-  ADD KEY `fk_DetalleCompra_Compras1_idx` (`idCompra`),
-  ADD KEY `fk_DetalleCompra_Producto1_idx` (`idProducto`);
-
---
--- Indices de la tabla `detallefactura`
---
-ALTER TABLE `detallefactura`
-  ADD PRIMARY KEY (`idDetalleproductofactura`),
-  ADD KEY `Fk_detalleproductofactura_Producto_idx` (`producto`),
-  ADD KEY `fk_detalleproductofactura_Factura_idx` (`factura`);
-
---
--- Indices de la tabla `detallemascotacliente`
---
-ALTER TABLE `detallemascotacliente`
-  ADD PRIMARY KEY (`idDetalleMascotaCliente`),
-  ADD KEY `fk_DetalleMascotaCliente_Mascota1_idx` (`idMascota`),
-  ADD KEY `fk_DetalleMascotaCliente_Cliente1_idx` (`documentoCliente`);
-
---
--- Indices de la tabla `detalleproveedormarca`
---
-ALTER TABLE `detalleproveedormarca`
-  ADD PRIMARY KEY (`idDetalleProveedorMarca`),
-  ADD KEY `fk_DetalleProveedorMarca_Marca1_idx` (`idMarca`),
-  ADD KEY `fk_DetalleProveedorMarca_Proveedor1_idx` (`documentoProveedor`);
-
---
--- Indices de la tabla `detalleserviciofactura`
---
-ALTER TABLE `detalleserviciofactura`
-  ADD PRIMARY KEY (`idDetalleserviciofactura`),
-  ADD KEY `fk_detalleserviciofactura_Servicio_idx` (`idServicio`),
-  ADD KEY `fk_detalleserviciofactura_Factura_idx` (`factura`);
-
---
--- Indices de la tabla `detallevacunamascota`
---
-ALTER TABLE `detallevacunamascota`
-  ADD PRIMARY KEY (`idDetalleVacunaMascota`),
-  ADD KEY `fk_DetalleVacunaMascota_Mascota1_idx` (`idMascota`),
-  ADD KEY `fk_DetalleVacunaMascota_Producto_idx` (`idVacuna`);
-
---
--- Indices de la tabla `estado`
---
-ALTER TABLE `estado`
-  ADD PRIMARY KEY (`idEstado`);
-
---
--- Indices de la tabla `factura`
---
-ALTER TABLE `factura`
-  ADD PRIMARY KEY (`idFactura`),
-  ADD KEY `fk_Factura_Vendedor_idx` (`vendedor`),
-  ADD KEY `fk_Factura_FormaPago_idx` (`formaPago`),
-  ADD KEY `fk_Factura_Cliente1_idx` (`documentoCliente`);
-
---
--- Indices de la tabla `formapago`
---
-ALTER TABLE `formapago`
-  ADD PRIMARY KEY (`idFormaPago`);
-
---
--- Indices de la tabla `horario`
---
-ALTER TABLE `horario`
-  ADD PRIMARY KEY (`idhorario`);
-
---
--- Indices de la tabla `marca`
---
-ALTER TABLE `marca`
-  ADD PRIMARY KEY (`idMarca`);
-
---
--- Indices de la tabla `mascota`
---
-ALTER TABLE `mascota`
-  ADD PRIMARY KEY (`idMascota`),
-  ADD KEY `fk_Mascota_Raza1_idx` (`idraza`),
-  ADD KEY `fk_Mascota_TipoMascota1_idx` (`idTipoMascota`);
-
---
--- Indices de la tabla `mision`
---
-ALTER TABLE `mision`
-  ADD PRIMARY KEY (`idmision`);
-
---
--- Indices de la tabla `preguntaseguridad`
---
-ALTER TABLE `preguntaseguridad`
-  ADD PRIMARY KEY (`idPreguntaSeguridad`);
-
---
--- Indices de la tabla `presentacion`
---
-ALTER TABLE `presentacion`
-  ADD PRIMARY KEY (`idPresentacion`);
-
---
--- Indices de la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`idProducto`),
-  ADD KEY `fk_Producto_Categoria1_idx` (`idCategoria`),
-  ADD KEY `fk_Producto_UnidadMedida1_idx` (`idUnidadMedida`),
-  ADD KEY `fk_Producto_Presentacion1_idx` (`idPresentacion`),
-  ADD KEY `fk_Producto_Marca_idx` (`marca`);
-
---
--- Indices de la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`documento`),
-  ADD KEY `fk_Proveedor_TipoDocumento1_idx` (`idTipoDocumento`);
-
---
--- Indices de la tabla `quienessomos`
---
-ALTER TABLE `quienessomos`
-  ADD PRIMARY KEY (`idquienesSomos`);
-
---
--- Indices de la tabla `raza`
---
-ALTER TABLE `raza`
-  ADD PRIMARY KEY (`idraza`);
-
---
--- Indices de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD PRIMARY KEY (`idRespuesta`),
-  ADD KEY `fk_Respuesta_PreguntaSeguridad1_idx` (`idPreguntaSeguridad`),
-  ADD KEY `fk_Respuesta_Usuario1_idx` (`idUsuario`);
-
---
--- Indices de la tabla `rol`
---
-ALTER TABLE `rol`
-  ADD PRIMARY KEY (`idRol`);
-
---
--- Indices de la tabla `servicio`
---
-ALTER TABLE `servicio`
-  ADD PRIMARY KEY (`idServicio`),
-  ADD KEY `fk_Servicio_TipoServicio_idx` (`idTipoServicio`);
-
---
--- Indices de la tabla `tipodocumento`
---
-ALTER TABLE `tipodocumento`
-  ADD PRIMARY KEY (`idTipoDocumento`);
-
---
--- Indices de la tabla `tipomascota`
---
-ALTER TABLE `tipomascota`
-  ADD PRIMARY KEY (`idTipoMascota`);
-
---
--- Indices de la tabla `tiposervicio`
---
-ALTER TABLE `tiposervicio`
-  ADD PRIMARY KEY (`idTipoServicio`);
-
---
--- Indices de la tabla `unidadmedida`
---
-ALTER TABLE `unidadmedida`
-  ADD PRIMARY KEY (`idUnidadMedida`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD UNIQUE KEY `contrasena_UNIQUE` (`contrasena`),
-  ADD KEY `fk_Usuario_Rol1_idx` (`idRol`);
-
---
--- Indices de la tabla `vision`
---
-ALTER TABLE `vision`
-  ADD PRIMARY KEY (`idvision`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `carrusel`
---
-ALTER TABLE `carrusel`
-  MODIFY `idCarrusel` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `cita`
---
-ALTER TABLE `cita`
-  MODIFY `idCita` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `compras`
---
-ALTER TABLE `compras`
-  MODIFY `idCompras` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `contacto`
---
-ALTER TABLE `contacto`
-  MODIFY `idContacto` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `detallemascotacliente`
---
-ALTER TABLE `detallemascotacliente`
-  MODIFY `idDetalleMascotaCliente` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `detalleproveedormarca`
---
-ALTER TABLE `detalleproveedormarca`
-  MODIFY `idDetalleProveedorMarca` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `detallevacunamascota`
---
-ALTER TABLE `detallevacunamascota`
-  MODIFY `idDetalleVacunaMascota` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `estado`
---
-ALTER TABLE `estado`
-  MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `factura`
---
-ALTER TABLE `factura`
-  MODIFY `idFactura` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `formapago`
---
-ALTER TABLE `formapago`
-  MODIFY `idFormaPago` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `horario`
---
-ALTER TABLE `horario`
-  MODIFY `idhorario` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `marca`
---
-ALTER TABLE `marca`
-  MODIFY `idMarca` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `mascota`
---
-ALTER TABLE `mascota`
-  MODIFY `idMascota` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `mision`
---
-ALTER TABLE `mision`
-  MODIFY `idmision` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `preguntaseguridad`
---
-ALTER TABLE `preguntaseguridad`
-  MODIFY `idPreguntaSeguridad` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `presentacion`
---
-ALTER TABLE `presentacion`
-  MODIFY `idPresentacion` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `quienessomos`
---
-ALTER TABLE `quienessomos`
-  MODIFY `idquienesSomos` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `raza`
---
-ALTER TABLE `raza`
-  MODIFY `idraza` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `rol`
---
-ALTER TABLE `rol`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `servicio`
---
-ALTER TABLE `servicio`
-  MODIFY `idServicio` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tipodocumento`
---
-ALTER TABLE `tipodocumento`
-  MODIFY `idTipoDocumento` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tipomascota`
---
-ALTER TABLE `tipomascota`
-  MODIFY `idTipoMascota` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tiposervicio`
---
-ALTER TABLE `tiposervicio`
-  MODIFY `idTipoServicio` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `unidadmedida`
---
-ALTER TABLE `unidadmedida`
-  MODIFY `idUnidadMedida` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `vision`
---
-ALTER TABLE `vision`
-  MODIFY `idvision` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `cita`
---
-ALTER TABLE `cita`
-  ADD CONSTRAINT `fk_Cita_Cliente` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Cita_Estado` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Cita_Servicio` FOREIGN KEY (`asunto`) REFERENCES `servicio` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `cliente`
---
-ALTER TABLE `cliente`
-  ADD CONSTRAINT `fk_Cliente_TipoDocumento1` FOREIGN KEY (`TipoDocumento`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `compras`
---
-ALTER TABLE `compras`
-  ADD CONSTRAINT `fk_Compras_Proveedor1` FOREIGN KEY (`documentoProveedor`) REFERENCES `proveedor` (`documento`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detallecompra`
---
-ALTER TABLE `detallecompra`
-  ADD CONSTRAINT `fk_DetalleCompra_Compras1` FOREIGN KEY (`idCompra`) REFERENCES `compras` (`idCompras`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_DetalleCompra_Producto1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detallefactura`
---
-ALTER TABLE `detallefactura`
-  ADD CONSTRAINT `Fk_detalleproductofactura_Producto` FOREIGN KEY (`producto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_detalleproductofactura_Factura` FOREIGN KEY (`factura`) REFERENCES `factura` (`idFactura`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detallemascotacliente`
---
-ALTER TABLE `detallemascotacliente`
-  ADD CONSTRAINT `fk_DetalleMascotaCliente_Cliente1` FOREIGN KEY (`documentoCliente`) REFERENCES `cliente` (`documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_DetalleMascotaCliente_Mascota1` FOREIGN KEY (`idMascota`) REFERENCES `mascota` (`idMascota`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detalleproveedormarca`
---
-ALTER TABLE `detalleproveedormarca`
-  ADD CONSTRAINT `fk_DetalleProveedorMarca_Marca1` FOREIGN KEY (`idMarca`) REFERENCES `marca` (`idMarca`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_DetalleProveedorMarca_Proveedor1` FOREIGN KEY (`documentoProveedor`) REFERENCES `proveedor` (`documento`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detalleserviciofactura`
---
-ALTER TABLE `detalleserviciofactura`
-  ADD CONSTRAINT `fk_detalleserviciofactura_Factura` FOREIGN KEY (`factura`) REFERENCES `factura` (`idFactura`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_detalleserviciofactura_Servicio` FOREIGN KEY (`idServicio`) REFERENCES `servicio` (`idServicio`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detallevacunamascota`
---
-ALTER TABLE `detallevacunamascota`
-  ADD CONSTRAINT `fk_DetalleVacunaMascota_Mascota` FOREIGN KEY (`idMascota`) REFERENCES `mascota` (`idMascota`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_DetalleVacunaMascota_Producto` FOREIGN KEY (`idVacuna`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `factura`
---
-ALTER TABLE `factura`
-  ADD CONSTRAINT `fk_Factura_Cliente` FOREIGN KEY (`documentoCliente`) REFERENCES `cliente` (`documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Factura_FormaPago` FOREIGN KEY (`formaPago`) REFERENCES `formapago` (`idFormaPago`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Factura_Vendedor` FOREIGN KEY (`vendedor`) REFERENCES `usuario` (`idUsuario`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `mascota`
---
-ALTER TABLE `mascota`
-  ADD CONSTRAINT `fk_Mascota_Raza` FOREIGN KEY (`idraza`) REFERENCES `raza` (`idraza`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Mascota_TipoMascota` FOREIGN KEY (`idTipoMascota`) REFERENCES `tipomascota` (`idTipoMascota`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD CONSTRAINT `fk_Producto_Categoria` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Producto_Marca` FOREIGN KEY (`marca`) REFERENCES `marca` (`idMarca`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Producto_Presentacion` FOREIGN KEY (`idPresentacion`) REFERENCES `presentacion` (`idPresentacion`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Producto_UnidadMedida1` FOREIGN KEY (`idUnidadMedida`) REFERENCES `unidadmedida` (`idUnidadMedida`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `proveedor`
---
-ALTER TABLE `proveedor`
-  ADD CONSTRAINT `fk_Proveedor_TipoDocumento1` FOREIGN KEY (`idTipoDocumento`) REFERENCES `tipodocumento` (`idTipoDocumento`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD CONSTRAINT `fk_Respuesta_PreguntaSeguridad1` FOREIGN KEY (`idPreguntaSeguridad`) REFERENCES `preguntaseguridad` (`idPreguntaSeguridad`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Respuesta_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `servicio`
---
-ALTER TABLE `servicio`
-  ADD CONSTRAINT `fk_Servicio_TipoServicio` FOREIGN KEY (`idTipoServicio`) REFERENCES `tiposervicio` (`idTipoServicio`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_Usuario_Rol` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- MySQL Script generated by MySQL Workbench
+-- Mon Aug 10 14:28:01 2020
+-- Model: New Model    Version: 1.0
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema tiendadb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema tiendadb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `tiendadb` DEFAULT CHARACTER SET utf8 ;
+USE `tiendadb` ;
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`TipoDocumento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`TipoDocumento` (
+  `idTipoDocumento` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idTipoDocumento`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Cliente` (
+  `TipoDocumento` INT NOT NULL,
+  `documento` VARCHAR(20) NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(20) NULL,
+  `celular` VARCHAR(20) NOT NULL,
+  `direccion` VARCHAR(45) NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`documento`),
+  INDEX `fk_Cliente_TipoDocumento1_idx` (`TipoDocumento` ASC),
+  CONSTRAINT `fk_Cliente_TipoDocumento1`
+    FOREIGN KEY (`TipoDocumento`)
+    REFERENCES `tiendadb`.`TipoDocumento` (`idTipoDocumento`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`PreguntaSeguridad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`PreguntaSeguridad` (
+  `idPreguntaSeguridad` INT NOT NULL AUTO_INCREMENT,
+  `pregunta` VARCHAR(80) NOT NULL,
+  PRIMARY KEY (`idPreguntaSeguridad`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Rol`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Rol` (
+  `idRol` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idRol`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Usuario` (
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `celular` VARCHAR(45) NULL,
+  `nombreUsuario` VARCHAR(45) NOT NULL,
+  `contrasena` VARCHAR(45) NOT NULL,
+  `idRol` INT NOT NULL,
+  `fechaRegistro` DATE NOT NULL,
+  `estado` TINYINT NOT NULL,
+  PRIMARY KEY (`idUsuario`),
+  INDEX `fk_Usuario_Rol1_idx` (`idRol` ASC),
+  UNIQUE INDEX `contrasena_UNIQUE` (`contrasena` ASC),
+  CONSTRAINT `fk_Usuario_Rol`
+    FOREIGN KEY (`idRol`)
+    REFERENCES `tiendadb`.`Rol` (`idRol`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Respuesta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Respuesta` (
+  `idRespuesta` INT NOT NULL AUTO_INCREMENT,
+  `idPreguntaSeguridad` INT NOT NULL,
+  `idUsuario` INT NOT NULL,
+  `respuesta` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idRespuesta`),
+  INDEX `fk_Respuesta_PreguntaSeguridad1_idx` (`idPreguntaSeguridad` ASC),
+  INDEX `fk_Respuesta_Usuario1_idx` (`idUsuario` ASC),
+  CONSTRAINT `fk_Respuesta_PreguntaSeguridad1`
+    FOREIGN KEY (`idPreguntaSeguridad`)
+    REFERENCES `tiendadb`.`PreguntaSeguridad` (`idPreguntaSeguridad`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Respuesta_Usuario1`
+    FOREIGN KEY (`idUsuario`)
+    REFERENCES `tiendadb`.`Usuario` (`idUsuario`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Categoria` (
+  `idCategoria` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idCategoria`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`UnidadMedida`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`UnidadMedida` (
+  `idUnidadMedida` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idUnidadMedida`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Presentacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Presentacion` (
+  `idPresentacion` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NULL,
+  PRIMARY KEY (`idPresentacion`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Marca`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Marca` (
+  `idMarca` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idMarca`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Producto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Producto` (
+  `idProducto` INT NOT NULL,
+  `nombreProducto` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(80) NULL,
+  `idCategoria` INT NOT NULL,
+  `marca` INT NOT NULL,
+  `idPresentacion` INT NOT NULL,
+  `valorMedida` DOUBLE NOT NULL,
+  `idUnidadMedida` INT NOT NULL,
+  `existencia` INT NOT NULL,
+  `indicaciones` VARCHAR(45) NULL,
+  `contradindicaciones` VARCHAR(45) NULL,
+  `fechaCaducidad` DATE NULL,
+  `aplicacion` VARCHAR(45) NULL,
+  `precio` INT NOT NULL,
+  PRIMARY KEY (`idProducto`),
+  INDEX `fk_Producto_Categoria1_idx` (`idCategoria` ASC),
+  INDEX `fk_Producto_UnidadMedida1_idx` (`idUnidadMedida` ASC),
+  INDEX `fk_Producto_Presentacion1_idx` (`idPresentacion` ASC),
+  INDEX `fk_Producto_Marca_idx` (`marca` ASC),
+  CONSTRAINT `fk_Producto_Categoria`
+    FOREIGN KEY (`idCategoria`)
+    REFERENCES `tiendadb`.`Categoria` (`idCategoria`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Producto_UnidadMedida1`
+    FOREIGN KEY (`idUnidadMedida`)
+    REFERENCES `tiendadb`.`UnidadMedida` (`idUnidadMedida`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Producto_Presentacion`
+    FOREIGN KEY (`idPresentacion`)
+    REFERENCES `tiendadb`.`Presentacion` (`idPresentacion`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Producto_Marca`
+    FOREIGN KEY (`marca`)
+    REFERENCES `tiendadb`.`Marca` (`idMarca`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Proveedor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Proveedor` (
+  `documento` VARCHAR(45) NOT NULL,
+  `idTipoDocumento` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(45) NOT NULL,
+  `celular` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `nombreContacto` VARCHAR(45) NOT NULL,
+  `diaVisita` VARCHAR(45) NULL,
+  `observaciones` VARCHAR(80) NULL,
+  INDEX `fk_Proveedor_TipoDocumento1_idx` (`idTipoDocumento` ASC),
+  PRIMARY KEY (`documento`),
+  CONSTRAINT `fk_Proveedor_TipoDocumento1`
+    FOREIGN KEY (`idTipoDocumento`)
+    REFERENCES `tiendadb`.`TipoDocumento` (`idTipoDocumento`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Compras`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Compras` (
+  `idCompras` INT NOT NULL AUTO_INCREMENT,
+  `documentoProveedor` VARCHAR(45) NOT NULL,
+  `facturaProveedor` VARCHAR(45) NOT NULL,
+  `fechaFacturaProveedor` DATE NOT NULL,
+  `fechaRegistroCompra` DATE NOT NULL,
+  `estado` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`idCompras`),
+  INDEX `fk_Compras_Proveedor1_idx` (`documentoProveedor` ASC),
+  CONSTRAINT `fk_Compras_Proveedor1`
+    FOREIGN KEY (`documentoProveedor`)
+    REFERENCES `tiendadb`.`Proveedor` (`documento`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`DetalleCompra`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`DetalleCompra` (
+  `idDetalleCompra` INT NOT NULL,
+  `idCompra` INT NOT NULL,
+  `idProducto` INT NOT NULL,
+  `cantidad` INT NOT NULL,
+  `costoProducto` INT NOT NULL,
+  `iva` INT NOT NULL,
+  PRIMARY KEY (`idDetalleCompra`),
+  INDEX `fk_DetalleCompra_Compras1_idx` (`idCompra` ASC),
+  INDEX `fk_DetalleCompra_Producto1_idx` (`idProducto` ASC),
+  CONSTRAINT `fk_DetalleCompra_Compras1`
+    FOREIGN KEY (`idCompra`)
+    REFERENCES `tiendadb`.`Compras` (`idCompras`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_DetalleCompra_Producto1`
+    FOREIGN KEY (`idProducto`)
+    REFERENCES `tiendadb`.`Producto` (`idProducto`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`TipoMascota`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`TipoMascota` (
+  `idTipoMascota` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idTipoMascota`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Raza`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Raza` (
+  `idraza` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idraza`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Mascota`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Mascota` (
+  `idMascota` INT NOT NULL AUTO_INCREMENT,
+  `idTipoMascota` INT NOT NULL,
+  `nombreMascota` VARCHAR(45) NOT NULL,
+  `sexo` VARCHAR(15) NOT NULL,
+  `idraza` INT NOT NULL,
+  `peso` DOUBLE NULL,
+  `fechaCumpleanos` DATE NULL,
+  `edad` VARCHAR(20) NOT NULL,
+  `observaciones` VARCHAR(45) NULL,
+  `estado` TINYINT NOT NULL,
+  PRIMARY KEY (`idMascota`),
+  INDEX `fk_Mascota_Raza1_idx` (`idraza` ASC),
+  INDEX `fk_Mascota_TipoMascota1_idx` (`idTipoMascota` ASC),
+  CONSTRAINT `fk_Mascota_Raza`
+    FOREIGN KEY (`idraza`)
+    REFERENCES `tiendadb`.`Raza` (`idraza`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Mascota_TipoMascota`
+    FOREIGN KEY (`idTipoMascota`)
+    REFERENCES `tiendadb`.`TipoMascota` (`idTipoMascota`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`DetalleMascotaCliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`DetalleMascotaCliente` (
+  `idDetalleMascotaCliente` INT NOT NULL AUTO_INCREMENT,
+  `idMascota` INT NOT NULL,
+  `documentoCliente` VARCHAR(20) NOT NULL,
+  INDEX `fk_DetalleMascotaCliente_Mascota1_idx` (`idMascota` ASC),
+  PRIMARY KEY (`idDetalleMascotaCliente`),
+  INDEX `fk_DetalleMascotaCliente_Cliente1_idx` (`documentoCliente` ASC),
+  CONSTRAINT `fk_DetalleMascotaCliente_Mascota1`
+    FOREIGN KEY (`idMascota`)
+    REFERENCES `tiendadb`.`Mascota` (`idMascota`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_DetalleMascotaCliente_Cliente1`
+    FOREIGN KEY (`documentoCliente`)
+    REFERENCES `tiendadb`.`Cliente` (`documento`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`TipoServicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`TipoServicio` (
+  `idTipoServicio` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idTipoServicio`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Servicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Servicio` (
+  `idServicio` INT NOT NULL AUTO_INCREMENT,
+  `nombreServicio` VARCHAR(45) NOT NULL,
+  `idTipoServicio` INT NOT NULL,
+  `descripcion` VARCHAR(80) NOT NULL,
+  `recomendacionesPrevias` VARCHAR(80) NOT NULL,
+  `recomendacionesPosteriores` VARCHAR(80) NOT NULL,
+  `precio` INT NOT NULL,
+  `estado` TINYINT NOT NULL,
+  PRIMARY KEY (`idServicio`),
+  INDEX `fk_Servicio_TipoServicio_idx` (`idTipoServicio` ASC),
+  CONSTRAINT `fk_Servicio_TipoServicio`
+    FOREIGN KEY (`idTipoServicio`)
+    REFERENCES `tiendadb`.`TipoServicio` (`idTipoServicio`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Estado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Estado` (
+  `idEstado` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idEstado`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Cita`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Cita` (
+  `idCita` INT NOT NULL AUTO_INCREMENT,
+  `servicio` INT NOT NULL,
+  `fechaCita` DATE NOT NULL,
+  `HoraCita` TIME NOT NULL,
+  `observaciones` VARCHAR(45) NOT NULL,
+  `idEstado` INT NOT NULL,
+  `precio` INT NULL,
+  `documentoCliente` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`idCita`),
+  INDEX `fk_Cita_Servicio_idx` (`servicio` ASC),
+  INDEX `fk_Cita_Estado1_idx` (`idEstado` ASC),
+  INDEX `fk_Cita_Cliente1_idx` (`documentoCliente` ASC),
+  CONSTRAINT `fk_Cita_Servicio`
+    FOREIGN KEY (`servicio`)
+    REFERENCES `tiendadb`.`Servicio` (`idServicio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Cita_Estado`
+    FOREIGN KEY (`idEstado`)
+    REFERENCES `tiendadb`.`Estado` (`idEstado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Cita_Cliente1`
+    FOREIGN KEY (`documentoCliente`)
+    REFERENCES `tiendadb`.`Cliente` (`documento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`FormaPago`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`FormaPago` (
+  `idFormaPago` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idFormaPago`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`DetalleVacunaMascota`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`DetalleVacunaMascota` (
+  `idDetalleVacunaMascota` INT NOT NULL AUTO_INCREMENT,
+  `idMascota` INT NOT NULL,
+  `idVacuna` INT NOT NULL,
+  `dosis` INT NOT NULL,
+  `fechaAplicacion` DATE NOT NULL,
+  `fechaProxima` DATE NOT NULL,
+  `observaciones` VARCHAR(80) NOT NULL,
+  PRIMARY KEY (`idDetalleVacunaMascota`),
+  INDEX `fk_DetalleVacunaMascota_Mascota1_idx` (`idMascota` ASC),
+  INDEX `fk_DetalleVacunaMascota_Producto_idx` (`idVacuna` ASC),
+  CONSTRAINT `fk_DetalleVacunaMascota_Mascota`
+    FOREIGN KEY (`idMascota`)
+    REFERENCES `tiendadb`.`Mascota` (`idMascota`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_DetalleVacunaMascota_Producto`
+    FOREIGN KEY (`idVacuna`)
+    REFERENCES `tiendadb`.`Producto` (`idProducto`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Venta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Venta` (
+  `idFactura` INT NOT NULL AUTO_INCREMENT,
+  `fecha` DATETIME NOT NULL,
+  `vendedor` INT NOT NULL,
+  `documentoCliente` VARCHAR(20) NOT NULL,
+  `descuentoTotal` INT NOT NULL,
+  `formaPago` INT NOT NULL,
+  `nComprobante` VARCHAR(45) NULL,
+  PRIMARY KEY (`idFactura`),
+  INDEX `fk_Factura_Vendedor_idx` (`vendedor` ASC),
+  INDEX `fk_Factura_FormaPago_idx` (`formaPago` ASC),
+  INDEX `fk_Factura_Cliente1_idx` (`documentoCliente` ASC),
+  CONSTRAINT `fk_Factura_Vendedor`
+    FOREIGN KEY (`vendedor`)
+    REFERENCES `tiendadb`.`Usuario` (`idUsuario`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Factura_FormaPago`
+    FOREIGN KEY (`formaPago`)
+    REFERENCES `tiendadb`.`FormaPago` (`idFormaPago`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Factura_Cliente`
+    FOREIGN KEY (`documentoCliente`)
+    REFERENCES `tiendadb`.`Cliente` (`documento`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`detalleventaproducto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`detalleventaproducto` (
+  `idDetalleproductofactura` INT NOT NULL,
+  `factura` INT NOT NULL,
+  `producto` INT NOT NULL,
+  `cantidad` INT NOT NULL,
+  `precioVenta` INT NOT NULL,
+  PRIMARY KEY (`idDetalleproductofactura`),
+  INDEX `Fk_detalleproductofactura_Producto_idx` (`producto` ASC),
+  INDEX `fk_detalleproductofactura_Factura_idx` (`factura` ASC),
+  CONSTRAINT `Fk_detalleproductofactura_Producto`
+    FOREIGN KEY (`producto`)
+    REFERENCES `tiendadb`.`Producto` (`idProducto`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_detalleproductofactura_Factura`
+    FOREIGN KEY (`factura`)
+    REFERENCES `tiendadb`.`Venta` (`idFactura`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Carrusel`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Carrusel` (
+  `idCarrusel` INT NOT NULL AUTO_INCREMENT,
+  `ruta` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idCarrusel`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`quienesSomos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`quienesSomos` (
+  `idquienesSomos` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`idquienesSomos`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`mision`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`mision` (
+  `idmision` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`idmision`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`Contacto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`Contacto` (
+  `idContacto` INT NOT NULL AUTO_INCREMENT,
+  `direccion` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(15) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idContacto`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`horario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`horario` (
+  `idhorario` INT NOT NULL AUTO_INCREMENT,
+  `diaInicio` VARCHAR(10) NOT NULL,
+  `diaFin` VARCHAR(10) NOT NULL,
+  `horaInicio` TIME NOT NULL,
+  `horaFin` TIME NOT NULL,
+  PRIMARY KEY (`idhorario`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`vision`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`vision` (
+  `idvision` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`idvision`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tiendadb`.`DetalleProveedorMarca`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tiendadb`.`DetalleProveedorMarca` (
+  `idDetalleProveedorMarca` INT NOT NULL AUTO_INCREMENT,
+  `documentoProveedor` VARCHAR(45) NOT NULL,
+  `idMarca` INT NOT NULL,
+  PRIMARY KEY (`idDetalleProveedorMarca`),
+  INDEX `fk_DetalleProveedorMarca_Marca1_idx` (`idMarca` ASC),
+  INDEX `fk_DetalleProveedorMarca_Proveedor1_idx` (`documentoProveedor` ASC),
+  CONSTRAINT `fk_DetalleProveedorMarca_Marca1`
+    FOREIGN KEY (`idMarca`)
+    REFERENCES `tiendadb`.`Marca` (`idMarca`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_DetalleProveedorMarca_Proveedor1`
+    FOREIGN KEY (`documentoProveedor`)
+    REFERENCES `tiendadb`.`Proveedor` (`documento`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
