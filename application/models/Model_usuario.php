@@ -1,6 +1,6 @@
 <?php
 
-class model_usuario extends Ci_model {
+class Model_usuario extends Ci_model {
 
 	public $tablaUsuario = 'usuario';
 

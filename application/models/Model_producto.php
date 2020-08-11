@@ -1,6 +1,6 @@
 <?php
 
-class model_producto extends Ci_model
+class Model_producto extends Ci_model
 {
 
 	//Nombre de la tabla

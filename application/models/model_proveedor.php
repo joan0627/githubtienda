@@ -1,6 +1,6 @@
 <?php
 
-class model_proveedor extends Ci_model
+class Model_proveedor extends Ci_model
 {
 
 	public $tablaProveedor = 'proveedor';
