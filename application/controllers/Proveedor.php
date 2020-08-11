@@ -16,17 +16,15 @@ class Proveedor extends CI_controller
 		$this->load->helper("url");
 		$this->load->library('form_validation');
 
-
-
-		//Validaciones para los campos de la tabla Persona
+		
+		//Validaciones para los campos de la tabla proveedor
 		$this->form_validation->set_rules('tipoDocumento', 'tipo documento', 'required');
-		$this->form_validation->set_rules('documento', 'documento', 'required');
+		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]');
 		$this->form_validation->set_rules('nombre', 'nombre completo', 'required');
 		$this->form_validation->set_rules('celular', 'celular', 'required');
-
-		//Validaciones para los campos de la tabla proveedor
 		$this->form_validation->set_rules('nombreContacto', 'nombre de contacto', 'required');
 		$this->form_validation->set_rules('diaVisita', 'dia visita', 'required');
+		$this->form_validation->set_rules('correo', 'correo', 'valid_email');
 	}
 
 	public function index()
@@ -40,20 +38,20 @@ class Proveedor extends CI_controller
 	//Inicio de los metodos 
 	public function listaproveedoresu()
 	{
-		$datosPersona['resultado'] = $this->model_proveedor->buscarTodoPersonaProveedor();
+		$datosProveedor['resultado'] = $this->model_proveedor->BuscarTodosProveedor();
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/listadoProveedores_view', $datosPersona);
+		$this->load->view('superadministrador/general/listadoProveedores_view', $datosProveedor);
 		$this->load->view('layouts/footer');
 	}
 
 	public function registrar()
 	{
 
-		$datosCarga["tipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
-			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombrecontacto"] =
-			$datosCarga["diavisita"] = $datosCarga["observaciones"] = "";
+		$datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
+			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombreContacto"] =
+			$datosCarga["diaVisita"] = $datosCarga["observaciones"] = "";
 
 
 
@@ -64,48 +62,35 @@ class Proveedor extends CI_controller
 			Aqui se necesitan dos arreglos diferentes ya que los datos van 
 			para dos tablas diferentes
 			*/
-			$datosPersona["tipoDocumento"] = $this->input->post("tipoDocumento");
-			$datosPersona["documento"] = $this->input->post("documento");
-			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["telefono"] = $this->input->post("telefono");
-			$datosPersona["celular"] = $this->input->post("celular");
-			$datosPersona["direccion"] = $this->input->post("direccion");
-			$datosPersona["correo"] = $this->input->post("correo");
-			$datosPersona["tipoPersona"] = 3; // Se especifica el tipo de persona como 3 para Proveedor
-
-			$datosProveedor["documento"] = $datosPersona["documento"];
+			$datosProveedor["idTipoDocumento"] = $this->input->post("tipoDocumento");
+			$datosProveedor["documento"] = $this->input->post("documento");
+			$datosProveedor["nombre"] = $this->input->post("nombre");
+			$datosProveedor["telefono"] = $this->input->post("telefono");
+			$datosProveedor["celular"] = $this->input->post("celular");
+			$datosProveedor["direccion"] = $this->input->post("direccion");
+			$datosProveedor["correo"] = $this->input->post("correo");
 			$datosProveedor["nombreContacto"] = $this->input->post("nombreContacto");
 			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
 
 
-			/*Arreglos para cargar la información a los campos 
-			 Aqui no necesitamos dos arreglos diferentes con sólo un arreglo 
-			 podemos cargar los datos a los campos
-		
-
+			//Se mantienen los datos al hacer una validación//
+			$datosCarga["idTipoDocumento"] = $this->input->post("tipoDocumento");
 			$datosCarga["documento"] = $this->input->post("documento");
-			$datosCarga["tipoDocumento"] = $this->input->post("tipoDocumento");
 			$datosCarga["nombre"] = $this->input->post("nombre");
 			$datosCarga["telefono"] = $this->input->post("telefono");
 			$datosCarga["celular"] = $this->input->post("celular");
 			$datosCarga["direccion"] = $this->input->post("direccion");
 			$datosCarga["correo"] = $this->input->post("correo");
-		
-			$datosCarga["username"] = $this->input->post("username");
-			$datosCarga["contrasena"] = $this->input->post("contrasena");
-			$datosCarga["rol"] = $this->input->post("rol");
-
-	*/
+			$datosCarga["nombreContacto"] = $this->input->post("nombreContacto");
+			$datosCarga["diaVisita"] = $this->input->post("diaVisita");
+			$datosCarga["observaciones"] = $this->input->post("observaciones");
 
 
 			/*************************************************************/
 			// **			Validacion de los campos					 // **
 			/*************************************************************/
-			if ($this->form_validation->run()) {
-
-
-				$this->model_proveedor->insertarPersona($datosPersona);
+			if ($this->form_validation->run()) {	
 				$this->model_proveedor->insertarProveedor($datosProveedor);
 				redirect("Proveedor/listaproveedoresu");
 			}
@@ -113,7 +98,7 @@ class Proveedor extends CI_controller
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/registrarProveedor_view', $datosCarga);
+		$this->load->view('superadministrador/formularios/registroProveedor_view', $datosCarga);
 		$this->load->view('layouts/footer');
 	}
 
@@ -188,7 +173,7 @@ class Proveedor extends CI_controller
 		
 
 
-					$this->model_proveedor->actualizarPersona($documento, $datosPersona);
+					
 					$this->model_proveedor->actualizarProveedor($documento, $datosProveedor);
 					redirect("Proveedor/listaproveedoresu");
 			

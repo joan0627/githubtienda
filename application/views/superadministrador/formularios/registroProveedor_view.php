@@ -41,7 +41,7 @@
 								<label>Tipo de documento</label> <label style="color: red;"> *</label>
 								<select name="tipoDocumento" class="form-control">
 
-									<option hidden selected>-Seleccione el tipo de documento-</option>
+									<option value="" hidden selected>-Seleccione el tipo de documento-</option>
 									<option value="1">Cédula de ciudadanía</option>
 									<option value="2">Cédula de extranjería</option>
 									<option value="3">Pasaporte</option>
@@ -49,6 +49,7 @@
 									<option value="5">Registro civil</option>
 									<option value="5">Nit</option>
 								</select>
+								<?php echo form_error('tipoDocumento', '<p class="text-danger">', '</p>'); ?>
 
 							</div>
 						</div>
@@ -56,7 +57,8 @@
 							<div class="form-group">
 
 								<label>Documento</label> <label style="color: red;"> * </label>
-								<input name="documento" type="text" class="form-control " placeholder="Ingrese el documento ">
+								<input name="documento" type="text" class="form-control " placeholder="Ingrese el documento "
+								value="<?php echo $documento;?>">
 								<?php echo form_error('documento', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
@@ -67,7 +69,8 @@
 
 							<div class="form-group">
 								<label>Nombre</label> <label style="color: red;"> *</label>
-								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre">
+								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
+								value="<?php echo $nombre;?>">
 								<?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
@@ -75,7 +78,8 @@
 
 							<div class="form-group">
 								<label>Teléfono</label>
-								<input name="telefono" type="text" class="form-control" placeholder="Ingrese el teléfono">
+								<input name="telefono" type="text" class="form-control" placeholder="Ingrese el teléfono"
+								value="<?php echo $telefono;?>">
 							</div>
 						</div>
 					</div>
@@ -83,7 +87,8 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Celular</label> <label style="color: red;"> *</label>
-								<input name="celular" type="text" class="form-control" placeholder="Ingrese el celular">
+								<input name="celular" type="text" class="form-control" placeholder="Ingrese el celular"
+								value="<?php echo $celular;?>">
 								<?php echo form_error('celular', '<p class="text-danger">', '</p>'); ?>
 							</div>
 
@@ -91,7 +96,8 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Dirección</label>
-								<input name="direccion" type="text" class="form-control" placeholder="Ingrese la dirección">
+								<input name="direccion" type="text" class="form-control" placeholder="Ingrese la dirección"
+								value="<?php echo $direccion;?>">
 							</div>
 						</div>
 					</div>
@@ -99,13 +105,16 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Correo</label>
-								<input name="correo" type="email" class="form-control" placeholder="Ingrese el correo">
+								<input name="correo" type="email" class="form-control" placeholder="Ingrese el correo"
+								value="<?php echo $correo;?>">
+								<?php echo form_error('correo', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Nombre contacto</label> <label style="color: red;"> *</label>
-								<input name="nombreContacto" type="text" class="form-control" placeholder="Ingrese el nombre del contacto">
+								<input name="nombreContacto" type="text" class="form-control" placeholder="Ingrese el nombre del contacto"
+								value="<?php echo $nombreContacto;?>">
 								<?php echo form_error('nombreContacto', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
@@ -120,7 +129,8 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Dia visita</label> <label style="color: red;"> *</label>
-								<input name="diaVisita" type="text" class="form-control" placeholder="Ingrese el dia de visita">
+								<input name="diaVisita" type="text" class="form-control" placeholder="Ingrese el dia de visita"
+								value="<?php echo $diaVisita;?>">
 								<?php echo form_error('diaVisita', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
@@ -128,7 +138,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Observaciones</label>
-								<textarea class="form-control" rows="2" placeholder="Escribe una observación sobre tu proveedor..." name="observaciones"></textarea>
+								<textarea class="form-control" rows="2" placeholder="Escribe una observación sobre tu proveedor..." name="observaciones"><?php echo $observaciones;?></textarea>
 							</div>
 						</div>
 

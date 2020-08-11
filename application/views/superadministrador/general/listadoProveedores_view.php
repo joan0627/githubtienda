@@ -112,26 +112,13 @@
 
 
 								<td> <?php
-										if ($d->tipoDocumento == 1) {
+										if ($d->idTipoDocumento == 1) {
 											echo 'Cédula de ciudadanía';
 										} 
-										elseif ($d->tipoDocumento == 2) {
-											echo 'Cédula de extranjería';
-										}
 
-										elseif ($d->tipoDocumento == 3) {
+										elseif ($d->idTipoDocumento == 2) {
 											echo 'Pasaporte';
 										}
-
-										elseif ($d->tipoDocumento == 4) {
-											echo 'Tarjeta de identidad';
-										}
-
-										elseif ($d->tipoDocumento == 5) {
-											echo 'Registro civil';
-										}
-
-									
 
 								?></td>
 
