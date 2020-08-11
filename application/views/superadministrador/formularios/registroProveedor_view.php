@@ -139,9 +139,9 @@
 							<div class="form-group">
 								<label>Observaciones</label>
 								<textarea class="form-control" rows="2" placeholder="Escribe una observación sobre tu proveedor..." name="observaciones"><?php echo $observaciones;?></textarea>
+								<?php echo form_error('observaciones', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
-
 
 
 
@@ -155,7 +155,7 @@
 
 						<button type="submit" id="botonRegistroProveedor" class="btn btn-success col-2">Registrar</button>
 						<a href="listaproveedoresu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
-						<button type="button" class="btn btn-success col-2" id="btn1">Prueba</button>
+
 						
 
 

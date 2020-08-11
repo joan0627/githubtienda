@@ -4,9 +4,11 @@ class Model_proveedor extends Ci_model
 {
 
 	public $tablaProveedor = 'proveedor';
-	public $idProveedorPK = 'idProveedor';
+	public $idProveedorPK = 'documento';
+
+	public $TablatipoDocumento = 'tipodocumento';
 	public $idTipodocumentoPK = 'idTipoDocumento';
-	public $tipoDocumentoPersona = 'tipoDocumento';
+
 
 	public function _construct()
 	{
@@ -54,11 +56,29 @@ class Model_proveedor extends Ci_model
 		
 	}
 
+	// Función para llamar los datos de detalle de la tabla proveedor
+
+	function buscarDatosProveedor($documento){
+		$this->db->select();
+		//$this->db->from($this->tablaProveedor);
+		$this->db->join($this->TablatipoDocumento, 'proveedor.idTipoDocumento = tipodocumento.idTipoDocumento');
+		$resultado = $this->db->get_where('proveedor', array('proveedor.documento' => $documento), 1);
+		
+		return $resultado->row_array();
+
+	}
+
+	function borrar($documento){
+		$this->db->select();
+		$this->db->from($this->tablaProveedor);
+		$this->db->where($this->idProveedorPK,$documento);
+		$this->db->delete($this->tablaProveedor);
 
 
-	//* Funciones de ambas tablas*//
+	}
 
-	
+
+
 
 
 }

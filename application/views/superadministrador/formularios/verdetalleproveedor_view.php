@@ -42,22 +42,13 @@
 								<input readonly="readonly" name="tipoDocumento" type="text" class="form-control"
 									placeholder="" value="<?php 
 
-									switch ($clave['tipoDocumento']) 
+									switch ($clave['idTipoDocumento']) 
 									{
 										case 1:
 										echo 'Cédula de ciudadanía';
 										break;
 										case 2:
-										echo 'Cédula de extranjería';
-										break;
-										case 3:
 										echo 'Pasaporte';
-										break;
-										case 4:
-										echo 'Tarjeta de identidad';
-										break;
-										case 5:
-										echo 'Registro civil';
 										break;
 									}
 									?>">

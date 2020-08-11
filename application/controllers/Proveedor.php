@@ -11,7 +11,7 @@ class Proveedor extends CI_controller
 		// **Aqui se cargan todas las librerias que vamos a utilizar // **
 		/*************************************************************/
 		parent::__construct();
-		$this->load->model('model_proveedor');
+		$this->load->model('Model_proveedor');
 		$this->load->database();
 		$this->load->helper("url");
 		$this->load->library('form_validation');
@@ -25,6 +25,7 @@ class Proveedor extends CI_controller
 		$this->form_validation->set_rules('nombreContacto', 'nombre de contacto', 'required');
 		$this->form_validation->set_rules('diaVisita', 'dia visita', 'required');
 		$this->form_validation->set_rules('correo', 'correo', 'valid_email');
+		$this->form_validation->set_rules('observaciones', 'observaciones', 'max_length[120]');
 	}
 
 	public function index()
@@ -38,7 +39,7 @@ class Proveedor extends CI_controller
 	//Inicio de los metodos 
 	public function listaproveedoresu()
 	{
-		$datosProveedor['resultado'] = $this->model_proveedor->BuscarTodosProveedor();
+		$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
@@ -91,7 +92,7 @@ class Proveedor extends CI_controller
 			// **			Validacion de los campos					 // **
 			/*************************************************************/
 			if ($this->form_validation->run()) {	
-				$this->model_proveedor->insertarProveedor($datosProveedor);
+				$this->Model_proveedor->insertarProveedor($datosProveedor);
 				redirect("Proveedor/listaproveedoresu");
 			}
 		}
@@ -111,7 +112,7 @@ class Proveedor extends CI_controller
 	
 		if (isset($documento)) {
 
-			$resultado = $this->model_proveedor->buscarPersonaProveedor($documento);
+			$resultado = $this->Model_proveedor->buscarPersonaProveedor($documento);
 
 			echo "Segunda fase";
 	
@@ -174,7 +175,7 @@ class Proveedor extends CI_controller
 
 
 					
-					$this->model_proveedor->actualizarProveedor($documento, $datosProveedor);
+					$this->Model_proveedor->actualizarProveedor($documento, $datosProveedor);
 					redirect("Proveedor/listaproveedoresu");
 			
 
@@ -205,7 +206,7 @@ class Proveedor extends CI_controller
 
 		if (isset($documento)) {
 
-			$resultado = $this->model_proveedor->buscarPersonaProveedor($documento);
+			$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
 
 
 			if (isset($resultado)) {
@@ -216,5 +217,11 @@ class Proveedor extends CI_controller
 				$this->load->view('layouts/footer');
 			}
 		}
+	}
+
+	public function borrar($documento = null)
+	{
+		$this->Model_proveedor->borrar($documento);
+		redirect("Proveedor/listaproveedoresu");
 	}
 }

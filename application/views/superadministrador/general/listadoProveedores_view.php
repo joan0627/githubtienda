@@ -146,7 +146,7 @@
 									</a>
 
 
-									<a class="btn btn-danger btn-sm" href="#" onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
+									<a class="btn btn-danger btn-sm" href="borrar/<?php  echo $d->documento;?>" onclick="return confirm('¿Estás seguro que deseas eliminar este registro?')">
 										<i class="fas fa-trash">
 										</i>
 										Borrar
