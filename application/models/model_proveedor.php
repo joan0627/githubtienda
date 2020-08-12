@@ -27,7 +27,7 @@ class Model_proveedor extends Ci_model
 	}
 
 	
-
+ 	//Función para  buscar un proveedor individual
 	function BuscarProveedor ($id) {
 
 		$this->db->select();
@@ -38,7 +38,7 @@ class Model_proveedor extends Ci_model
 		return $consulta->row();
 	}
 
-
+ 	//Función para  buscar un todos los proveedores
 	function BuscarTodosProveedor() {
 
 		$this->db->select();
@@ -49,12 +49,22 @@ class Model_proveedor extends Ci_model
 		
 	}
 
-	function actualizarProveedor($id, $datosProveedor){
-		$this->db->where($this->documentoPK,$id);
-		$this->db->update($this->tablaProveedor, $datosProveedor);
+	//Función para buscar registros en el campo de busqueda
+	function BuscarDatos($buscar) {
 
+		$this->db->select();
+		$this->db->from($this->tablaProveedor);
+		$this->db->or_like("nombre",$buscar);
+		$this->db->or_like("nombreContacto",$buscar);
+		$this->db->or_like("diaVisita",$buscar);
+
+
+		$consulta = $this->db->get();
+		return $consulta->result();
 		
 	}
+
+
 
 	// Función para llamar los datos de detalle de la tabla proveedor
 
@@ -68,6 +78,14 @@ class Model_proveedor extends Ci_model
 
 	}
 
+	//Función para Actualizar un proveedor
+	function actualizarProveedor($id, $datosProveedor){
+		$this->db->where($this->documentoPK,$id);
+		$this->db->update($this->tablaProveedor, $datosProveedor);
+	}
+
+
+	//Función para borrar un proveedor
 	function borrar($documento){
 		$this->db->select();
 		$this->db->from($this->tablaProveedor);

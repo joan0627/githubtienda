@@ -39,12 +39,17 @@ class Proveedor extends CI_controller
 	//Inicio de los metodos 
 	public function listaproveedoresu()
 	{
-		$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
+		$buscar = $this->input->get("buscar");
+		
+			$datosProveedor['resultado'] = $this->Model_proveedor->BuscarDatos($buscar);
+	
+			$this->load->view('layouts/superadministrador/header');
+			$this->load->view('layouts/superadministrador/aside');
+			$this->load->view('superadministrador/general/listadoProveedores_view', $datosProveedor);
+			$this->load->view('layouts/footer');
+	
+		
 
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/listadoProveedores_view', $datosProveedor);
-		$this->load->view('layouts/footer');
 	}
 
 	public function registrar()

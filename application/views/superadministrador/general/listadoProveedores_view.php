@@ -18,41 +18,47 @@
 			</div>
 			<br>
 		</div><!-- FIN/.container-fluid -->
-		<div class="container-fluid">
-			<div class="row mb-1">
+		<form method="get">
+			<div class="container-fluid">
+				<div class="row mb-1">
 
-				<div class="col-auto col-md-6 mr-auto ">
-					<div class="input-group  mb-3">
-						<div class="input-group-prepend">
-							<button type="button" class="btn bg-gray dropdown-toggle" data-toggle="dropdown">
-								<i class="fas fa-filter"></i> Filtrar
-							</button>
-							<ul class="dropdown-menu">
-								<li class="dropdown-item"><a href="#">Activo</a></li>
-								<li class="dropdown-item"><a href="#">Inactivo</a></li>
-								<li class="dropdown-item"><a href="#">Administrador</a></li>
-								<li class="dropdown-item"><a href="#">Empleado</a></li>
+					<div class="col-auto col-md-6 mr-auto ">
+						<div class="input-group  mb-3">
+							<div class="input-group-prepend">
+								<button type="button" class="btn bg-gray dropdown-toggle" data-toggle="dropdown">
+									<i class="fas fa-filter"></i> Filtrar
+								</button>
+								<ul class="dropdown-menu">
+									<li class="dropdown-item"><a href="#">Activo</a></li>
+									<li class="dropdown-item"><a href="#">Inactivo</a></li>
+									<li class="dropdown-item"><a href="#">Administrador</a></li>
+									<li class="dropdown-item"><a href="#">Empleado</a></li>
 
-							</ul>
+								</ul>
 
+
+							</div>
+							<!-- /btn-group -->
+
+							<input name="buscar" type="text" class="form-control">
+							<span class="input-group-btn">
+								<button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
+							</span>
 
 						</div>
-						<!-- /btn-group -->
-						<input type="text" class="form-control">
-						<span class="input-group-btn">
-							<button class="btn bg-gray" type="button"><i class="fas fa-search"></i></button>
-						</span>
 					</div>
+
+
+
+					<div class="col-auto">
+
+						<a href="registrar" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear proveedor</a>
+					</div>
+
+
 				</div>
-
-				<div class="col-auto">
-
-					<a href="registrar" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear proveedor</a>
-				</div>
-
-
 			</div>
-		</div>
+		</form>
 	</section>
 
 	<!-- Incio seccion contenido -->
@@ -102,6 +108,9 @@
 							<th>
 								Dia visita
 							</th>
+							<th style="text-align:center;">
+                                Acciones
+                            </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -114,13 +123,11 @@
 								<td> <?php
 										if ($d->idTipoDocumento == 1) {
 											echo 'Cédula de ciudadanía';
-										} 
-
-										elseif ($d->idTipoDocumento == 2) {
+										} elseif ($d->idTipoDocumento == 2) {
 											echo 'Pasaporte';
 										}
 
-								?></td>
+										?></td>
 
 								<td><?php echo  $d->documento; ?></td>
 								<td><?php echo  $d->nombre; ?></td>
@@ -130,7 +137,7 @@
 
 
 								<td class="project-actions text-right ">
-									<a class="btn btn-primary btn-sm" href="detalle/<?php  echo $d->documento;?>">
+									<a class="btn btn-primary btn-sm" href="detalle/<?php echo $d->documento; ?>">
 										<i class="fas fa-eye"></i>
 										</i>
 										Ver
@@ -138,7 +145,7 @@
 
 
 
-									<a class="btn btn-info btn-sm" href="actualizar/<?php  echo $d->documento;?>">
+									<a class="btn btn-info btn-sm" href="actualizar/<?php echo $d->documento; ?>">
 
 										<i class="fas fa-pencil-alt">
 										</i>
@@ -146,7 +153,7 @@
 									</a>
 
 
-									<a class="btn btn-danger btn-sm" href="borrar/<?php  echo $d->documento;?>" onclick="return confirm('¿Estás seguro que deseas eliminar este registro?')">
+									<a class="btn btn-danger btn-sm" href="borrar/<?php echo $d->documento; ?>" onclick="return confirm('¿Estás seguro que deseas eliminar este registro?')">
 										<i class="fas fa-trash">
 										</i>
 										Borrar
