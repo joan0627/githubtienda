@@ -105,7 +105,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Correo</label>
-								<input name="correo" type="email" class="form-control" placeholder="Ingrese el correo"
+								<input name="correo" type="text" class="form-control" placeholder="Ingrese el correo"
 								value="<?php echo $correo;?>">
 								<?php echo form_error('correo', '<p class="text-danger">', '</p>'); ?>
 							</div>
@@ -157,17 +157,33 @@
 						<a href="listaproveedoresu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
 						
-
-
 					</div>
-
 
 
 					<!--Fin del footer del contenido-->
 
-
-
 			</form>
+
+			<?php if ($this->session->flashdata('message')) { ?>
+			<script> 
+		
+		(function(){
+
+			Swal.fire({        
+		type: "<?= $this->session->flashdata('message'); ?>",
+		title: 'Éxito',
+		text: '¡Registro éxitoso!', 
+		
+    });
+
+		})();
+		
+		
+		</script>
+          
+     <?php } ?>
+			
+			
 			<!--Fin del form-->
 
 
@@ -176,3 +192,5 @@
 
 	</section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+		
+			

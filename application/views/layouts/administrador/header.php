@@ -17,8 +17,7 @@
     <!-- iCheck -->
     <link rel="stylesheet"
         href="<?php echo base_url();?>assets/plugins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/jqvmap/jqvmap.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/adminlte.min.css">
     <!-- overlayScrollbars -->
@@ -26,16 +25,15 @@
         href="<?php echo base_url();?>assets/plugins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <!-- Select2 -->
     <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/plugins/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"
-        rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/plugins/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css" rel="stylesheet">
 
+    <!-- Sweet Alert Styles -->
+    <link href="<?php echo base_url();?>assets/plugins/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
 
 
     <!-- fullCalendar -->

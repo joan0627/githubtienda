@@ -168,7 +168,7 @@
             </div>
             <!--Fin del footer del contenido-->
 
-
+			
 
 
 
@@ -178,3 +178,18 @@
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+
+    <?php if ($this->session->flashdata('message')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>

@@ -1,62 +1,8 @@
 /*Este es el codigo de los mensajes de alertas
 Utilizando sweet alert 2*/
-
-$("#registroProveedor").click(function(){
-	Swal.fire({        
-		type: 'success',
-		title: 'Éxito',
-		text: '¡Registro éxitoso!', 
-		
-    });    
-});
-
-(function(){
-
-	$("#registrar").click(function(ev){
-		ev.preventDefault();
-
-		var self =this;
-       
-		Swal.fire({        
-			type: 'success',
-			title: 'Éxito',
-			text: '¡Registro éxitoso!', 
-			
-		}).then((result) => {
-
-			if (result.value) {
-				$.ajax({
-					type:'POST',
-					url:'/tienda/Proveedor/registrar',
-					success: function(){
-			
-						Swal.fire(
-							'¡El proveedor ha sido eliminado exitosamente!',
-							'success'
-						  )
-
-					},statusCode:{
-						400: function(data){
-							var json= JSON.parse(data.responseText);
-							Swal.fire(
-								'¡Error!',
-								json.msg,
-								'error'
-							  )
-
-						}
-					}
-				})
+	
 
 
-
-			
-			}
-		  })
-		});
-
-
-})();
 
 (function(){
 

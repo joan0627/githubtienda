@@ -39,6 +39,12 @@
         rel="stylesheet">
 
 
+    <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
+    <script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+
+
+
 
 </head>
 

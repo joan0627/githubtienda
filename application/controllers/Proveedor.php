@@ -15,6 +15,8 @@ class Proveedor extends CI_controller
 		$this->load->database();
 		$this->load->helper("url");
 		$this->load->library('form_validation');
+		$this->load->library('session');
+
 
 		
 		//Validaciones para los campos de la tabla proveedor
@@ -62,6 +64,7 @@ class Proveedor extends CI_controller
 			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombreContacto"] =
 			$datosCarga["diaVisita"] = $datosCarga["observaciones"] = "";
 
+	
 
 
 		//Campos del formulario
@@ -95,15 +98,26 @@ class Proveedor extends CI_controller
 			$datosCarga["diaVisita"] = $this->input->post("diaVisita");
 			$datosCarga["observaciones"] = $this->input->post("observaciones");
 
+			
+
 
 			/*************************************************************/
 			// **			Validacion de los campos					 // **
-			/*************************************************************/
-			if ($this->form_validation->run()) {	
+			/**************************************
+			 * ***********************/
+			if ($this->form_validation->run()) {
+
 				$this->Model_proveedor->insertarProveedor($datosProveedor);
+				
+				$this->session->set_flashdata('message', 'El proveedor ' .$datosCarga["nombre"].' se ha registrado correctamente.');
+
 				redirect("Proveedor/listaproveedoresu");
+			
 			}
+			
 		}
+
+
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
