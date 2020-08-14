@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-08-2020 a las 02:37:55
+-- Tiempo de generación: 14-08-2020 a las 22:57:19
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -59,6 +59,56 @@ CREATE TABLE `cita` (
   `precio` int(11) DEFAULT NULL,
   `documentoCliente` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('5dfb854c2fdf83cf2a7935e696026506d640df57', '::1', 1597428625, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373432383632353b6d6573736167657c733a36343a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e7465214361726e69636f73206465206d6173636f74617320532e41223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('8d4f1d5b4f9c3e44a01c9323ba46180f84761d24', '::1', 1597428982, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373432383938323b6d6573736167657c733a34333a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e746521323334223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('e6592ff31b10ae977c41eb64c7b46049ef0a5ddd', '::1', 1597429348, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373432393334383b),
+('9f51339576da4d94b8987dabccf84834f8f7f3d1', '::1', 1597429700, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373432393730303b),
+('1de7e230fdfffb7536a27ec68fbdee66deaf00d4', '::1', 1597430067, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433303036373b),
+('d63df96f782e766403ef2d2483454fa925ff3c58', '::1', 1597430378, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433303337383b),
+('0312c98d4cae0ab690e22ff2f763762c9b482175', '::1', 1597430457, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433303337383b),
+('7107435dd51da5cb43fc9d5f2959cb4eb53c7570', '::1', 1597430864, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433303836343b6d6573736167657c733a34333a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e746521323334223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('77c6d01858434ef38ec749380903321b66ffb786', '::1', 1597431194, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433313139343b6d6573736167657c733a34333a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e746521333534223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('985e2b10ec144e5a57ce6a4d56f6207b2d1b3797', '::1', 1597431523, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433313532333b6d6573736167657c733a31393a22c2a16e6f206861207265676973747261646f21223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226e6577223b7d),
+('2b99bb51b865267a0d591751640e019bfe9c0bbd', '::1', 1597431828, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433313832383b),
+('15258084fa95053511a1d182aa042024a365cf0f', '::1', 1597432141, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433323134313b),
+('a702f57816638a45fbfecd6d08efce6f065a57b3', '::1', 1597432529, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433323532393b6d6573736167657c733a34303a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e746521223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226e6577223b7d),
+('f3eb070d2e6541e791ca284bf0bbf187decfc56a', '::1', 1597432889, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433323838393b),
+('8cd1aaaa9f6a11e8fc45f9cd7985ad5761e75b88', '::1', 1597433196, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433333139363b),
+('c72ad2a4bb1e71a8f42d30cf38bade7a46fbf17c', '::1', 1597433647, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433333634373b6d6573736167657c733a34303a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e746521223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('6c0b2e0ee34ec103a34c3417f1646b949df06334', '::1', 1597434002, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433343030323b6d6573736167657c733a34303a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e746521223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('0c306adec004e241a23c5e7dd34bac6c2ff0bf17', '::1', 1597434408, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433343430383b),
+('450097d025b14ca9e2ffab08cd487d61708ed7d2', '::1', 1597434830, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433343833303b6d6573736167657c733a34303a22c2a1456c2070726f766565646f7220736520726567697374726f20657869746f73616d656e746521223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('fd7cc54b942a5f8b02bbc214e5515dfac8826dba', '::1', 1597435161, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433353136313b),
+('f2f10a45a7e7e4b6fa880317a09c6278111af98c', '::1', 1597435521, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433353532313b),
+('732bb1b78c55deecd4e619221ac971f9a77145ef', '::1', 1597435898, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433353839383b),
+('a558f5b211fc8379c087e54b105bb6370f1707df', '::1', 1597436237, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433363233373b),
+('fc05d3df6870609edce1cd85550a7dae29d60122', '::1', 1597436545, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433363534353b),
+('5e30c95721d04bd1463afd7120858d8ce15827c0', '::1', 1597436855, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433363835353b),
+('64d669d3e032f8e5248e0a928497b6608d3eae5f', '::1', 1597437162, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433373136323b6d6573736167657c733a34353a22c2a1456c2070726f766565646f72207365206861207265676973747261646f20657869746f73616d656e746521223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('2a1c82aac86ca09250eab0e9fe5d5437bad3785b', '::1', 1597437479, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433373437393b6d6573736167657c733a35343a22c2a1456c2070726f766565646f72205065706520532e41207365206861207265676973747261646f20657869746f73616d656e746521223b5f5f63695f766172737c613a313a7b733a373a226d657373616765223b733a333a226f6c64223b7d),
+('87a4ad25bed92ad23e83ebb43910fd439abe0f05', '::1', 1597437840, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433373834303b),
+('59ecc84bacb1f8000cc9bd683fd4c6c7708e20f7', '::1', 1597438142, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433383134323b),
+('1a0233df0e64a353602444b0f7d4926c1725ff19', '::1', 1597438530, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433383533303b),
+('59f85b2ad291ce05a950bf753cbb3bc6d252db9a', '::1', 1597438591, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373433383533303b);
 
 -- --------------------------------------------------------
 
@@ -320,87 +370,7 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`documento`, `idTipoDocumento`, `nombre`, `telefono`, `celular`, `direccion`, `correo`, `nombreContacto`, `diaVisita`, `observaciones`, `fechaRegistro`) VALUES
-('01968', 1, 'Addison', '(08) 2033 3449', '0820 861 7549', '5409 Turpis St.', 'non@Pellentesque.ca', 'Cleo Daniel', 'At Augue Id Inc.', 'Nunc', '2020-08-13 23:54:59'),
-('04745', 1, 'Walter', '(04) 5844 4161', '0955 798 4089', 'P.O. Box 508, 9321 Molestie St.', 'tempor.erat.neque@veliteusem.ca', 'Vivien Sargent', 'Diam Eu Company', 'molestie in, tempus eu, ligula. Aenean euismod', '2020-08-13 23:54:59'),
-('06394', 1, 'Jackson', '(08) 8208 3443', '056 3149 1920', 'Ap #177-632 Habitant Rd.', 'vulputate.mauris.sagittis@Integer.com', 'Rae Bailey', 'Non PC', 'netus et malesuada fames ac turpis egestas. Fusce', '2020-08-13 23:54:59'),
-('06654', 1, 'Oliver', '(09) 8862 8794', '056 5688 8082', 'P.O. Box 586, 3520 Ullamcorper Av.', 'est.vitae@augue.org', 'Inga Bennett', 'Integer Foundation', 'diam luctus lobortis. Class aptent taciti', '2020-08-13 23:54:59'),
-('08167', 1, 'Raja', '(05) 7015 0285', '(019363) 40500', '2184 A Av.', 'sed.pede@variusNamporttitor.com', 'Nola West', 'Sollicitudin Adipiscing Corporation', 'magna nec quam. Curabitur', '2020-08-13 23:54:59'),
-('0930903420', 1, 'Ideas David S.A', '7732483478', '32442323', 'Avenida 33 # 20 - 14', '2@gmail.com', 'David Perez', 'Jueves', '', '2020-08-13 23:58:43'),
-('10016610425', 1, 'Linux Cachorros S.A', '4543534', '324243242', 'Avenida 33 # 20 - 14', '4@gmail.com', 'Juan Valdez', 'Lunes y martes ', 'N/A', '2020-08-13 23:54:59'),
-('12119', 1, 'Ethan', '(07) 0782 3176', '055 3055 8874', 'Ap #190-1866 Dignissim. Ave', 'mus.Donec@purusDuis.com', 'Justina Talley', 'Imperdiet Erat Nonummy Institute', 'scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris', '2020-08-13 23:54:59'),
-('123456743453434', 1, 'Postobon', '342434', '324243233', 'Avenida 33 # 20 - 14', '3@gmail.com', 'Luis David ', 'LUnes y miercoles', '', '2020-08-13 23:56:56'),
-('12494', 1, 'Ali', '(09) 2122 4709', '(019704) 37151', 'P.O. Box 464, 1765 Arcu. Street', 'magnis.dis.parturient@posuerecubiliaCurae.com', 'Jaden Steele', 'Vulputate Ullamcorper Magna PC', 'purus gravida sagittis. Duis gravida. Praesent', '2020-08-13 23:54:59'),
-('13078', 1, 'Raja', '(02) 8904 4005', '(021) 0262 5146', '362-8663 Tempus St.', 'non.ante@tempordiamdictum.edu', 'Quon Simon', 'Sed Congue Elit Foundation', 'imperdiet ornare. In faucibus. Morbi vehicula.', '2020-08-13 23:54:59'),
-('15214', 1, 'Phelan', '(04) 6633 9568', '07101 327805', '272-9617 Elit. St.', 'mollis.dui.in@liberolacusvarius.co.uk', 'Aurora Robbins', 'Sit Inc.', 'pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien,', '2020-08-13 23:54:59'),
-('16995', 1, 'Wayne', '(02) 2060 9651', '07624 238685', 'P.O. Box 765, 6245 Quam Street', 'vestibulum@penatibuset.co.uk', 'Tamekah Villarreal', 'Tellus Limited', 'aliquam iaculis, lacus pede sagittis augue,', '2020-08-13 23:54:59'),
-('19753', 1, 'Oren', '(05) 2456 3195', '(016977) 6543', 'Ap #428-5403 Dolor Road', 'sapien.Aenean.massa@orciluctus.edu', 'Odette Rivera', 'In Tincidunt Congue Limited', 'ante ipsum primis in faucibus orci luctus et', '2020-08-13 23:54:59'),
-('20978', 1, 'Hall', '(04) 7009 5948', '0915 064 1330', '7731 Nunc Rd.', 'tortor.Integer.aliquam@posuereat.co.uk', 'Hillary Joseph', 'Natoque PC', 'a tortor. Nunc commodo auctor velit. Aliquam', '2020-08-13 23:54:59'),
-('24424', 1, 'Jared', '(03) 7927 5625', '0816 251 9211', '233-2005 Odio Avenue', 'rutrum.urna@ullamcorperviverraMaecenas.edu', 'Remedios Hooper', 'Fusce Feugiat Institute', 'dolor', '2020-08-13 23:54:59'),
-('24573', 1, 'Rooney', '(08) 3240 2171', '07575 851543', '115-360 Felis Av.', 'vitae.dolor@tristique.org', 'Danielle Dickson', 'Mauris Sit Consulting', 'amet', '2020-08-13 23:54:59'),
-('27106', 1, 'Kelly', '(08) 8605 1909', '0959 653 3027', 'P.O. Box 686, 7235 Sed Avenue', 'congue.elit.sed@adui.co.uk', 'Noelani Floyd', 'Pede Nec Ante LLP', 'nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus.', '2020-08-13 23:54:59'),
-('27395', 1, 'Yasir', '(07) 8999 3419', '(017100) 34616', 'Ap #520-4624 Curabitur Rd.', 'In@Donecsollicitudin.org', 'Rae Pacheco', 'Vel Venenatis Industries', 'fermentum metus. Aenean sed pede nec ante', '2020-08-13 23:54:59'),
-('31388', 1, 'Jack', '(02) 9709 9306', '0397 721 6890', 'P.O. Box 566, 4777 Pellentesque Av.', 'diam.Proin@fermentum.edu', 'Alea Rosario', 'Nullam Enim PC', 'ipsum. Curabitur consequat,', '2020-08-13 23:54:59'),
-('33842', 1, 'Giacomo', '(08) 7195 0005', '0875 411 9440', 'Ap #348-6276 Pellentesque Rd.', 'orci@luctus.org', 'TaShya Burke', 'Donec Elementum Ltd', 'risus. Quisque libero lacus, varius et, euismod et, commodo at,', '2020-08-13 23:54:59'),
-('34838', 1, 'Rajah', '(09) 6067 2108', '070 0628 0437', 'Ap #620-1532 Tellus St.', 'dapibus@luctusfelispurus.co.uk', 'Nola Haley', 'Orci Donec Institute', 'vitae', '2020-08-13 23:54:59'),
-('35091', 1, 'Brett', '(04) 4147 2986', '07624 909881', '906-1690 Molestie Road', 'dui.Cum.sociis@leo.net', 'Maisie Cameron', 'Suspendisse Institute', 'Aliquam erat volutpat. Nulla facilisis. Suspendisse', '2020-08-13 23:54:59'),
-('36108', 1, 'Baxter', '(03) 5404 2557', '(01945) 87109', '605-9298 Imperdiet Avenue', 'aliquet.libero.Integer@Duiselementumdui.net', 'Wanda Richardson', 'Sed Id Risus LLC', 'non magna. Nam ligula elit, pretium et, rutrum non, hendrerit', '2020-08-13 23:54:59'),
-('36117', 1, 'Cody', '(07) 9474 0146', '(014320) 22479', '3774 Mus. Av.', 'mollis@tinciduntdui.co.uk', 'Lunea Yates', 'Non Leo Limited', 'et netus et', '2020-08-13 23:54:59'),
-('36283', 1, 'Vernon', '(05) 8550 6895', '056 7674 5576', '6515 Nullam Ave', 'dapibus.quam.quis@loremsit.net', 'Ruth Zamora', 'Ac Orci Institute', 'neque tellus, imperdiet non, vestibulum nec,', '2020-08-13 23:54:59'),
-('36389', 1, 'Vance', '(02) 0580 1460', '07624 237070', '721-3797 Vitae Ave', 'arcu@auctornunc.ca', 'Caryn Franklin', 'Dictum Proin Associates', 'eget odio. Aliquam vulputate ullamcorper magna. Sed eu', '2020-08-13 23:54:59'),
-('37172', 1, 'Malcolm', '(02) 3045 0984', '076 6682 4189', 'Ap #848-3324 Purus. Rd.', 'mus.Donec.dignissim@tellusSuspendisse.net', 'Dawn Bailey', 'Eget Varius LLP', 'orci sem eget massa.', '2020-08-13 23:54:59'),
-('37776', 1, 'Vance', '(06) 1359 3654', '0800 766957', '7671 Eu, Road', 'eu.turpis.Nulla@nonantebibendum.net', 'Quinn Lott', 'Purus Associates', 'hendrerit consectetuer, cursus et, magna. Praesent interdum ligula', '2020-08-13 23:54:59'),
-('38248238', 1, 'Plaza Comercial', '3243230', '300123122', '4', '2@gmail.com', 'Lina Jaramillo', 'Martes', '', '2020-08-13 23:54:59'),
-('40595', 1, 'Magee', '(04) 4965 1072', '(016977) 7184', 'P.O. Box 826, 8400 Aliquam St.', 'Sed@In.ca', 'Alexandra Waller', 'Accumsan Associates', 'Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum.', '2020-08-13 23:54:59'),
-('42166', 1, 'Walker', '(02) 8146 7129', '0871 367 6356', '640-4366 Molestie Street', 'nisi@odio.net', 'Leilani Pugh', 'Metus Associates', 'elementum at, egestas a, scelerisque sed, sapien. Nunc', '2020-08-13 23:54:59'),
-('43393', 1, 'Xander', '(02) 1645 4587', '0845 46 43', '504-9618 Ut Ave', 'in.magna.Phasellus@magnaCrasconvallis.co.uk', 'Noel Mclaughlin', 'Erat Inc.', 'lorem tristique aliquet. Phasellus fermentum convallis', '2020-08-13 23:54:59'),
-('44373', 1, 'Price', '(08) 6380 8260', '0333 876 8065', '1412 Maecenas St.', 'convallis.ligula@ac.edu', 'Doris Stafford', 'Ultrices Vivamus Rhoncus Company', 'ut, nulla. Cras', '2020-08-13 23:54:59'),
-('44555', 1, 'Jarrod', '(02) 6132 6094', '(027) 9411 0286', '932-5466 Feugiat St.', 'scelerisque@Integereulacus.org', 'Frances Cash', 'Nec PC', 'ut dolor dapibus gravida. Aliquam', '2020-08-13 23:54:59'),
-('48923879', 1, 'Zenu ', '453453', '324234234', 'Avenida 33 # 20 - 14', '2@gmail.com', 'Karla Giraldo', 'Martes y viernes', '', '2020-08-13 23:56:06'),
-('49188', 1, 'Colton', '(01) 2799 0152', '07624 103633', 'Ap #724-9513 Ac Avenue', 'nascetur.ridiculus@vitaesodalesat.ca', 'Claudia Miller', 'In Magna Phasellus Corp.', 'in faucibus orci luctus et ultrices posuere cubilia Curae;', '2020-08-13 23:54:59'),
-('51850', 1, 'Tarik', '(08) 1654 1949', '0800 729 0268', '133 Velit St.', 'vulputate@tellus.ca', 'Vivian Chambers', 'Ut Quam Associates', 'rutrum urna, nec luctus felis purus ac', '2020-08-13 23:54:59'),
-('52915', 1, 'Graiden', '(08) 8780 7256', '(016977) 1897', '814-9856 Nec Avenue', 'In.lorem@ac.co.uk', 'Sara Cabrera', 'Blandit Viverra LLP', 'libero et tristique pellentesque, tellus sem mollis dui, in', '2020-08-13 23:54:59'),
-('54120', 1, 'Denton', '(05) 0560 5025', '07485 164417', '447-2089 Aliquet St.', 'mauris.eu@mollis.net', 'Hollee Macias', 'Tellus Id Consulting', 'Morbi sit amet', '2020-08-13 23:54:59'),
-('57106', 1, 'Bevis', '(07) 8317 1039', '07841 398976', 'Ap #440-7678 Dui Road', 'sollicitudin@lorem.edu', 'Kevyn Banks', 'Nunc Foundation', 'ut ipsum ac mi eleifend egestas. Sed pharetra, felis', '2020-08-13 23:54:59'),
-('57126', 1, 'Ezra', '(02) 3778 2267', '0800 1111', 'Ap #865-9808 Sed Rd.', 'aliquet@egestasDuisac.edu', 'Jillian Boyle', 'In Felis Nulla Associates', 'turpis. In condimentum. Donec at arcu. Vestibulum', '2020-08-13 23:54:59'),
-('57818', 1, 'Hop', '(03) 2923 7815', '(0181) 559 8908', '401-3998 Dictum St.', 'In.condimentum@enimnectempus.edu', 'Wyoming Schwartz', 'Sed Et Foundation', 'urna, nec luctus', '2020-08-13 23:54:59'),
-('58467', 1, 'Asher', '(01) 0536 2763', '(026) 0708 6073', 'Ap #778-5741 Purus St.', 'interdum@esttemporbibendum.co.uk', 'Sloane Woods', 'Mauris Erat Eget PC', 'vel, convallis in,', '2020-08-13 23:54:59'),
-('58544', 1, 'Hamilton', '(04) 3345 7499', '(016977) 5834', '6043 Dui Av.', 'ullamcorper.eu.euismod@tinciduntpedeac.edu', 'Rae Hayden', 'Inceptos Hymenaeos Mauris Consulting', 'per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet', '2020-08-13 23:54:59'),
-('59382', 1, 'Emerson', '(05) 2039 9379', '0500 377058', 'Ap #524-4358 Pellentesque Road', 'Phasellus.dapibus.quam@estarcu.net', 'Iona Dickson', 'Duis LLC', 'nunc est, mollis non, cursus non, egestas a,', '2020-08-13 23:54:59'),
-('60222', 1, 'Ciaran', '(04) 6130 8990', '076 7805 2433', '2427 Nulla. St.', 'sem.consequat@sit.org', 'Nadine Guerra', 'Suspendisse Aliquet Company', 'tincidunt,', '2020-08-13 23:54:59'),
-('61170', 1, 'Fuller', '(02) 2446 1591', '070 1911 2283', '3739 Consectetuer Street', 'auctor.quis.tristique@sagittisfelisDonec.ca', 'Jessica Carter', 'Urna Associates', 'consequat enim diam vel arcu. Curabitur ut', '2020-08-13 23:54:59'),
-('62412', 1, 'Lance', '(08) 2539 0082', '(01361) 50964', 'P.O. Box 609, 3142 Diam Road', 'varius.Nam.porttitor@nullaIn.net', 'Pandora Duncan', 'Mollis Phasellus Institute', 'ac', '2020-08-13 23:54:59'),
-('64580', 1, 'Curran', '(06) 5524 9573', '(016977) 9205', 'P.O. Box 251, 1024 Risus. St.', 'Nullam.ut@quis.co.uk', 'Audrey Malone', 'Pellentesque Tincidunt Tempus Industries', 'vel lectus. Cum sociis natoque penatibus et magnis dis parturient', '2020-08-13 23:54:59'),
-('65807', 1, 'Anthony', '(08) 8651 2531', '(027) 4131 6195', 'Ap #487-7676 Nascetur Ave', 'nisi@Praesent.edu', 'Nadine Cobb', 'Pharetra Felis Company', 'congue turpis. In condimentum. Donec at arcu. Vestibulum', '2020-08-13 23:54:59'),
-('69738', 1, 'Cruz', '(07) 8462 0782', '07624 516238', '6205 Nibh. Avenue', 'ipsum.Suspendisse@sagittisfelis.net', 'Sage Emerson', 'Dui Inc.', 'fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus', '2020-08-13 23:54:59'),
-('70168', 1, 'Daquan', '(08) 1765 8521', '055 6928 6468', '3562 Augue Street', 'sagittis.Duis.gravida@egetmetus.edu', 'Lacota Montoya', 'Velit Aliquam LLC', 'pede, ultrices a,', '2020-08-13 23:54:59'),
-('70566', 1, 'Hilel', '(05) 7368 5399', '0967 240 4595', 'P.O. Box 311, 7070 Sollicitudin St.', 'Donec@atortorNunc.org', 'Indigo Ray', 'Libero Nec Ligula Institute', 'Quisque tincidunt pede ac urna.', '2020-08-13 23:54:59'),
-('71910', 1, 'Omar', '(02) 1501 0521', '(016977) 4355', 'Ap #327-7888 Aenean Road', 'Nulla@Classaptenttaciti.co.uk', 'Octavia Cline', 'Pharetra Corporation', 'ullamcorper. Duis cursus,', '2020-08-13 23:54:59'),
-('72560', 1, 'Cade', '(06) 3337 8391', '076 2135 3641', '9928 Consectetuer, Ave', 'at@Crasconvallis.ca', 'Erin Bartlett', 'Mi Pede Nonummy LLP', 'eros', '2020-08-13 23:54:59'),
-('73930', 1, 'Lucas', '(04) 9895 8130', '0800 1111', 'Ap #663-1179 Nunc Av.', 'sed@mollis.edu', 'Nola Whitfield', 'Auctor Non Corp.', 'tortor nibh sit amet orci.', '2020-08-13 23:54:59'),
-('75217', 1, 'Garrison', '(09) 8817 4870', '(01939) 19658', '139-3030 Eu St.', 'nulla.In.tincidunt@turpisnonenim.net', 'Anastasia Wolf', 'Facilisis Non Bibendum LLC', 'rhoncus.', '2020-08-13 23:54:59'),
-('75245', 1, 'Thaddeus', '(01) 6219 8381', '(014225) 26305', 'Ap #258-1189 Non Rd.', 'luctus.aliquet.odio@quislectusNullam.co.uk', 'Mira Macias', 'Commodo Institute', 'in faucibus orci luctus et ultrices posuere', '2020-08-13 23:54:59'),
-('75699', 1, 'Uriah', '(02) 2152 5947', '(0131) 430 5587', 'Ap #346-144 Mauris Street', 'vulputate.dui.nec@enimcommodohendrerit.ca', 'Kameko Snider', 'Cum Sociis Institute', 'erat eget', '2020-08-13 23:54:59'),
-('75915', 1, 'Kyle', '(01) 9151 9528', '0800 561997', 'P.O. Box 538, 7014 Egestas St.', 'eget.magna@acmattis.co.uk', 'Cynthia Meadows', 'Convallis Dolor Quisque Limited', 'sed dui. Fusce aliquam,', '2020-08-13 23:54:59'),
-('77106', 1, 'Troy', '(04) 2473 2643', '056 9080 8488', 'Ap #513-2100 Fermentum Av.', 'purus.Maecenas@orci.com', 'Eugenia Thomas', 'Pretium Et Rutrum Incorporated', 'lacus. Cras interdum.', '2020-08-13 23:54:59'),
-('77117', 1, 'Owen', '(04) 9485 2836', '076 8486 5888', 'Ap #206-8504 Mollis. Rd.', 'in.faucibus.orci@velit.ca', 'Yael Burris', 'Aliquam Institute', 'accumsan', '2020-08-13 23:54:59'),
-('77127', 1, 'Preston', '(01) 5865 1949', '0500 763823', 'Ap #609-8673 Aliquet Rd.', 'arcu.Curabitur.ut@Duisat.co.uk', 'Geraldine Mathis', 'Curae; Phasellus LLC', 'primis in', '2020-08-13 23:54:59'),
-('80782', 1, 'Zachary', '(05) 4614 8946', '(0121) 284 3778', '841-3542 Ut Rd.', 'amet.ornare@commodo.org', 'Florence Horne', 'Malesuada Corporation', 'et netus et malesuada fames ac turpis egestas. Aliquam', '2020-08-13 23:54:59'),
-('81578', 1, 'Emmanuel', '(09) 4111 3539', '(0115) 380 3230', 'P.O. Box 558, 4950 Ut Street', 'Fusce@magnamalesuadavel.net', 'Darryl Myers', 'Proin Dolor Consulting', 'egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum', '2020-08-13 23:54:59'),
-('823192391', 1, 'Alimentos S.A', '4444021', '3219493492', 'Avenida 33 # 20 - 14', '5@hotmail.com', 'Juan Brito', 'Lunes', '', '2020-08-13 23:54:59'),
-('84931', 1, 'Kenyon', '(03) 9384 5127', '07899 021168', '247-9279 Eu Street', 'sit@mollis.co.uk', 'Cherokee Rowland', 'Molestie Dapibus Ligula PC', 'eros non enim commodo hendrerit. Donec porttitor tellus non magna.', '2020-08-13 23:54:59'),
-('86005', 1, 'Emmanuel', '(09) 6806 3612', '0893 908 5588', 'Ap #441-4011 Cras Street', 'Donec.egestas.Duis@lacus.edu', 'Amanda Savage', 'Ac Risus Company', 'gravida. Praesent eu nulla', '2020-08-13 23:54:59'),
-('87611', 1, 'Vernon', '(01) 3244 0441', '0845 46 40', '534-4965 Blandit St.', 'gravida@orciUtsagittis.org', 'Sophia Hancock', 'Velit Aliquam Nisl Incorporated', 'placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet,', '2020-08-13 23:54:59'),
-('87845', 1, 'Jonah', '(03) 3738 9148', '055 4221 6170', '9517 Vivamus Ave', 'id@velnisl.com', 'Melanie Henderson', 'Proin PC', 'diam at pretium', '2020-08-13 23:54:59'),
-('89444', 1, 'Justin', '(08) 8298 3943', '(01260) 63282', '8992 Eget Avenue', 'mi.lorem@luctusutpellentesque.edu', 'Yuri Wynn', 'Amet Metus Consulting', 'rutrum, justo. Praesent luctus. Curabitur egestas nunc', '2020-08-13 23:54:59'),
-('89501', 1, 'Allen', '(08) 6167 5734', '076 4150 8094', 'P.O. Box 664, 3589 Tristique Street', 'Sed@elitNulla.edu', 'Lunea Mccormick', 'Tempus Incorporated', 'vestibulum massa rutrum magna. Cras convallis convallis', '2020-08-13 23:54:59'),
-('90928', 1, 'Brent', '(06) 4529 0762', '(01266) 44656', 'P.O. Box 147, 5445 Commodo Street', 'ut.pellentesque.eget@Nullasempertellus.co.uk', 'Sloane Mathis', 'Lectus Pede Corporation', 'magna et ipsum cursus', '2020-08-13 23:54:59'),
-('92238', 1, 'Declan', '(09) 8523 4619', '(01312) 44758', 'Ap #495-978 Blandit Av.', 'Aenean.massa.Integer@maurisMorbi.net', 'Audra Miranda', 'Magna Ut Tincidunt Inc.', 'ante lectus convallis est, vitae sodales nisi magna sed', '2020-08-13 23:54:59'),
-('94161', 1, 'Beck', '(04) 5328 7908', '(01266) 43302', '3609 Auctor, St.', 'Nam@bibendumullamcorper.com', 'Evelyn Ayala', 'Dolor Inc.', 'sed pede nec ante blandit viverra. Donec tempus, lorem fringilla', '2020-08-13 23:54:59'),
-('96177', 1, 'Bernard', '(03) 0303 8250', '0800 413 2556', '455-1924 Nunc St.', 'magnis.dis@perinceptoshymenaeos.com', 'Paloma Stanton', 'Curabitur Consequat Limited', 'ultrices, mauris ipsum porta elit, a', '2020-08-13 23:54:59'),
-('96435', 1, 'Gannon', '(04) 7177 1304', '(0191) 989 4801', 'Ap #542-6588 Orci Rd.', 'pharetra.sed@fermentumarcu.com', 'Rose Hull', 'Ac Mattis Semper Industries', 'Nam porttitor scelerisque neque. Nullam', '2020-08-13 23:54:59'),
-('96768', 1, 'Trevor', '(02) 0261 1140', '(0113) 751 9610', 'Ap #531-4961 Et Rd.', 'nec@risus.ca', 'Marah Acevedo', 'Sed Sem Egestas PC', 'parturient montes, nascetur ridiculus mus. Proin', '2020-08-13 23:54:59'),
-('97154', 1, 'Dane', '(09) 0059 9350', '055 0237 0648', 'Ap #823-7035 Habitant St.', 'libero@dolor.co.uk', 'Tasha Fuller', 'Sociis Natoque Corp.', 'augue malesuada malesuada.', '2020-08-13 23:54:59'),
-('97472', 1, 'Duncan', '(07) 5043 4589', '0800 183445', 'Ap #375-9198 Phasellus Avenue', 'ac@tinciduntDonecvitae.ca', 'Jamalia Buckner', 'Dapibus Quam Corp.', 'penatibus et magnis dis parturient montes,', '2020-08-13 23:54:59');
+('1234567', 1, 'Carnicos de mascotas S.A', '4444021', '3001789067', 'Carrera 20 # 30 - 19', '2@gmail.com', 'Tony Gonzalez', 'Lunes', '', '2020-08-14 20:49:02');
 
 -- --------------------------------------------------------
 
@@ -585,6 +555,12 @@ ALTER TABLE `cita`
   ADD KEY `fk_Cita_Servicio_idx` (`servicio`),
   ADD KEY `fk_Cita_Estado1_idx` (`idEstado`),
   ADD KEY `fk_Cita_Cliente1_idx` (`documentoCliente`);
+
+--
+-- Indices de la tabla `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
 -- Indices de la tabla `cliente`
