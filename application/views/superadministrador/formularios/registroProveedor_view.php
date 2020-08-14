@@ -153,7 +153,7 @@
 					<div class="card-footer">
 
 
-						<button type="submit" id="botonRegistroProveedor" class="btn btn-success col-2">Registrar</button>
+						<button type="submit" id="registroProveedor" class="btn btn-success col-2">Registrar</button>
 						<a href="listaproveedoresu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
 						

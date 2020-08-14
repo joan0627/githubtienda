@@ -38,6 +38,7 @@ class Model_proveedor extends Ci_model
 		return $consulta->row();
 	}
 
+	/*
  	//Función para  buscar un todos los proveedores
 	function BuscarTodosProveedor() {
 
@@ -47,18 +48,18 @@ class Model_proveedor extends Ci_model
 		$consulta = $this->db->get();
 		return $consulta->result();
 		
-	}
+	}*/
 
 	//Función para buscar registros en el campo de busqueda
 	function BuscarDatos($buscar) {
 
 		$this->db->select();
 		$this->db->from($this->tablaProveedor);
+		$this->db->or_like("documento",$buscar);
 		$this->db->or_like("nombre",$buscar);
 		$this->db->or_like("nombreContacto",$buscar);
 		$this->db->or_like("diaVisita",$buscar);
-
-
+		$this->db->order_by('fechaRegistro', 'DESC');
 		$consulta = $this->db->get();
 		return $consulta->result();
 		
@@ -72,7 +73,9 @@ class Model_proveedor extends Ci_model
 		$this->db->select();
 		//$this->db->from($this->tablaProveedor);
 		$this->db->join($this->TablatipoDocumento, 'proveedor.idTipoDocumento = tipodocumento.idTipoDocumento');
-		$resultado = $this->db->get_where('proveedor', array('proveedor.documento' => $documento), 1);
+		$resultado =
+		 $this->db->get_where('proveedor', array('proveedor.documento' => $documento), 1);
+
 		
 		return $resultado->row_array();
 

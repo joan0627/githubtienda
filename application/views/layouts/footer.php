@@ -13,14 +13,10 @@
 </div>
 <!-- ./wrapper -->
 
-
 <!-- jQuery -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery-3.3.1.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-
-
 
 
 
@@ -39,13 +35,12 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+
 <!-- jQuery Knob Chart -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -54,8 +49,7 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
 </script>
-<!-- Summernote -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/summernote/summernote-bs4.min.js"></script>
+
 <!-- overlayScrollbars -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js">
 </script>
@@ -74,15 +68,8 @@
 
 <!-- Plugin Sweet Alert 2: mensajes animados y popper-->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/popper/popper.min.js"></script>
 
-<!-- fullCalendar 2.2.5 -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/moment/moment.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/fullcalendar/main.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/fullcalendar-daygrid/main.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/fullcalendar-timegrid/main.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/fullcalendar-interaction/main.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/fullcalendar-bootstrap/main.min.js"></script>
+
 
 
 
@@ -102,29 +89,6 @@
 	})
 </script>
 
-
-
-<script>
-	/* 
-	Codigo para habilitar boton cuando se haga check en un checkbox
-	$(document).ready(function () {
-
-		$(':input[id="botonRegistroUsuario"]').prop('disabled', true);
-
-		//Código jquery para detectar cuándo se activa el checkbox
-		$("#check").change(function () {
-			//Si el checkbox está seleccionado
-			if ($(this).is(":checked")) {
-				$(':input[id="botonRegistroUsuario"]').prop('disabled', false);
-			} else {
-				$(':input[id="botonRegistroUsuario"]').prop('disabled', true);
-			}
-		});
-
-
-	});
-/*
-</script>
 
 
 </body>

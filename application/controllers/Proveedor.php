@@ -39,7 +39,9 @@ class Proveedor extends CI_controller
 	//Inicio de los metodos 
 	public function listaproveedoresu()
 	{
-		$buscar = $this->input->get("buscar");
+
+		
+		   $buscar = $this->input->get("buscar");
 		
 			$datosProveedor['resultado'] = $this->Model_proveedor->BuscarDatos($buscar);
 	
@@ -49,6 +51,7 @@ class Proveedor extends CI_controller
 			$this->load->view('layouts/footer');
 	
 		
+			
 
 	}
 
@@ -117,7 +120,7 @@ class Proveedor extends CI_controller
 	
 		if (isset($documento)) {
 
-			$resultado = $this->Model_proveedor->buscarPersonaProveedor($documento);
+			$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
 
 			echo "Segunda fase";
 	
@@ -152,12 +155,11 @@ class Proveedor extends CI_controller
 			echo "Cuarta fase";
  
 			//Estos arreglos toman los valores de los input
-			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["telefono"] = $this->input->post("telefono");
-			$datosPersona["celular"] = $this->input->post("celular");
-			$datosPersona["direccion"] = $this->input->post("direccion");
-			$datosPersona["correo"] = $this->input->post("correo");
-
+			$datosProveedor["nombre"] = $this->input->post("nombre");
+			$datosProveedor["telefono"] = $this->input->post("telefono");
+			$datosProveedor["celular"] = $this->input->post("celular");
+			$datosProveedor["direccion"] = $this->input->post("direccion");
+			$datosProveedor["correo"] = $this->input->post("correo");
 			$datosProveedor["nombreContacto"] = $this->input->post("nombreContacto");
 			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
@@ -224,9 +226,27 @@ class Proveedor extends CI_controller
 		}
 	}
 
-	public function borrar($documento = null)
+	public function delete(){
+
+		$_documento= $this->input->post('documento',true);
+		if(empty($_documento)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El documento no puede ser vacío')));
+		}
+		else
+		{
+			$this->Model_proveedor->borrar($_documento);
+			$this->output
+			->set_status_header(200);
+			
+		}
+	}
+
+	/*
+	public function eliminar($documento = null)
 	{
 		$this->Model_proveedor->borrar($documento);
 		redirect("Proveedor/listaproveedoresu");
-	}
+	}*/
 }

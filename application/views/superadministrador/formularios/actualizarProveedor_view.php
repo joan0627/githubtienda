@@ -42,7 +42,7 @@
 								<input name="tipoDocumento" type="text" class="form-control " readonly="readonly" 
 								value="<?php 
 
-									switch ($clave['tipoDocumento']) 
+									switch ($clave['idTipoDocumento']) 
 									{
 										case 1:
 										echo 'Cédula de ciudadanía';
@@ -68,7 +68,7 @@
 							<div class="form-group">
 
 								<label>Documento</label>
-								<input name="documento" type="text" class="form-control " placeholder="Ingrese el documento " readonly="readonly" value="<?php  ?>">
+								<input name="documento" type="text" class="form-control " placeholder="Ingrese el documento " readonly="readonly" value="<?php echo $clave['documento']  ?>">
 							</div>
 						</div>
 					</div>

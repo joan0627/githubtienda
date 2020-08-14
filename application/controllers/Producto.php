@@ -134,7 +134,7 @@ class Producto extends CI_controller
 			if ($this->form_validation->run()) {
 
 				$this->model_producto->insertarProducto($datosProducto);
-				redirect("Producto/listaproductosu");
+				//redirect("Producto/listaproductosu");
 			}
 
 
