@@ -44,8 +44,7 @@ class Proveedor extends CI_controller
 
 
 		   $buscar = $this->input->get("buscar");
-		  
-		   
+
 
 		   //$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
 		

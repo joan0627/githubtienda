@@ -149,9 +149,19 @@
 
 					<br>
 
-					<button type="submit" id="botonActualizarProveedor" class="btn btn-success col-2">Actualizar</button>
-					<a href="<?php echo base_url(); ?>Proveedor/listaproveedoresu" class="btn btn-success col-2">Atrás</a>
 
+					<div class="text-center card-footer">
+
+
+
+                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
+                            id="botonActualizarProveedor" class="btn btn-success col-2">Actualizar</button>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
+						href="<?php echo base_url(); ?>Proveedor/listaproveedoresu"
+                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+
+
+                    </div>
 
 					<!--Fin del footer del contenido-->
 

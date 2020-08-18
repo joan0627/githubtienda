@@ -31,7 +31,7 @@
 							</span>
 							
                             <span class="col-auto input-group-btn">
-                                <button name="reset"class="btn bg-gray" value="" type="submit"><i class="fas fa-sync-alt"></i></button>
+                                <button name="reset" class="btn bg-gray" value="" type="submit"><i class="fas fa-sync-alt"></i></button>
                             </span>
 
                         </div>

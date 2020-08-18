@@ -2,64 +2,54 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="login-dark content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-price-tag-50.png"> Productos</h1>
+                <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-price-tag-50.png"> Productos</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Productos</a></li>
                         <li class="breadcrumb-item active">Lista de productos</li>
-                    </ol> 
-
+                    </ol>
                 </div>
 
             </div>
-
             <br>
-
         </div><!-- FIN/.container-fluid -->
+        <form method="get">
+            <div class="container-fluid">
+                <div class="row mb-1">
 
-        <div class="container-fluid">
-            <div class="row mb-1">
+                    <div class="col-auto col-md-4 mr-auto ">
+                        <div class="input-group  mb-3">
 
-			<div class="col-auto col-md-6 mr-auto ">
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <button type="button" class="btn bg-gray dropdown-toggle" data-toggle="dropdown">
-                                <i class="fas fa-filter"></i> Filtrar
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-item"><a href="#">Activo</a></li>
-                                <li class="dropdown-item"><a href="#">Inactivo</a></li>
-                                <li class="dropdown-item"><a href="#">Administrador</a></li>
-                                <li class="dropdown-item"><a href="#">Empleado</a></li>
-
-                            </ul>
-
+                            <input name="buscar" type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
+							</span>
+							
+                            <span class="col-auto input-group-btn">
+                                <button name="reset"class="btn bg-gray" value="" type="submit"><i class="fas fa-sync-alt"></i></button>
+                            </span>
 
                         </div>
-                        <!-- /btn-group -->
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn bg-gray" type="button"><i class="fas fa-search"></i></button>
-                        </span>
+
                     </div>
+
+                    <div class="col-auto">
+
+                        <a href="registrarproductosu" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
+                            producto</a>
+                    </div>
+
+
+
+
                 </div>
-
-                <div class="col-auto">
-
-                    <a href="registrarproductosu" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear producto</a>
-                </div>
-
-
             </div>
-        </div>
-
-
-
+        </form>
     </section>
 
     <!-- Incio seccion contenido -->
@@ -82,168 +72,100 @@
 
 
             <!--Inicio del card body-->
-            <div class="card-body p-0">
-                <div>
-                    <div class="filter-container p-4 row">
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/000000.png?text=1" data-toggle="modal"
-                                data-target="#modal-default">
-                                <img src="<?php echo base_url();?>assets/img/productos/nutrecan.png" alt="..."
-                                    class="img-fluid mb-2" alt="white sample" />
-                            </a>
-                            <p class="text-center">NutreCan Adultos $55.000</p>
+            <div class="card-body p-0 ">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                         
+                            <th>
+                                Código
+                            </th>
 
-                        </div>
 
-                        <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                            <a href="descripcion2" data-toggle="lightbox" data-title="sample 2 - black">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="black sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                            <a href="descripcion3" data-toggle="lightbox" data-title="sample 3 - red">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="red sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                            <a href="descripcion4" data-toggle="lightbox" data-title="sample 4 - red">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="red sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                            <a href="https://via.placeholder.com/1200/000000.png?text=5" data-toggle="lightbox"
-                                data-title="sample 5 - black">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="black sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6" data-toggle="lightbox"
-                                data-title="sample 6 - white">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="white sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=7" data-toggle="lightbox"
-                                data-title="sample 7 - white">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="white sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                            <a href="https://via.placeholder.com/1200/000000.png?text=8" data-toggle="lightbox"
-                                data-title="sample 8 - black">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="black sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                            <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=9" data-toggle="lightbox"
-                                data-title="sample 9 - red">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="red sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=10" data-toggle="lightbox"
-                                data-title="sample 10 - white">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="white sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=11" data-toggle="lightbox"
-                                data-title="sample 11 - white">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="white sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                            <a href="https://via.placeholder.com/1200/000000.png?text=12" data-toggle="lightbox"
-                                data-title="sample 12 - black">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="black sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=7" data-toggle="lightbox"
-                                data-title="sample 7 - white">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="white sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                            <a href="https://via.placeholder.com/1200/000000.png?text=8" data-toggle="lightbox"
-                                data-title="sample 8 - black">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="black sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="3, 4" data-sort="red sample">
-                            <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=9" data-toggle="lightbox"
-                                data-title="sample 9 - red">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="red sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=10" data-toggle="lightbox"
-                                data-title="sample 10 - white">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="white sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
-                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=11" data-toggle="lightbox"
-                                data-title="sample 11 - white">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="white sample" />
-                            </a>
-                        </div>
-                        <div class="filtr-item col-sm-2" data-category="2, 4" data-sort="black sample">
-                            <a href="https://via.placeholder.com/1200/000000.png?text=12" data-toggle="lightbox"
-                                data-title="sample 12 - black">
-                                <img src="http://placehold.it/350x300" alt="..." class="img-fluid mb-2"
-                                    alt="black sample" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                            <th>
+                                Nombre
+                            </th>
+
+                            <th>
+                                Categoria
+                            </th>
+
+                            <th>
+                                 Existencia
+                            </th>
+
+                            <th >
+                                Marca
+                            </th> 
+
+                            <th >
+                                Precio
+                            </th> 
+                            <th style="text-align:center; ">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td> <td>
+                            <td></td>
+
+
+                            <td class="text-right" style="text-align:center;   width: 238px;     ">
+                                <a class="btn btn-primary btn-sm" href="detalle">
+                                    <i class="fas fa-eye"></i>
+                                    </i>
+                                    Ver
+                                </a>
+
+
+
+                                <a class="btn btn-info btn-sm" href="actualizar">
+
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Editar
+                                </a>
+
+
+                                <button type="submit" class="btn btn-danger btn-sm" href="borrar"
+                                    >
+                                    <i class="fas fa-trash">
+                                    </i>
+                                    Borrar
+                                </a>
+                            </td>
+
+
+                        </tr>
+               
+
+                    </tbody>
+                </table>
             </div>
             <!--Fin del card body-->
 
             <!--Inicio del footer del contenido-->
-            <div class="card-footer float-right">
+            <div class="card-footer">
 
-			<nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+            <?php if($this->session->flashdata('busqueda')): ?>
+            
+               <div class="alert alert-warning text-center" > <?= $this->session->flashdata('busqueda'); $this->session->sess_destroy();?> </div> 
+            
+               
+            <?php endif?>
 
 
             </div>
             <!--Fin del footer del contenido-->
 
-
+			
 
 
 
@@ -251,134 +173,20 @@
         </div> <!-- Fin Contenido Total -->
 
 
-        <div class="modal fade" id="modal-default">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Detalle del producto</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form role="form" method="POST">
-                            <!--Inicio del card body-->
-
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-
-                                        <label>Código</label>
-                                        <input name="documento" type="text" class="form-control "
-                                            placeholder="Ingrese el documento " value="0010" readonly="readonly">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    <div class="form-group">
-                                        <label>Categoría</label>
-                                        <input name="telefono" type="text" class="form-control"
-                                            placeholder="Ingrese el teléfono" value="Alimentos" readonly="readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-6">
-
-                                    <div class="form-group">
-                                        <label>Nombre</label>
-                                        <input name="nombre" type="text" class="form-control"
-                                            placeholder="Ingrese el nombre" value="NutreCan Croquetas"
-                                            readonly="readonly">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Marca</label>
-                                        <input name="celular" type="text" class="form-control"
-                                            placeholder="Ingrese el celular" value="Solla" readonly="readonly">
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Medida</label>
-                                        <input name="correo" type="text" class="form-control"
-                                            placeholder="Ingrese el correo" value="30" readonly="readonly">
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Unidad de medida</label>
-                                        <input name="direccion" type="text" class="form-control"
-                                            placeholder="Ingrese la dirección" value="KG" readonly="readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Presentación</label>
-                                        <input name="direccion" type="text" class="form-control"
-                                            placeholder="Ingrese la dirección" value="Bulto" readonly="readonly">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Existencias</label>
-                                        <input name="direccion" type="text" class="form-control"
-                                            placeholder="Ingrese la dirección" value="25" readonly="readonly">
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-
-                        </form>
-
-                    </div>
-                    <div class="modal-footer justify-content-between">
-
-                        <a class="btn btn-info btn-sm" href="actualizarproductosu">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-						</a>
-						
-						<label style="color:green; font-size:30px;">$55.000</label>
-
-
-                        <a class="btn btn-danger btn-sm" href="#"
-                            onclick="return confirm('¿Estás seguro que deseas eliminar este producto?')">
-                            <i class="fas fa-trash">
-                            </i>
-                            Borrar
-                        </a>
-
-
-
-
-
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-
-
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+
+    <?php if ($this->session->flashdata('message')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>
