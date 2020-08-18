@@ -41,26 +41,12 @@
 								<label>Tipo de documento</label>
 								<input name="tipoDocumento" type="text" class="form-control " readonly="readonly" 
 								value="<?php 
-
-									switch ($clave['idTipoDocumento']) 
-									{
-										case 1:
-										echo 'Cédula de ciudadanía';
-										break;
-										case 2:
-										echo 'Cédula de extranjería';
-										break;
-										case 3:
-										echo 'Pasaporte';
-										break;
-										case 4:
-										echo 'Tarjeta de identidad';
-										break;
-										case 5:
-										echo 'Registro civil';
-										break;
-									}
-								?> ">
+										 echo $clave['descripcion']; 
+										
+									 ?>
+												 
+									">
+									<?php echo form_error('tipoDocumento', '<p class="text-danger">', '</p>'); ?>
 
 							</div>
 						</div>
@@ -69,6 +55,7 @@
 
 								<label>Documento</label>
 								<input name="documento" type="text" class="form-control " placeholder="Ingrese el documento " readonly="readonly" value="<?php echo $clave['documento']  ?>">
+								<?php echo form_error('documento', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
 					</div>
@@ -115,7 +102,8 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Correo</label>
-								<input name="correo" type="email" class="form-control" placeholder="Ingrese el correo" value="<?php echo $clave['correo']; ?>">
+								<input name="correo" type="email" class="form-control" placeholder="Sin correo" value="<?php echo $clave['correo']; ?>">
+								<?php echo form_error('correo', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
 						<div class="col-md-6">

@@ -21,7 +21,7 @@ class Proveedor extends CI_controller
 		
 		//Validaciones para los campos de la tabla proveedor
 		$this->form_validation->set_rules('tipoDocumento', 'tipo documento', 'required');
-		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]');
+	
 		$this->form_validation->set_rules('nombre', 'nombre completo', 'required');
 		$this->form_validation->set_rules('celular', 'celular', 'required');
 		$this->form_validation->set_rules('nombreContacto', 'nombre de contacto', 'required');
@@ -52,12 +52,13 @@ class Proveedor extends CI_controller
 			$datosProveedor['resultado'] = $this->Model_proveedor->BuscarDatos($buscar);
 
 		
-	
 			$this->load->view('layouts/superadministrador/header');
 			$this->load->view('layouts/superadministrador/aside');
 			$this->load->view('superadministrador/general/listadoProveedores_view', $datosProveedor);
+
+			
+
 			$this->load->view('layouts/footer');
-	
 		
 			
 
@@ -66,7 +67,7 @@ class Proveedor extends CI_controller
 	public function registrar()
 	{
 
-		
+		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]');
 
 		    $datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
 			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombreContacto"] =
@@ -137,32 +138,13 @@ class Proveedor extends CI_controller
 	
 	{
 
-		if (isset($documento)) {
-
-			$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
-
-	
-	
-			if (isset($resultado)) {
-
-			
-
-					  //Esta es la vista que carga los datos de la base de datos
-					  $this->load->view('layouts/superadministrador/header');
-					  $this->load->view('layouts/superadministrador/aside');
-					  $this->load->view('superadministrador/formularios/actualizarProveedor_view', array('clave' => $resultado));
-					  $this->load->view('layouts/footer');
-   
 		
-				
-
-				 
-
-
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 		
  
 			//Estos arreglos toman los valores de los input
+			//$datosProveedor["idTipoDocumento"] = $this->input->post("tipoDocumento");
+			//$datosProveedor["documento"] = $this->input->post("documento");
 			$datosProveedor["nombre"] = $this->input->post("nombre");
 			$datosProveedor["telefono"] = $this->input->post("telefono");
 			$datosProveedor["celular"] = $this->input->post("celular");
@@ -171,11 +153,15 @@ class Proveedor extends CI_controller
 			$datosProveedor["nombreContacto"] = $this->input->post("nombreContacto");
 			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
+			
 
 
-	
+		
+			
+
 			if ($this->form_validation->run()) {
 				
+			
 				$this->Model_proveedor->actualizarProveedor($documento, $datosProveedor);
 				redirect("Proveedor/listaproveedoresu");
 
@@ -184,33 +170,64 @@ class Proveedor extends CI_controller
 			else
 			{
 
-
-					  //Esta es la vista que carga los datos de la base de datos
+					  //Esta es la vista que carga los datos de los input
 					  $this->load->view('layouts/superadministrador/header');
 					  $this->load->view('layouts/superadministrador/aside');
-					  $this->load->view('superadministrador/formularios/actualizarProveedor_view', array('clave' => $resultado));
+					  $this->load->view('superadministrador/formularios/actualizarProveedor_view',array('clave' => $datosProveedor));
 					  $this->load->view('layouts/footer');
 				
 			}
+			
 
 
 
 		}
 
+		
+		else{
+
+			if (isset($documento)) {
+
+				$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
+	
+
+		
+		
+		
+				if (isset($resultado)) {
+	
 				
+	
+						  //Esta es la vista que carga los datos de la base de datos
+						  $this->load->view('layouts/superadministrador/header');
+						  $this->load->view('layouts/superadministrador/aside');
+						  $this->load->view('superadministrador/formularios/actualizarProveedor_view', array('clave' => $resultado));
+						  $this->load->view('layouts/footer');
+	   
 			
-			}
+					
+	
+					 
+	
+	
+					
+				
+				}
+	
+				else {
+					$this->load->view('layouts/superadministrador/header');
+					$this->load->view('layouts/superadministrador/aside');
+					$this->load->view('errors/pagina404_view');
+					$this->load->view('layouts/footer');
+	
+			
+				}
+			
+		}
 
-			else {
-				$this->load->view('layouts/superadministrador/header');
-				$this->load->view('layouts/superadministrador/aside');
-				$this->load->view('errors/pagina404_view');
-				$this->load->view('layouts/footer');
+		}
 
-		
-			}
-		
-	}
+	
 
 
 	}

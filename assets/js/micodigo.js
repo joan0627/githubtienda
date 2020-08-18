@@ -2,10 +2,6 @@
 Utilizando sweet alert 2*/
 
 
-
-
-
-
 (function () {
 
 	$("tr td #delete").click(function (ev) {
