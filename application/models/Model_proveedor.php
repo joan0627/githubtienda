@@ -50,6 +50,26 @@ class Model_proveedor extends Ci_model
 		
 	}*/
 
+	//Función para buscar todos los tipos de documentos
+	function BuscarTiposDocumentos()
+	{
+
+	   $this->db->select();
+	   $this->db->from($this->TablatipoDocumento);
+	   $consulta = $this->db->get();
+	   return $consulta->result();
+	}
+
+	//Función para buscar todos los proveedores: Select * from proveedor
+	 function BuscarTodosProveedor()
+	 {
+
+		$this->db->select();
+		$this->db->from($this->tablaProveedor);
+		$consulta = $this->db->get();
+		return $consulta->result();
+	 }
+
 	//Función para buscar registros en el campo de busqueda
 	function BuscarDatos($buscar) {
 
@@ -61,12 +81,19 @@ class Model_proveedor extends Ci_model
 		$this->db->or_like("diaVisita",$buscar);
 		$this->db->order_by('fechaRegistro', 'DESC');
 		$consulta = $this->db->get();
+
+		if($consulta->num_rows()==0)
+		{
+
+			$this->session->set_flashdata('busqueda', 'No hay resultados ');
+
+		}
 		return $consulta->result();
+
+		
 		
 	}
-
-
-
+	
 	// Función para llamar los datos de detalle de la tabla proveedor
 
 	function buscarDatosProveedor($documento){
@@ -82,8 +109,9 @@ class Model_proveedor extends Ci_model
 	}
 
 	//Función para Actualizar un proveedor
-	function actualizarProveedor($id, $datosProveedor){
-		$this->db->where($this->documentoPK,$id);
+	function actualizarProveedor($documento, $datosProveedor){
+		
+		$this->db->where($this->idProveedorPK ,$documento);
 		$this->db->update($this->tablaProveedor, $datosProveedor);
 	}
 

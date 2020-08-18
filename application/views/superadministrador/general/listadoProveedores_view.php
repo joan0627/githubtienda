@@ -2,7 +2,7 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="login-dark content-header" style="background: url(../../../tienda/assets/img/fondo.jpg) ; ">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -31,7 +31,7 @@
 							</span>
 							
                             <span class="col-auto input-group-btn">
-                                <button name="reset"class="btn bg-gray" type="submit"><i class="fas fa-sync-alt"></i></button>
+                                <button name="reset"class="btn bg-gray" value="" type="submit"><i class="fas fa-sync-alt"></i></button>
                             </span>
 
                         </div>
@@ -76,9 +76,7 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-                            <th>
-                                Tipo documento
-                            </th>
+                         
                             <th>
                                 Documento
                             </th>
@@ -93,13 +91,13 @@
                             </th>
 
                             <th>
-                                Celular Contacto
+                                Celular 
                             </th>
 
                             <th >
                                 Dia visita
-                            </th>
-                            <th style="text-align:center;">
+                            </th> 
+                            <th style="text-align:center; ">
                                 Acciones
                             </th>
                         </tr>
@@ -110,16 +108,6 @@
 
                         <tr>
 
-
-                            <td> <?php
-										if ($d->idTipoDocumento == 1) {
-											echo 'Cédula de ciudadanía';
-										} elseif ($d->idTipoDocumento == 2) {
-											echo 'Pasaporte';
-										}
-
-										?></td>
-
                             <td><?php echo  $d->documento; ?></td>
                             <td><?php echo  $d->nombre; ?></td>
                             <td><?php echo  $d->nombreContacto; ?></td>
@@ -127,7 +115,7 @@
                             <td><?php echo  $d->diaVisita; ?></td>
 
 
-                            <td class=" text-right" style="text-align:center;">
+                            <td class="text-right" style="text-align:center;   width: 238px;     ">
                                 <a class="btn btn-primary btn-sm" href="detalle/<?php echo $d->documento; ?>">
                                     <i class="fas fa-eye"></i>
                                     </i>
@@ -163,6 +151,13 @@
 
             <!--Inicio del footer del contenido-->
             <div class="card-footer">
+
+            <?php if($this->session->flashdata('busqueda')): ?>
+            
+               <div class="alert alert-warning text-center" > <?= $this->session->flashdata('busqueda'); $this->session->sess_destroy();?> </div> 
+            
+               
+            <?php endif?>
 
 
             </div>

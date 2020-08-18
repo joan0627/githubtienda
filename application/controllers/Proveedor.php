@@ -42,10 +42,16 @@ class Proveedor extends CI_controller
 	public function listaproveedoresu()
 	{
 
-		
+
 		   $buscar = $this->input->get("buscar");
+		  
+		   
+
+		   //$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
 		
 			$datosProveedor['resultado'] = $this->Model_proveedor->BuscarDatos($buscar);
+
+		
 	
 			$this->load->view('layouts/superadministrador/header');
 			$this->load->view('layouts/superadministrador/aside');
@@ -60,11 +66,13 @@ class Proveedor extends CI_controller
 	public function registrar()
 	{
 
-		$datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
+		
+
+		    $datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
 			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombreContacto"] =
 			$datosCarga["diaVisita"] = $datosCarga["observaciones"] = "";
 
-	
+			$datosCarga['idTiposDocumentos'] = $this->Model_proveedor->BuscarTiposDocumentos();
 
 
 		//Campos del formulario
@@ -128,45 +136,31 @@ class Proveedor extends CI_controller
 	public function actualizar($documento = "")
 	
 	{
-		
-		
-		echo "Primera fase";
-	
+
 		if (isset($documento)) {
 
 			$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
 
-			echo "Segunda fase";
+	
 	
 			if (isset($resultado)) {
 
-				echo "Tercera fase";
-
-
-				$this->load->view('layouts/superadministrador/header');
-				$this->load->view('layouts/superadministrador/aside');
-				$this->load->view('superadministrador/formularios/actualizarProveedor_view', array('clave' => $resultado));
-				$this->load->view('layouts/footer');
-
-				//$this->model_usuario->actualizarPersona($idUsuario, $data);
 			
-			} 
-			else {
-				$this->load->view('layouts/superadministrador/header');
-				$this->load->view('layouts/superadministrador/aside');
-				$this->load->view('errors/pagina404_view');
-				$this->load->view('layouts/footer');
 
+					  //Esta es la vista que carga los datos de la base de datos
+					  $this->load->view('layouts/superadministrador/header');
+					  $this->load->view('layouts/superadministrador/aside');
+					  $this->load->view('superadministrador/formularios/actualizarProveedor_view', array('clave' => $resultado));
+					  $this->load->view('layouts/footer');
+   
 		
-			}
+				
 
+				 
 
-
-
-		
 
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
-			echo "Cuarta fase";
+		
  
 			//Estos arreglos toman los valores de los input
 			$datosProveedor["nombre"] = $this->input->post("nombre");
@@ -178,47 +172,46 @@ class Proveedor extends CI_controller
 			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
 
-			$datosCarga["nombre"] = $this->input->post("nombre");
-			$datosCarga["telefono"] = $this->input->post("telefono");
-			$datosCarga["celular"] = $this->input->post("celular");
-			$datosCarga["direccion"] = $this->input->post("direccion");
-			$datosCarga["correo"] = $this->input->post("correo");
-	        $datosCarga["nombreContacto"] = $this->input->post("nombreContacto");
-			$datosCarga["diaVisita"] = $this->input->post("diaVisita");
-			$datosCarga["observaciones"] = $this->input->post("observaciones");
 
-			echo var_dump($datosCarga);
-
-
+	
 			if ($this->form_validation->run()) {
 				
-		
-
-
-					
-					$this->Model_proveedor->actualizarProveedor($documento, $datosProveedor);
-					redirect("Proveedor/listaproveedoresu");
-			
+				$this->Model_proveedor->actualizarProveedor($documento, $datosProveedor);
+				redirect("Proveedor/listaproveedoresu");
 
 			}
-			else 
+
+			else
 			{
-				
 
+
+					  //Esta es la vista que carga los datos de la base de datos
+					  $this->load->view('layouts/superadministrador/header');
+					  $this->load->view('layouts/superadministrador/aside');
+					  $this->load->view('superadministrador/formularios/actualizarProveedor_view', array('clave' => $resultado));
+					  $this->load->view('layouts/footer');
+				
 			}
 
-		
-		
+
+
 		}
 
+				
+			
+			}
+
+			else {
+				$this->load->view('layouts/superadministrador/header');
+				$this->load->view('layouts/superadministrador/aside');
+				$this->load->view('errors/pagina404_view');
+				$this->load->view('layouts/footer');
+
+		
+			}
 		
 	}
 
-		echo "Validaciones malas";
-
-	
-		
-	
 
 	}
 
