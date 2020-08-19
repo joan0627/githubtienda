@@ -29,9 +29,10 @@
                             <span class="input-group-btn">
                                 <button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
 							</span>
-							
+     					
                             <span class="col-auto input-group-btn">
-                                <button name="reset" class="btn bg-gray" value="" type="submit"><i class="fas fa-sync-alt"></i></button>
+                                <a type="button" role="link" class="btn bg-gray" onclick="location.href='listaproveedoresu';"><i class="fas fa-sync-alt"></i></a>
+
                             </span>
 
                         </div>
@@ -43,13 +44,13 @@
                         <a href="registrar" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
                             proveedor</a>
                     </div>
-
+        </form>
 
 
 
                 </div>
             </div>
-        </form>
+   
     </section>
 
     <!-- Incio seccion contenido -->
@@ -181,6 +182,21 @@
 		type: 'success',
 		title: '¡Proceso completado!',
 		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>
+
+     <?php if ($this->session->flashdata('actualizar')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('actualizar'); ?>', 
 		
 	}); 
 		

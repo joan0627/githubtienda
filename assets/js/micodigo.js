@@ -12,8 +12,8 @@ Utilizando sweet alert 2*/
 
 		Swal.fire({
 
-			title: '¿Estás seguro que deseas eliminar el proveedor ' + nombre + '?',
-			text: "ATENCIÓN: El proveedor se eliminará por completo del sistema.",
+			title: '¡ATENCIÓN!',
+			text: "¿Estás seguro que deseas eliminar el proveedor "+nombre+" ?",
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#28a745',

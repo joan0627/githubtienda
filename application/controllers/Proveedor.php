@@ -162,6 +162,9 @@ class Proveedor extends CI_controller
 				
 			
 				$this->Model_proveedor->actualizarProveedor($documento, $datosProveedor);
+
+				$this->session->set_flashdata('actualizar', 'El proveedor ' .$datosProveedor["nombre"].' se ha actualizado correctamente.');
+
 				redirect("Proveedor/listaproveedoresu");
 
 			}
