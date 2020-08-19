@@ -2,8 +2,8 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 18-08-2020 a las 20:09:55
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 19-08-2020 a las 05:37:27
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -42,6 +42,16 @@ CREATE TABLE `categoria` (
   `idCategoria` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idCategoria`, `descripcion`) VALUES
+(1, 'Aseo'),
+(2, 'Alimento'),
+(3, 'Acesorios'),
+(4, 'Otro');
 
 -- --------------------------------------------------------
 
@@ -171,7 +181,34 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 ('eb5d9a940c8ae7a3e00ddaa999b2ff411dac6d2d', '::1', 1597724865, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373732343836353b),
 ('28f41f6d6f71a47a9cad634ec7f2776e8d8e27e4', '::1', 1597725796, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373732353633363b),
 ('ac559c0fd12f7f339f0f92f968eb15955ce6f0e2', '::1', 1597726437, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373732363230313b),
-('63b7bdd36b700f167592a10e92099f48f7e75f85', '::1', 1597772802, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373737323533313b);
+('63b7bdd36b700f167592a10e92099f48f7e75f85', '::1', 1597772802, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373737323533313b),
+('n1g9b6jcijsl48a4b9usd16nto3abs8e', '::1', 1597775621, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373737353632313b),
+('jmivhj1d9qkd4qvo02599bgmb9sbqijo', '::1', 1597779890, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373737393839303b),
+('v8rjthc1vob56vi9958b9f9egm1s3u9v', '::1', 1597779942, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373737393839303b),
+('n621qi3hntlhockf095chde6mjg4v3oc', '::1', 1597780326, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738303332363b),
+('iquir17a68t7q9cbpk4qprlmpjca8h90', '::1', 1597780947, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738303934373b),
+('5d6vb0hqkinccatmoufpskv8f131rcm1', '::1', 1597781391, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738313339313b),
+('b0hekhf4reudo6j0e3lfkpb962m9tsb9', '::1', 1597786659, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738363635393b),
+('m3pmc4e8mf8rg7d5bb9nh9i3b0u7av72', '::1', 1597787027, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738373032373b),
+('agi00n9m06q4h53v2mailke83hono823', '::1', 1597787360, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738373336303b),
+('p6cl4e6sigefnnbesv6pmbou43hmgdvm', '::1', 1597787761, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738373736313b),
+('d6ce8ekrl5jc1pf437e3gr9i9sp8b6g3', '::1', 1597788088, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738383038383b),
+('abm14mnalqgqo86tu8d0scua7oonuh0v', '::1', 1597788778, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738383737383b),
+('qap6qissl24pmp7s8n0gi66rbrcelvuf', '::1', 1597789220, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738393232303b),
+('oov3g0gc3pc9tqvcps3akjjp0vgf15t5', '::1', 1597789299, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738393232303b),
+('hii1si99rbq3gtm5uvir8tk19egt4159', '::1', 1597789525, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373738393337383b),
+('gav50urrhjomjd3q0espc97ngtcph9jt', '::1', 1597799486, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373739393438363b),
+('52kla5us8ka28eii163606d5gbpjqn7a', '::1', 1597801888, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830313838383b),
+('n6ognait1k7du478v2026q525db4uumj', '::1', 1597804192, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830343139323b),
+('qq9co1pnfhudpphrm8splhqi4ft5rg7a', '::1', 1597804581, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830343538313b),
+('oaclpfol19325mjfsqn13rd9pgvpe35f', '::1', 1597804887, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830343838373b),
+('ogrh70bhikhbhvitub9i5jk80pm5478q', '::1', 1597805213, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830353231333b),
+('ej9160c05t19i7rv0303vi4nbl9vt1oq', '::1', 1597806222, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830363232323b),
+('o1muqmpgipdjiqnfjvc66j9849gabag7', '::1', 1597806562, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830363536323b),
+('krq576icfp0gneds7gelrdk9fpa60ujf', '::1', 1597807233, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830373233333b),
+('gc7v9gos7ilnrj2pcran73l8hb4kniko', '::1', 1597807633, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830373633333b),
+('7vlo5ptj933poej6tgcl5o7ceobgkvpk', '::1', 1597807934, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830373933343b),
+('d0knbo24pkbl96al137b7d7fsduhuahq', '::1', 1597807947, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373830373933343b);
 
 -- --------------------------------------------------------
 
@@ -341,6 +378,14 @@ CREATE TABLE `marca` (
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `marca`
+--
+
+INSERT INTO `marca` (`idMarca`, `descripcion`) VALUES
+(1, 'Zenú'),
+(2, 'Nutrican');
+
 -- --------------------------------------------------------
 
 --
@@ -393,6 +438,14 @@ CREATE TABLE `presentacion` (
   `descripcion` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `presentacion`
+--
+
+INSERT INTO `presentacion` (`idPresentacion`, `descripcion`) VALUES
+(1, 'Caja'),
+(2, 'Paquete');
+
 -- --------------------------------------------------------
 
 --
@@ -441,9 +494,13 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`documento`, `idTipoDocumento`, `nombre`, `telefono`, `celular`, `direccion`, `correo`, `nombreContacto`, `diaVisita`, `observaciones`, `fechaRegistro`) VALUES
-('123123121sdadsd2', 1, 'Alimentos S.A', '4444021', '3218976756', '', '', 'Tony Gonzalez', 'Lunes', '', '2020-08-18 04:09:30'),
-('1234567', 4, 'Carnicos de mascotas S.A', '4444021', '3218976756', 'Avenida 33 # 20 - 14', '132@hotmail.com', 'Tony Gonzalez', 'Lunes', '', '2020-08-18 03:54:52'),
-('4534543434', 1, 'GATOS', '', '3218976756', '', '', 'Tony Gonzalez', 'Lunes, Martes, Jueves  y sábado', '', '2020-08-18 04:25:06');
+('-', 2, 'ddd', 'ddd', 'dddw', '', '', 'ssss', 'Viernes', '', '2020-08-19 00:49:33'),
+('1 ', 1, 'Zenú S.A', '415151', '26595496565', 'Crr 75', 'carre@gmaijhjhl.com', 'David Sánchez', 'Viernes', 'ggg', '2020-08-19 00:47:28'),
+('10-13', 1, 'Zenú S.A', '', '26595496565', '', '', 'David Sánchez', 'Viernes', '', '2020-08-19 03:23:57'),
+('10_20', 1, 'Zenú S.A', '415151', '26595496565', '', '', 'Perro', 'Viernes', '', '2020-08-19 03:23:23'),
+('123123121sdadsd2', 1, 'Alimentos', '4444021', '3218976756', '', '', 'Perro', 'Lunes', '', '2020-08-19 02:41:47'),
+('1234567', 4, 'Carnicos de mascotas S.A', '4444021', '3218976756', 'Avenida 33 # 20 - 14', '132@hotmail.com', 'David Sánchez', 'Lunes', '', '2020-08-18 22:24:27'),
+('4534543434', 1, 'GATOS', '', '3218976756', '', '', 'Tony ', 'Lunes, Martes, Jueves  y sábado', '', '2020-08-18 22:20:25');
 
 -- --------------------------------------------------------
 
@@ -563,6 +620,14 @@ CREATE TABLE `unidadmedida` (
   `idUnidadMedida` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `unidadmedida`
+--
+
+INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`) VALUES
+(1, 'Kilogramo'),
+(2, 'Gramos');
 
 -- --------------------------------------------------------
 
@@ -860,7 +925,7 @@ ALTER TABLE `carrusel`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
@@ -920,7 +985,7 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `idMarca` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMarca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
@@ -944,7 +1009,7 @@ ALTER TABLE `preguntaseguridad`
 -- AUTO_INCREMENT de la tabla `presentacion`
 --
 ALTER TABLE `presentacion`
-  MODIFY `idPresentacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPresentacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `quienessomos`
@@ -998,7 +1063,7 @@ ALTER TABLE `tiposervicio`
 -- AUTO_INCREMENT de la tabla `unidadmedida`
 --
 ALTER TABLE `unidadmedida`
-  MODIFY `idUnidadMedida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUnidadMedida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
