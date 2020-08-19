@@ -66,7 +66,7 @@ class Proveedor extends CI_controller
 	public function registrar()
 	{
 
-		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]');
+		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]|alpha_dash');
 
 		    $datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
 			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombreContacto"] =
