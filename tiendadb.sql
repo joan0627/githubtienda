@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-08-2020 a las 07:13:47
+-- Tiempo de generación: 19-08-2020 a las 17:34:55
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -69,6 +69,28 @@ CREATE TABLE `cita` (
   `precio` int(11) DEFAULT NULL,
   `idDetalleMascotaCliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(128) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `data` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('39b7435b221edb922afe658595f3e0e5d088ecdc', '::1', 1597814864, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373831343836343b),
+('952a747601426876938f61b9b0bad3b5104171b9', '::1', 1597814877, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373831343836343b),
+('8dd747dba5a99b1f221af5fa97734407ae88ca9a', '::1', 1597850762, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539373835303733393b);
 
 -- --------------------------------------------------------
 
@@ -345,19 +367,20 @@ CREATE TABLE `proveedor` (
   `correo` varchar(45) NOT NULL,
   `nombreContacto` varchar(45) NOT NULL,
   `diaVisita` varchar(45) DEFAULT NULL,
-  `observaciones` varchar(80) DEFAULT NULL
+  `observaciones` varchar(80) DEFAULT NULL,
+  `fechaRegistro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `proveedor`
 --
 
-INSERT INTO `proveedor` (`documento`, `idTipoDocumento`, `nombre`, `telefono`, `celular`, `direccion`, `correo`, `nombreContacto`, `diaVisita`, `observaciones`) VALUES
-('1 ', 1, 'Zenú S.A', '415151', '26595496565', 'Crr 75', 'carre@gmaijhjhl.com', 'David Sánchez', 'Viernes', 'ggg'),
-('10-13', 1, 'Zenú S.A', '', '26595496565', '', '', 'David Sánchez', 'Viernes', ''),
-('123123121sdadsd2', 1, 'Alimentos', '4444021', '3218976756', '', '', 'Fredy', 'Lunes', ''),
-('1234567', 4, 'Carnicos de mascotas S.A', '4444021', '3218976756', 'Avenida 33 # 20 - 14', '132@hotmail.com', 'David Sánchez', 'Lunes', ''),
-('20-90_80', 4, 'Kanu', '', '3218976756', '', '', 'Tony Gonzalez', 'Lunes', '');
+INSERT INTO `proveedor` (`documento`, `idTipoDocumento`, `nombre`, `telefono`, `celular`, `direccion`, `correo`, `nombreContacto`, `diaVisita`, `observaciones`, `fechaRegistro`) VALUES
+('1 ', 1, 'Zenú S.A', '415151', '26595496565', 'Crr 75', 'carre@gmaijhjhl.com', 'David Sánchez', 'lunes', 'ggg', '2020-08-19 05:27:51'),
+('10-13', 1, 'Zenú S.A', '', '26595496565', '', '', 'David Sánchez', 'Viernes', '', '2020-08-19 05:21:56'),
+('123123121sdadsd2', 1, 'Alimentos', '4444021', '3218976756', '', '', 'Fredy', 'Lunes', '', '2020-08-19 05:21:56'),
+('1234567', 4, 'Carnicos de mascotas S.A', '4444021', '3218976756', 'Avenida 33 # 20 - 14', '132@hotmail.com', 'David Sánchez', 'Lunes', '', '2020-08-19 05:21:56'),
+('20-90_80', 4, 'Kanu', '', '3218976756', '', '', 'Tony Gonzalez', 'Lunes', '', '2020-08-19 05:21:56');
 
 -- --------------------------------------------------------
 
@@ -366,17 +389,6 @@ INSERT INTO `proveedor` (`documento`, `idTipoDocumento`, `nombre`, `telefono`, `
 --
 
 CREATE TABLE `quienessomos` (
-  `idquienesSomos` int(11) NOT NULL,
-  `descripcion` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `quienesSomos`
---
-
-CREATE TABLE `quienesSomos` (
   `idquienesSomos` int(11) NOT NULL,
   `descripcion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -567,6 +579,12 @@ ALTER TABLE `cita`
   ADD KEY `fk_Cita_DetalleMascotaCliente_idx` (`idDetalleMascotaCliente`);
 
 --
+-- Indices de la tabla `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
 -- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
@@ -697,12 +715,6 @@ ALTER TABLE `proveedor`
 -- Indices de la tabla `quienessomos`
 --
 ALTER TABLE `quienessomos`
-  ADD PRIMARY KEY (`idquienesSomos`);
-
---
--- Indices de la tabla `quienesSomos`
---
-ALTER TABLE `quienesSomos`
   ADD PRIMARY KEY (`idquienesSomos`);
 
 --
@@ -883,12 +895,6 @@ ALTER TABLE `presentacion`
 -- AUTO_INCREMENT de la tabla `quienessomos`
 --
 ALTER TABLE `quienessomos`
-  MODIFY `idquienesSomos` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `quienesSomos`
---
-ALTER TABLE `quienesSomos`
   MODIFY `idquienesSomos` int(11) NOT NULL AUTO_INCREMENT;
 
 --
