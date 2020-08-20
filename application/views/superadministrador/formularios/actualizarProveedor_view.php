@@ -39,13 +39,12 @@
 							<div class="form-group">
 
 								<label>Tipo de documento</label>
-								<input name="tipoDocumento" type="text" class="form-control " readonly="readonly" 
-								value="<?php 
-										 echo $clave['descripcion']; 
-										
-									 ?>
-												 
-									">
+								<input name="tipoDocumento" type="text" class="form-control " readonly="readonly" 	
+								value="<?php  
+								
+								echo $clave['descripcion'];
+								
+								?>">
 									<?php echo form_error('tipoDocumento', '<p class="text-danger">', '</p>'); ?>
 
 							</div>
@@ -65,12 +64,7 @@
 
 							<div class="form-group">
 								<label>Nombre</label> <label style="color: red;"> *</label>
-								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" value="<?php
-								
-								
-									echo $clave['nombre'];
-								
-								?>">
+								<input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" value="<?php if(isset($_POST['nombre'])){ echo $_POST['nombre']; }else{ echo $clave['nombre']; } ?>">
 								<?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
@@ -78,7 +72,7 @@
 
 							<div class="form-group">
 								<label>Teléfono</label>
-								<input name="telefono" type="text" class="form-control" placeholder="Ingrese el teléfono" value="<?php echo $clave['telefono']; ?>">
+								<input name="telefono" type="text" class="form-control" placeholder="Ingrese el teléfono" value="<?php if(isset($_POST['telefono'])){ echo $_POST['telefono']; }else{ echo $clave['telefono']; } ?>">
 							</div>
 						</div>
 					</div>
@@ -86,7 +80,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Celular</label> <label style="color: red;"> *</label>
-								<input name="celular" type="text" class="form-control" placeholder="Ingrese el celular" value="<?php echo $clave['celular']; ?>">
+								<input name="celular" type="text" class="form-control" placeholder="Ingrese el celular" value="<?php  if(isset($_POST['celular'])){ echo $_POST['celular']; }else{ echo $clave['celular']; } ?>">
 								<?php echo form_error('celular', '<p class="text-danger">', '</p>'); ?>
 							</div>
 
@@ -94,7 +88,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Dirección</label>
-								<input name="direccion" type="text" class="form-control" placeholder="Ingrese la dirección" value="<?php echo $clave['direccion']; ?>">
+								<input name="direccion" type="text" class="form-control" placeholder="Ingrese la dirección" value="<?php  if(isset($_POST['direccion'])){ echo $_POST['direccion']; }else{ echo $clave['direccion']; } ?>">
 							</div>
 						</div>
 					</div>
@@ -102,14 +96,14 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Correo</label>
-								<input name="correo" type="email" class="form-control" placeholder="Sin correo" value="<?php echo $clave['correo']; ?>">
+								<input name="correo" type="email" class="form-control" placeholder="Sin correo" value="<?php  if(isset($_POST['correo'])){ echo $_POST['correo']; }else{ echo $clave['correo']; } ?>">
 								<?php echo form_error('correo', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Nombre contacto</label> <label style="color: red;"> *</label>
-								<input name="nombreContacto" type="text" class="form-control" placeholder="Ingrese el celular" value="<?php echo $clave['nombreContacto']; ?>">
+								<input name="nombreContacto" type="text" class="form-control" placeholder="Ingrese el celular" value="<?php  if(isset($_POST['nombreContacto'])){ echo $_POST['nombreContacto']; }else{ echo $clave['nombreContacto']; } ?>">
 								<?php echo form_error('nombreContacto', '<p class="text-danger">', '</p>'); ?>
 							</div>
 						</div>

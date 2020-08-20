@@ -1,7 +1,6 @@
-/*Este es el codigo de los mensajes de alertas
-Utilizando sweet alert 2*/
 
 
+/* Código para la funcion eliminar utilizando sweetalert 2 */
 (function () {
 
 	$("tr td #delete").click(function (ev) {
@@ -12,12 +11,12 @@ Utilizando sweet alert 2*/
 
 		Swal.fire({
 
-			title: '¡ATENCIÓN!',
+			title: '¡Atención!',
 			text: "¿Estás seguro que deseas eliminar el proveedor "+nombre+" ?",
-			icon: 'warning',
+			type: 'question',
 			showCancelButton: true,
 			confirmButtonColor: '#28a745',
-			cancelButtonColor: '#d33',
+			cancelButtonColor: '#28a745',
 			confirmButtonText: 'Si',
 			cancelButtonText: 'No'
 		}).then((result) => {
@@ -32,7 +31,15 @@ Utilizando sweet alert 2*/
 					success: function () {
 						$(self).parents('tr').remove();
 						Swal.fire(
-							'¡El proveedor ha sido eliminado exitosamente!',
+							{	
+
+							title: '¡Proceso completado!',
+							text: "El proveedor "+nombre+" ha sido eliminado exitosamente.",
+							type: 'success',
+							confirmButtonColor: '#28a745',
+								
+							}
+						
 							 	      
 						)
 
@@ -40,18 +47,16 @@ Utilizando sweet alert 2*/
 					error: function () {
 						Swal.fire(
 							{
-								icon: 'error',
-								title: 'ATENCIÓN',
-								text: "¡El proveedor no se puede eliminar, ya que esta asociado a otro proceso!",
-							
 								
+								title: '¡Proceso no completado!',
+								text: "El proveedor "+nombre+" no se puede eliminar, ya que esta asociado a otro proceso.",
+								type: 'warning',
+								confirmButtonColor: '#28a745',
 							}
 							
 							 	      
 						)
 					},
-					
-					
 					 statusCode: {
 						400: function (data) {
 							var json = JSON.parse(data.responseText);

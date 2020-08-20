@@ -57,6 +57,7 @@ class Model_proveedor extends Ci_model
 	   $this->db->select();
 	   $this->db->from($this->TablatipoDocumento);
 	   $consulta = $this->db->get();
+	   
 	   return $consulta->result();
 	}
 
@@ -100,8 +101,7 @@ class Model_proveedor extends Ci_model
 		$this->db->select();
 		//$this->db->from($this->tablaProveedor);
 		$this->db->join($this->TablatipoDocumento, 'proveedor.idTipoDocumento = tipodocumento.idTipoDocumento');
-		$resultado =
-		 $this->db->get_where('proveedor', array('proveedor.documento' => $documento), 1);
+		$resultado = $this->db->get_where('proveedor', array('proveedor.documento' => $documento), 1);
 
 		
 		return $resultado->row_array();
@@ -124,6 +124,25 @@ class Model_proveedor extends Ci_model
 		$this->db->delete($this->tablaProveedor);
 
 
+	}
+
+	function paginacion($pag_size,$offset)
+	{
+
+	   $this->db->select();
+	   $this->db->from($this->tablaProveedor);
+	   $this->db->limit($pag_size,$offset);
+	   $consulta = $this->db->get();
+	   return $consulta->num_rows();
+	}
+
+	function count()
+	{
+
+	   $this->db->select();
+	   $this->db->from($this->tablaProveedor);
+	   $consulta = $this->db->get();
+	   return $consulta->num_rows();
 	}
 
 

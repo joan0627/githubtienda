@@ -76,7 +76,7 @@
 
 			<!--Inicio del card body-->
 			<div class="card-body p-0">
-				<table class="table table-striped projects">
+				<table class="table table-striped projects" >
 					<thead>
 						<tr>
 							<th>

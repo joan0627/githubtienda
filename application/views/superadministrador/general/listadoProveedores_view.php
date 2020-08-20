@@ -74,7 +74,7 @@
 
             <!--Inicio del card body-->
             <div class="card-body p-0 ">
-                <table class="table table-striped projects">
+                <table class="table table-striped projects" >
                     <thead>
                         <tr>
                          
@@ -147,8 +147,21 @@
 
                     </tbody>
                 </table>
+                
             </div>
             <!--Fin del card body-->
+
+            <div>
+            <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+  </ul>
+</nav>
+            </div>
 
             <!--Inicio del footer del contenido-->
             <div class="card-footer">

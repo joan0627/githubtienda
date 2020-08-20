@@ -41,6 +41,8 @@ class Proveedor extends CI_controller
 	//Inicio de los metodos 
 	public function listaproveedoresu()
 	{
+		 $page_size=2;
+		 $offset=0 * $page_size;
 
 
 		   $buscar = $this->input->get("buscar");
@@ -66,7 +68,7 @@ class Proveedor extends CI_controller
 	public function registrar()
 	{
 
-		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]|alpha_dash');
+		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]');
 
 		    $datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
 			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombreContacto"] =
@@ -134,16 +136,10 @@ class Proveedor extends CI_controller
 	}
 
 	public function actualizar($documento = "")
-	
 	{
-
-		
-		if ($this->input->server("REQUEST_METHOD") == "POST") {
-		
- 
-			//Estos arreglos toman los valores de los input
-			//$datosProveedor["idTipoDocumento"] = $this->input->post("tipoDocumento");
-			//$datosProveedor["documento"] = $this->input->post("documento");
+		if($this->form_validation->run())
+		{
+			$datosProveedor["documento"] = $this->input->post("documento");
 			$datosProveedor["nombre"] = $this->input->post("nombre");
 			$datosProveedor["telefono"] = $this->input->post("telefono");
 			$datosProveedor["celular"] = $this->input->post("celular");
@@ -152,31 +148,48 @@ class Proveedor extends CI_controller
 			$datosProveedor["nombreContacto"] = $this->input->post("nombreContacto");
 			$datosProveedor["diaVisita"] = $this->input->post("diaVisita");
 			$datosProveedor["observaciones"] = $this->input->post("observaciones");
-			
 
+			$this->Model_proveedor->actualizarProveedor($documento, $datosProveedor);
 
+			$this->session->set_flashdata('actualizar', 'El proveedor ' .$datosProveedor["nombre"].' se ha actualizado correctamente.');
+
+			redirect("Proveedor/listaproveedoresu");
+		}
+		else
+		{
+			$datosProveedor1 = $this->Model_proveedor->buscarDatosProveedor($documento);
+			 //Esta es la vista que carga los datos de los input
+			 $data['clave']= $datosProveedor1;
+
+			 $this->load->view('layouts/superadministrador/header');
+			 $this->load->view('layouts/superadministrador/aside');
+			 $this->load->view('superadministrador/formularios/actualizarProveedor_view',$data);
+			 $this->load->view('layouts/footer');
+		}
 		
+		/*if ($this->input->server("REQUEST_METHOD") == "POST") {
+		
+			//$datosProveedor['idTiposDocumentos'] = $this->Model_proveedor->BuscarTiposDocumentos();
+			//Estos arreglos toman los valores de los input
+			//$datosProveedor["idTipoDocumento"] = $this->input->post("tipoDocumento");
+
+			$datosProveedor1 = $this->Model_proveedor->buscarDatosProveedor($documento);
+			
+			
 			
 
 			if ($this->form_validation->run()) {
 				
 			
-				$this->Model_proveedor->actualizarProveedor($documento, $datosProveedor);
-
-				$this->session->set_flashdata('actualizar', 'El proveedor ' .$datosProveedor["nombre"].' se ha actualizado correctamente.');
-
-				redirect("Proveedor/listaproveedoresu");
+				
 
 			}
 
 			else
 			{
+				
 
-					  //Esta es la vista que carga los datos de los input
-					  $this->load->view('layouts/superadministrador/header');
-					  $this->load->view('layouts/superadministrador/aside');
-					  $this->load->view('superadministrador/formularios/actualizarProveedor_view',array('clave' => $datosProveedor));
-					  $this->load->view('layouts/footer');
+					 
 				
 			}
 			
@@ -193,13 +206,13 @@ class Proveedor extends CI_controller
 				$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
 	
 
-		
+		    // echo var_dump($resultado);
 		
 		
 				if (isset($resultado)) {
 	
 				
-	
+					//$resultado['idTiposDocumentos'] = $this->Model_proveedor->BuscarTiposDocumentos();
 						  //Esta es la vista que carga los datos de la base de datos
 						  $this->load->view('layouts/superadministrador/header');
 						  $this->load->view('layouts/superadministrador/aside');
@@ -227,7 +240,7 @@ class Proveedor extends CI_controller
 			
 		}
 
-		}
+		}*/
 
 	
 

@@ -34,7 +34,9 @@
 </script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/js/adminlte.js"></script>
- 
+
+
+<script src="<?php echo base_url(); ?>assets/plugins/datatables.net/js/jquery.dataTables.js"></script>
 
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.full.min.js"></script>
