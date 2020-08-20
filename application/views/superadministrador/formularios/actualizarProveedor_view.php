@@ -151,7 +151,7 @@
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
                             id="botonActualizarProveedor" class="btn btn-success col-2">Actualizar</button>
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
-						href="<?php echo base_url(); ?>Proveedor/listaproveedoresu"
+						href="<?php echo base_url(); ?>proveedor"
                             id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
 

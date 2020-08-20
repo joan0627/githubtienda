@@ -176,7 +176,7 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="<?php echo base_url();?>proveedor/listaproveedoresu" class="nav-link">
+                      <a href="<?php echo base_url();?>proveedor" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-supplier-30.png" class="nav-icon">
                           <p>
                               Proveedores

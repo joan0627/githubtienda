@@ -31,7 +31,7 @@
 							</span>
      					
                             <span class="col-auto input-group-btn">
-                                <a type="button" role="link" class="btn bg-gray" onclick="location.href='listaproveedoresu';"><i class="fas fa-sync-alt"></i></a>
+                                <a type="button" role="link" class="btn bg-gray" onclick="location.href='proveedor';"><i class="fas fa-sync-alt"></i></a>
 
                             </span>
 
@@ -41,7 +41,7 @@
 
                     <div class="col-auto">
 
-                        <a href="registrar" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
+                        <a href="<?php echo base_url(); ?>proveedor/registrar" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
                             proveedor</a>
                     </div>
         </form>
@@ -117,7 +117,7 @@
 
 
                             <td class="text-right" style="text-align:center;   width: 238px;     ">
-                                <a class="btn btn-primary btn-sm" href="detalle/<?php echo $d->documento; ?>">
+                                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>proveedor/detalle/<?php echo $d->documento; ?>">
                                     <i class="fas fa-eye"></i>
                                     </i>
                                     Ver
@@ -125,7 +125,7 @@
 
 
 
-                                <a class="btn btn-info btn-sm" href="actualizar/<?php echo $d->documento; ?>">
+                                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>proveedor/actualizar/<?php echo $d->documento; ?>">
 
                                     <i class="fas fa-pencil-alt">
                                     </i>

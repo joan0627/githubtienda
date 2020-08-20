@@ -179,7 +179,7 @@
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
                             id="registroProveedor" class="btn btn-success col-2">Registrar</button>
-                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="listaproveedoresu"
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="<?php echo base_url(); ?>proveedor"
                             id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
 

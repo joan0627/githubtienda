@@ -30,40 +30,35 @@ class Proveedor extends CI_controller
 		$this->form_validation->set_rules('observaciones', 'observaciones', 'max_length[120]');
 	}
 
-	public function index()
+	public function index($page=1)
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('errors/pagina404_view');
-		$this->load->view('layouts/footer');
+		
+		$page_size=2;
+		$offset=0* $page_size;
+
+
+		  $buscar = $this->input->get("buscar");
+
+
+		  //$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
+	   
+		   $datosProveedor['resultado'] = $this->Model_proveedor->BuscarDatos($buscar);
+
+		   //$paginacion = $this->Model_proveedor->paginacion($page_size,$offset);
+		  // $datosProveedor['resultado']=  $paginacion;
+
+	   
+		   $this->load->view('layouts/superadministrador/header');
+		   $this->load->view('layouts/superadministrador/aside');
+		   $this->load->view('superadministrador/general/listadoProveedores_view', $datosProveedor);
+
+		   
+
+		   $this->load->view('layouts/footer');
+	   
 	}
 
-	//Inicio de los metodos 
-	public function listaproveedoresu()
-	{
-		 $page_size=2;
-		 $offset=0 * $page_size;
-
-
-		   $buscar = $this->input->get("buscar");
-
-
-		   //$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
-		
-			$datosProveedor['resultado'] = $this->Model_proveedor->BuscarDatos($buscar);
-
-		
-			$this->load->view('layouts/superadministrador/header');
-			$this->load->view('layouts/superadministrador/aside');
-			$this->load->view('superadministrador/general/listadoProveedores_view', $datosProveedor);
-
-			
-
-			$this->load->view('layouts/footer');
-		
-			
-
-	}
+	
 
 	public function registrar()
 	{
@@ -121,7 +116,7 @@ class Proveedor extends CI_controller
 				
 				$this->session->set_flashdata('message', 'El proveedor ' .$datosCarga["nombre"].' se ha registrado correctamente.');
 
-				redirect("Proveedor/listaproveedoresu");
+				redirect("proveedor");
 			
 			}
 			
@@ -153,7 +148,7 @@ class Proveedor extends CI_controller
 
 			$this->session->set_flashdata('actualizar', 'El proveedor ' .$datosProveedor["nombre"].' se ha actualizado correctamente.');
 
-			redirect("Proveedor/listaproveedoresu");
+			redirect("proveedor");
 		}
 		else
 		{
