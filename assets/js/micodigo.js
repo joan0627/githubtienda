@@ -79,4 +79,66 @@
 
 })();
 
+// Función para dehabilitar campos segun el select que seleccione.
+/*
+function habilitar(objecto) {
+	var hab;
+	frm=objecto.form;
 
+	frm.edad.disabled = false;
+	frm.unidadTiempo.disabled = false;
+	frm.indicaciones.disabled = false;
+	frm.contraIndicaciones.disabled = false;
+	 
+	num=objecto.selectedIndex;
+	
+		if (num==1) hab=true;
+
+		else if (num==3) hab=false;
+		
+		else if (num==5) hab=true;
+
+		else if (num==7) hab=true;
+		frm.edad.disabled=hab;
+		frm.unidadTiempo.disabled=hab;
+		frm.indicaciones.disabled=hab;
+		frm.contraIndicaciones.disabled=hab;
+	
+
+
+  }
+  
+
+$(document).ready(function(){
+    $('categoria').on('change', function() {
+		var ValorSelect = 0;
+		$("indicaciones").show()
+
+	  });
+});
+*/
+
+
+$(document).ready(function(){
+
+	$('#categoria').on('change',function(){
+		var Valor = $(this).val();
+		
+		if (Valor == 1) {
+			$("#divIndicaciones").css("display", "block");
+			$("#divcontraindicaciones").css("display", "block");
+			$("#divEdad").css("display", "block");
+			$("#divUnidadTiempo").css("display", "block");
+
+		}else {
+		  $('#divIndicaciones').hide();
+		  $('#divcontraindicaciones').hide();
+		  $('#divEdad').hide();
+		  $('#divUnidadTiempo').hide();
+		
+			//alert('esta es la opcion 2')
+		}
+
+	});
+
+});

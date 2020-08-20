@@ -7,7 +7,7 @@ class Model_producto extends Ci_model
 	public $tablaProducto = 'producto';
 	public $tablaCategoria= 'categoria';
 	public $tablaMarca= 'marca';
-	public $tablaProveedor= 'proveedor';
+	//public $tablaProveedor= 'proveedor'; pendiente para borrar
 	public $tablaUnidadMedida= 'unidadmedida';
 	public $tablaPresentacion= 'presentacion';
 
@@ -20,7 +20,15 @@ class Model_producto extends Ci_model
 		
 	}
 
-// Método para buscar todas las categorias 
+//Función para insertar un producto
+
+	function insertarProducto($datosProducto){
+
+		$this->db->insert($this->tablaProducto, $datosProducto);
+		 return $this->db->insert_id();
+	}
+
+// Función para buscar todas las categorias 
 function buscarTodasCategorias() {
 
 	$this->db->select();
@@ -31,7 +39,7 @@ function buscarTodasCategorias() {
 	
 }
 
-// Método para buscar todas las marcas 
+// Función para buscar todas las marcas 
 function buscarTodasMarcas() {
 
 	$this->db->select();
@@ -42,6 +50,7 @@ function buscarTodasMarcas() {
 	
 }
 
+/*
 function buscarProveedores() {
 
 	$this->db->select();
@@ -50,7 +59,7 @@ function buscarProveedores() {
 	$consulta = $this->db->get();
 	return $consulta->result();
 	
-}
+}*/
 
 function buscarUnidadesMedidas() {
 
@@ -75,13 +84,7 @@ function buscarPresentaciones() {
 
 
 
-	function insertarProducto($datosProducto)
-	{
-		$this->db->insert($this->tablaProducto, $datosProducto);
-		return true;
 
-		
-	}
 
 
 	

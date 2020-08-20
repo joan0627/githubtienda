@@ -73,13 +73,13 @@
                             <div class="form-group">
 
                                 <label>Categoría</label> <label style="color: red;"> *</label>
-                                <select name="categoria" class="form-control">
+                                <select name="categoria" id="categoria" class="form-control" >
 
                                     <?php if ($categoria != "") : ?>
                                     <?php foreach ($categorias as $clave => $valor) : ?>
                                     <?php if ($categoria == $valor->idCategoria) : ?>
 
-                                    <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected>
+                                    <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected >
                                         <?php
 
 
@@ -255,7 +255,7 @@
                                     <?php endif ?>
 
                                 </select>
-                                <?php echo form_error('unidaDeMedida', '<p class="text-danger">', '</p>'); ?>
+                                <?php echo form_error('unidadDeMedida', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
                     </div>
@@ -277,14 +277,13 @@
 
 
                             <div class="form-group">
-                                <label>Tipo de vacuna/medicamento</label> <label style="color: red;"> *</label>
-                                <select class="form-control " style="width: 100%;">
-                                    <option selected="selected">-Seleccione el tipo-</option>
-                                    <option>Canino</option>
-                                    <option>Felino</option>
-
-
+                                <label>Tipo de especie</label> <label style="color: red;"> *</label>
+                                <select class="form-control " style="width: 100%;" name="tipoespecie">
+                                    <option value="" selected="selected">-Seleccione el tipo especie-</option>
+                                    <option value="1" >Canino</option>
+                                    <option value="2" >Felino</option>
                                 </select>
+                                <?php echo form_error('tipoespecie', '<p class="text-danger">', '</p>'); ?>
                             </div>
 
 
@@ -295,21 +294,24 @@
 
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
+                    <div class="row"  >
+                        <div class="col-md-6" style="display: none" id="divIndicaciones">
+                            <div class="form-group" >
 
                                 <label>Indicaciones</label> <label style="color: red;"> * </label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Especifique las indicaciones de la vacuna"></textarea>
+                                    placeholder="Especifique las indicaciones de la vacuna" name="indicaciones"
+                                    ></textarea>
                             </div>
+                            <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="display: none" id="divcontraindicaciones">
                             <label>Contraindicaciones</label> <label style="color: red;"> * </label>
                             <textarea class="form-control" rows="3"
-                                placeholder="Especifique las contraindicaciones de la vacuna"></textarea>
-
+                                placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
+                                ></textarea>
+                                <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
 
@@ -317,31 +319,33 @@
 
                     </div>
 
-					<div class="row">
-                        <div class="col-md-3">
+					<div class="row" >
+                        <div class="col-md-3" style="display: none" id="divEdad">
                             <div class="form-group">
 
-                                <label>Calendario aplicación</label> <label style="color: red;"> * </label>
+                                <label>Edad</label> <label style="color: red;"> * </label>
                                 <input class="form-control" rows="3"
-                                    placeholder="Ingrese el tiempo recomendado"></input>
+                                    placeholder="Ingrese el tiempo recomendado" name="edad" ></input>
                             </div>
+                            <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
-						<div class="col-md-3">
+						<div class="col-md-4" style="display: none"  id="divUnidadTiempo">
                             <div class="form-group">
-                                <label>Tiempo</label> <label style="color: red;"> *</label>
-                                <select class="form-control " style="width: 100%;">
-                                    <option selected="selected">-Seleccione el tiempo de edad-</option>
+                                <label>Unidad de tiempo</label> <label style="color: red;"> *</label>
+                                <select class="form-control " style="width: 100%;" name="unidadTiempo" >
+                                    <option hidden selected="selected">-Seleccione la unidad de tiempo-</option>
                                     <option>Dia(s)</option>
                                     <option>Semana(s)</option>
                                     <option>Mes(es)</option>
                                     <option>Año(s)</option>
 
                                 </select>
+                                <?php echo form_error('unidadTiempo', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -349,8 +353,8 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna">
-
+                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna" name="precioVenta">
+                                <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
@@ -371,7 +375,7 @@
 
                         <button type="submit" id="botonRegistroProducto"
                             class="btn btn-success col-2">Registrar</button>
-                        <a href="listaproductosu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <a href="<?php echo base_url(); ?>producto" id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
                     </div>
 

@@ -85,7 +85,7 @@
 
 
                   <li class="nav-item">
-                      <a href="<?php echo base_url();?>producto/listaproductosu" class="nav-link">
+                      <a href="<?php echo base_url();?>producto" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-price-tag-50.png" class="nav-icon">
                           <p>
                               Productos

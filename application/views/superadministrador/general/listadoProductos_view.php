@@ -40,7 +40,7 @@
 
                     <div class="col-auto">
 
-                        <a href="registrarproductosu" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
+                        <a href="<?php echo base_url(); ?>producto/registro" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
                             producto</a>
                     </div>
 
