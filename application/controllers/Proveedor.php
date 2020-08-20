@@ -60,7 +60,7 @@ class Proveedor extends CI_controller
 
 	
 
-	public function registrar()
+	public function registro()
 	{
 
 		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]');

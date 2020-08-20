@@ -41,7 +41,7 @@
 
                     <div class="col-auto">
 
-                        <a href="<?php echo base_url(); ?>proveedor/registrar" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
+                        <a href="<?php echo base_url(); ?>proveedor/registro" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
                             proveedor</a>
                     </div>
         </form>
