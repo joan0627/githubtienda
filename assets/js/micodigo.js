@@ -49,7 +49,7 @@
 							{
 								
 								title: '¡Proceso no completado!',
-								text: "El proveedor "+nombre+" no se puede eliminar, ya que esta asociado a otro proceso.",
+								text: "El proveedor "+nombre+" no se puede eliminar porque está asociado a otro proceso.",
 								type: 'warning',
 								confirmButtonColor: '#28a745',
 							}
@@ -119,26 +119,42 @@ $(document).ready(function(){
 */
 
 
-$(document).ready(function(){
+$(document).ready(function() {
+	console.log("Este es el valor :"+$valor);
 
-	$('#categoria').on('change',function(){
-		var Valor = $(this).val();
+	$( "#categoria" ).click(function() {
+
+		var $valor=$(this).val()
+		if($valor==1	)
+	{
 		
-		if (Valor == 1) {
-			$("#divIndicaciones").css("display", "block");
-			$("#divcontraindicaciones").css("display", "block");
-			$("#divEdad").css("display", "block");
-			$("#divUnidadTiempo").css("display", "block");
-
-		}else {
-		  $('#divIndicaciones').hide();
-		  $('#divcontraindicaciones').hide();
-		  $('#divEdad').hide();
-		  $('#divUnidadTiempo').hide();
 		
-			//alert('esta es la opcion 2')
-		}
+				$('#divIndicaciones').show();
+				$('#divcontraindicaciones').show();
+				$('#divEdad').show();
+				$('#divUnidadTiempo').show()
+	
+			}
+			else
+			{
+				$('#divIndicaciones').hide();
+				$('#divcontraindicaciones').hide();
+				$('#divEdad').hide();
+				$('#divUnidadTiempo').hide();
 
-	});
+			}
+			
+		
+	  });
+	
+	
+
+
+	
+	
 
 });
+
+
+
+
