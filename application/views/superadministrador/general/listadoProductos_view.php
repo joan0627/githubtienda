@@ -29,9 +29,10 @@
                             <span class="input-group-btn">
                                 <button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
 							</span>
-							
+
                             <span class="col-auto input-group-btn">
-                                <button name="reset"class="btn bg-gray" value="" type="submit"><i class="fas fa-sync-alt"></i></button>
+                                <a type="button" role="link" class="btn bg-gray" onclick="location.href='producto';"><i class="fas fa-sync-alt"></i></a>
+
                             </span>
 
                         </div>
@@ -90,35 +91,38 @@
                                 Categoria
                             </th>
 
+                            <th >
+                                Marca
+                            </th> 
+
                             <th>
                                  Existencia
                             </th>
 
                             <th >
-                                Marca
-                            </th> 
-
-                            <th >
                                 Precio
                             </th> 
+
                             <th style="text-align:center; ">
                                 Acciones
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($resultado as $key => $d) : ?>
 
                         <tr>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td> <td>
-                            <td></td>
-
+                            <td><?php echo  $d->idProducto;?></td>
+                            <td><?php echo  $d->nombreProducto;?></td>
+                            <td><?php echo  $d->descripcion;?></td>
+                            <td><?php echo  $d->descripcionMarca;?></td>
+                            <td><?php echo  $d->existencia;?></td>                       
+                            <td><?php echo  $d->precio;?></td>
+                          
 
                             <td class="text-right" style="text-align:center;   width: 238px;     ">
-                                <a class="btn btn-primary btn-sm" href="detalle">
+                                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>proveedor/detalle/<?php  ?>">
                                     <i class="fas fa-eye"></i>
                                     </i>
                                     Ver
@@ -126,7 +130,7 @@
 
 
 
-                                <a class="btn btn-info btn-sm" href="actualizar">
+                                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>proveedor/actualizar/<?php  ?>">
 
                                     <i class="fas fa-pencil-alt">
                                     </i>
@@ -134,7 +138,7 @@
                                 </a>
 
 
-                                <button type="submit" class="btn btn-danger btn-sm" href="borrar"
+                                <button type="submit" class="btn btn-danger btn-sm"  id="delete" href="borrar/<?php  ?>"
                                     >
                                     <i class="fas fa-trash">
                                     </i>
@@ -145,7 +149,7 @@
 
                         </tr>
                
-
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

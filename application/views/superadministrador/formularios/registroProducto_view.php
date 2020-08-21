@@ -46,6 +46,7 @@
                             </div>
                         </div>
 
+
                         <div class="col-md-6">
 
                             <div class="form-group">
@@ -62,9 +63,7 @@
                             <div class="form-group">
                                 <label>Descripción</label>
                                 <textarea class="form-control" rows="2"
-                                    placeholder="Escribe una descripción del producto ..." name="descripcion"><?php echo $descripcion;?>
-</textarea>
-
+                                    placeholder="Escribe una descripción del producto ..." name="descripcion"><?php echo $descripcionProducto;?></textarea>
                             </div>
                         </div>
 
@@ -295,7 +294,7 @@
                     </div>
 
                     <div class="row"  >
-                        <div class="col-md-6" style="display: none" id="divIndicaciones">
+                        <div class="col-md-6"  id="divIndicaciones">
                             <div class="form-group" >
 
                                 <label>Indicaciones</label> <label style="color: red;"> * </label>
@@ -306,7 +305,7 @@
                             <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
-                        <div class="col-md-6" style="display: none" id="divcontraindicaciones">
+                        <div class="col-md-6"  id="divcontraindicaciones">
                             <label>Contraindicaciones</label> <label style="color: red;"> * </label>
                             <textarea class="form-control" rows="3"
                                 placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
@@ -320,7 +319,7 @@
                     </div>
 
 					<div class="row" >
-                        <div class="col-md-3" style="display: none" id="divEdad">
+                        <div class="col-md-3"  id="divEdad">
                             <div class="form-group">
 
                                 <label>Edad</label> <label style="color: red;"> * </label>
@@ -330,11 +329,11 @@
                             <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
-						<div class="col-md-4" style="display: none"  id="divUnidadTiempo">
+						<div class="col-md-4"  id="divUnidadTiempo">
                             <div class="form-group">
                                 <label>Unidad de tiempo</label> <label style="color: red;"> *</label>
                                 <select class="form-control " style="width: 100%;" name="unidadTiempo" >
-                                    <option hidden selected="selected">-Seleccione la unidad de tiempo-</option>
+                                    <option hidden >-Seleccione la unidad de tiempo-</option>
                                     <option>Dia(s)</option>
                                     <option>Semana(s)</option>
                                     <option>Mes(es)</option>
@@ -358,7 +357,8 @@
                             </div>
                         </div>
 
-
+                        <input id="Valor" type="text" class="form-control " 
+                        value="<?php echo $this->session->set_userdata('valorSesion', 'perra');?>" hidden>
 
 
                     </div>
