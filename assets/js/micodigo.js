@@ -120,25 +120,45 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
+	if(localStorage.getItem('clave') != 1){
 
-	$('#categoria').on('change',function(){
-		var Valor = $(this).val();
+			$("#divIndicaciones").hide();
+			$("#divcontraindicaciones").hide();
+			$("#divEdad").hide();
+			$("#divUnidadTiempo").hide();
+			
+	}
+			
 		
-		if (Valor == 1) {
-			$("#divIndicaciones").css("display", "block");
-			$("#divcontraindicaciones").css("display", "block");
-			$("#divEdad").css("display", "block");
-			$("#divUnidadTiempo").css("display", "block");
+	$('#categoria').on('change',function(){
+
+		var Valor = $(this).val();
+		localStorage.setItem('clave',Valor);
+	
+	console.log(localStorage.getItem('clave',Valor));
+	
+		 if( localStorage.getItem('clave') ==1){
+			 console.log('Estoy dentro oh me vengo');
+			$('#divIndicaciones').show();
+			$("#divIndicaciones").show();
+			$("#divcontraindicaciones").show();
+			$("#divEdad").show();
+			$("#divUnidadTiempo").show();
+			
+			
 
 		}else {
-		  $('#divIndicaciones').hide();
-		  $('#divcontraindicaciones').hide();
-		  $('#divEdad').hide();
-		  $('#divUnidadTiempo').hide();
+			$("#divIndicaciones").hide();
+			$("#divcontraindicaciones").hide();
+			$("#divEdad").hide();
+			$("#divUnidadTiempo").hide();
 		
 			//alert('esta es la opcion 2')
 		}
-
+	
+		
 	});
 
+
 });
+

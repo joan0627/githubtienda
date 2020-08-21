@@ -37,20 +37,40 @@ class Producto extends CI_controller
 
 
 	}
-	public function index()
+
+	public function index($page=1)
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/listadoProductos_view');
-		$this->load->view('layouts/footer');
 		
+		$page_size=2;
+		$offset=0* $page_size;
+
+
+		  $buscar = $this->input->get("buscar");
+		  //$resultado = $this->Model_producto->buscarDatosProducto($idProducto);
+
+		 
+
+
+		  //$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
+	   
+		   $datosProducto['resultado'] = $this->Model_producto->BuscarDatos($buscar);
+		   
+		   //$paginacion = $this->Model_proveedor->paginacion($page_size,$offset);
+		  // $datosProveedor['resultado']=  $paginacion;
+
+	   
+		  $this->load->view('layouts/superadministrador/header');
+		  $this->load->view('layouts/superadministrador/aside');
+		  $this->load->view('superadministrador/general/listadoProductos_view', $datosProducto);
+		  $this->load->view('layouts/footer');
+	   
 	}
 
 
 	public function registro()
 	{
 
-		    $datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcion"] = $datosCarga["idCategoria"] =
+		    $datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcionProducto"] = $datosCarga["idCategoria"] =
 			$datosCarga["marca"] = $datosCarga["idPresentacion"] = $datosCarga["valorMedida"] = $datosCarga["idUnidadMedida"] =
 			$datosCarga["existencia"] = $datosCarga["idEspecieProducto"] = $datosCarga["indicaciones"] = $datosCarga["contradindicaciones"] = 
 			$datosCarga["edadAplicacion"] = $datosCarga["precio"] = "";
@@ -65,7 +85,7 @@ class Producto extends CI_controller
 
 			$datosCarga["idProducto"] = $this->input->post("codigo");
 			$datosCarga["nombreProducto"] = $this->input->post("nombre");
-			$datosCarga["descripcion"] = $this->input->post("descripcion");
+			$datosCarga["descripcionProducto"] = $this->input->post("descripcion");
 			$datosCarga["categoria"] = $this->input->post("categoria");
 			$datosCarga["marca"] = $this->input->post("marca");
 			$datosCarga["unidadMedida"] = $this->input->post("unidadDeMedida");

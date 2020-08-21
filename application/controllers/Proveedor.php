@@ -51,9 +51,6 @@ class Proveedor extends CI_controller
 		   $this->load->view('layouts/superadministrador/header');
 		   $this->load->view('layouts/superadministrador/aside');
 		   $this->load->view('superadministrador/general/listadoProveedores_view', $datosProveedor);
-
-		   
-
 		   $this->load->view('layouts/footer');
 	   
 	}
@@ -107,9 +104,8 @@ class Proveedor extends CI_controller
 
 
 			/*************************************************************/
-			// **			Validacion de los campos					 // **
-			/**************************************
-			 * ***********************/
+			// **			Validacion de los campos				  // **
+			/**************************************************************/
 			if ($this->form_validation->run()) {
 
 				$this->Model_proveedor->insertarProveedor($datosProveedor);
@@ -249,12 +245,14 @@ class Proveedor extends CI_controller
 
 			$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
 
+			$data['clave']= $resultado;
+
 
 			if (isset($resultado)) {
 
 				$this->load->view('layouts/superadministrador/header');
 				$this->load->view('layouts/superadministrador/aside');
-				$this->load->view('superadministrador/formularios/verdetalleProveedor_view', array('clave' => $resultado));
+				$this->load->view('superadministrador/formularios/verdetalleProveedor_view', $data);
 				$this->load->view('layouts/footer');
 			}
 		}
