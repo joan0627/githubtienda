@@ -6,26 +6,34 @@ class Usuario extends CI_controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('model_usuario');
+		$this->load->model('Model_usuario');
 		$this->load->database();
 		$this->load->helper("url");
 		$this->load->library('form_validation');
+
+
 
 		//Validaciones para los campos de la tabla Persona
 		$this->form_validation->set_rules('nombre', 'nombre completo', 'required');
 		$this->form_validation->set_rules('celular', 'celular', 'required');
 
 		//Validaciones para los campos de la tabla Usuario
-		$this->form_validation->set_rules('username', 'nombre de usuario', 'required');
+		$this->form_validation->set_rules('username', 'nombre de usuario', 'required|is_unique[usuario.nombreUsuario]');
 		$this->form_validation->set_rules('contrasena', 'contraseña', 'required|min_length[8]');
+		$this->form_validation->set_rules('confirmarcontrasena', 'confirmar contraseña', 'required|min_length[8]');
 		$this->form_validation->set_rules('rol', 'rol', 'required');
 	}
 
 	public function index()
 	{
+
+		$buscar = $this->input->get("buscar");
+
+		$datosUsuario['resultado'] = $this->Model_usuario->BuscarDatos($buscar);
+
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('errors/pagina404_view');
+		$this->load->view('superadministrador/general/listadoUsuarios_view', $datosUsuario);
 		$this->load->view('layouts/footer');
 	}
 
@@ -33,71 +41,52 @@ class Usuario extends CI_controller
 
 	/* Inicio de métodos del rol de Super Administrador */
 
-	public function listausuariosu()
+
+	public function registro()
 	{
-		$datosPersona['resultado'] = $this->model_usuario->buscarTodoPersonaUsuario();
+	
 
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/listadousuarios_view', $datosPersona);
-		$this->load->view('layouts/footer');
-	}
+		$datosCarga['idRoles'] = $this->Model_usuario->BuscarRoles();
+		
+		if ($this->form_validation->run()) {
 
+			$datosCarga["nombre"]  = $datosCarga["celular"] =  $datosCarga["nombreUsuario"] =
+			$datosCarga["contrasena"] = $datosCarga["idRol"] = "";
 
-	public function crearusuariosu()
-	{
-
-			$datosCarga["nombre"]  = $datosCarga["celular"] =  $datosCarga["username"] =
-			$datosCarga["contrasena"] = $datosCarga["rol"] = "";
-
-
-
-		//Campos del formulario
-		if ($this->input->server("REQUEST_METHOD") == "POST") {
-
-			/*Arreglos para guardar informacion en las dos tablas: Persona y Usuario
-			Aqui se necesitan dos arreglos diferentes ya que los datos van 
-			para dos tablas diferentes
-			*/
+	
 			
-			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["celular"] = $this->input->post("celular");
-			$datosPersona["tipoPersona"] = 1;
-
-			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
-			$datosUsuario["username"] = $this->input->post("username");
+			$datosUsuario["nombre"] = $this->input->post("nombre");
+			$datosUsuario["celular"] = $this->input->post("celular");
+			$datosUsuario["nombreUsuario"] = $this->input->post("username");
 			$datosUsuario["contrasena"] = $this->input->post("contrasena");
-			$datosUsuario["rol"] = $this->input->post("rol");
+			$datosUsuario["idRol"] = $this->input->post("rol");
+
+			$this->Model_usuario->insertarUsuario($datosUsuario);
+			//redirect("usuario");
+		}
+		else
+		{
 
 
-			/*Arreglos para cargar la información a los campos 
-			 Aqui no necesitamos dos arreglos diferentes con sólo un arreglo 
-			 podemos cargar los datos a los campos
-			*/
-
-			
 			$datosCarga["nombre"] = $this->input->post("nombre");
 			$datosCarga["celular"] = $this->input->post("celular");
-
-			$datosCarga["username"] = $this->input->post("username");
+			$datosCarga["nombreUsuario"] = $this->input->post("username");
 			$datosCarga["contrasena"] = $this->input->post("contrasena");
-			$datosCarga["rol"] = $this->input->post("rol");
+			$datosCarga["idRol"] = $this->input->post("rol");
 
 
+			$this->load->view('layouts/superadministrador/header');
+			$this->load->view('layouts/superadministrador/aside');
+			$this->load->view('superadministrador/formularios/registroUsuario_view', $datosCarga);
+			$this->load->view('layouts/footer');
 
-			if ($this->form_validation->run()) {
-
-
-				$this->model_usuario->insertarPersona($datosPersona);
-				$this->model_usuario->insertarUsuario($datosUsuario);
-				redirect("Usuario/listausuariosu");
-			}
 		}
 
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/registroUsuario_view', $datosCarga);
-		$this->load->view('layouts/footer');
+
+
+
+
+
 	}
 
 	public function actualizarusuariosu($documento = "")
@@ -132,10 +121,10 @@ class Usuario extends CI_controller
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 
 
-			
+
 			$datosPersona["nombre"] = $this->input->post("nombre");
 			$datosPersona["celular"] = $this->input->post("celular");
-			
+
 
 			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
 			$datosUsuario["username"] = $this->input->post("username");
@@ -180,10 +169,10 @@ class Usuario extends CI_controller
 		if ($this->input->server("REQUEST_METHOD") == "POST") {
 
 
-			
+
 			$datosPersona["nombre"] = $this->input->post("nombre");
 			$datosPersona["celular"] = $this->input->post("celular");
-			
+
 
 			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
 			$datosUsuario["username"] = $this->input->post("username");
@@ -220,6 +209,4 @@ class Usuario extends CI_controller
 
 
 	/* Fin de métodos del rol de  Administrador */
-
-	
 }

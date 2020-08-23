@@ -22,46 +22,33 @@
 
         </div><!-- FIN/.container-fluid -->
 
-        <div class="container-fluid">
-            <div iv class="row mb-1">
+        <form method="get">
+            <div class="container-fluid">
+                <div class="row mb-1">
 
+                    <div class="col-auto col-md-4 mr-auto ">
+                        <div class="input-group  mb-3">
 
-                <div class="col-auto col-md-6 mr-auto ">
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <button type="button" class="btn bg-gray dropdown-toggle" data-toggle="dropdown">
-                                <i class="fas fa-filter"></i> Filtrar
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-item"><a href="#">Activo</a></li>
-                                <li class="dropdown-item"><a href="#">Inactivo</a></li>
-                                <li class="dropdown-item"><a href="#">Administrador</a></li>
-                                <li class="dropdown-item"><a href="#">Empleado</a></li>
+                            <input name="buscar" type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn bg-primary" type="submit"><i class="fas fa-search"></i></button>
+							</span>
+     					
+                            <span class="col-auto input-group-btn">
+                                <a type="button" role="link" class="btn bg-success" onclick="location.href='usuario';"><i class="fas fa-sync-alt"></i></a>
 
-                            </ul>
-
+                            </span>
 
                         </div>
-                        <!-- /btn-group -->
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn bg-gray" type="button"><i class="fas fa-search"></i></button>
-                        </span>
+
                     </div>
-                </div>
 
+                    <div class="col-auto">
 
-
-
-                <div class="col-auto">
-
-                    <a href="crearusuariosu" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
-                        usuario</a>
-                </div>
-
-
-            </div>
-        </div>
+                        <a href="<?php echo base_url(); ?>usuario/registro" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
+                            usuario</a>
+                    </div>
+        </form>
 
 
 
@@ -105,10 +92,10 @@
                                 Rol
                             </th>
                             <th>
-                                Estado
+                                Fecha de registro
                             </th>
                             <th>
-                                Fecha de registro
+                                Estado
                             </th>
                             <th style="text-align:center;">
                                 Acciones
@@ -121,26 +108,26 @@
                     <tbody>
 
 
-                        <?php foreach( $resultado as $key => $d) :?>
+                    <?php foreach ($resultado as $key => $d) : ?>
                         <tr>
 
 
 
-                            <td><?php echo  $d->documento;  ?></td>
+                            <td><?php echo  $d->idUsuario;  ?></td>
                             <td><?php echo  $d->nombre; ?></td>
-                            <td><?php echo  $d->username; ?></td>
-
+                            <td><?php echo  $d->nombreUsuario; ?></td>
                             <td>
                                 <?php 
-								if($d->rol==1)
+								if($d->idRol==1)
 								{
 								echo'Administrador';
 
 								}
-								elseif($d->rol==2) echo 'Empleado';
+								elseif($d->idRol==2) echo 'Empleado';
 
 							?>
                             </td>
+                            <td style="text-align:center;"><?php echo  $d->fechaRegistro; ?></td>
                             <td>
                                 <?php
 							
@@ -149,16 +136,13 @@
 								echo'<span class="badge badge-success">Activo</span>';
 
 								}
-								elseif($d->estado==2) echo '<span class="badge badge-danger">Inactivo</span>';
+								elseif($d->estado==0) echo '<span class="badge badge-danger">Inactivo</span>';
 							
 								?>
                             </td>
-
-                            <td><?php echo  $d->fechaRegistro; ?></td>
-
-                            <td class="project-actions text-right ">
+                            <td class=" text-right " style="text-align:center;   width: 238px;     ">
                                 <a class="btn btn-primary btn-sm"
-                                    href="verdetalleusuariosu/<?php  echo $d->documento;?>">
+                                    href="verdetalleusuariosu/<?php  echo $d->idUsuario;?>">
                                     <i class="fas fa-eye"></i>
                                     </i>
                                     Ver
@@ -166,7 +150,7 @@
 
 
 
-                                <a class="btn btn-info btn-sm" href="actualizarusuariosu/<?php  echo $d->documento;?>">
+                                <a class="btn btn-info btn-sm" href="actualizarusuariosu/<?php  echo $d->idUsuario;?>">
 
                                     <?php
 
@@ -186,7 +170,7 @@
                                 </a>
 
 
-                                <a class="btn btn-danger btn-sm" href="borrar/<?php  echo $d->documento;?>"
+                                <a class="btn btn-danger btn-sm" href="borrar/<?php  echo $d->idUsuario;?>"
                                     onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
                                     <i class="fas fa-trash">
                                     </i>
@@ -206,6 +190,14 @@
 
             <!--Inicio del footer del contenido-->
             <div class="card-footer">
+
+
+            <?php if($this->session->flashdata('busqueda')): ?>
+            
+            <div class="alert alert-warning text-center" > <?= $this->session->flashdata('busqueda'); $this->session->sess_destroy();?> </div> 
+         
+            
+         <?php endif?>
 
 
             </div>

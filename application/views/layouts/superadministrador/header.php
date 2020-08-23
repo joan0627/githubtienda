@@ -37,8 +37,13 @@
 
     <!-- Select2 -->
     <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
+<<<<<<< Updated upstream
     <link href="<?php echo base_url();?>assets/plugins/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"
         rel="stylesheet">
+=======
+  
+    <link href="<?php echo base_url();?>/opt/lampp/htdocs/tienda/assets/css/style.css" rel="stylesheet">
+>>>>>>> Stashed changes
 
 
 
