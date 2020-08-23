@@ -31,7 +31,7 @@
 			</div> <!-- Fin Caja superior -->
 
 			<!-- Inicio form -->
-			<form role="form" method="POST">
+			<form role="form" name="registroUsuario" method="POST">
 				<!--Inicio del card body-->
 				<div class="card-body ">
 
@@ -74,7 +74,7 @@
 
 							<div class="form-group">
 								<label>Nombre de usuario</label> <label style="color: red;"> *</label>
-								<input name="username" type="text" class="form-control " placeholder="Ingrese el nombre de usuario">
+								<input name="username" type="text" class="form-control " placeholder="Ingrese el nombre de usuario" value="<?php echo $nombreUsuario; ?>" >
 								<?php echo form_error('username', '<p class="text-danger">', '</p>'); ?>
 							</div>
 
@@ -84,10 +84,36 @@
 							<div class="form-group">
 								<label>Rol</label> <label style="color: red;"> *</label>
 								<select name="rol" class="form-control">
-									<option hidden selected>-Seleccione el tipo de rol-</option>
-									<option value="1">Administrador</option>
-									<option value="2">Empleado</option>
+								<?php if ($idRol != "") : ?>
+                                    <?php foreach ($idRoles as $clave => $valor) : ?>
+                                    <?php if ($idRol == $valor->idRol) : ?>
+
+                                    <option hidden value=" <?php echo  $valor->idRol; ?>" selected>
+                                        <?php
+
+
+													echo  $valor->descripcion; ?></option>
+                                    <?php
+												foreach ($idRoles as $clave => $valor) : ?>
+
+
+                                    <option value=" <?php echo  $valor->idRol; ?>">
+                                        <?php echo  $valor->descripcion; ?></option>
+
+                                    <?php endforeach; ?>
+
+                                    <?php endif;  ?>
+                                    <?php endforeach; ?>
+                                    <?php else :
+										foreach ($idRoles as $clave => $valor) : ?>
+                                    <option value="" selected hidden>-Seleccione el tipo de rol-</option>;
+                                    <option value=" <?php echo  $valor->idRol; ?>">
+                                        <?php echo  $valor->descripcion; ?></option>
+
+                                    <?php endforeach; ?>
+                                    <?php endif ?>
 								</select>
+								<?php echo form_error('rol', '<p class="text-danger">', '</p>'); ?>
 
 							</div>
 						</div>
@@ -113,6 +139,7 @@
 							<div class="form-group">
 								<label>Confirmar contraseña</label> <label style="color: red;"> *</label>
 								<input name="confirmarcontrasena" type="password" class="form-control" id="nombre" placeholder="Confirme la contraseña">
+								<?php echo form_error('confirmarcontrasena', '<p class="text-danger">', '</p>'); ?>
 
 							</div>
 
@@ -124,10 +151,10 @@
 					<!--Fin del card body-->
 
 					<!--Inicio del footer del contenido-->
-					<div class="card-footer">
+					<div class="text-center card-footer">
 
-						<button type="submit" id="botonRegistroUsuario" class="btn btn-success col-2">Registrar</button>
-						<a href="listausuariosu" class="btn btn-success col-2">Atrás</a>
+						<button  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="botonRegistroUsuario" class="btn btn-success col-2"><img src="<?php echo base_url(); ?>assets/img/iconos/icons8-save-100.png">Registrar</button>
+						<a  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url(); ?>usuario" class="btn btn-success col-2">Atrás</a>
 					</div>
 					<!--Fin del footer del contenido-->
 				</div>

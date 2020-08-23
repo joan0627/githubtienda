@@ -1,43 +1,64 @@
 <?php
 
-class Model_usuario extends Ci_model {
+class model_usuario extends Ci_model {
 
 	public $tablaUsuario = 'usuario';
+	public $idUsuarioPK= 'idUsuario';
 
-
-public $idUsuarioPK= 'idUsuario';
+	public $tablaRol= 'rol';
+	public $idRol= 'idRol';
 
 
 	public function _construct() {
 	
 	}
 
-	// Aqui comieza las consultas sql para la tabla persona
-	function BuscarPersona ($documento) {
+	function BuscarRoles()
+	{
 
-		$this->db->select();
-		$this->db->from($this->tablaPersona);
-		$this->db->where($this->documentoPK,$documento);
-		$consulta = $this->db->get();
-		return $consulta->row();
-
+	   $this->db->select();
+	   $this->db->from($this->tablaRol);
+	   $consulta = $this->db->get();
+	   
+	   return $consulta->result();
 	}
 
-	function BuscarTodasPersonas() {
+	// Aqui comieza las consultas sql de usuario
 
-		$this->db->select();
-		$this->db->from($this->tablaPersona);
+	function insertarUsuario($datosUsuario){
 
-		$consulta = $this->db->get();
-		return $consulta->result();
-		
+		$this->db->insert($this->tablaUsuario, $datosUsuario);
+		return $this->db->insert_id();
 	}
 
-	function insertarPersona($datosPersona){
 
-		$this->db->insert($this->tablaPersona, $datosPersona);
-		return true;
-	}
+		//Función para buscar registros en el campo de busqueda
+		function BuscarDatos($buscar) {
+
+			$this->db->select();
+			$this->db->from($this->tablaUsuario);
+			$this->db->or_like("idUsuario",$buscar);
+			$this->db->or_like("nombre",$buscar);
+			$this->db->or_like("nombreUsuario",$buscar);
+			$this->db->or_like("idRol",$buscar);
+			$this->db->or_like("estado",$buscar);
+			$this->db->order_by('fechaRegistro', 'DESC');
+			$consulta = $this->db->get();
+	
+			if($consulta->num_rows()==0)
+			{
+	
+				$this->session->set_flashdata('busqueda', 'No hay resultados ');
+	
+			}
+			return $consulta->result();
+	
+			
+			
+		}
+
+	
+
 
 	// Aqui comieza las consultas sql para la tabla usuario
 	function BuscarUsuario ($id) {
@@ -62,11 +83,7 @@ public $idUsuarioPK= 'idUsuario';
 	}
 
 	
-	function insertarUsuario($datosUsuario){
 
-		$this->db->insert($this->tablaUsuario, $datosUsuario);
-		return $this->db->insert_id();
-	}
 
 	function buscarTodoPersonaUsuario(){
 		$this->db->select();
