@@ -122,7 +122,7 @@
                           
 
                             <td class="text-right" style="text-align:center;   width: 238px;     ">
-                                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>proveedor/detalle/<?php  ?>">
+                                <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>producto/detalle/<?php echo $d->idProducto; ?><?php  ?>">
                                     <i class="fas fa-eye"></i>
                                     </i>
                                     Ver
@@ -138,7 +138,7 @@
                                 </a>
 
 
-                                <button type="submit" class="btn btn-danger btn-sm"  id="delete" href="borrar/<?php  ?>"
+                                <button type="submit" class="btn btn-danger btn-sm"   data-documento= "<?=$d->idProducto?>" id="deleteProducto" href="borrar/<?php echo $d->idProducto; ?>"
                                     >
                                     <i class="fas fa-trash">
                                     </i>

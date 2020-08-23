@@ -128,13 +128,13 @@
                                         <?php
 
 
-													echo  $valor->descripcion; ?></option>
+													echo  $valor->descripcionMarca; ?></option>
                                     <?php
 												foreach ($marcas as $clave => $valor) : ?>
 
 
                                     <option value=" <?php echo  $valor->idMarca; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionMarca; ?></option>
 
                                     <?php endforeach; ?>
 
@@ -144,7 +144,7 @@
 										foreach ($marcas as $clave => $valor) : ?>
                                     <option value="" selected hidden>-Seleccione una marca-</option>;
                                     <option value=" <?php echo  $valor->idMarca; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionMarca; ?></option>
 
                                     <?php endforeach; ?>
                                     <?php endif ?>
@@ -171,13 +171,13 @@
                                         <?php
 
 
-													echo  $valor->descripcion; ?></option>
+													echo  $valor->descripcionPresentacion; ?></option>
                                     <?php
 												foreach ($presentaciones as $clave => $valor) : ?>
 
 
                                     <option value=" <?php echo  $valor->idPresentacion; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionPresentacion; ?></option>
 
                                     <?php endforeach; ?>
 
@@ -187,7 +187,7 @@
 										foreach ($presentaciones as $clave => $valor) : ?>
                                     <option value="" selected hidden>-Seleccione una presentación-</option>;
                                     <option value=" <?php echo  $valor->idPresentacion; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionPresentacion; ?></option>
 
                                     <?php endforeach; ?>
                                     <?php endif ?>
@@ -232,13 +232,13 @@
                                         <?php
 
 
-													echo  $valor->descripcion; ?></option>
+													echo  $valor->descripcionUnidadmedida; ?></option>
                                     <?php
 												foreach ($unidadesmedidas as $clave => $valor) : ?>
 
 
                                     <option value=" <?php echo  $valor->idUnidadMedida; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
 
                                     <?php endforeach; ?>
 
@@ -248,7 +248,7 @@
 										foreach ($unidadesmedidas as $clave => $valor) : ?>
                                     <option value="" selected hidden>-Seleccione una unidad de medida-</option>;
                                     <option value=" <?php echo  $valor->idUnidadMedida; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
 
                                     <?php endforeach; ?>
                                     <?php endif ?>
@@ -278,9 +278,31 @@
                             <div class="form-group">
                                 <label>Tipo de especie</label> <label style="color: red;"> *</label>
                                 <select class="form-control " style="width: 100%;" name="tipoespecie">
-                                    <option value="" selected="selected">-Seleccione el tipo especie-</option>
-                                    <option value="1" >Canino</option>
-                                    <option value="2" >Felino</option>
+                                <?php if ($unidadMedida != "") : ?>
+                                    <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
+                                    <?php if ($unidadMedida == $valor->idUnidadMedida) : ?>
+
+                                    <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
+                                    <?php echo  $valor->descripcionEspecie; ?></option>
+
+                                    <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
+
+                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                        <?php echo  $valor->descripcionEspecie; ?></option>
+
+                                    <?php endforeach; ?>
+
+                                    <?php endif;  ?>
+                                    <?php endforeach; ?>
+                                    <?php else :
+										foreach ($unidadesmedidas as $clave => $valor) : ?>
+                                    <option value="" selected hidden>-Seleccione una especie-</option>;
+                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                        <?php echo  $valor->descripcionEspecie; ?></option>
+
+                                    <?php endforeach; ?>
+                                    <?php endif ?>
+
                                 </select>
                                 <?php echo form_error('tipoespecie', '<p class="text-danger">', '</p>'); ?>
                             </div>
@@ -370,16 +392,18 @@
                     <!--Inicio del footer del contenido-->
 
 
-                    <div class="card-footer">
 
+                    <div class="text-center card-footer">
 
-                        <button type="submit" id="botonRegistroProducto"
-                            class="btn btn-success col-2">Registrar</button>
-                        <a href="<?php echo base_url(); ?>producto" id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
+                            id="registroProveedor" class="btn btn-success col-2">Registrar</button>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="<?php echo base_url(); ?>producto"
+                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
                     </div>
 
-                    <!--Fin del footer del contenido-->
+
+                </div>// <!--Fin del footer del contenido-->
 
 
 

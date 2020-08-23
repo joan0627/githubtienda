@@ -2,7 +2,7 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="login-dark content-header" style="background: url(../../../tienda/assets/img/fondo.jpg) ; ">
+    <section class="login-dark content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">

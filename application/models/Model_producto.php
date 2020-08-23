@@ -7,6 +7,7 @@ class Model_producto extends Ci_model
 	public $tablaProducto = 'producto';
 	public $tablaCategoria= 'categoria';
 	public $tablaMarca= 'marca';
+	public $tablaEspecieproducto= 'especieproducto';
 	//public $tablaProveedor= 'proveedor'; pendiente para borrar
 	public $tablaUnidadMedida= 'unidadmedida';
 	public $tablaPresentacion= 'presentacion';
@@ -55,7 +56,7 @@ class Model_producto extends Ci_model
 		if($consulta->num_rows()==0)
 		{
 
-			$this->session->set_flashdata('busqueda', 'No hay resultados ');
+			$this->session->set_flashdata('busqueda', 'No hay resultados');
 
 		}
 		return $consulta->result();
@@ -64,11 +65,14 @@ class Model_producto extends Ci_model
 		
 	}
 
-/*
+
 	function buscarDatosProducto($idProducto){
 		$this->db->select();
 		//$this->db->from($this->tablaProveedor);
 		$this->db->join($this->tablaCategoria, 'producto.idCategoria = categoria.idCategoria');
+		$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
+		$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
+		$this->db->join($this->tablaUnidadMedida, 'producto.idUnidadMedida = unidadmedida.idUnidadMedida');
 		$resultado = $this->db->get_where('producto', array('producto.idProducto' => $idProducto), 1);
 
 	
@@ -76,7 +80,16 @@ class Model_producto extends Ci_model
 
 
 	}
-*/
+
+	function borrar($idProducto){
+		$this->db->select();
+		$this->db->from($this->tablaProducto);
+		$this->db->where($this->idProveedorPK,$idProducto);
+		$this->db->delete($this->tablaProducto);
+
+
+	}
+
 
 
 	/*************************************************************/
@@ -88,6 +101,17 @@ function buscarTodasCategorias() {
 
 	$this->db->select();
 	$this->db->from($this->tablaCategoria);
+
+	$consulta = $this->db->get();
+	return $consulta->result();
+	
+}
+
+// Función para buscar todas las especies_Producto
+function buscarTodasEspecies() {
+
+	$this->db->select();
+	$this->db->from($this->tablaEspecieproducto);
 
 	$consulta = $this->db->get();
 	return $consulta->result();

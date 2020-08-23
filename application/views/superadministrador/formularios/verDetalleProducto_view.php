@@ -40,7 +40,8 @@
                             <div class="form-group">
 
                                 <label>Codigo</label> <label style="color: red;"> * </label>
-                                <input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo" value="0001" readonly="readonly">
+                                <input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo" 
+                                value="<?php echo $clave['idProducto']; ?>" readonly="readonly">
                             </div>
 						</div>
 						
@@ -48,178 +49,155 @@
 
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> *</label>
-                                <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" value="Croquetas"  readonly="readonly">
+                                <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" 
+                                value="<?php echo $clave['nombreProducto']; ?>"  readonly="readonly">
                             </div>
                         </div>
                     </div>
                     <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control" rows="2"
+                                    placeholder="Campo vacio ..." name="descripcion"  readonly="readonly"><?php echo $clave['descripcionProducto'];?>
+                                </textarea>
+                            </div>
+                        </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
 							<label>Categoria</label> <label style="color: red;"> *</label>
-                                <select name="categoria" class="form-control"  readonly="readonly">
-
-                                    <option hidden selected>Aseo</option>
-                                    <option value="1">Aseo</option>
-									<option value="2">Alimento</option>
-									<option value="2">Accesorios</option>
-                                </select>
+                            <input name="categoria" type="text" class="form-control" placeholder="Ingrese el nombre" 
+                                value="<?php echo $clave['descripcion']; ?>"  readonly="readonly">
                             </div>
 						</div>
 						
-						<div class="col-md-6">
-                           <div class="form-group">
-						   <label>Marca</label> <label style="color: red;"> *</label>
-                                <select name="marca" class="form-control"  readonly="readonly">
-
-                                    <option hidden selected>Nutrican</option>
-                                    <option value="1">Cipa</option>
-									<option value="2">Nutrican</option>
-									<option value="2">Petis</option>
-									<option value="2">Dog chow</option>
-                                </select>
-                            </div>
-
-                        </div> 
                     </div>
                     <div class="row">
 
                         <div class="col-md-6">
+                           <div class="form-group">
+						   <label>Marca</label> <label style="color: red;"> *</label>
+                           <input name="marca" type="text" class="form-control" placeholder="Ingrese el nombre" 
+                                value="<?php echo $clave['descripcionMarca']; ?>"  readonly="readonly">
+                            </div>
+
+                        </div> 
+
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Existencia</label><label style="color: red;"> * </label>
-                                <input name="marca" type="text" class="form-control"
-                                    placeholder="Ingrese la existencia" value="7"  readonly="readonly" >
+                                <label>Presentación</label><label style="color: red;"> * </label>
+                                <input name="presentacion" type="text" class="form-control"
+                                    placeholder="Ingrese la existencia" value="<?php echo $clave['descripcionPresentacion']; ?>"readonly="readonly" >
                             </div>
 						</div>
-						
-						<div class="col-md-6">
-                            <div class="form-group">
-							<label>Unidad de medida</label>
-                                <select name="unidaDeMedida" class="form-control"  readonly="readonly">
 
-                                    <option hidden selected>Kilogramo</option>
-                                    <option value="1">Gramo</option>
-									<option value="2">Kilogramo</option>
-                                </select>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Valor de medida</label>
                                 <input name="valorDeMedida" type="text" class="form-control"
-                                    placeholder="Ingrese el valor de medida" value="1"  readonly="readonly">
+                                    placeholder="Ingrese el valor de medida" value="<?php echo $clave['valorMedida']; ?>"  readonly="readonly">
                             </div>
 						</div>
-						<div class="col-md-6">
+
+                        <div class="col-md-6">
                             <div class="form-group">
-							<label>Presentación</label><label style="color: red;"> * </label>
-                                <select name="presentacion" class="form-control"  readonly="readonly">
-
-                                    <option hidden selected>Paquete</option>
-                                    <option value="1">Bolsa</option>
-									<option value="2">Paquete</option>
-									<option value="2">Caja</option>
-									<option value="2">Sobre</option> 
-									<option value="2">Bulto</option> 
-                                </select>
+							<label>Unidad de medida</label>
+                            <input name="unidadDeMedida" type="text" class="form-control"
+                                    placeholder="Ingrese el valor de medida" value="<?php echo $clave['descripcionUnidadmedida']; ?>"  readonly="readonly">
                             </div>
-
                         </div>
-
 
                     </div>
 
                     <div class="row">
+
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputFile">Imagen</label> <label style="color: red;">
-                                    * </label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Cargar</span>
-                                    </div>
-                                </div>
+                                <label>Existencia</label><label style="color: red;"> * </label>
+                                <input name="existencia" type="text" class="form-control"
+                                    placeholder="Ingrese la existencia" value="<?php echo $clave['existencia']; ?>"   readonly="readonly" >
                             </div>
 						</div>
-						<div class="col-md-6">
 
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Estado</label> <label style="color: red;"> *</label>
-                                <select name="Estado" class="form-control"  readonly="readonly"> 
+                                <label>Tipo de especie</label><label style="color: red;"> * </label>
+                                <input name="tipoespecie" type="text" class="form-control"
+                                    placeholder="Ingrese la existencia" value="<?php echo $clave['idEspecieProducto']; ?>"   readonly="readonly" >
+                            </div>
+						</div>
 
-                                    <option hidden selected>Activo</option>
-                                    <option value="1">Activo</option>
-									<option value="2">Inactivo</option> 
-                                </select>
+                    
+                    </div>
+                    
+
+                    <div class="row"  >
+                        <div class="col-md-6">
+                            <div class="form-group" >
+
+                                <label>Indicaciones</label> <label style="color: red;"> * </label>
+                                <textarea class="form-control" rows="3"
+                                readonly="readonly" placeholder="Especifique las indicaciones de la vacuna" name="indicaciones"
+                                    ><?php echo $clave['indicaciones']; ?></textarea>
                             </div>
                         </div>
-						
-						
-						<div class="col-md-6">
+
+                        <div class="col-md-6">
+                            <label>Contraindicaciones</label> <label style="color: red;"> * </label>
+                            <textarea class="form-control" rows="3"
+                            readonly="readonly" placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
+                                ><?php echo $clave['contradindicaciones']; ?></textarea>
+                        </div>
+
+                    </div>
+
+                    
+					<div class="row" >
+
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Vista previa de la imagen</label>
-                                <div class="timeline-body">
-                                    <img src="http://placehold.it/250x200" alt="...">
 
-                                </div>
+                                <label>Edad</label> <label style="color: red;"> * </label>
+                                <input class="form-control" rows="3"
+                                readonly="readonly" placeholder="Ingrese el tiempo recomendado" name="edad" value="<?php echo $clave['edadAplicacion']; ?>"></input>
                             </div>
-						</div>
-						
-					</div>
+                        </div>
 
+                        <div class="col-md-6">
+                            <label>Precio de venta</label> <label style="color: red;"> * </label>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna" 
+                                name="precioVenta"  readonly="readonly" value="<?php echo $clave['precio']; ?>">
+                            </div>
+                        </div>
+
+
+                    </div>
 					<hr>
 					
-					<table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Codigo</th>
-                                <th>Precio</th>
-                                <th>Fecha inicio</th>
-								<th>Fecha fin</th>
-								<th>Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>001</td>
-                                <td>10.000</td>
-                                <td>
-                                    <div class="">09/06/2020 8:00 am
-                                        <div class=""></div>
-                                    </div>
-                                </td>
-								<td><span class="text-danger">09/06/2020 1:00 pm</span></td>
-								<td>Se sube el precio por alta demanda.</td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>11.000</td>
-                                <td>
-                                    <div class="">09/06/2020 1:00 pm
-                                        <div class=""></div>
-                                    </div>
-                                </td>
-								<td><span class=""></span></td>
-								<td></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
     
                     <!--Fin del card body-->
 
                     <!--Inicio del footer del contenido-->
-						<br>
-						<a href="listaproductosu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
-		
+                    <div class="text-center card-footer">
 
-                    <!--Fin del footer del contenido-->
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
+                        href="<?php echo base_url(); ?>producto"
+                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+
+                    </div>
+                            
+
+                                        <!--Fin del footer del contenido-->
 
 
 

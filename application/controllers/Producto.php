@@ -79,9 +79,10 @@ class Producto extends CI_controller
 			
 			$datosCarga['categorias'] = $this->Model_producto->buscarTodasCategorias();
 			$datosCarga['marcas'] = $this->Model_producto->buscarTodasMarcas();
-			//$datosCarga['proveedores'] = $this->model_producto->buscarProveedores();
 			$datosCarga['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
 			$datosCarga['presentaciones'] = $this->Model_producto->buscarPresentaciones();
+			$datosCarga['especieproducto'] = $this->Model_producto->buscarTodasEspecies();
+			
 
 			$datosCarga["idProducto"] = $this->input->post("codigo");
 			$datosCarga["nombreProducto"] = $this->input->post("nombre");
@@ -103,7 +104,7 @@ class Producto extends CI_controller
 
 				$datosProducto["idProducto"] = $this->input->post("codigo");
 				$datosProducto["nombreProducto"] = $this->input->post("nombre");
-				$datosProducto["descripcion"] = $this->input->post("descripcion");
+				$datosProducto["descripcionProducto"] = $this->input->post("descripcion");
 				$datosProducto["idCategoria"] = $this->input->post("categoria");
 				$datosProducto["marca"] = $this->input->post("marca");
 				$datosProducto["idPresentacion"] = $this->input->post("presentacion");
@@ -198,37 +199,43 @@ class Producto extends CI_controller
 		
 	}
 
-	public function verDetalleproductosu()
+
+	public function detalle($idProducto = "")
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/verDetalleProducto_view');
-		$this->load->view('layouts/footer');
-		
+
+		if (isset($idProducto)) {
+
+			$resultado = $this->Model_producto->buscarDatosProducto($idProducto);
+
+			$data['clave']= $resultado;
+
+
+			if (isset($resultado)) {
+
+				$this->load->view('layouts/superadministrador/header');
+				$this->load->view('layouts/superadministrador/aside');
+				$this->load->view('superadministrador/formularios/verDetalleProducto_view', $data);
+				$this->load->view('layouts/footer');
+			}
+		}
 	}
 
-	public function precio()
-	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/agregarPrecio_view');
-		$this->load->view('layouts/footer');
-		
-	}
+	public function delete(){
 
-	public function Actualizarprecio()
-	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/actualizarPrecio_view');
-		$this->load->view('layouts/footer');
-		
-	}
-
-
-
-
-	
+		$_idProducto= $this->input->post('idProducto',true);
+		if(empty($_idProducto)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El código no puede ser vacío')));
+		}
+		else
+		{
+			$this->Model_producto->borrar($_idProducto);
+			$this->output
+			->set_status_header(200);
+			
+		}
+	}	
 
 }
 
