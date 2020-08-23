@@ -2,8 +2,8 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 21-08-2020 a las 21:18:11
+-- Servidor: localhost
+-- Tiempo de generación: 23-08-2020 a las 20:48:32
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -135,7 +135,43 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 ('6ddhm701q6q3keq6v4ftfhko4730eaba', '::1', 1598035589, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383033353538393b76616c6f72536573696f6e7c733a353a227065727261223b),
 ('2f12gfvoc58iaaae3tiskh7alk2a6b37', '::1', 1598035896, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383033353839363b76616c6f72536573696f6e7c733a353a227065727261223b),
 ('vh7vhls2ck435ih13clvtbtmssihsjo7', '::1', 1598037156, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383033373135363b76616c6f72536573696f6e7c733a353a227065727261223b),
-('16lb06edr0f45o1cb46h5rq5hp8h8i32', '::1', 1598037275, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383033373135363b76616c6f72536573696f6e7c733a353a227065727261223b);
+('16lb06edr0f45o1cb46h5rq5hp8h8i32', '::1', 1598037275, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383033373135363b76616c6f72536573696f6e7c733a353a227065727261223b),
+('bf144454126fc54b89d54fce12a30cd7e2e1b14d', '::1', 1598040598, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383034303539383b76616c6f72536573696f6e7c733a353a227065727261223b),
+('d3e2dc33bfe523ec6e0ec22804a64930da4ddda8', '::1', 1598040921, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383034303932313b76616c6f72536573696f6e7c733a353a227065727261223b),
+('5b834afc5970ff0384adaad472a5fe5ac7f78487', '::1', 1598041030, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383034303932313b76616c6f72536573696f6e7c733a353a227065727261223b),
+('8ec4d17a9e9a8f32b8a4b0b6c89ee951b0d18070', '::1', 1598056473, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383035363437333b),
+('2b8db5e84030f2462b14d8da715eaf100b625d0b', '::1', 1598075323, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037353332333b),
+('8a0cf28ae878e673606904f0bdc3bdafb3169666', '::1', 1598075630, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037353633303b),
+('9188c5da805cfe482838ce9eb2e1e847641a8189', '::1', 1598076180, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037363138303b),
+('8e963966f1a67b3e3a8b66c8bd697a2d79594341', '::1', 1598076529, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037363532393b),
+('c55c651a7866c4481b512a501991ed3b34259a28', '::1', 1598076859, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037363835393b),
+('f6714a87e39302bda83dbd321dbdf609613e531b', '::1', 1598077193, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037373139333b),
+('d05c775a3c1ead338aa102484083e5514c7cc8be', '::1', 1598077520, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037373532303b),
+('1818288513ccbf18f04fc24aca04a4f3147f2f39', '::1', 1598077856, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037373835363b),
+('7b569f3d76da31bed207156e98c876076f36ba5b', '::1', 1598077893, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383037373835363b),
+('e198f4fc3bcae0e3975722ff5aeefaea6e620087', '::1', 1598154786, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135343738363b),
+('7a1424c25128f798223e8b217a90ed2ea3461e69', '::1', 1598155222, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135353232323b),
+('9501091f652afcfc510514a21b4fe56ad11b14d6', '::1', 1598155525, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135353532353b),
+('f3c515089b1555a4330416cda21007a512a40742', '::1', 1598156599, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135363539393b),
+('16b26b9e7705464c0262c22618dc76a3fde99c73', '::1', 1598157018, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135373031383b),
+('4c34c034d81d8772a105bc4d0c5356ebbc471483', '::1', 1598157416, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135373431363b),
+('42578ba04588acdc455ab5dd0c690a919e064b0e', '::1', 1598157793, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135373739333b),
+('7fe5ac4860e38aeb2e4b5e087ec33fe654714dd0', '::1', 1598158123, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135383132333b),
+('b7b1c33bc47a3a31b3cadd0742987093a92e40a8', '::1', 1598158466, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135383436363b),
+('669fe1c612a840c47ff6d66478acb909ada8ee88', '::1', 1598158876, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135383837363b),
+('b134743e7fba67ab01266fa42a56e793f3273907', '::1', 1598159190, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135393139303b),
+('8e234936811e39272873ea117825011fc2394caf', '::1', 1598159742, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383135393734323b),
+('fb700346e7322176d9af8b2939715002b8a7f151', '::1', 1598160204, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383136303230343b),
+('f3e2d7348bef5271acb4c833c6c5d48a367e5978', '::1', 1598161059, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383136313035393b),
+('887caca12ed6c88b204eb232141388af33171245', '::1', 1598161466, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383136313436363b),
+('1c4557f88a4812e3ba2a50f3bf4b96ef3dc47051', '::1', 1598161925, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383136313932353b),
+('da542a60f1fc409363a2fd382dee387d257090b2', '::1', 1598162879, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383136323837393b),
+('efdd2c1264b12d46eadc70df9a7afbcdccabefd9', '::1', 1598163262, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383136333236323b),
+('2be6fd92111738ebca303daa0dbda191e742d76c', '::1', 1598163505, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383136333236323b),
+('e2f278c588706035e39b648dc44b61d3881c7efb', '::1', 1598205433, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383230353433333b),
+('d14774db3c1fb37e4f5242fd1e088a1f482cb93f', '::1', 1598205775, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383230353737353b),
+('81c7b10781cc4ad83bad18125f77e54da928bc10', '::1', 1598206538, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383230363533383b),
+('004e34649bf57fc4792f6d1bd5efb5103c0da275', '::1', 1598206830, 0x5f5f63695f6c6173745f726567656e65726174657c693a313539383230363533383b);
 
 -- --------------------------------------------------------
 
@@ -198,7 +234,7 @@ CREATE TABLE `contacto` (
 CREATE TABLE `detallecompra` (
   `idDetalleCompra` int(11) NOT NULL,
   `idCompra` int(11) NOT NULL,
-  `idProducto` int(11) NOT NULL,
+  `idProducto` varchar(45) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `costoProducto` int(11) NOT NULL,
   `iva` int(11) NOT NULL
@@ -237,7 +273,7 @@ CREATE TABLE `detalleproveedormarca` (
 CREATE TABLE `detallevacunamascota` (
   `idDetalleVacunaMascota` int(11) NOT NULL,
   `idMascota` int(11) NOT NULL,
-  `idVacuna` int(11) NOT NULL,
+  `idVacuna` varchar(45) NOT NULL,
   `dosis` int(11) NOT NULL,
   `fechaAplicacion` date NOT NULL,
   `fechaProxima` date NOT NULL,
@@ -253,7 +289,7 @@ CREATE TABLE `detallevacunamascota` (
 CREATE TABLE `detalleventaproducto` (
   `idDetalleproductofactura` int(11) NOT NULL,
   `factura` int(11) NOT NULL,
-  `producto` int(11) NOT NULL,
+  `producto` varchar(45) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precioVenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -266,14 +302,14 @@ CREATE TABLE `detalleventaproducto` (
 
 CREATE TABLE `especieproducto` (
   `idEspecieProducto` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
+  `descripcionEspecie` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `especieproducto`
 --
 
-INSERT INTO `especieproducto` (`idEspecieProducto`, `descripcion`) VALUES
+INSERT INTO `especieproducto` (`idEspecieProducto`, `descripcionEspecie`) VALUES
 (1, 'Canino'),
 (2, 'Felino');
 
@@ -329,8 +365,8 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`idMarca`, `descripcionMarca`) VALUES
-(1, 'Zenú'),
-(2, 'Nutrican');
+(1, 'Purina'),
+(2, 'Soya');
 
 -- --------------------------------------------------------
 
@@ -381,14 +417,14 @@ CREATE TABLE `preguntaseguridad` (
 
 CREATE TABLE `presentacion` (
   `idPresentacion` int(11) NOT NULL,
-  `descripcion` varchar(45) DEFAULT NULL
+  `descripcionPresentacion` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `presentacion`
 --
 
-INSERT INTO `presentacion` (`idPresentacion`, `descripcion`) VALUES
+INSERT INTO `presentacion` (`idPresentacion`, `descripcionPresentacion`) VALUES
 (1, 'Caja'),
 (2, 'Paquete');
 
@@ -399,7 +435,7 @@ INSERT INTO `presentacion` (`idPresentacion`, `descripcion`) VALUES
 --
 
 CREATE TABLE `producto` (
-  `idProducto` int(11) NOT NULL,
+  `idProducto` varchar(45) NOT NULL,
   `nombreProducto` varchar(45) NOT NULL,
   `descripcionProducto` varchar(80) DEFAULT NULL,
   `idCategoria` int(11) NOT NULL,
@@ -421,8 +457,9 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `nombreProducto`, `descripcionProducto`, `idCategoria`, `marca`, `idPresentacion`, `valorMedida`, `idUnidadMedida`, `existencia`, `idEspecieProducto`, `indicaciones`, `contradindicaciones`, `edadAplicacion`, `precio`, `fechaRegistro`) VALUES
-(215, 'Zenú S.A', 'wwedw', 1, 1, 1, 0, 1, 787, 1, '7777', '7777', '7 Dia(s)', 5000, '2020-08-21 17:10:40'),
-(1056, 'Concentrado', 'Para perro cachorro', 2, 2, 2, 2, 1, 2, 1, '', '', ' -Seleccione la unidad de tiempo-', 5, '2020-08-21 16:20:15');
+('1056', 'Concentrado', 'Para perro cachorro', 2, 2, 2, 2, 1, 2, 1, '', '', ' -Seleccione la unidad de tiempo-', 5, '2020-08-21 16:20:15'),
+('215', 'Zenú S.A', 'wwedw', 1, 1, 1, 0, 1, 787, 1, '7777', '7777', '7 Dia(s)', 5000, '2020-08-21 17:10:40'),
+('3242', 'Cuidos Medellin', 'cuido', 2, 1, 1, 2, 1, 32, 1, '', '', ' -Seleccione la unidad de tiempo-', 2000, '2020-08-21 20:14:27');
 
 -- --------------------------------------------------------
 
@@ -437,7 +474,7 @@ CREATE TABLE `proveedor` (
   `telefono` varchar(45) NOT NULL,
   `celular` varchar(45) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
-  `correo` varchar(45) NOT NULL,
+  `correo` varchar(120) NOT NULL,
   `nombreContacto` varchar(45) NOT NULL,
   `diaVisita` varchar(45) DEFAULT NULL,
   `observaciones` varchar(80) DEFAULT NULL,
@@ -500,6 +537,16 @@ CREATE TABLE `rol` (
   `idRol` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`idRol`, `descripcion`) VALUES
+(1, 'Administrador'),
+(2, 'Empleado'),
+(3, 'Super Administrador'),
+(4, 'Otro');
 
 -- --------------------------------------------------------
 
@@ -571,14 +618,14 @@ CREATE TABLE `tiposervicio` (
 
 CREATE TABLE `unidadmedida` (
   `idUnidadMedida` int(11) NOT NULL,
-  `descripcion` varchar(45) NOT NULL
+  `descripcionUnidadmedida` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `unidadmedida`
 --
 
-INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcion`) VALUES
+INSERT INTO `unidadmedida` (`idUnidadMedida`, `descripcionUnidadmedida`) VALUES
 (1, 'Kilogramo'),
 (2, 'Gramos');
 
@@ -595,9 +642,16 @@ CREATE TABLE `usuario` (
   `nombreUsuario` varchar(45) NOT NULL,
   `contrasena` varchar(45) NOT NULL,
   `idRol` int(11) NOT NULL,
-  `fechaRegistro` date NOT NULL,
-  `estado` tinyint(4) NOT NULL
+  `fechaRegistro` date NOT NULL DEFAULT current_timestamp(),
+  `estado` int(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `celular`, `nombreUsuario`, `contrasena`, `idRol`, `fechaRegistro`, `estado`) VALUES
+(6, 'Joan Bolivar', '3217576548', 'joan0627', '12345678', 1, '2020-08-23', 1);
 
 -- --------------------------------------------------------
 
@@ -853,7 +907,7 @@ ALTER TABLE `unidadmedida`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`),
-  ADD UNIQUE KEY `contrasena_UNIQUE` (`contrasena`),
+  ADD UNIQUE KEY `nombreUsuario` (`nombreUsuario`),
   ADD KEY `fk_Usuario_Rol1_idx` (`idRol`);
 
 --
@@ -999,7 +1053,7 @@ ALTER TABLE `respuesta`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio`
@@ -1035,7 +1089,7 @@ ALTER TABLE `unidadmedida`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
@@ -1078,7 +1132,7 @@ ALTER TABLE `compras`
 --
 ALTER TABLE `detallecompra`
   ADD CONSTRAINT `fk_DetalleCompra_Compras1` FOREIGN KEY (`idCompra`) REFERENCES `compras` (`idCompras`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_DetalleCompra_Producto1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_DetalleCompra_Producto1` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detallemascotacliente`
@@ -1099,13 +1153,13 @@ ALTER TABLE `detalleproveedormarca`
 --
 ALTER TABLE `detallevacunamascota`
   ADD CONSTRAINT `fk_DetalleVacunaMascota_Mascota` FOREIGN KEY (`idMascota`) REFERENCES `mascota` (`idMascota`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_DetalleVacunaMascota_Producto` FOREIGN KEY (`idVacuna`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_DetalleVacunaMascota_Producto` FOREIGN KEY (`idVacuna`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalleventaproducto`
 --
 ALTER TABLE `detalleventaproducto`
-  ADD CONSTRAINT `Fk_detalleproductofactura_Producto` FOREIGN KEY (`producto`) REFERENCES `producto` (`idProducto`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Fk_detalleproductofactura_Producto` FOREIGN KEY (`producto`) REFERENCES `producto` (`idProducto`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_detalleproductofactura_Factura` FOREIGN KEY (`factura`) REFERENCES `venta` (`idFactura`) ON UPDATE CASCADE;
 
 --
