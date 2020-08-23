@@ -81,7 +81,7 @@ class Producto extends CI_controller
 			$datosCarga['marcas'] = $this->Model_producto->buscarTodasMarcas();
 			$datosCarga['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
 			$datosCarga['presentaciones'] = $this->Model_producto->buscarPresentaciones();
-			$datosCarga['especieproducto'] = $this->Model_producto->buscarTodasEspecies();
+			$datosCarga['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
 			
 
 			$datosCarga["idProducto"] = $this->input->post("codigo");
