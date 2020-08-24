@@ -185,19 +185,51 @@ class Producto extends CI_controller
 	
 	}
 
-
-
-	
-	
-
-	public function actualizarproductosu()
+	public function actualizar($idProducto = "")
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/actualizarProducto_view');
-		$this->load->view('layouts/footer');
-		
+		if($this->form_validation->run())
+		{
+
+
+			$datosProducto["idProducto"] = $this->input->post("codigo");
+			$datosProducto["nombreProducto"] = $this->input->post("nombre");
+			$datosProducto["descripcionProducto"] = $this->input->post("descripcion");
+			$datosProducto["idCategoria"] = $this->input->post("categoria");
+			$datosProducto["marca"] = $this->input->post("marca");
+			$datosProducto["idPresentacion"] = $this->input->post("presentacion");
+			$datosProducto["valorMedida"] = $this->input->post("valorDeMedida");
+			$datosProducto["idUnidadMedida"] = $this->input->post("unidadDeMedida");
+			$datosProducto["existencia"] = $this->input->post("existencia");
+			$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
+			$datosProducto["indicaciones"] = $this->input->post("indicaciones");
+			$datosProducto["contradindicaciones"] = $this->input->post("contraIndicaciones");
+			$Unidadtiempo = $this->input->post("unidadTiempo");
+			$datosProducto["edadAplicacion"] = $this->input->post("edad").' '.$Unidadtiempo; 
+			$datosProducto["precio"] = $this->input->post("precioVenta");
+
+
+			$this->Model_producto->actualizarProducto($idProducto, $datosProducto);
+
+			$this->session->set_flashdata('actualizar', 'El proveedor ' .$datosProducto["nombre"].' se ha actualizado correctamente.');
+
+			redirect("proveedor");
+		}
+		else
+		{
+			$datosProducto1 = $this->Model_producto->buscarDatosProducto($idProducto);
+			 //Esta es la vista que carga los datos de los input
+			 $data['clave']= $datosProducto1;
+
+			 $this->load->view('layouts/superadministrador/header');
+			 $this->load->view('layouts/superadministrador/aside');
+			 $this->load->view('superadministrador/formularios/actualizarProducto_view',$data);
+			 $this->load->view('layouts/footer');
+			 
+		}
+
+
 	}
+
 
 
 	public function detalle($idProducto = "")
