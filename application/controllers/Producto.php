@@ -20,7 +20,7 @@ class Producto extends CI_controller
 
 
 
-		$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[producto.idProducto]');
+		$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[producto.idProducto]|alpha_dash');
 		$this->form_validation->set_rules('nombre', 'nombre', 'required');
 		$this->form_validation->set_rules('categoria', 'categoría', 'required');
 		$this->form_validation->set_rules('marca', 'marca', 'required');
@@ -210,9 +210,9 @@ class Producto extends CI_controller
 
 			$this->Model_producto->actualizarProducto($idProducto, $datosProducto);
 
-			$this->session->set_flashdata('actualizar', 'El proveedor ' .$datosProducto["nombre"].' se ha actualizado correctamente.');
+			$this->session->set_flashdata('actualizar', 'El producto ' .$datosProducto["nombreProducto"].' se ha actualizado correctamente.');
 
-			redirect("proveedor");
+			redirect("producto");
 		}
 		else
 		{
