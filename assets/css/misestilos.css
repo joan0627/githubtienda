@@ -1,0 +1,11 @@
+.badge-administrador {
+	color: #ffffff;
+    background-color: #fd8c00b8;
+    font-size: 85%;
+}
+
+.badge-empleado {
+    color: #ffffff;
+    background-color: #d0d015;
+    font-size: 85%;
+}

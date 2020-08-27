@@ -36,7 +36,7 @@
 
     <!-- Select2 -->
     <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
-  
+
 
 
     <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
@@ -46,7 +46,8 @@
 <!--<link href=" http://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"rel="stylesheet"> -->
    
 
-
+  
+    <link href="<?php echo base_url();?>assets/css/misestilos.css" rel="stylesheet">
 
 </head>
 

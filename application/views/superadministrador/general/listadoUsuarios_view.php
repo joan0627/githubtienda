@@ -88,7 +88,7 @@
                             <th>
                                 Nombre de usuario
                             </th>
-                            <th>
+                            <th class="text-center">
                                 Rol
                             </th>
                             <th>
@@ -116,14 +116,13 @@
                             <td><?php echo  $d->idUsuario;  ?></td>
                             <td><?php echo  $d->nombre; ?></td>
                             <td><?php echo  $d->nombreUsuario; ?></td>
-                            <td>
+                            <td class="text-center">
                                 <?php 
 								if($d->idRol==1)
 								{
-								echo'Administrador';
-
+								echo'<span class="badge badge-administrador">Administrador</span>';
 								}
-								elseif($d->idRol==2) echo 'Empleado';
+								elseif($d->idRol==2)  echo'<span class="badge badge-empleado">Empleado</span>';
 
 							?>
                             </td>
@@ -150,7 +149,7 @@
 
 
 
-                                <a class="btn btn-info btn-sm" href="actualizarusuariosu/<?php  echo $d->idUsuario;?>">
+                                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>usuario/actualizar/<?php echo $d->idUsuario; ?>">
 
                                     <?php
 
@@ -213,3 +212,19 @@
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+
+
+<?php if ($this->session->flashdata('message')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>

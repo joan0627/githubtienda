@@ -31,6 +31,14 @@ class model_usuario extends Ci_model {
 		return $this->db->insert_id();
 	}
 
+		//Función para Actualizar un usuario
+		function actualizarUsuario($idUsuario, $datosUsuario)
+		{
+		
+			$this->db->where($this->idUsuarioPK ,$idUsuario);
+			$this->db->update($this->tablaUsuario, $datosUsuario);
+		}
+
 
 		//Función para buscar registros en el campo de busqueda
 		function BuscarDatos($buscar) {
@@ -57,6 +65,19 @@ class model_usuario extends Ci_model {
 			
 		}
 
+			// Función para llamar los datos de detalle de la tabla proveedor
+
+	function buscarDatosUsuario($idUsuario){
+		$this->db->select();
+		//$this->db->from($this->tablaProveedor);
+		$this->db->join($this->tablaRol, 'usuario.idRol = rol.idRol');
+		$resultado = $this->db->get_where('usuario', array('usuario.idUsuario' => $idUsuario), 1);
+
+		
+		return $resultado->row_array();
+
+	}
+
 	
 
 
@@ -82,48 +103,8 @@ class model_usuario extends Ci_model {
 		
 	}
 
-	
 
 
-	function buscarTodoPersonaUsuario(){
-		$this->db->select();
-		$this->db->from($this->tablaPersona);
-		$this->db->join($this->tablaTipoDocumento, 'persona.tipoDocumento = tipodocumento.idTipoDocumento');
-		$this->db->join($this->tablaUsuario, 'persona.documento = usuario.personaDocumento');
-		$this->db->join($this->tablaTipoPersona, 'persona.tipoPersona = tipopersona.idTipoPersona');
-		$resultado = $this->db->get();
-		
-		return $resultado->result();
-
-
-	}
-
-	function buscarPersonaUsuario($documento){
-		$this->db->select();
-		//$this->db->from($this->tablaPersona);
-		$this->db->join($this->tablaTipoDocumento, 'persona.tipoDocumento = tipodocumento.idTipoDocumento');
-		$this->db->join($this->tablaUsuario, 'persona.documento = usuario.personaDocumento');
-		$this->db->join($this->tablaTipoPersona, 'persona.tipoPersona = tipopersona.idTipoPersona');
-		$resultado = $this->db->get_where('persona', array('persona.documento' => $documento),1);
-		
-		return $resultado->row_array();
-
-	}
-
-
-	function actualizarPersona($documento, $datosPersona){
-		//$this->db->join($this->tablaUsuario, 'persona.documento = usuario.personaDocumento');
-		$this->db->where($this->documentoPK	,$documento);
-		$this->db->update($this->tablaPersona, $datosPersona);	
-
-	}
-
-	function actualizarUsuario($id, $datosUsuario){
-		$this->db->where($this->personaDocumento,$id);
-		$this->db->update($this->tablaUsuario, $datosUsuario);
-
-		
-	}
 
 	function borrar($documento){
 		$this->db->select();
