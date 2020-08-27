@@ -40,7 +40,7 @@
 
 							<div class="form-group">
 								<label>Id</label>
-								<input readonly="readonly" name="id" type="text" class="form-control" placeholder="Ninguno" value="<?php echo $clave['celular']; ?>">
+								<input readonly="readonly" name="id" type="text" class="form-control" placeholder="Ninguno" value="<?php echo $clave['idUsuario']; ?>">
 							</div>
 
 						</div>
@@ -73,7 +73,7 @@
 
 							<div class="form-group">
 								<label>Nombre de usuario</label>
-								<input name="username" type="text" class="form-control " placeholder="Ingrese el nombre de usuario" value="<?php echo $clave['username']; ?>">
+								<input name="username" type="text" class="form-control " placeholder="Ingrese el nombre de usuario" value="<?php echo $clave['nombreUsuario']; ?>">
 							</div>
 
 						</div>
@@ -87,9 +87,9 @@
 								<label>Rol</label>
 								<select name="rol" class="form-control">
 
-									<option value="<?php echo ($clave['rol']) ?>">
+									<option value="<?php echo ($clave['idRol']) ?>">
 										<?php
-										switch ($clave['rol']) {
+										switch ($clave['idRol']) {
 											case 1:
 												echo "Administrador";
 

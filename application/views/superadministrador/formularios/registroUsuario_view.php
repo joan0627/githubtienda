@@ -153,8 +153,8 @@
 					<!--Inicio del footer del contenido-->
 					<div class="text-center card-footer">
 
-						<button  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="botonRegistroUsuario" class="btn btn-success col-2"><img src="<?php echo base_url(); ?>assets/img/iconos/icons8-save-100.png">Registrar</button>
-						<a  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url(); ?>usuario" class="btn btn-success col-2">Atrás</a>
+						<button  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="botonRegistroUsuario" class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>
+						<a  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url(); ?>usuario" class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 					</div>
 					<!--Fin del footer del contenido-->
 				</div>

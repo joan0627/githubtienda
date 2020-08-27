@@ -10,7 +10,7 @@ class Usuario extends CI_controller
 		$this->load->database();
 		$this->load->helper("url");
 		$this->load->library('form_validation');
-
+		$this->load->library('session');
 
 
 		//Validaciones para los campos de la tabla Persona
@@ -58,11 +58,15 @@ class Usuario extends CI_controller
 			$datosUsuario["nombre"] = $this->input->post("nombre");
 			$datosUsuario["celular"] = $this->input->post("celular");
 			$datosUsuario["nombreUsuario"] = $this->input->post("username");
-			$datosUsuario["contrasena"] = $this->input->post("contrasena");
+			$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
+			
 			$datosUsuario["idRol"] = $this->input->post("rol");
 
 			$this->Model_usuario->insertarUsuario($datosUsuario);
-			//redirect("usuario");
+
+			$this->session->set_flashdata('message', 'El usuario ' .$datosUsuario["nombreUsuario"].' se ha registrado correctamente.');
+
+			redirect("usuario");
 		}
 		else
 		{
@@ -89,55 +93,39 @@ class Usuario extends CI_controller
 
 	}
 
-	public function actualizarusuariosu($documento = "")
+
+	public function actualizar($idUsuario = "")
 	{
+		if($this->form_validation->run())
+		{
+			$datosUsuario["nombre"] = $this->input->post("nombre");
+			$datosUsuario["celular"] = $this->input->post("celular");
+			$datosUsuario["nombreUsuario"] = $this->input->post("username");
+			$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
 
-		if (isset($documento)) {
+			$this->Model_usuario->actualizarUsuario($idUsuario, $datosUsuario);
 
-			$resultado = $this->model_usuario->buscarPersonaUsuario($documento);
+			$this->session->set_flashdata('actualizar', 'El usuario ' .$datosUsuario["nombreUsuario"].' se ha actualizado correctamente.');
 
-
-			if (isset($resultado)) {
-
-				$this->load->view('layouts/superadministrador/header');
-				$this->load->view('layouts/superadministrador/aside');
-				$this->load->view('superadministrador/formularios/actualizarUsuario_view', array('clave' => $resultado));
-				$this->load->view('layouts/footer');
-
-				//$this->model_usuario->actualizarPersona($idUsuario, $data);
-
-			} else {
-				$this->load->view('layouts/superadministrador/header');
-				$this->load->view('layouts/aside');
-				$this->load->view('errors/pagina404_view');
-				$this->load->view('layouts/footer');
-
-				//Hacer esta validacion
-
-
-			}
+			redirect("usuario");
 		}
+		else
+		{
+			$datosUsuario1 = $this->Model_usuario->buscarDatosUsuario($idUsuario);
+			 //Esta es la vista que carga los datos de los input
+			 $data['clave']= $datosUsuario1;
 
-		if ($this->input->server("REQUEST_METHOD") == "POST") {
-
-
-
-			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["celular"] = $this->input->post("celular");
-
-
-			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
-			$datosUsuario["username"] = $this->input->post("username");
-			$datosUsuario["rol"] = $this->input->post("rol");
-			$datosUsuario["estado"] = $this->input->post("estado");
-
-			if (isset($documento)) {
-				$this->model_usuario->actualizarPersona($documento, $datosPersona);
-				$this->model_usuario->actualizarUsuario($documento, $datosUsuario);
-				redirect("usuario/listausuariosu");
-			}
+			 $this->load->view('layouts/superadministrador/header');
+			 $this->load->view('layouts/superadministrador/aside');
+			 $this->load->view('superadministrador/formularios/actualizarUsuario_view',$data);
+			 $this->load->view('layouts/footer');
 		}
+		
+
 	}
+
+
+	
 
 
 	public function verdetalleusuariosu($documento = "")
