@@ -11,8 +11,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="#">Producto</a></li>
+                        <li class="breadcrumb-item active">Actualizar</li>
                     </ol>
                 </div>
             </div>
@@ -50,8 +50,10 @@
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> *</label>
                                 <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
-                                    value="NutreCan Croquetas">
+                                value="<?php if(isset($_POST['nombre'])){ echo $_POST['nombre']; }else{ echo $clave['nombreProducto']; } ?>">
+                                <?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="row">
@@ -150,99 +152,22 @@
 
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputFile">Imagen</label> <label style="color: red;">
-                                    * </label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Cargar</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Vista previa de la imagen</label>
-                                <div class="timeline-body">
-                                    <img src="http://placehold.it/250x200" alt="...">
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <a href="<?php echo base_url();?>producto/Actualizarprecio" id=""
-                        class=" btn btn-success">Actualizar
-                        precio</a>
-                    <hr>
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Codigo</th>
-                                <th>Precio</th>
-                                <th>Fecha inicio</th>
-                                <th>Fecha fin</th>
-                                <th>Motivo del cambio</th>
-                                <th class="text-center">Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>001</td>
-                                <td>10.000</td>
-                                <td>
-                                    <div class="">09/06/2020 8:00 am
-                                        <div class=""></div>
-                                    </div>
-                                </td>
-                                <td><span class="text-danger">09/06/2020 1:00 pm</span></td>
-                                <td>Se sube el precio por alta demanda.</td>
-                                <td class="text-center"><span class="badge badge-danger">Caducado</span></td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>11.000</td>
-                                <td>
-                                    <div class="">09/06/2020 1:00 pm
-                                        <div class=""></div>
-                                    </div>
-                                </td>
-                                <td><span class=""></span></td>
-                                <td></td>
-                                <td class="text-center"><span class="badge badge-success">Vigente</span></td>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-
                     <!--Fin del card body-->
 
                     <!--Inicio del footer del contenido-->
-                    <div class="card-footer">
+                <br>
+                <div class="text-center card-footer">
 
 
 
+                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
+                            id="botonActualizarProducto" class="btn btn-success col-2">Actualizar</button>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
+						href="<?php echo base_url(); ?>producto"
+                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
-                        <br>
 
-                        <button type="submit" id="botonRegistroUsuario"
-                            class="btn btn-success col-2">Actualizar</button>
-                        <a href="listaproductosu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
-
-
-                    </div>
-
+                </div>
                     <!--Fin del footer del contenido-->
 
 

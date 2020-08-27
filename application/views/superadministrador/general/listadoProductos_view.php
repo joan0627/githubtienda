@@ -118,7 +118,7 @@
                             <td><?php echo  $d->descripcion;?></td>
                             <td><?php echo  $d->descripcionMarca;?></td>
                             <td><?php echo  $d->existencia;?></td>                       
-                            <td><?php echo  $d->precio;?></td>
+                            <td><?php echo "<label style='color:green; '>$$d->precio</label>"?></td>
                           
 
                             <td class="text-right" style="text-align:center;   width: 238px;     ">
@@ -130,7 +130,7 @@
 
 
 
-                                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>proveedor/actualizar/<?php  ?>">
+                                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>producto/actualizar/<?php echo $d->idProducto; ?>">
 
                                     <i class="fas fa-pencil-alt">
                                     </i>

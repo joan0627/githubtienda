@@ -278,16 +278,16 @@
                             <div class="form-group">
                                 <label>Tipo de especie</label> <label style="color: red;"> *</label>
                                 <select class="form-control " style="width: 100%;" name="tipoespecie">
-                                <?php if ($unidadMedida != "") : ?>
-                                    <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
-                                    <?php if ($unidadMedida == $valor->idUnidadMedida) : ?>
+                                <?php if ($especieproducto != "") : ?>
+                                    <?php foreach ($especieproductos as $clave => $valor) : ?>
+                                    <?php if ($especieproducto == $valor->idEspecieProducto) : ?>
 
-                                    <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
+                                    <option hidden value=" <?php echo  $valor->idEspecieProducto; ?>" selected>
                                     <?php echo  $valor->descripcionEspecie; ?></option>
 
-                                    <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
+                                    <?php foreach ($especieproductos as $clave => $valor) : ?>
 
-                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                    <option value=" <?php echo  $valor->idEspecieProducto; ?>">
                                         <?php echo  $valor->descripcionEspecie; ?></option>
 
                                     <?php endforeach; ?>
@@ -295,9 +295,9 @@
                                     <?php endif;  ?>
                                     <?php endforeach; ?>
                                     <?php else :
-										foreach ($unidadesmedidas as $clave => $valor) : ?>
+										foreach ($especieproductos as $clave => $valor) : ?>
                                     <option value="" selected hidden>-Seleccione una especie-</option>;
-                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                    <option value=" <?php echo  $valor->idEspecieProducto; ?>">
                                         <?php echo  $valor->descripcionEspecie; ?></option>
 
                                     <?php endforeach; ?>

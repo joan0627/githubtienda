@@ -79,82 +79,172 @@
 
 })();
 
-// Función para dehabilitar campos segun el select que seleccione.
-/*
-function habilitar(objecto) {
-	var hab;
-	frm=objecto.form;
 
-	frm.edad.disabled = false;
-	frm.unidadTiempo.disabled = false;
-	frm.indicaciones.disabled = false;
-	frm.contraIndicaciones.disabled = false;
-	 
-	num=objecto.selectedIndex;
+	/*****************************************************************************/
+	// ** Código para la funcion eliminar un producto utilizando sweetalert 2 // **
+	/*****************************************************************************/
+
+
+
+	(function () {
+
+		$("tr td #deleteProducto").click(function (ev) {
+			ev.preventDefault();
+			var nombreProducto = $(this).parents('tr').find('td:eq(1)').text();
+			var idProducto = $(this).attr('data-documento');
+			var self = this;
 	
-		if (num==1) hab=true;
-
-		else if (num==3) hab=false;
-		
-		else if (num==5) hab=true;
-
-		else if (num==7) hab=true;
-		frm.edad.disabled=hab;
-		frm.unidadTiempo.disabled=hab;
-		frm.indicaciones.disabled=hab;
-		frm.contraIndicaciones.disabled=hab;
+			Swal.fire({
 	
-
-
-  }
-  
-
-$(document).ready(function(){
-    $('categoria').on('change', function() {
-		var ValorSelect = 0;
-		$("indicaciones").show()
-
-	  });
-});
-*/
-
-
-$(document).ready(function() {
-	console.log("Este es el valor :"+$valor);
-
-	$( "#categoria" ).click(function() {
-
-		var $valor=$(this).val()
-		if($valor==1	)
-	{
-		
-		
-				$('#divIndicaciones').show();
-				$('#divcontraindicaciones').show();
-				$('#divEdad').show();
-				$('#divUnidadTiempo').show()
+				title: '¡Atención!',
+				text: "¿Estás seguro que deseas eliminar el producto "+nombreProducto+" ?",
+				type: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#28a745',
+				cancelButtonColor: '#28a745',
+				confirmButtonText: 'Si',
+				cancelButtonText: 'No'
+			}).then((result) => {
 	
-			}
-			else
-			{
-				$('#divIndicaciones').hide();
-				$('#divcontraindicaciones').hide();
-				$('#divEdad').hide();
-				$('#divUnidadTiempo').hide();
-
-			}
+				if (result.value) {
+	
+	
+					$.ajax({
+						type: 'POST',
+						url: '/tienda/producto/deleteProducto',
+						data: { 'idProducto': idProducto },
+						success: function () {
+							$(self).parents('tr').remove();
+							Swal.fire(
+								{	
+	
+								title: '¡Proceso completado!',
+								text: "El producto "+nombreProducto+" ha sido eliminado exitosamente.",
+								type: 'success',
+								confirmButtonColor: '#28a745',
+									
+								}
+							
+										   
+							)
+	
+						},
+						error: function () {
+							Swal.fire(
+								{
+									
+									title: '¡Proceso no completado!',
+									text: "El producto "+nombreProducto+" no se puede eliminar, ya que esta asociado a otro proceso.",
+									type: 'warning',
+									confirmButtonColor: '#28a745',
+								}
+								
+										   
+							)
+						},
+						 statusCode: {
+							400: function (data) {
+								var json = JSON.parse(data.responseText);
+								Swal.fire(
+									'¡Error!',
+									json.msg,
+									'error'
+								)
+	
+							}
+						}
+					})
+	
+	
+	
+				}
+			})
+		});
+	
+	
+	})();
+	
+	// Función para dehabilitar campos segun el select que seleccione.
+	/*
+	function habilitar(objecto) {
+		var hab;
+		frm=objecto.form;
+	
+		frm.edad.disabled = false;
+		frm.unidadTiempo.disabled = false;
+		frm.indicaciones.disabled = false;
+		frm.contraIndicaciones.disabled = false;
+		 
+		num=objecto.selectedIndex;
+		
+			if (num==1) hab=true;
+	
+			else if (num==3) hab=false;
 			
+			else if (num==5) hab=true;
+	
+			else if (num==7) hab=true;
+			frm.edad.disabled=hab;
+			frm.unidadTiempo.disabled=hab;
+			frm.indicaciones.disabled=hab;
+			frm.contraIndicaciones.disabled=hab;
 		
-	  });
 	
 	
-
-
+	  }
+	  
+	
+	$(document).ready(function(){
+		$('categoria').on('change', function() {
+			var ValorSelect = 0;
+			$("indicaciones").show()
+	
+		  });
+	});
+	*/
 	
 	
-
-});
-
-
-
-
+	$(document).ready(function(){
+		if(localStorage.getItem('clave') != 1){
+	
+				$("#divIndicaciones").hide();
+				$("#divcontraindicaciones").hide();
+				$("#divEdad").hide();
+				$("#divUnidadTiempo").hide();
+				
+		}
+				
+			
+		$('#categoria').on('change',function(){
+	
+			var Valor = $(this).val();
+			localStorage.setItem('clave',Valor);
+		
+		console.log(localStorage.getItem('clave',Valor));
+		
+			 if( localStorage.getItem('clave') ==1){
+				 console.log('Estoy dentro oh me vengo');
+				$('#divIndicaciones').show();
+				$("#divIndicaciones").show();
+				$("#divcontraindicaciones").show();
+				$("#divEdad").show();
+				$("#divUnidadTiempo").show();
+				
+				
+	
+			}else {
+				$("#divIndicaciones").hide();
+				$("#divcontraindicaciones").hide();
+				$("#divEdad").hide();
+				$("#divUnidadTiempo").hide();
+			
+				//alert('esta es la opcion 2')
+			}
+		
+			
+		});
+	
+	
+	});
+	
+	

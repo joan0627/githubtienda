@@ -81,6 +81,16 @@ class Model_producto extends Ci_model
 
 	}
 
+// Función para un producto 
+	function actualizarProducto($idProducto, $datosProducto){
+		
+		$this->db->where($this->ProductoPK ,$idProducto);
+		$this->db->update($this->tablaProducto, $datosProducto);
+	}
+
+
+
+// Función para eliminar un producto 
 	function borrar($idProducto){
 		$this->db->select();
 		$this->db->from($this->tablaProducto);
