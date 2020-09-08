@@ -11,8 +11,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="#">Producto</a></li>
+                        <li class="breadcrumb-item active">Detalle</li>
                     </ol>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Codigo</label> <label style="color: red;"> * </label>
+                                <label>Codigo</label>
                                 <input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo" 
                                 value="<?php echo $clave['idProducto']; ?>" readonly="readonly">
                             </div>
@@ -48,7 +48,7 @@
 						<div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Nombre</label> <label style="color: red;"> *</label>
+                                <label>Nombre</label>
                                 <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre" 
                                 value="<?php echo $clave['nombreProducto']; ?>"  readonly="readonly">
                             </div>
@@ -67,7 +67,7 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-							<label>Categoria</label> <label style="color: red;"> *</label>
+							<label>Categoria</label>
                             <input name="categoria" type="text" class="form-control" placeholder="Ingrese el nombre" 
                                 value="<?php echo $clave['descripcion']; ?>"  readonly="readonly">
                             </div>
@@ -78,7 +78,7 @@
 
                         <div class="col-md-6">
                            <div class="form-group">
-						   <label>Marca</label> <label style="color: red;"> *</label>
+						   <label>Marca</label>
                            <input name="marca" type="text" class="form-control" placeholder="Ingrese el nombre" 
                                 value="<?php echo $clave['descripcionMarca']; ?>"  readonly="readonly">
                             </div>
@@ -87,7 +87,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Presentación</label><label style="color: red;"> * </label>
+                                <label>Presentación</label>
                                 <input name="presentacion" type="text" class="form-control"
                                     placeholder="Ingrese la existencia" value="<?php echo $clave['descripcionPresentacion']; ?>"readonly="readonly" >
                             </div>
@@ -117,7 +117,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Existencia</label><label style="color: red;"> * </label>
+                                <label>Existencia</label>
                                 <input name="existencia" type="text" class="form-control"
                                     placeholder="Ingrese la existencia" value="<?php echo $clave['existencia']; ?>"   readonly="readonly" >
                             </div>
@@ -125,7 +125,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Tipo de especie</label><label style="color: red;"> * </label>
+                                <label>Tipo de especie</label>
                                 <input name="tipoespecie" type="text" class="form-control"
                                     placeholder="Ingrese la existencia" value="<?php echo $clave['idEspecieProducto']; ?>"   readonly="readonly" >
                             </div>
@@ -139,7 +139,7 @@
                         <div class="col-md-6">
                             <div class="form-group" >
 
-                                <label>Indicaciones</label> <label style="color: red;"> * </label>
+                                <label>Indicaciones</label>
                                 <textarea class="form-control" rows="3"
                                 readonly="readonly" placeholder="Especifique las indicaciones de la vacuna" name="indicaciones"
                                     ><?php echo $clave['indicaciones']; ?></textarea>
@@ -147,7 +147,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label>Contraindicaciones</label> <label style="color: red;"> * </label>
+                            <label>Contraindicaciones</label>
                             <textarea class="form-control" rows="3"
                             readonly="readonly" placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
                                 ><?php echo $clave['contradindicaciones']; ?></textarea>
@@ -161,14 +161,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Edad</label> <label style="color: red;"> * </label>
+                                <label>Edad</label>
                                 <input class="form-control" rows="3"
                                 readonly="readonly" placeholder="Ingrese el tiempo recomendado" name="edad" value="<?php echo $clave['edadAplicacion']; ?>"></input>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label>Precio de venta</label> <label style="color: red;"> * </label>
+                            <label>Precio de venta</label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">

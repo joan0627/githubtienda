@@ -28,10 +28,16 @@ class Producto extends CI_controller
 		$this->form_validation->set_rules('unidadDeMedida', 'unidad de medida', 'required');
 		$this->form_validation->set_rules('valorDeMedida', 'valor de medida', 'required');
 		$this->form_validation->set_rules('presentacion', 'presentación', 'required');
-
 		$this->form_validation->set_rules('tipoespecie', 'tipo especie', 'required');
 		$this->form_validation->set_rules('valorDeMedida', 'valor de medida', 'required');
 		$this->form_validation->set_rules('presentacion', 'presentación', 'required');
+		$this->form_validation->set_rules('precioVenta', 'precio de venta', 'required');
+
+		/*$this->form_validation->set_rules('indicaciones', 'indicaciones', 'required');
+		$this->form_validation->set_rules('contraIndicaciones', 'contraindicaciones', 'required');
+		$this->form_validation->set_rules('edad', 'edad', 'required');
+		$this->form_validation->set_rules('unidadTiempo', 'unidad de tiempo', 'required');*/
+	
 
 	
 
@@ -76,14 +82,14 @@ class Producto extends CI_controller
 			$datosCarga["edadAplicacion"] = $datosCarga["precio"] = "";
 
 			
-			
+			//Arreglo para recorrer y buscar los select "Tablas fuertes"
 			$datosCarga['categorias'] = $this->Model_producto->buscarTodasCategorias();
 			$datosCarga['marcas'] = $this->Model_producto->buscarTodasMarcas();
 			$datosCarga['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
 			$datosCarga['presentaciones'] = $this->Model_producto->buscarPresentaciones();
 			$datosCarga['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
 			
-
+			//Datos carga en general
 			$datosCarga["idProducto"] = $this->input->post("codigo");
 			$datosCarga["nombreProducto"] = $this->input->post("nombre");
 			$datosCarga["descripcionProducto"] = $this->input->post("descripcion");
@@ -92,9 +98,18 @@ class Producto extends CI_controller
 			$datosCarga["unidadMedida"] = $this->input->post("unidadDeMedida");
 			$datosCarga["valorMedida"] = $this->input->post("valorDeMedida");
 			$datosCarga["presentacion"] = $this->input->post("presentacion");
+			$datosCarga["existencia"] = $this->input->post("existencia");
+			$datosCarga["especieproducto"] = $this->input->post("tipoespecie");
 			$datosCarga["precio"] = $this->input->post("precioVenta");
 
+			//Datos carga del select Vacuna
+			$datosCarga["indicaciones"] = $this->input->post("indicaciones");
+			$datosCarga["contradindicaciones"] = $this->input->post("contraIndicaciones");
+			$datosCarga["edad"] = $this->input->post("edad");
+			$datosCarga["edadAplicacion"] = $this->input->post("unidadTiempo");
+
 			
+			//var_dump($datosCarga["edadAplicacion"],$datosCarga["edad"]);
 
 			/*************************************************************/
 			// **			Validaciónn de los campos					**// 
@@ -114,7 +129,7 @@ class Producto extends CI_controller
 				$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
 				$datosProducto["indicaciones"] = $this->input->post("indicaciones");
 				$datosProducto["contradindicaciones"] = $this->input->post("contraIndicaciones");
-				//Se concatena edad con unidad de tiepo
+				//Se concatena edad con unidad de tiempo
 				$Unidadtiempo = $this->input->post("unidadTiempo");
 				//
 				$datosProducto["edadAplicacion"] = $this->input->post("edad").' '.$Unidadtiempo; 
@@ -187,6 +202,7 @@ class Producto extends CI_controller
 
 	public function actualizar($idProducto = "")
 	{
+
 		if($this->form_validation->run())
 		{
 
@@ -216,9 +232,20 @@ class Producto extends CI_controller
 		}
 		else
 		{
-			$datosProducto1 = $this->Model_producto->buscarDatosProducto($idProducto);
+			
+
+  			$datosProducto1 = $this->Model_producto->buscarDatosProducto($idProducto);
 			 //Esta es la vista que carga los datos de los input
 			 $data['clave']= $datosProducto1;
+
+			 //Arreglo para recorrer y buscar los select "Tablas fuertes"
+			 $data['categorias'] = $this->Model_producto->buscarTodasCategorias();
+			 $data['marcas'] = $this->Model_producto->buscarTodasMarcas();
+			 $data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
+			 $data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
+			 $data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
+	 
+			 
 
 			 $this->load->view('layouts/superadministrador/header');
 			 $this->load->view('layouts/superadministrador/aside');
