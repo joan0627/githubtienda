@@ -36,7 +36,6 @@ class Model_producto extends Ci_model
 		 return $this->db->insert_id();
 	}
 
-
 	//Función para buscar registros en el campo de busqueda
 	function BuscarDatos($buscar) {
 
@@ -64,6 +63,7 @@ class Model_producto extends Ci_model
 		
 		
 	}
+ 
 
 
 	function buscarDatosProducto($idProducto){
@@ -96,8 +96,6 @@ class Model_producto extends Ci_model
 		$this->db->from($this->tablaProducto);
 		$this->db->where($this->idProveedorPK,$idProducto);
 		$this->db->delete($this->tablaProducto);
-
-
 	}
 
 
