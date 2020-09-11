@@ -106,7 +106,7 @@
 							<td><?php echo  $d->idServicio;?></td>
 							<td><?php echo  $d->nombreServicio;?></td>
 							<td><?php echo  $d->descripcionTipoServicio;?></td>
-							<td><?php echo  $d->descripcion;?></td>
+							<td style="width:310px;"><?php echo  $d->descripcion;?></td>
 							<td style="color:green; "><label><?php echo  $d->precio;?></label></td>
 								
 

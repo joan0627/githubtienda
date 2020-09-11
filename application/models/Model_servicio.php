@@ -74,6 +74,13 @@ class Model_servicio extends Ci_model
 
 	}
 
+	function borrar($idServicio){
+		$this->db->select();
+		$this->db->from($this->tablaServicio);
+		$this->db->where($this->ServicioPK,$idServicio);
+		$this->db->delete($this->tablaServicio);
+	}
+
 
 
 }
