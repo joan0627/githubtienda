@@ -27,11 +27,11 @@
 
                             <input name="buscar" type="text" class="form-control">
                             <span class="input-group-btn">
-                                <button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
+                                <button class="btn bg-primary" type="submit"><i class="fas fa-search"></i></button>
 							</span>
      					
                             <span class="col-auto input-group-btn">
-                                <a type="button" role="link" class="btn bg-gray" onclick="location.href='proveedor';"><i class="fas fa-sync-alt"></i></a>
+                                <a type="button" role="link" class="btn bg-success" onclick="location.href='proveedor';"><i class="fas fa-sync-alt"></i></a>
 
                             </span>
 

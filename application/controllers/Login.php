@@ -15,7 +15,7 @@ public function __construct()
 	{
 		if($this->session->userdata('login'))
 		{
-			redirect(base_url().'inicio/principalsuper');
+			redirect(base_url().'inicio');
 			
 			//redirect(base_url().'pruebas');
 

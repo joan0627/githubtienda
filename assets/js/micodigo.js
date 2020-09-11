@@ -1,4 +1,8 @@
 
+$(document).ready(function() {
+	$('#selectproveedor').select2();
+	theme:'bootsratp4';
+});
 
 /* Código para la funcion eliminar utilizando sweetalert 2 */
 (function () {

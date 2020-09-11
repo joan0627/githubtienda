@@ -25,39 +25,9 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3">
+             
 
-                    <!-- Profile Image -->
-                    <div class="card card-primary card-outline">
-                        <div class="card-body box-profile">
-                            <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle"
-                                    src="<?php echo base_url()?>assets/img/avatarjoan.jpg"
-                                    alt="User profile picture">
-                            </div>
-
-                            <h3 class="profile-username text-center">Joan Bolivar</h3>
-
-                            <p class="text-muted text-center">Super Administrador</p>
-
-
-
-							
-
-
-
-							<a href="#" class="btn 	btn-outline-info btn-block"><i style="color:#fff; border-radius:50%; font-size:25px; width: 40px; height: 40px; line-height: 40px;position: relative;"class="fa fa-camera bg-info"></i></a>
-							
-                            <a href="#" class="btn btn-outline-danger btn-block"><b>Eliminar</b></a>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-
-
-                </div>
-
-                <div class="col-md-9">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills ">

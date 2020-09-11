@@ -73,7 +73,7 @@
 
 							<div class="form-group">
 								<label>Nombre de usuario</label>
-								<input name="username" type="text" class="form-control " placeholder="Ingrese el nombre de usuario" value="<?php echo $clave['nombreUsuario']; ?>">
+								<input name="username" type="text" class="form-control " placeholder="Ingrese el nombre de usuario"  value="<?php echo $clave['nombreUsuario']; ?>">
 							</div>
 
 						</div>

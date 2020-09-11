@@ -31,14 +31,7 @@ class model_usuario extends Ci_model {
 		return $this->db->insert_id();
 	}
 
-		//Función para Actualizar un usuario
-		function actualizarUsuario($idUsuario, $datosUsuario)
-		{
-		
-			$this->db->where($this->idUsuarioPK ,$idUsuario);
-			$this->db->update($this->tablaUsuario, $datosUsuario);
-		}
-
+	
 
 		//Función para buscar registros en el campo de busqueda
 		function BuscarDatos($buscar) {
@@ -77,6 +70,14 @@ class model_usuario extends Ci_model {
 		return $resultado->row_array();
 
 	}
+
+		//Función para Actualizar un usuario
+		function actualizarUsuario($idUsuario, $datosUsuario)
+		{
+		
+			$this->db->where($this->idUsuarioPK ,$idUsuario);
+			$this->db->update($this->tablaUsuario, $datosUsuario);
+		}
 
 	
 

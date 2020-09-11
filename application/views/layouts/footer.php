@@ -38,30 +38,20 @@
 
 <script src="<?php echo base_url(); ?>assets/plugins/datatables.net/js/jquery.dataTables.js"></script>
 
-<!-- Select2 -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.full.min.js"></script>
+
 
 <!-- Link de nuestro codigo js -->
 <script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
 
 
-
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.min.js"></script>
 
 
 <!--Código de jquery para habilitar el botón de registro de usuario al darle check a la política de privacidad-->
-
 <script>
-	$(function() {
-		//Initialize Select2 Elements
-		$('.select2').select2()
 
-		//Initialize Select2 Elements
-		$('.select2bs4').select2({
-			theme: 'bootstrap4'
-		})
-
-	})
-</script>
+    </script>
 
 
 

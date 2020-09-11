@@ -245,6 +245,8 @@ class Proveedor extends CI_controller
 
 			$resultado = $this->Model_proveedor->buscarDatosProveedor($documento);
 
+			var_dump($resultado);
+
 			$data['clave']= $resultado;
 
 

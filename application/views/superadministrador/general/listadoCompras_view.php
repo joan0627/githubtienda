@@ -49,7 +49,7 @@
 
                 <div class="col-auto">
 
-                    <a href="<?php echo base_url();?>compras/registrarcomprasu" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear compra</a>
+                    <a href="<?php echo base_url();?>compra/registro" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear compra</a>
                 </div>
             </div>
         </div>

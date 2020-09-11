@@ -13,14 +13,9 @@ class Usuario extends CI_controller
 		$this->load->library('session');
 
 
-		//Validaciones para los campos de la tabla Persona
+		//Validaciones para los campos de la tabla Usuario
 		$this->form_validation->set_rules('nombre', 'nombre completo', 'required');
 		$this->form_validation->set_rules('celular', 'celular', 'required');
-
-		//Validaciones para los campos de la tabla Usuario
-		$this->form_validation->set_rules('username', 'nombre de usuario', 'required|is_unique[usuario.nombreUsuario]');
-		$this->form_validation->set_rules('contrasena', 'contraseña', 'required|min_length[8]');
-		$this->form_validation->set_rules('confirmarcontrasena', 'confirmar contraseña', 'required|min_length[8]');
 		$this->form_validation->set_rules('rol', 'rol', 'required');
 	}
 
@@ -44,7 +39,10 @@ class Usuario extends CI_controller
 
 	public function registro()
 	{
-	
+		$this->form_validation->set_rules('username', 'nombre de usuario', 'required|is_unique[usuario.nombreUsuario]');
+		$this->form_validation->set_rules('contrasena', 'contraseña', 'required|min_length[8]');
+		$this->form_validation->set_rules('confirmarcontrasena', 'confirmar contraseña', 'required|min_length[8]|matches[contrasena]');
+
 
 		$datosCarga['idRoles'] = $this->Model_usuario->BuscarRoles();
 		
@@ -59,8 +57,9 @@ class Usuario extends CI_controller
 			$datosUsuario["celular"] = $this->input->post("celular");
 			$datosUsuario["nombreUsuario"] = $this->input->post("username");
 			$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
-			
 			$datosUsuario["idRol"] = $this->input->post("rol");
+			$datosUsuario["estado"] = true;
+			
 
 			$this->Model_usuario->insertarUsuario($datosUsuario);
 
@@ -71,7 +70,7 @@ class Usuario extends CI_controller
 		else
 		{
 
-
+		
 			$datosCarga["nombre"] = $this->input->post("nombre");
 			$datosCarga["celular"] = $this->input->post("celular");
 			$datosCarga["nombreUsuario"] = $this->input->post("username");
@@ -86,11 +85,6 @@ class Usuario extends CI_controller
 
 		}
 
-
-
-
-
-
 	}
 
 
@@ -101,9 +95,11 @@ class Usuario extends CI_controller
 			$datosUsuario["nombre"] = $this->input->post("nombre");
 			$datosUsuario["celular"] = $this->input->post("celular");
 			$datosUsuario["nombreUsuario"] = $this->input->post("username");
-			$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
+			//$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
+			$datosUsuario["idRol"] = $this->input->post("rol");
+			$datosUsuario["estado"] = $this->input->post("estado");
 
-			$this->Model_usuario->actualizarUsuario($idUsuario, $datosUsuario);
+			$this->Model_usuario->actualizarUsuario( $idUsuario,$datosUsuario);
 
 			$this->session->set_flashdata('actualizar', 'El usuario ' .$datosUsuario["nombreUsuario"].' se ha actualizado correctamente.');
 
@@ -125,52 +121,23 @@ class Usuario extends CI_controller
 	}
 
 
-	
 
-
-	public function verdetalleusuariosu($documento = "")
+	public function detalle($idUsuario = "")
 	{
 
-		if (isset($documento)) {
+		if (isset($idUsuario)) {
 
-			$resultado = $this->model_usuario->buscarPersonaUsuario($documento);
+			$resultado = $this->Model_usuario->buscarDatosUsuario($idUsuario);
+
+			$data['clave']= $resultado;
 
 
 			if (isset($resultado)) {
 
 				$this->load->view('layouts/superadministrador/header');
 				$this->load->view('layouts/superadministrador/aside');
-				$this->load->view('superadministrador/formularios/verdetalleUsuario_view', array('clave' => $resultado));
+				$this->load->view('superadministrador/formularios/verdetalleUsuario_view', $data);
 				$this->load->view('layouts/footer');
-			} else {
-				$this->load->view('layouts/superadministrador/header');
-				$this->load->view('layouts/aside');
-				$this->load->view('errors/pagina404_view');
-				$this->load->view('layouts/footer');
-
-				//Hacer esta validacion
-
-
-			}
-		}
-
-		if ($this->input->server("REQUEST_METHOD") == "POST") {
-
-
-
-			$datosPersona["nombre"] = $this->input->post("nombre");
-			$datosPersona["celular"] = $this->input->post("celular");
-
-
-			$datosUsuario["personaDocumento"] = $datosPersona["documento"];
-			$datosUsuario["username"] = $this->input->post("username");
-			$datosUsuario["contrasena"] = $this->input->post("contrasena");
-			$datosUsuario["rol"] = $this->input->post("rol");
-			$datosUsuario["estado"] = $this->input->post("estado");
-
-			if (isset($documento)) {
-				$this->model_usuario->actualizarPersona($documento, $datosPersona);
-				$this->model_usuario->actualizarUsuario($documento, $datosUsuario);
 			}
 		}
 	}

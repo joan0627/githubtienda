@@ -35,11 +35,11 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="box box-info">
                         <h5>
-							Detalles de la factura
-							
+                            Detalles de la factura
 
-							<a href="<?php echo base_url();?>proveedor/registrar	" class="float-right btn btn-success"><i
-                                    class="fas fa-plus-circle"></i>
+
+                            <a href="<?php echo base_url();?>proveedor/registrar	"
+                                class="float-right btn btn-success"><i class="fas fa-plus-circle"></i>
                                 Crear proveedor</a>
 
                         </h5>
@@ -59,47 +59,70 @@
 
                     <div class="row">
                         <div class="col-md-2">
+
                             <div class="form-group">
                                 <label>Fecha</label>
-                                <input name="celular" type="text" class="form-control" value=""
-                                   >
+                                <input name="fechaCompra" type="text" readOnly="readonly" class="form-control"
+                                    value="<?php echo date("d-m-Y");?>">
+
                             </div>
 
-						</div>
-						
-						<div class="col-md-4">
+                        </div>
+
+
+                        <div class="col-md-1">
                             <div class="form-group">
-                                <label>Proveedor</label>
-                                <select class="form-control select2bs4" style="width: 100%;">
-                                    <option selected="selected">-Seleccione el proveedor-</option>
-                                    <option>Kanú</option>
-                                    <option>Solla</option>
-                                    <option>Purina</option>
-                                    <option>Alimentos Polar</option>
-                                    <option>Francisco Botero</option>
-                                    <option>Andrea Valdiri</option>
-                                </select>
+                                <label>Código</label>
+                                <input name="idCompra" readOnly="readonly" type="text" class="form-control" value="<?php
+                                if ($this->session->flashdata('codigoCompra')) {
+                                   echo 1; 
+                                }
+                                echo $clave['idCompras']+1;?>">
                             </div>
 
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Factura de compra N°</label>
-                                <input name="celular" type="text" class="form-control" value="">
+                                <label>Proveedor</label>
+                                <select class="form-control ">
+
+                                    <?php foreach ($proveedores as $valor) : ?>
+                                    <option value="" selected hidden>-Seleccione un proveedor-</option>;
+                                    <option value=" <?php echo  $valor->documento; ?>">
+                                        <?php echo  $valor->nombre; ?></option>
+
+                                    <?php endforeach; ?>
+
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label style="width:120px">Factura N°</label>
+                                <input name="facturaProveedor" type="text" class="form-control" value="">
                             </div>
 
                         </div>
 
+                        <div class="col-md-2">
+                            <div class="form-group">
 
-                       
+                                <label>Fecha factura</label>
+                                <input name="facturaProveedor" type="text" class="form-control" value="">
+                            </div>
 
+
+                        </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Agregar productos</label>
-                                <button type="button" class="btn btn-block btn-info" data-toggle="modal"
-                                    data-target="#modal-default"><i class="fa fa-search"></i> Buscar productos</button>
+                                <button style="width:100%" type="button" class="btn btn-block btn-info"
+                                    data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i> Buscar
+                                    productos</button>
                             </div>
 
                         </div>
@@ -107,7 +130,8 @@
 
                     </div>
 
-				   <?php
+
+                    <?php
 
 				   /*
 					<div class="row">
@@ -146,8 +170,8 @@
                                     <th>Descripción</th>
                                     <th>Cantidad</th>
                                     <th>Costo</th>
-									<th>Subtotal</th>
-									<th style="text-align:center;">Iva</th>
+                                    <th>Subtotal</th>
+                                    <th style="text-align:center;">Iva</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
@@ -157,9 +181,9 @@
                                     <td>Solla Bulto NutreCan Croquetas Adulto Carne y Pollo 30KG</td>
                                     <td>2</td>
                                     <td>$55.000</td>
-									<td>$110.000</td>
-									<td style="width: 7%"> <input type="text" class="form-control text-center  " style=""
-                                            placeholder="%" value="8%"></td>
+                                    <td>$110.000</td>
+                                    <td style="width: 7%"> <input type="text" class="form-control text-center  "
+                                            style="" placeholder="%" value="8%"></td>
 
                                     <td>
                                         <a class="btn btn-danger btn-sm" href="#"
@@ -173,10 +197,10 @@
                                     <td>Kanú Juguete Hueso azul para perro UND</td>
                                     <td>2</td>
                                     <td>$7.800</td>
-									<td>$15.600</td>
-									<td style="width: 7%"> <input type="text" class="form-control text-center  " style=""
-                                            placeholder="%" value="0%"></td>
-                                    
+                                    <td>$15.600</td>
+                                    <td style="width: 7%"> <input type="text" class="form-control text-center  "
+                                            style="" placeholder="%" value="0%"></td>
+
                                     <td>
                                         <a class="btn btn-danger btn-sm" href="#"
                                             onclick="return confirm('¿Estás seguro que deseas quitar este producto?')">
@@ -184,36 +208,22 @@
                                             Quitar
                                         </a></td>
                                 </tr>
+
+
                                 <tr>
-                                    <td>767</td>
-                                    <td> Alimentos Polar ¡Oh mai gat! Inquietos y aventureros 1.5KG</td>
-                                    <td>3</td>
-                                    <td>$19.300</td>
-									<td>$57.900</td>
-									<td style="width: 7%"> <input type="text" class="form-control text-center  " style=""
-                                            placeholder="%" value="19%"></td>
-                                    <td>
-                                        <a class="btn btn-danger btn-sm" href="#"
-                                            onclick="return confirm('¿Estás seguro que deseas quitar este producto?')">
-                                            <i class="fas fa-minus-circle"></i>
-                                            Quitar
-                                        </a></td>
-								</tr>
-								
-								<tr>
                                     <td colspan="4"><strong><span class="float-right">Neto </span> </strong></td>
-									<td><span class="pull-right">$173.500</span></td>
-									<td></td>
-									<td></td>
-                                   
-								</tr>
-								
+                                    <td><span class="pull-right">$173.500</span></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+
 
                                 <tr>
                                     <td colspan="4"><strong><span class="float-right">Iva </span> </strong></td>
                                     <td><span class="pull-right">$28.801</span></td>
-									<td></td>
-									<td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
 
 
@@ -222,8 +232,8 @@
                                 <tr>
                                     <td colspan="4"><strong><span class="float-right">TOTAL </span> </strong></td>
                                     <td><span class="pull-right">$202.301</span></td>
-									<td></td>
-									<td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
 
                             </tbody>
@@ -265,7 +275,8 @@
 
                                         <div class="col-auto">
 
-                                            <a href="<?php echo base_url();?>producto/listaproductosu" class="btn btn-success"><i class="fas fa-tags"></i>
+                                            <a href="<?php echo base_url();?>producto/listaproductosu"
+                                                class="btn btn-success"><i class="fas fa-tags"></i>
                                                 Producto</a>
                                         </div>
 
@@ -278,7 +289,6 @@
                                 <table class="table">
                                     <tbody>
                                         <tr class="warning">
-                                            <th>Imagen</th>
                                             <th>Código</th>
                                             <th>Descripción</th>
                                             <th><span class="float-right">Cantidad</span></th>
@@ -286,7 +296,7 @@
                                             <th style="width: 30px;"></th>
                                         </tr>
                                         <tr>
-                                            <td> <img src="http://placehold.it/80x60" alt="..."></td>
+
                                             <td>0010</td>
 
                                             <td> Solla Bulto NutreCan Croquetas Adulto Carne y Pollo 30KG</td>
@@ -314,124 +324,6 @@
                                             <td><span class="pull-right"><a href="#"><i class="fas fa-cart-plus "
                                                             style="font-size:24px;color: #5CB85C;"></i></a></span></td>
                                         </tr>
-                                        <tr>
-                                            <td> <img src="http://placehold.it/80x60" alt="..."></td>
-                                            <td>0123</td>
-
-                                            <td> Kanú Bolsa CatLitter Arena sanitaria para gatos 10KG</td>
-
-                                            <td class="col-xs-1">
-
-                                                <input type="text" class="form-control"
-                                                    style="width:50% ;text-align:right; float:right" id="" value="1">
-
-
-                                            </td>
-
-                                            <td class="col-xs-2">
-                                                <div class="input-group pull-right">
-                                                    <div class="input-group-addon"
-                                                        style="color:green; font-weight: bold; font-size:20px"> $ </div>
-                                                    <input type="text" class="form-control "
-                                                        style="width:85% ;text-align:right" id="precio_venta_10"
-                                                        value="35.900">
-                                                </div>
-                                            </td>
-
-
-
-                                            <td><span class="pull-right"><a href="#"><i class="fas fa-cart-plus "
-                                                            style="font-size:24px;color: #5CB85C;"></i></a></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <img src="http://placehold.it/80x60" alt="..."></td>
-                                            <td>0320</td>
-
-                                            <td> Kanú Juguete Hueso azul para perro UND</td>
-
-                                            <td class="col-xs-1">
-
-                                                <input type="text" class="form-control"
-                                                    style="width:50% ;text-align:right; float:right" id="" value="1">
-
-
-                                            </td>
-
-                                            <td class="col-xs-2">
-                                                <div class="input-group pull-right">
-                                                    <div class="input-group-addon"
-                                                        style="color:green; font-weight: bold; font-size:20px"> $ </div>
-                                                    <input type="text" class="form-control "
-                                                        style="width:85% ;text-align:right" id="precio_venta_10"
-                                                        value="7.800">
-                                                </div>
-                                            </td>
-
-
-
-                                            <td><span class="pull-right"><a href="#"><i class="fas fa-cart-plus "
-                                                            style="font-size:24px;color: #5CB85C;"></i></a></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <img src="http://placehold.it/80x60" alt="..."></td>
-                                            <td>0643</td>
-
-                                            <td> Nexgart Antipulgas para perro de 25 a 50KG UND</td>
-
-                                            <td class="col-xs-1">
-
-                                                <input type="text" class="form-control"
-                                                    style="width:50% ;text-align:right; float:right" id="" value="1">
-
-
-                                            </td>
-
-                                            <td class="col-xs-2">
-                                                <div class="input-group pull-right">
-                                                    <div class="input-group-addon"
-                                                        style="color:green; font-weight: bold; font-size:20px"> $ </div>
-                                                    <input type="text" class="form-control "
-                                                        style="width:85% ;text-align:right" id="precio_venta_10"
-                                                        value="55.000">
-                                                </div>
-                                            </td>
-
-
-
-                                            <td><span class="pull-right"><a href="#"><i class="fas fa-cart-plus "
-                                                            style="font-size:24px;color: #5CB85C;"></i></a></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <img src="http://placehold.it/80x60" alt="..."></td>
-                                            <td>767</td>
-
-                                            <td> Alimentos Polar ¡Oh mai gat! Inquietos y aventureros 1.5KG</td>
-
-                                            <td class="col-xs-1">
-
-                                                <input type="text" class="form-control"
-                                                    style="width:50% ;text-align:right; float:right" id="" value="1">
-
-
-                                            </td>
-
-                                            <td class="col-xs-2">
-                                                <div class="input-group pull-right">
-                                                    <div class="input-group-addon"
-                                                        style="color:green; font-weight: bold; font-size:20px"> $ </div>
-                                                    <input type="text" class="form-control "
-                                                        style="width:85% ;text-align:right" id="precio_venta_10"
-                                                        value="19.300">
-                                                </div>
-                                            </td>
-
-
-
-                                            <td><span class="pull-right"><a href="#"><i class="fas fa-cart-plus "
-                                                            style="font-size:24px;color: #5CB85C;"></i></a></span></td>
-                                        </tr>
-
-
 
 
                                     </tbody>
@@ -480,9 +372,9 @@
 
         <div class="card-footer">
 
-		<a href="historialcomprasu" class="btn btn-success col-2">Atrás</a>
+            <a href="<?php echo base_url();?>compra " class="btn btn-success col-2">Atrás</a>
             <button type="button" class="float-right btn btn-success" data-toggle="modal" data-target="#modal-pagar">
-			<i class="fa fa-print"></i> Guardar e imprimir</button>
+                <i class="fa fa-print"></i> Guardar e imprimir</button>
 
 
 

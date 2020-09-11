@@ -168,7 +168,7 @@
 
 
                   <li class="nav-item">
-                      <a href="<?php echo base_url();?>compras/historialcomprasu" class="nav-link">
+                      <a href="<?php echo base_url();?>compra" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-delivery-30.png" class="nav-icon">
                           <p>
                               Compras

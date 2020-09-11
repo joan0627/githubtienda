@@ -94,7 +94,7 @@
                             <th>
                                 Fecha de registro
                             </th>
-                            <th>
+                            <th style="text-align:center;">
                                 Estado
                             </th>
                             <th style="text-align:center;">
@@ -127,7 +127,7 @@
 							?>
                             </td>
                             <td style="text-align:center;"><?php echo  $d->fechaRegistro; ?></td>
-                            <td>
+                            <td style="text-align:center;">
                                 <?php
 							
 								if($d->estado==1)
@@ -135,13 +135,13 @@
 								echo'<span class="badge badge-success">Activo</span>';
 
 								}
-								elseif($d->estado==0) echo '<span class="badge badge-danger">Inactivo</span>';
+								elseif($d->estado==2) echo '<span class="badge badge-danger">Inactivo</span>';
 							
 								?>
                             </td>
                             <td class=" text-right " style="text-align:center;   width: 238px;     ">
                                 <a class="btn btn-primary btn-sm"
-                                    href="verdetalleusuariosu/<?php  echo $d->idUsuario;?>">
+                                href="<?php echo base_url(); ?>usuario/detalle/<?php echo $d->idUsuario; ?>">
                                     <i class="fas fa-eye"></i>
                                     </i>
                                     Ver
@@ -221,6 +221,22 @@
 		type: 'success',
 		title: '¡Proceso completado!',
 		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>
+
+
+     <?php if ($this->session->flashdata('actualizar')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('actualizar'); ?>', 
 		
 	}); 
 		
