@@ -39,15 +39,15 @@ class Servicio extends CI_controller
 		$offset=0* $page_size;
 
 
-		  //$buscar = $this->input->get("buscar");
+		  $buscar = $this->input->get("buscar");
 		  
 	   
-		  // $datosServicio['resultado'] = $this->Model_producto->BuscarDatos($buscar);
+		   $datosServicio['resultado'] = $this->Model_servicio->BuscarDatos($buscar);
 
 	
 		   $this->load->view('layouts/superadministrador/header');
 		   $this->load->view('layouts/superadministrador/aside');
-		   $this->load->view('superadministrador/general/listadoServicios_view');
+		   $this->load->view('superadministrador/general/listadoServicios_view',  $datosServicio);
 		   $this->load->view('layouts/footer'); 
 
 
@@ -105,6 +105,26 @@ class Servicio extends CI_controller
 			}
 	
 	
+	}
+
+	public function detalle($idServicio = "")
+	{
+
+		if (isset($idServicio)) {
+
+			$resultado = $this->Model_servicio->buscarDatosServicio($idServicio);
+
+			$data['clave']= $resultado;
+
+
+			if (isset($resultado)) {
+
+				$this->load->view('layouts/superadministrador/header');
+				$this->load->view('layouts/superadministrador/aside');
+				$this->load->view('superadministrador/formularios/verdetalleServicio_view', $data);
+				$this->load->view('layouts/footer');
+			}
+		}
 	}
 
 	

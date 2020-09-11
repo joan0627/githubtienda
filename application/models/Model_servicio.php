@@ -40,6 +40,39 @@ class Model_servicio extends Ci_model
 		
 	}
 
+	function BuscarDatos($buscar) {
+
+		$this->db->select();
+		$this->db->from($this->tablaServicio);
+		$this->db->join($this->tablaTiposervicio, 'servicio.idTipoServicio = tiposervicio.idTipoServicio');
+		$this->db->or_like("idServicio",$buscar);
+		$this->db->or_like("nombreServicio",$buscar);
+		$this->db->or_like("descripcion",$buscar);
+		$this->db->or_like("tiposervicio.descripcionTipoServicio",$buscar);
+		$this->db->or_like("precio",$buscar);
+		$this->db->or_like("estado",$buscar);
+		//$this->db->order_by('fechaRegistro', 'DESC');
+		$consulta = $this->db->get();
+
+		if($consulta->num_rows()==0)
+		{
+
+			$this->session->set_flashdata('busqueda', 'No hay resultados');
+
+		}
+		return $consulta->result();
+
+	}
+
+	function buscarDatosServicio($idServicio){
+		$this->db->select();
+		$this->db->join($this->tablaTiposervicio, 'servicio.idTipoServicio = tiposervicio.idTipoServicio');
+		$resultado = $this->db->get_where('servicio', array('servicio.idServicio' => $idServicio), 1);
+
+	
+		return $resultado->row_array();
+
+	}
 
 
 

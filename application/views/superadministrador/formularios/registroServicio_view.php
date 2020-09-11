@@ -75,12 +75,12 @@
                                     <?php if ($tiposervicio == $valor->idTipoServicio) : ?>
 
                                     <option hidden value=" <?php echo  $valor->idTipoServicio; ?>" selected>
-                                    <?php echo  $valor->descripcion; ?></option>
+                                    <?php echo  $valor->descripcionTipoServicio; ?></option>
 
                                     <?php foreach ($tipoServicios as $clave => $valor) : ?>
 
                                     <option value=" <?php echo  $valor->idTipoServicio; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionTipoServicio; ?></option>
 
                                     <?php endforeach; ?>
 
@@ -90,7 +90,7 @@
 										foreach ($tipoServicios as $clave => $valor) : ?>
                                     <option value="" selected hidden>-Seleccione un tipo de servicio-</option>;
                                     <option value=" <?php echo  $valor->idTipoServicio; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
+                                        <?php echo  $valor->descripcionTipoServicio; ?></option>
 
                                     <?php endforeach; ?>
                                     <?php endif ?>
@@ -160,7 +160,7 @@
 
                         <button type="submit" id="botonRegistroServicio"
                             class="btn btn-success col-2">Registrar</button>
-                        <a href="listaserviciosu" class="btn btn-success col-2">Atrás</a>
+                        <a href="<?php echo base_url(); ?>servicio" class="btn btn-success col-2">Atrás</a>
                     </div>
                     <!--Fin del footer del contenido-->
 
