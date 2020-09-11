@@ -38,7 +38,7 @@
                             Detalles de la factura
 
 
-                            <a href="<?php echo base_url();?>proveedor/registrar	"
+                            <a href="<?php echo base_url();?>proveedor/registro	"
                                 class="float-right btn btn-success"><i class="fas fa-plus-circle"></i>
                                 Crear proveedor</a>
 
@@ -244,7 +244,7 @@
                 <!-- /.row -->
 
             </div> <!-- Fin Contenido Total -->
-
+     <form action="get">
             <div class="modal fade " id="modal-default">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -263,7 +263,7 @@
                                         <div class="col-auto mr-auto col-md-5">
 
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Estoy buscando...">
+                                                <input name="buscar" type="text"  class="form-control" placeholder="Estoy buscando...">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="button"><i
                                                             class="fas fa-search"></i></button>
@@ -287,6 +287,7 @@
                             <br>
                             <div class="table-responsive">
                                 <table class="table">
+                               
                                     <tbody>
                                         <tr class="warning">
                                             <th>Código</th>
@@ -295,11 +296,14 @@
                                             <th><span class="float-right"> Costo </span></th>
                                             <th style="width: 30px;"></th>
                                         </tr>
+                                         
+                                        <?php foreach ($Productos as $valor) : ?>
                                         <tr>
 
-                                            <td>0010</td>
+                                            <td><?php echo  $valor->idProducto; ?></td>
 
-                                            <td> Solla Bulto NutreCan Croquetas Adulto Carne y Pollo 30KG</td>
+
+                                            <td> <?php echo  $valor->descripcionMarca." ". $valor->descripcionPresentacion; ?></td>
 
                                             <td class="col-xs-1">
 
@@ -315,7 +319,7 @@
                                                         style="color:green; font-weight: bold; font-size:20px"> $ </div>
                                                     <input type="text" class="form-control "
                                                         style="width:85% ;text-align:right" id="precio_venta_10"
-                                                        value="55.000">
+                                                        value="<?php echo  $valor->precio; ?>">
                                                 </div>
                                             </td>
 
@@ -325,7 +329,7 @@
                                                             style="font-size:24px;color: #5CB85C;"></i></a></span></td>
                                         </tr>
 
-
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -369,6 +373,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+    </form>
 
         <div class="card-footer">
 

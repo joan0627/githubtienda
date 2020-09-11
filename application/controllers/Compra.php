@@ -12,6 +12,7 @@ class Compra extends CI_controller
 		/*************************************************************/
 		parent::__construct();
 		$this->load->model('Model_proveedor');
+		$this->load->model('Model_producto');
 		$this->load->model('Model_compra');
 		$this->load->database();
 		$this->load->helper("url");
@@ -31,24 +32,42 @@ class Compra extends CI_controller
 	}
 
 
+	public function buscarProducto(){
+		$buscar = $this->input->get("buscar");
 
+		$datosProducto['resultado'] = $this->Model_producto->BuscarDatos($buscar);
+		   
+		  $this->load->view('layouts/superadministrador/header');
+		  $this->load->view('layouts/superadministrador/aside');
+		  $this->load->view('superadministrador/formularios/registroCompra_view',$datosProducto);
+		  $this->load->view('layouts/footer');
+	}
 
 	public function registro()
 	{
-
+ 
 	
 		$resultado = $this->Model_compra->obtenerId();
 		$resultado1 = $this->Model_proveedor->BuscarTodosProveedor();
+
+		//Carga de los productos en el MODAL de compras
+		$buscar = $this->input->get("buscar");
+		$resultado2 = $this->Model_producto->BuscarDatos($buscar);
         
 		
 			$data['clave']= $resultado;
 			$data['proveedores']= $resultado1;
+			$data['Productos']= $resultado2;
 
 		    $datosCarga["idCompras"] = $datosCarga["documentoProveedor"] = $datosCarga["facturaProveedor"] = $datosCarga["fechaFacturaProveedor"] =
 			$datosCarga["fechaRegistroCompra"] = $datosCarga["estado"] = "";
-
 			$datosCarga['Proveedores'] = $this->Model_proveedor->BuscarTodosProveedor();
+			$datosCarga['Productos'] = $this->Model_producto->BuscarDatos($buscar);
 
+			
+
+
+			   
 
 		//Campos del formulario
 		if ($this->input->server("REQUEST_METHOD") == "POST") {

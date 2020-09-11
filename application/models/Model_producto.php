@@ -7,6 +7,7 @@ class Model_producto extends Ci_model
 	public $tablaProducto = 'producto';
 	public $tablaCategoria= 'categoria';
 	public $tablaMarca= 'marca';
+
 	public $tablaEspecieproducto= 'especieproducto';
 	//public $tablaProveedor= 'proveedor'; pendiente para borrar
 	public $tablaUnidadMedida= 'unidadmedida';
@@ -43,11 +44,13 @@ class Model_producto extends Ci_model
 		$this->db->from($this->tablaProducto);
 		$this->db->join($this->tablaCategoria, 'producto.idCategoria = categoria.idCategoria');
 		$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
+		$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
 		$this->db->or_like("idProducto",$buscar);
 		$this->db->or_like("nombreProducto",$buscar);
 		$this->db->or_like("categoria.descripcion",$buscar);
 		$this->db->or_like("existencia",$buscar);
 		$this->db->or_like("marca.descripcionMarca",$buscar);
+		$this->db->or_like("presentacion.descripcionPresentacion",$buscar);
 		$this->db->or_like("precio",$buscar);
 		$this->db->order_by('fechaRegistro', 'DESC');
 		$consulta = $this->db->get();
@@ -80,6 +83,8 @@ class Model_producto extends Ci_model
 
 
 	}
+
+
 
 // Función para un producto 
 	function actualizarProducto($idProducto, $datosProducto){
