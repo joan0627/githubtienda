@@ -94,7 +94,7 @@ class Model_producto extends Ci_model
 	function borrar($idProducto){
 		$this->db->select();
 		$this->db->from($this->tablaProducto);
-		$this->db->where($this->idProveedorPK,$idProducto);
+		$this->db->where($this->ProductoPK,$idProducto);
 		$this->db->delete($this->tablaProducto);
 	}
 
