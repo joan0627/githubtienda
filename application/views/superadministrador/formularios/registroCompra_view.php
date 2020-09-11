@@ -244,7 +244,7 @@
                 <!-- /.row -->
 
             </div> <!-- Fin Contenido Total -->
-     <form action="get">
+     <form method="get">
             <div class="modal fade " id="modal-default">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -265,7 +265,7 @@
                                             <div class="input-group">
                                                 <input name="buscar" type="text"  class="form-control" placeholder="Estoy buscando...">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-success" type="button"><i
+                                                    <button class="btn btn-primary" type="submit"><i
                                                             class="fas fa-search"></i></button>
                                                 </span>
                                             </div>
@@ -303,7 +303,9 @@
                                             <td><?php echo  $valor->idProducto; ?></td>
 
 
-                                            <td> <?php echo  $valor->descripcionMarca." ". $valor->descripcionPresentacion; ?></td>
+                                            <td> <?php echo  $valor->descripcionMarca." ". $valor->descripcionPresentacion
+                                            ." ". $valor->nombreProducto ." ". $valor->descripcionProducto
+                                            ." ". $valor->valorMedida ." ". $valor->descripcionUnidadmedida; ?></td>
 
                                             <td class="col-xs-1">
 
