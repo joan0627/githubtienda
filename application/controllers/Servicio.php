@@ -127,6 +127,23 @@ class Servicio extends CI_controller
 		}
 	}
 
+	public function delete(){
+
+		$_idServicio= $this->input->post('idServicio',true);
+		if(empty($_idServicio)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El código no puede ser vacío')));
+		}
+		else
+		{
+			$this->Model_servicio->borrar($_idServicio);
+			$this->output
+			->set_status_header(200);
+			
+		}
+	}	
+
 	
 }
 
