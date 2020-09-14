@@ -46,6 +46,7 @@ class Compra extends CI_controller
 	public function registro()
 	{
  
+		
 	
 		$resultado = $this->Model_compra->obtenerId();
 		$resultado1 = $this->Model_proveedor->BuscarTodosProveedor();
@@ -119,6 +120,10 @@ class Compra extends CI_controller
 		$this->load->view('layouts/footer');
 	}
 	
+
+	public function busqueda(){
+		
+	}
 
 
 

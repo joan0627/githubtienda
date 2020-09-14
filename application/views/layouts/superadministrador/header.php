@@ -31,21 +31,16 @@
 
 	<!-- Sweet Alert 2: mensajes animados -->
 	<link href="<?php echo base_url();?>assets/plugins/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
-
-    
-
-  
-
+   
+    <!-- DateTable -->
+    <link href=" <?php echo base_url();?>assets/plugins/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"rel="stylesheet">
+    <link href=" <?php echo base_url();?>assets/plugins/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"rel="stylesheet">
 
 
     <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
     <script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
-    <!--DataTables-->
-<!--<link href=" http://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"rel="stylesheet"> -->
-   
 
-  
     <link href="<?php echo base_url();?>assets/css/misestilos.css" rel="stylesheet">
 
       <!-- Select2 -->

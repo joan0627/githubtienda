@@ -47,11 +47,8 @@
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.min.js"></script>
 
-
-<!--Código de jquery para habilitar el botón de registro de usuario al darle check a la política de privacidad-->
-<script>
-
-    </script>
+<!-- DateTable -->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
 
 

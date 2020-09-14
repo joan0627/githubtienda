@@ -264,7 +264,7 @@
                             <div class="form-group">
                                 <label>Existencia</label> <label style="color: red;"> * </label>
                                 <input name="existencia" type="number" class="form-control"
-                                    placeholder="Ingrese la existencia" value="<?php echo $existencia;?>" min="1">
+                                    placeholder="Ingrese la existencia" value="<?php echo $existencia;?>" min="0">
                                 <?php echo form_error('existencia', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>

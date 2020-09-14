@@ -263,7 +263,7 @@
                                         <div class="col-auto mr-auto col-md-5">
 
                                             <div class="input-group">
-                                                <input name="buscar" type="text"  class="form-control" placeholder="Estoy buscando...">
+                                                <input id="caja_busqueda" type="text"  class="form-control" placeholder="Estoy buscando...">
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-primary" type="submit"><i
                                                             class="fas fa-search"></i></button>
@@ -275,9 +275,9 @@
 
                                         <div class="col-auto">
 
-                                            <a href="<?php echo base_url();?>producto/listaproductosu"
-                                                class="btn btn-success"><i class="fas fa-tags"></i>
-                                                Producto</a>
+                                            <a href="<?php echo base_url();?>producto/registro"
+                                                class="btn btn-success"><i class="fas fa-plus-circle"></i>
+                                                Crear producto</a>
                                         </div>
 
 
@@ -285,8 +285,8 @@
 
                             </form>
                             <br>
-                            <div class="table-responsive">
-                                <table class="table">
+                            <div id="" class="table-responsive">
+                                <table id="myTable"class="table">
                                
                                     <tbody>
                                         <tr class="warning">
@@ -303,14 +303,13 @@
                                             <td><?php echo  $valor->idProducto; ?></td>
 
 
-                                            <td> <?php echo  $valor->descripcionMarca." ". $valor->descripcionPresentacion
-                                            ." ". $valor->nombreProducto ." ". $valor->descripcionProducto
-                                            ." ". $valor->valorMedida ." ". $valor->descripcionUnidadmedida; ?></td>
+                                            <td> <?php echo   $valor->descripcionPresentacion." de ".$valor->descripcionMarca." ". 
+                                              $valor->nombreProducto ." ". " ".  $valor->valorMedida ." ". $valor->descripcionUnidadmedida; ?></td>
 
                                             <td class="col-xs-1">
 
-                                                <input type="text" class="form-control"
-                                                    style="width:50% ;text-align:right; float:right" id="" value="1">
+                                                <input type="number" class="form-control"
+                                                    style="width:50% ;text-align:right; float:right"  value="0">
 
 
                                             </td>
@@ -321,7 +320,7 @@
                                                         style="color:green; font-weight: bold; font-size:20px"> $ </div>
                                                     <input type="text" class="form-control "
                                                         style="width:85% ;text-align:right" id="precio_venta_10"
-                                                        value="<?php echo  $valor->precio; ?>">
+                                                        value="">
                                                 </div>
                                             </td>
 
