@@ -35,22 +35,16 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/js/adminlte.js"></script>
 
-
-<script src="<?php echo base_url(); ?>assets/plugins/datatables.net/js/jquery.dataTables.js"></script>
-
-
-
-<!-- Link de nuestro codigo js -->
-<script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
+<!-- DateTable -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/datatables.js"></script>
 
 
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.min.js"></script>
 
-<!-- DateTable -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
-
+<!-- Link de nuestro codigo js -->
+<script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
 
 </body>
 

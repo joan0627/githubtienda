@@ -204,8 +204,7 @@
 Swal.fire({
     type: 'success',
     title: '¡Proceso completado!',
-    text: '<?= $this->session->flashdata('
-    message '); ?>',
+    text: '<?= $this->session->flashdata(' message '); ?>',
 
 });
 </script>

@@ -1,10 +1,16 @@
 
 
+$(document).ready(function() {
+	$('#example1').dataTable( {
+		"language": {
+		  "url":'../assets/plugins/datatables/Spanish.lang'
+		},
+		"bInfo": false,
+	
 
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
 
+	  } );
+  });
 
 
 
@@ -262,31 +268,3 @@ $(document).ready(function() {
 
 
 	
-
-
-	$(buscar_datos());
-
-function buscar_datos(consulta){
-    $.ajax({
-        url: 'tienda/compra/registro' ,
-        type: 'POST' ,
-        dataType: 'json',
-        data: {consulta: consulta},
-    })
-    .done(function(respuesta){
-        $("#datos").html(respuesta);
-    })
-    .fail(function(){
-        console.log("error");
-    });
-}
-
-$(document).on('keyup','#caja_busqueda', function(){
-    var valor = $(this).val();
-    if (valor != "") {
-        buscar_datos(valor);
-    }else{
-        buscar_datos();
-    }
-});
-

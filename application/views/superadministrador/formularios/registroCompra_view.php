@@ -38,8 +38,8 @@
                             Detalles de la factura
 
 
-                            <a href="<?php echo base_url();?>proveedor/registro	"
-                                class="float-right btn btn-success"><i class="fas fa-plus-circle"></i>
+                            <a href="<?php echo base_url();?>proveedor/registro	" class="float-right btn btn-success"><i
+                                    class="fas fa-plus-circle"></i>
                                 Crear proveedor</a>
 
                         </h5>
@@ -182,8 +182,8 @@
                                     <td>2</td>
                                     <td>$55.000</td>
                                     <td>$110.000</td>
-                                    <td style="width: 7%"> <input type="text" class="form-control text-center  "
-                                            style="" placeholder="%" value="8%"></td>
+                                    <td style="width: 7%"> <input type="text" class="form-control text-center"
+                                            placeholder="%" value="8%"></td>
 
                                     <td>
                                         <a class="btn btn-danger btn-sm" href="#"
@@ -199,7 +199,7 @@
                                     <td>$7.800</td>
                                     <td>$15.600</td>
                                     <td style="width: 7%"> <input type="text" class="form-control text-center  "
-                                            style="" placeholder="%" value="0%"></td>
+                                            placeholder="%" value="0%"></td>
 
                                     <td>
                                         <a class="btn btn-danger btn-sm" href="#"
@@ -244,126 +244,96 @@
                 <!-- /.row -->
 
             </div> <!-- Fin Contenido Total -->
-     <form method="get">
-            <div class="modal fade " id="modal-default">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Buscar productos</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal">
+            <form method="get">
+                <div class="modal fade " id="modal-default">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Buscar productos</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                        
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">DataTable with default features</h3>
 
-                                <div class="container-fluid">
-                                    <div class="row mb-1">
-
-                                        <div class="col-auto mr-auto col-md-5">
-
-                                            <div class="input-group">
-                                                <input id="caja_busqueda" type="text"  class="form-control" placeholder="Estoy buscando...">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-primary" type="submit"><i
-                                                            class="fas fa-search"></i></button>
-                                                </span>
-                                            </div>
-
-
-                                        </div>
-
-                                        <div class="col-auto">
+                                        <div class="float-right">
 
                                             <a href="<?php echo base_url();?>producto/registro"
-                                                class="btn btn-success"><i class="fas fa-plus-circle"></i>
+                                                class="btn btn-success"><i class="fas fa-plus-circle "></i>
                                                 Crear producto</a>
                                         </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="example1" class="table table-striped ">
+                                            <thead>
+                                                <tr class="warning">
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
+                                                    <th><span class="float-right">Cantidad</span></th>
+                                                    <th><span class="float-right"> Costo </span></th>
+                                                    <th style="width: 30px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($Productos as $valor) : ?>
+                                                <tr>
+
+                                                    <td><?php echo  $valor->idProducto; ?></td>
 
 
+                                                    <td> <?php echo   $valor->descripcionPresentacion." de ".$valor->descripcionMarca." ". 
+                                              $valor->nombreProducto ." ". " ".  $valor->valorMedida ." ". $valor->descripcionUnidadmedida; ?>
+                                                    </td>
+
+                                                    <td class="col-xs-1">
+
+                                                        <input type="number" class="form-control"
+                                                            style="width:50% ;text-align:right; float:right" value="0">
+
+
+                                                    </td>
+
+                                                    <td class="col-xs-2">
+                                                        <div class="input-group pull-right">
+                                                            <div class="input-group-addon"
+                                                                style="color:green; font-weight: bold; font-size:20px">
+                                                                $
+                                                            </div>
+                                                            <input type="text" class="form-control "
+                                                                style="width:85% ;text-align:right" id="precio_venta_10"
+                                                                value="">
+                                                        </div>
+                                                    </td>
+
+
+
+                                                    <td><span class="pull-right"><a href="#"><i
+                                                                    class="fas fa-cart-plus "
+                                                                    style="font-size:24px;color: #5CB85C;"></i></a></span>
+                                                    </td>
+                                                </tr>
+
+                                                <?php endforeach; ?>
+                                            </tbody>
+
+                                            </tfoot>
+                                        </table>
                                     </div>
 
-                            </form>
-                            <br>
-                            <div id="" class="table-responsive">
-                                <table id="myTable"class="table">
-                               
-                                    <tbody>
-                                        <tr class="warning">
-                                            <th>Código</th>
-                                            <th>Descripción</th>
-                                            <th><span class="float-right">Cantidad</span></th>
-                                            <th><span class="float-right"> Costo </span></th>
-                                            <th style="width: 30px;"></th>
-                                        </tr>
-                                         
-                                        <?php foreach ($Productos as $valor) : ?>
-                                        <tr>
-
-                                            <td><?php echo  $valor->idProducto; ?></td>
-
-
-                                            <td> <?php echo   $valor->descripcionPresentacion." de ".$valor->descripcionMarca." ". 
-                                              $valor->nombreProducto ." ". " ".  $valor->valorMedida ." ". $valor->descripcionUnidadmedida; ?></td>
-
-                                            <td class="col-xs-1">
-
-                                                <input type="number" class="form-control"
-                                                    style="width:50% ;text-align:right; float:right"  value="0">
-
-
-                                            </td>
-
-                                            <td class="col-xs-2">
-                                                <div class="input-group pull-right">
-                                                    <div class="input-group-addon"
-                                                        style="color:green; font-weight: bold; font-size:20px"> $ </div>
-                                                    <input type="text" class="form-control "
-                                                        style="width:85% ;text-align:right" id="precio_venta_10"
-                                                        value="">
-                                                </div>
-                                            </td>
-
-
-
-                                            <td><span class="pull-right"><a href="#"><i class="fas fa-cart-plus "
-                                                            style="font-size:24px;color: #5CB85C;"></i></a></span></td>
-                                        </tr>
-
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                </div>
+                                <!-- /.card -->
                             </div>
+
+
+
                         </div>
 
 
-                        <div class="modal-footer justify-content-between">
-
-
-
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-
-                        </div>
+               
 
 
 
@@ -371,22 +341,22 @@
                     </div>
                 </div>
                 <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
         </div>
-    </form>
+        <!-- /.modal-dialog -->
+</div>
+</form>
 
-        <div class="card-footer">
+<div class="card-footer">
 
-            <a href="<?php echo base_url();?>compra " class="btn btn-success col-2">Atrás</a>
-            <button type="button" class="float-right btn btn-success" data-toggle="modal" data-target="#modal-pagar">
-                <i class="fa fa-print"></i> Guardar e imprimir</button>
-
-
-
-        </div>
+    <a href="<?php echo base_url();?>compra " class="btn btn-success col-2">Atrás</a>
+    <button type="button" class="float-right btn btn-success" data-toggle="modal" data-target="#modal-pagar">
+        <i class="fa fa-print"></i> Guardar e imprimir</button>
 
 
 
-    </section><!-- Fin seccion contenido -->
+</div>
+
+
+
+</section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->

@@ -7,6 +7,7 @@
     <title>El rincón de la mascota</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -15,11 +16,15 @@
     <link rel="stylesheet"
         href="<?php echo base_url();?>assets/plugins/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet"
-        href="<?php echo base_url();?>assets/plugins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/adminlte.min.css">
+
+    <!-- DataTable -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datatables/datatables.css">
+
+
     <!-- overlayScrollbars -->
     <link rel="stylesheet"
         href="<?php echo base_url();?>assets/plugins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -32,10 +37,6 @@
 	<!-- Sweet Alert 2: mensajes animados -->
 	<link href="<?php echo base_url();?>assets/plugins/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
    
-    <!-- DateTable -->
-    <link href=" <?php echo base_url();?>assets/plugins/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"rel="stylesheet">
-    <link href=" <?php echo base_url();?>assets/plugins/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"rel="stylesheet">
-
 
     <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
     <script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
@@ -46,6 +47,9 @@
       <!-- Select2 -->
       <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
       
+
+       <!-- Tema diferente de bootrap
+      <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap-theme.min.css">-->
 
 </head>
 
