@@ -16,7 +16,7 @@ class Producto extends CI_controller
 		$this->load->helper("url");
 		$this->load->library('form_validation');
 		$this->load->library('session');
-
+	
 
 
 
@@ -39,7 +39,7 @@ class Producto extends CI_controller
 		$this->form_validation->set_rules('unidadTiempo', 'unidad de tiempo', 'required');*/
 	
 
-	
+		
 
 
 	}
@@ -104,7 +104,7 @@ class Producto extends CI_controller
 
 			//Datos carga del select Vacuna
 			$datosCarga["indicaciones"] = $this->input->post("indicaciones");
-			$datosCarga["contradindicaciones"] = $this->input->post("contraIndicaciones");
+			$datosCarga["contraindicaciones"] = $this->input->post("contraIndicaciones");
 			$datosCarga["edad"] = $this->input->post("edad");
 			$datosCarga["edadAplicacion"] = $this->input->post("unidadTiempo");
 
@@ -128,7 +128,7 @@ class Producto extends CI_controller
 				$datosProducto["existencia"] = $this->input->post("existencia");
 				$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
 				$datosProducto["indicaciones"] = $this->input->post("indicaciones");
-				$datosProducto["contradindicaciones"] = $this->input->post("contraIndicaciones");
+				$datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
 				//Se concatena edad con unidad de tiempo
 				$Unidadtiempo = $this->input->post("unidadTiempo");
 				//
@@ -202,11 +202,27 @@ class Producto extends CI_controller
 
 	public function actualizar($idProducto = "")
 	{
-
+/*
+ 		//Arreglo para recorrer y buscar los select "Tablas fuertes"
+		$data['categorias'] = $this->Model_producto->buscarTodasCategorias();
+	
+		$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
+		$data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
+		$data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();*/
+		
+		//
+		    $data['clave']  = $this->Model_producto->buscarDatosProducto($idProducto);
+			$data['categorias'] = $this->Model_producto->buscarTodasCategorias();
+			$data['marcas'] = $this->Model_producto->buscarTodasMarcas();
+			//$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
+			//$data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
+		//	$data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
+			
+		
 		if($this->form_validation->run())
 		{
-
-
+			
+		
 			$datosProducto["idProducto"] = $this->input->post("codigo");
 			$datosProducto["nombreProducto"] = $this->input->post("nombre");
 			$datosProducto["descripcionProducto"] = $this->input->post("descripcion");
@@ -234,18 +250,7 @@ class Producto extends CI_controller
 		{
 			
 
-  			$datosProducto1 = $this->Model_producto->buscarDatosProducto($idProducto);
-			 //Esta es la vista que carga los datos de los input
-			 $data['clave']= $datosProducto1;
-/*
-			 //Arreglo para recorrer y buscar los select "Tablas fuertes"
-			 $data['categorias'] = $this->Model_producto->buscarTodasCategorias();
-			 $data['marcas'] = $this->Model_producto->buscarTodasMarcas();
-			 $data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
-			 $data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
-			 $data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
-*/	 
-			 
+
 
 			 $this->load->view('layouts/superadministrador/header');
 			 $this->load->view('layouts/superadministrador/aside');
@@ -253,7 +258,6 @@ class Producto extends CI_controller
 			 $this->load->view('layouts/footer');
 			 
 		}
-
 
 	}
 

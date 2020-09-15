@@ -70,11 +70,11 @@ class Model_producto extends Ci_model
 		
 	}
  
+	
 
 
 	function buscarDatosProducto($idProducto){
 		$this->db->select();
-		//$this->db->from($this->tablaProveedor);
 		$this->db->join($this->tablaCategoria, 'producto.idCategoria = categoria.idCategoria');
 		$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
 		$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
@@ -142,7 +142,7 @@ function buscarTodasMarcas() {
 	$this->db->from($this->tablaMarca);
 
 	$consulta = $this->db->get();
-	return $consulta->result();
+	return $consulta->result_array();
 	
 }
 

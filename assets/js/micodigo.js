@@ -223,48 +223,26 @@ $(document).ready(function() {
 	*/
 	
 	
-	$(document).ready(function(){
-		if(localStorage.getItem('clave') != 1){
-	
-				$("#divIndicaciones").hide();
-				$("#divcontraindicaciones").hide();
-				$("#divEdad").hide();
-				$("#divUnidadTiempo").hide();
-				
-		}
-				
-			
-		$('#categoria').on('change',function(){
-	
-			var Valor = $(this).val();
-			localStorage.setItem('clave',Valor);
-		
-		console.log(localStorage.getItem('clave',Valor));
-		
-			 if( localStorage.getItem('clave') ==1){
-				 console.log('Estoy dentro oh me vengo');
-				$('#divIndicaciones').show();
-				$("#divIndicaciones").show();
-				$("#divcontraindicaciones").show();
-				$("#divEdad").show();
-				$("#divUnidadTiempo").show();
-				
-				
-	
-			}else {
-				$("#divIndicaciones").hide();
-				$("#divcontraindicaciones").hide();
-				$("#divEdad").hide();
-				$("#divUnidadTiempo").hide();
-			
-				//alert('esta es la opcion 2')
-			}
-		
-			
-		});
-	
-	
-	});
+$(document).ready(function() {
+    var t = $('#example1').DataTable();
+    var counter = 1;
+ 
+    $('#addRow').on( 'click', function () {
+		alert('HICE CLIC'),
+        t.row.add( [
+            counter +'.1',
+            counter +'.2',
+            counter +'.3',
+            counter +'.4',
+            counter +'.5'
+        ] ).draw( false );
+ 
+        counter++;
+    } );
+ 
+    // Automatically add a first row of data
+    $('#addRow').click();
+} );
 
 
 	

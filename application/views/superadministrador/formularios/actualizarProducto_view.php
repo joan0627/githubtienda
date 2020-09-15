@@ -40,8 +40,9 @@
                             <div class="form-group">
 
                                 <label>Codigo</label> <label style="color: red;"> * </label>
-                                <input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo" readonly="readonly"
-                                value="<?php if(isset($_POST['codigo'])){ echo $_POST['codigo']; }else{ echo $clave['idProducto']; } ?>">
+                                <input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo"
+                                    readonly="readonly"
+                                    value="<?php if(isset($_POST['codigo'])){ echo $_POST['codigo']; }else{ echo $clave['idProducto']; } ?>">
                             </div>
                         </div>
 
@@ -50,10 +51,10 @@
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> *</label>
                                 <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
-                                value="<?php if(isset($_POST['nombre'])){ echo $_POST['nombre']; }else{ echo $clave['nombreProducto']; } ?>">
+                                    value="<?php if(isset($_POST['nombre'])){ echo $_POST['nombre']; }else{ echo $clave['nombreProducto']; } ?>">
                                 <?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="row">
@@ -62,7 +63,8 @@
                             <div class="form-group">
                                 <label>Descripción</label>
                                 <textarea class="form-control" rows="2"
-                                    placeholder="Escribe una descripción del producto ..." name="descripcion"><?php if(isset($_POST['descripcion'])){ echo $_POST['descripcion']; }else{ echo $clave['descripcionProducto']; } ?></textarea>
+                                    placeholder="Escribe una descripción del producto ..."
+                                    name="descripcion"><?php if(isset($_POST['descripcion'])){ echo $_POST['descripcion']; }else{ echo $clave['descripcionProducto']; } ?></textarea>
                             </div>
                         </div>
 
@@ -77,7 +79,7 @@
                                     <?php foreach ($categorias as $clave => $valor) : ?>
                                     <?php if ($categoria == $valor->idCategoria) : ?>
 
-                                    <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected >
+                                    <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected>
                                         <?php
 
 
@@ -110,7 +112,7 @@
 
                     </div>
 
-                    
+
                     <div class="row">
 
                         <div class="col-md-6">
@@ -119,36 +121,18 @@
 
                                 <label>Marca</label> <label style="color: red;"> *</label>
                                 <select name="marca" class="form-control">
-                                    <?php if ($marca != "") : ?>
-                                    <?php foreach ($marcas as $clave => $valor) : ?>
-                                    <?php if ($marca == $valor->idMarca) : ?>
 
-                                    <option hidden value=" <?php echo  $valor->idMarca; ?>" selected>
-                                        <?php
+                                    <option hidden value=" <?php echo  $clave['marca']; ?>" selected>
+                                        <?php echo  $clave['descripcionMarca']; ?></option>
 
+                                    <?php foreach ($marcas as $valor) : ?>
+                                    <option  value=" <?php echo  $valor['idMarca']; ?>"><?php echo $valor['descripcionMarca'];?></option>
 
-													echo  $valor->descripcionMarca; ?></option>
-                                    <?php
-												foreach ($marcas as $clave => $valor) : ?>
+                                        <?php endforeach; ?>
 
-
-                                    <option value=" <?php echo  $valor->idMarca; ?>">
-                                        <?php echo  $valor->descripcionMarca; ?></option>
-
-                                    <?php endforeach; ?>
-
-                                    <?php endif;  ?>
-                                    <?php endforeach; ?>
-                                    <?php else :
-										foreach ($marcas as $clave => $valor) : ?>
-                                    <option value="" selected hidden>-Seleccione una marca-</option>;
-                                    <option value=" <?php echo  $valor->idMarca; ?>">
-                                        <?php echo  $valor->descripcionMarca; ?></option>
-
-                                    <?php endforeach; ?>
-                                    <?php endif ?>
 
                                 </select>
+                                
                                 <?php echo form_error('marca', '<p class="text-danger">', '</p>'); ?>
 
                             </div>
@@ -205,7 +189,7 @@
 
                     </div>
 
-                    
+
                     <div class="row">
 
 
@@ -215,7 +199,6 @@
                             <div class="form-group">
                                 <label>Valor de medida</label><label style="color: red;"> * </label>
                                 <input name="valorDeMedida" type="text" class="form-control"
-                                    placeholder="Ingrese el valor de medida" 
                                     value="<?php if(isset($_POST['valorDeMedida'])){ echo $_POST['valorDeMedida']; }else{ echo $clave['valorMedida']; } ?>">
                                 <?php echo form_error('valorDeMedida', '<p class="text-danger">', '</p>'); ?>
                             </div>
@@ -260,8 +243,8 @@
                         </div>
                     </div>
 
-                   
-                   <div class="row">
+
+                    <div class="row">
 
                         <div class="col-md-6">
                             <div class="form-group">
@@ -282,12 +265,12 @@
                             <div class="form-group">
                                 <label>Tipo de especie</label> <label style="color: red;"> *</label>
                                 <select class="form-control " style="width: 100%;" name="tipoespecie">
-                                <?php if ($especieproducto != "") : ?>
+                                    <?php if ($especieproducto != "") : ?>
                                     <?php foreach ($especieproductos as $clave => $valor) : ?>
                                     <?php if ($especieproducto == $valor->idEspecieProducto) : ?>
 
                                     <option hidden value=" <?php echo  $valor->idEspecieProducto; ?>" selected>
-                                    <?php echo  $valor->descripcionEspecie; ?></option>
+                                        <?php echo  $valor->descripcionEspecie; ?></option>
 
                                     <?php foreach ($especieproductos as $clave => $valor) : ?>
 
@@ -319,24 +302,24 @@
 
                     </div>
 
-                    <div class="row"  >
+                    <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group" >
+                            <div class="form-group">
 
                                 <label>Indicaciones</label> <label style="color: red;"> * </label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Especifique las indicaciones de la vacuna" name="indicaciones"
-                                    ><?php if(isset($_POST['indicaciones'])){ echo $_POST['indicaciones']; }else{ echo $clave['indicaciones']; } ?></textarea>
+                                    placeholder="Especifique las indicaciones de la vacuna"
+                                    name="indicaciones"><?php if(isset($_POST['indicaciones'])){ echo $_POST['indicaciones']; }else{ echo $clave['indicaciones']; } ?></textarea>
                             </div>
                             <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
-                        <div class="col-md-6" >
+                        <div class="col-md-6">
                             <label>Contraindicaciones</label> <label style="color: red;"> * </label>
                             <textarea class="form-control" rows="3"
-                                placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
-                                ><?php if(isset($_POST['contraIndicaciones'])){ echo $_POST['contraIndicaciones']; }else{ echo $clave['contradindicaciones']; } ?></textarea>
-                                <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
+                                placeholder="Especifique las contraindicaciones de la vacuna"
+                                name="contraIndicaciones"><?php if(isset($_POST['contraIndicaciones'])){ echo $_POST['contraIndicaciones']; }else{ echo $clave['contraindicaciones']; } ?></textarea>
+                            <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
 
@@ -344,13 +327,13 @@
 
                     </div>
 
-					<div class="row" >
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
 
                                 <label>Edad</label> <label style="color: red;"> * </label>
-                                <input class="form-control" rows="3"
-                                    placeholder="Ingrese el tiempo recomendado" name="edad" 
+                                <input class="form-control" rows="3" placeholder="Ingrese el tiempo recomendado"
+                                    name="edad"
                                     value="<?php if(isset($_POST['edad'])){ echo $_POST['edad']; }else{ echo $clave['edadAplicacion']; } ?>"></input>
                             </div>
                             <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
@@ -365,33 +348,34 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna" name="precioVenta"
-                                value="<?php if(isset($_POST['precioVenta'])){ echo $_POST['precioVenta']; }else{ echo $clave['precio']; } ?>">
+                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
+                                    name="precioVenta"
+                                    value="<?php if(isset($_POST['precioVenta'])){ echo $_POST['precioVenta']; }else{ echo $clave['precio']; } ?>">
                                 <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
-                        <input id="Valor" type="text" class="form-control " 
-                        value="<?php echo $this->session->set_userdata('valorSesion', 'perra');?>" hidden>
+                        <input id="Valor" type="text" class="form-control "
+                            value="<?php echo $this->session->set_userdata('valorSesion', 'perra');?>" hidden>
 
 
-                    </div>                         
+                    </div>
                     <!--Fin del card body-->
 
                     <!--Inicio del footer del contenido-->
-                <br>
-                <div class="text-center card-footer">
+                    <br>
+                    <div class="text-center card-footer">
 
 
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
                             id="botonActualizarProducto" class="btn btn-success col-2">Actualizar</button>
-                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
-						href="<?php echo base_url(); ?>producto"
-                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
+                            href="<?php echo base_url(); ?>producto" id="botonAtras"
+                            class="btn btn-success col-2">Atrás</a>
 
 
-                </div>
+                    </div>
                     <!--Fin del footer del contenido-->
 
 

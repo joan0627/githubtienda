@@ -192,22 +192,6 @@
                                             Quitar
                                         </a></td>
                                 </tr>
-                                <tr>
-                                    <td>0320</td>
-                                    <td>Kanú Juguete Hueso azul para perro UND</td>
-                                    <td>2</td>
-                                    <td>$7.800</td>
-                                    <td>$15.600</td>
-                                    <td style="width: 7%"> <input type="text" class="form-control text-center  "
-                                            placeholder="%" value="0%"></td>
-
-                                    <td>
-                                        <a class="btn btn-danger btn-sm" href="#"
-                                            onclick="return confirm('¿Estás seguro que deseas quitar este producto?')">
-                                            <i class="fas fa-minus-circle"></i>
-                                            Quitar
-                                        </a></td>
-                                </tr>
 
 
                                 <tr>
@@ -255,7 +239,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                        
+
                                 <div class="card">
                                     <div class="card-header">
                                         <h3 class="card-title">DataTable with default features</h3>
@@ -268,7 +252,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <table id="example1" class="table table-striped ">
+                                        <table id="example1" class=" table table-striped ">
                                             <thead>
                                                 <tr class="warning">
                                                     <th>Código</th>
@@ -285,8 +269,7 @@
                                                     <td><?php echo  $valor->idProducto; ?></td>
 
 
-                                                    <td> <?php echo   $valor->descripcionPresentacion." de ".$valor->descripcionMarca." ". 
-                                              $valor->nombreProducto ." ". " ".  $valor->valorMedida ." ". $valor->descripcionUnidadmedida; ?>
+                                                    <td> <?php echo   $valor->descripcionPresentacion." X ".$valor->valorMedida. " ".$valor->descripcionUnidadmedida. " ". $valor->nombreProducto;  ?>
                                                     </td>
 
                                                     <td class="col-xs-1">
@@ -311,9 +294,7 @@
 
 
 
-                                                    <td><span class="pull-right"><a href="#"><i
-                                                                    class="fas fa-cart-plus "
-                                                                    style="font-size:24px;color: #5CB85C;"></i></a></span>
+                                                    <td><button id="addRow">Add new row</button>
                                                     </td>
                                                 </tr>
 
@@ -333,7 +314,7 @@
                         </div>
 
 
-               
+
 
 
 
@@ -346,14 +327,12 @@
 </div>
 </form>
 
-<div class="card-footer">
+<div class="text-right card-footer">
 
-    <a href="<?php echo base_url();?>compra " class="btn btn-success col-2">Atrás</a>
-    <button type="button" class="float-right btn btn-success" data-toggle="modal" data-target="#modal-pagar">
-        <i class="fa fa-print"></i> Guardar e imprimir</button>
-
-
-
+    <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id=""
+        class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>
+    <a style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url(); ?>compras"
+        class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 </div>
 
 
