@@ -237,14 +237,14 @@ class Producto extends CI_controller
   			$datosProducto1 = $this->Model_producto->buscarDatosProducto($idProducto);
 			 //Esta es la vista que carga los datos de los input
 			 $data['clave']= $datosProducto1;
-
+/*
 			 //Arreglo para recorrer y buscar los select "Tablas fuertes"
 			 $data['categorias'] = $this->Model_producto->buscarTodasCategorias();
 			 $data['marcas'] = $this->Model_producto->buscarTodasMarcas();
 			 $data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
 			 $data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
 			 $data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
-	 
+*/	 
 			 
 
 			 $this->load->view('layouts/superadministrador/header');
