@@ -37,6 +37,18 @@
 
 <!-- DateTable -->
 <script src="<?php echo base_url(); ?>assets/plugins/datatables/datatables.js"></script>
+<!-- DateTable Botones -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/Buttons-1.6.3/js/dataTables.buttons.min.js"></script>
+
+
+<!-- DateTable Boton de exportar a PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<!-- DateTable Botones HTML5-->
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+
 
 
 <!-- Select2 -->
@@ -45,6 +57,9 @@
 
 <!-- Link de nuestro codigo js -->
 <script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
+
+
+
 
 </body>
 

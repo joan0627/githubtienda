@@ -83,9 +83,9 @@
                         </div>
 
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div id="selectproveedor" class="form-group">
                                 <label>Proveedor</label>
-                                <select class="form-control ">
+                                <select class="form-control select2 ">
 
                                     <?php foreach ($proveedores as $valor) : ?>
                                     <option value="" selected hidden>-Seleccione un proveedor-</option>;
@@ -163,7 +163,8 @@
                 <!-- Table row -->
                 <div class="row">
                     <div class="col-12 table-responsive">
-                        <table class="table table-striped">
+
+                        <table id="example2" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -182,19 +183,19 @@
                                     <td>2</td>
                                     <td>$55.000</td>
                                     <td>$110.000</td>
-                                    <td style="width: 7%"> <input type="text" class="form-control text-center"
-                                            placeholder="%" value="8%"></td>
+                                    <td style="width: 7%"> <input type="text" class="form-control text-center"placeholder="%" value="8%"></td>
 
                                     <td>
-                                        <a class="btn btn-danger btn-sm" href="#"
-                                            onclick="return confirm('¿Estás seguro que deseas quitar este producto?')">
+                                        <a class="btn btn-danger btn-sm">
                                             <i class="fas fa-minus-circle"></i>
                                             Quitar
                                         </a></td>
                                 </tr>
 
+                            </tbody>
+                            <tfoot>
 
-                                <tr>
+                            <tr>
                                     <td colspan="4"><strong><span class="float-right">Neto </span> </strong></td>
                                     <td><span class="pull-right">$173.500</span></td>
                                     <td></td>
@@ -214,14 +215,17 @@
 
 
                                 <tr>
-                                    <td colspan="4"><strong><span class="float-right">TOTAL </span> </strong></td>
+                                    <td colspan="4"><strong><span class="float-right">TOTAL </span> </strong> </td>
                                     <td><span class="pull-right">$202.301</span></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
-
-                            </tbody>
+                      
+                            </tfoot>
                         </table>
+
+
+
                     </div>
                     <!-- /.col -->
                 </div>
@@ -287,15 +291,13 @@
                                                                 $
                                                             </div>
                                                             <input type="text" class="form-control "
-                                                                style="width:85% ;text-align:right" id="precio_venta_10"
-                                                                value="">
+                                                                style="width:85% ;text-align:right" value="">
                                                         </div>
                                                     </td>
 
 
 
-                                                    <td><button id="addRow">Add new row</button>
-                                                    </td>
+                                                    <td></td>
                                                 </tr>
 
                                                 <?php endforeach; ?>

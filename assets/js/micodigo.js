@@ -1,23 +1,31 @@
 
-
 $(document).ready(function() {
 	$('#example1').dataTable( {
+	
 		"language": {
+			searchPlaceholder: "Estoy buscando...",
 		  "url":'../assets/plugins/datatables/Spanish.lang'
+		  
 		},
 		"bInfo": false,
 	
-
+   
 
 	  } );
   });
 
-
-
 $(document).ready(function() {
-	$('#selectproveedor').select2();
-	theme:'bootsratp4';
-});
+	$('#example2').DataTable( {
+		dom: 'Bfrtip',
+		buttons: [
+			'copy', 'excel', 'pdf'
+		]
+	} );
+  });
+
+  
+
+
 
 /* Código para la funcion eliminar utilizando sweetalert 2 */
 (function () {
@@ -222,27 +230,26 @@ $(document).ready(function() {
 	});
 	*/
 	
-	
-$(document).ready(function() {
-    var t = $('#example1').DataTable();
-    var counter = 1;
- 
-    $('#addRow').on( 'click', function () {
-		alert('HICE CLIC'),
-        t.row.add( [
-            counter +'.1',
-            counter +'.2',
-            counter +'.3',
-            counter +'.4',
-            counter +'.5'
-        ] ).draw( false );
- 
-        counter++;
-    } );
- 
-    // Automatically add a first row of data
-    $('#addRow').click();
-} );
 
-
-	
+	$(document).ready(function() {
+		var t = $('#example2').DataTable();
+		
+		var counter = 1;
+	 
+		$('#addRow').on( 'click', function () {
+			t.row.add( [
+				counter +'.1',
+				counter +'.2',
+				counter +'.3',
+				counter +'.4',
+				counter +'.5',
+				counter +'.6',
+				counter +'.7',
+			] ).draw( true );
+	 
+			counter++;
+		} );
+	 
+		// Automatically add a first row of data
+		$('#addRow').click();
+	} );
