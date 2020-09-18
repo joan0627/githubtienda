@@ -24,6 +24,9 @@
     <!-- DataTable -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datatables/datatables.css">
 
+     <!-- DataTable Select-->
+     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datatables/Select-1.3.1/css/select.dataTables.min.css">
+
 
 
     <!-- overlayScrollbars -->

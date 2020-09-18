@@ -1,24 +1,116 @@
 
 $(document).ready(function() {
-	$('#example1').dataTable( {
-	
+
+	var table = $('#example1').DataTable({
 		"language": {
 			searchPlaceholder: "Estoy buscando...",
 		  "url":'../assets/plugins/datatables/Spanish.lang'
 		  
 		},
 		"bInfo": false,
-	
-   
+		"lengthMenu": [
+			[3,5, 15, 25, 50, 100, -1],
+			["Poco",5, 15, 25, 50, 100, "Todo"]
+		  ],
+		 // data: null,
+		  columns: [
+			  //{ 'data': 'idItem' },
+			  { 'data': 'codigo'},
+			  { 'data':  'categoria' },
+			  { 'data':  'descripcion' },
+			  {data: null, "defaultContent":"<input type='number' class='form-control' style='width:50% ;text-align:center; float:center' id='cant' value='0' >"},
+			  {data: null, "defaultContent":"<button><i class='fas fa-cart-plus' style='font-size:24px;color: #5CB85C;'></i></button></td>"}
+		  ],
+		
+		
+	});
 
-	  } );
+
+	
+	
+ 
+    table.on( 'click', 'tr', function () {
+		
+		$(this).toggleClass('selected');
+
+
+
+
+
+
+			//var data =table.row($(this).parents("tr").data());
+			//console.log(data);
+			 var filas= table.rows('.selected').data().length ;
+			 $("#anadir").text('Añadir'+'('+filas+')');
+			
+			$(this).children('td','input').each(function() {
+				var cant = $(this).parents("tr").find('#cant').val();
+				//alert($(this).text());
+			//	console.log(cant);
+
+
+		
+	
+
+			} );
+
+
+		/*	var ids = $.map(table.rows('.selected').data(), function (item) {
+				return item[3	];
+
+				
+			});
+			console.log("estos son"+ids);
+*/
+			//	alert( $(this).text());
+			//var columna = table.row('.selected').data();
+			//alert( columna);
+		
+		
+		
+		
+	} );
+
+
+
+	
+
+
   });
+
+
+
+/*
+  $(document).ready(function(){
+    
+    $("#example1").on('click', 'tr',  function(e) {
+		var table = $('#example1').DataTable();
+	  $(this).toggleClass('selected');
+	
+       
+			var filas= table.rows('.selected').data().length ;
+			$("#anadir").val(filas);
+		
+		e.preventDefault();
+  });
+});
+
+*/
+
+
+  
 
 $(document).ready(function() {
 	$('#example2').DataTable( {
+		"language": {
+			searchPlaceholder: "Estoy buscando...",
+		  "url":'../assets/plugins/datatables/Spanish.lang'
+		  
+		},
+		"bInfo": false,
 		dom: 'Bfrtip',
 		buttons: [
-			'copy', 'excel', 'pdf'
+			'copy'
 		]
 	} );
   });
@@ -231,25 +323,4 @@ $(document).ready(function() {
 	*/
 	
 
-	$(document).ready(function() {
-		var t = $('#example2').DataTable();
-		
-		var counter = 1;
-	 
-		$('#addRow').on( 'click', function () {
-			t.row.add( [
-				counter +'.1',
-				counter +'.2',
-				counter +'.3',
-				counter +'.4',
-				counter +'.5',
-				counter +'.6',
-				counter +'.7',
-			] ).draw( true );
-	 
-			counter++;
-		} );
-	 
-		// Automatically add a first row of data
-		$('#addRow').click();
-	} );
+

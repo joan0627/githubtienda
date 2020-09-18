@@ -167,6 +167,7 @@
                         <table id="example2" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
+                                    
                                     <th>Código</th>
                                     <th>Descripción</th>
                                     <th>Cantidad</th>
@@ -183,7 +184,8 @@
                                     <td>2</td>
                                     <td>$55.000</td>
                                     <td>$110.000</td>
-                                    <td style="width: 7%"> <input type="text" class="form-control text-center"placeholder="%" value="8%"></td>
+                                    <td style="width: 7%"> <input type="text" class="form-control text-center"
+                                            placeholder="%" value="8%"></td>
 
                                     <td>
                                         <a class="btn btn-danger btn-sm">
@@ -195,7 +197,7 @@
                             </tbody>
                             <tfoot>
 
-                            <tr>
+                                <tr>
                                     <td colspan="4"><strong><span class="float-right">Neto </span> </strong></td>
                                     <td><span class="pull-right">$173.500</span></td>
                                     <td></td>
@@ -220,7 +222,7 @@
                                     <td></td>
                                     <td></td>
                                 </tr>
-                      
+
                             </tfoot>
                         </table>
 
@@ -258,50 +260,38 @@
                                     <div class="card-body">
                                         <table id="example1" class=" table table-striped ">
                                             <thead>
-                                                <tr class="warning">
+                                                <tr>
                                                     <th>Código</th>
+                                                    <th>Categoría</th>
                                                     <th>Descripción</th>
-                                                    <th><span class="float-right">Cantidad</span></th>
-                                                    <th><span class="float-right"> Costo </span></th>
-                                                    <th style="width: 30px;"></th>
+                                                    <th>Cantidad</th>
+                                                    <th>Costo</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($Productos as $valor) : ?>
                                                 <tr>
 
-                                                    <td><?php echo  $valor->idProducto; ?></td>
-
-
-                                                    <td> <?php echo   $valor->descripcionPresentacion." X ".$valor->valorMedida. " ".$valor->descripcionUnidadmedida. " ". $valor->nombreProducto;  ?>
-                                                    </td>
-
-                                                    <td class="col-xs-1">
-
-                                                        <input type="number" class="form-control"
-                                                            style="width:50% ;text-align:right; float:right" value="0">
-
-
-                                                    </td>
-
-                                                    <td class="col-xs-2">
-                                                        <div class="input-group pull-right">
-                                                            <div class="input-group-addon"
-                                                                style="color:green; font-weight: bold; font-size:20px">
-                                                                $
-                                                            </div>
-                                                            <input type="text" class="form-control "
-                                                                style="width:85% ;text-align:right" value="">
-                                                        </div>
-                                                    </td>
-
-
-
+                                                    <td><?php echo  $valor->idProducto;?></td>
+                                                    <td><?php echo  $valor->descripcion;?></td>
+                                                    <td><?php echo $valor->descripcionPresentacion." X ".$valor->valorMedida. " ".$valor->descripcionUnidadmedida. " ". $valor->nombreProducto;?></td>
                                                     <td></td>
+                                                    <td></td>
+                                               
+
                                                 </tr>
+
+
 
                                                 <?php endforeach; ?>
                                             </tbody>
+
+                                            <tfoot>
+                                                <tr>
+                                                    <td> <button type="button"  id="anadir">Añadir</button>
+                                                    </td>
+                                                </tr>
 
                                             </tfoot>
                                         </table>
