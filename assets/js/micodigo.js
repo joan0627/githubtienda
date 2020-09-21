@@ -1,24 +1,28 @@
 
 $(document).ready(function() {
-
+ 
+  
 	var table = $('#example1').DataTable({
+	
 		"language": {
 			searchPlaceholder: "Estoy buscando...",
 		  "url":'../assets/plugins/datatables/Spanish.lang'
 		  
 		},
+		
 		"bInfo": false,
 		"lengthMenu": [
-			[3,5, 15, 25, 50, 100, -1],
-			["Poco",5, 15, 25, 50, 100, "Todo"]
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"]
 		  ],
 		 // data: null,
 		  columns: [
-			  //{ 'data': 'idItem' },
+			
 			  { 'data': 'codigo'},
 			  { 'data':  'categoria' },
 			  { 'data':  'descripcion' },
-			  {data: null, "defaultContent":"<input type='number' class='form-control' style='width:50% ;text-align:center; float:center' id='cant' value='0' >"},
+			  {data: null, "defaultContent":" <div class='input-group pull-right'><input type='number' class='form-control 'style='width:85% ;text-align:right' id='cant' value='1'></div>"},
+			  {data: null, "defaultContent":" <div class='input-group pull-right'><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input type='text' class='form-control 'style='width:85% ;text-align:right' value='0'></div>"},
 			  {data: null, "defaultContent":"<button><i class='fas fa-cart-plus' style='font-size:24px;color: #5CB85C;'></i></button></td>"}
 		  ],
 		
@@ -26,33 +30,61 @@ $(document).ready(function() {
 	});
 
 
-	
-	
+
  
     table.on( 'click', 'tr', function () {
 		
 		$(this).toggleClass('selected');
 
-
-
-
+		var filas= table.rows('.selected').data().length ;
+		$("#anadir").text('Añadir'+'('+filas+')');
+		
+		var codigoP = $(this).closest('tr').find('td:eq(0)').text();
+		var descripcion = $(this).closest('tr').find('td:eq(2)').text();
+		var cantidad = $(this).closest('tr').find('td:eq(3)').text();
+		var costo = $(this).closest('tr').find('td:eq(4)').text();
 
 
 			//var data =table.row($(this).parents("tr").data());
 			//console.log(data);
-			 var filas= table.rows('.selected').data().length ;
-			 $("#anadir").text('Añadir'+'('+filas+')');
+		
 			
-			$(this).children('td','input').each(function() {
-				var cant = $(this).parents("tr").find('#cant').val();
-				//alert($(this).text());
-			//	console.log(cant);
+			//$(this).children('td').each(function() {
+				//var valor = $(this).find("td:last-child").text();
+				//var valor =($(this).text());
+				//console.log(valor);
 
+
+		
+				var t = $('#example2').DataTable();
+				var datos = table.row($(this).parents('tr')).data();
+			 
+				$('#anadir').on( 'click', function () {
+					t.row.add( [
+					datos,
+					datos,
+					datos,
+					datos,
+					
+					datos,
+					
+					"Iva",
+					"Boton",
+					
+					
+					] ).draw( false );
+			 
+					//counter++;
+				} );
+			 
+				// Automatically add a first row of data
+				//$('#addRow').click();
+			
 
 		
 	
 
-			} );
+		//	} );
 
 
 		/*	var ids = $.map(table.rows('.selected').data(), function (item) {
@@ -70,7 +102,6 @@ $(document).ready(function() {
 		
 		
 	} );
-
 
 
 	
@@ -108,21 +139,71 @@ $(document).ready(function() {
 		  
 		},
 		"bInfo": false,
+		"bFilter":false,
+		"bPaginate": false,
 		dom: 'Bfrtip',
 		buttons: [
-			'copy'
+			{
+				text: 'Nueva compra',
+				action: function ( e, dt, node, config ) {
+					dt.ajax.reload();
+				}
+			}
+			
 		]
 	} );
   });
 
-  
+  ///////////////////////////////////////////////////////////////////////////
+
+  /*
+(function () {
+
+	$("tr td #add").click(function (ev) {
+		ev.preventDefault();
+		var categoria = $(this).parents('tr').find('td:eq(1)').text();
+		var idProducto = $(this).attr('data-id');
+
+		console.log("este es el id del producto"+idProducto);
+		var self = this;
+
+		Swal.fire({
+
+			title: '¡Atención!',
+			text: "¿Estás seguro que deseas eliminar el proveedor "+categoria+" ?",
+			type: 'question',
+			showCancelButton: true,
+			confirmButtonColor: '#28a745',
+			cancelButtonColor: '#28a745',
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No'
+		}).then((result) => {
+
+			if (result.value) {
+
+
+			
+
+
+			}
+		})
+	});
+
+
+})();
+
+*/
+
+  ///////////////////////////////////////////////////////////////////////////
+
+
 
 
 
 /* Código para la funcion eliminar utilizando sweetalert 2 */
 (function () {
 
-	$("tr td #delete").click(function (ev) {
+	$("tr td #add").click(function (ev) {
 		ev.preventDefault();
 		var nombre = $(this).parents('tr').find('td:eq(1)').text();
 		var documento = $(this).attr('data-documento');

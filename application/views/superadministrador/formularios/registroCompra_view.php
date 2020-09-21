@@ -265,7 +265,8 @@
                                                     <th>Categoría</th>
                                                     <th>Descripción</th>
                                                     <th>Cantidad</th>
-                                                    <th>Costo</th>
+                                                    <th style="text-align:center;">Costo</th>
+                                                    <th>Acción</th>
 
                                                 </tr>
                                             </thead>
@@ -276,10 +277,12 @@
                                                     <td><?php echo  $valor->idProducto;?></td>
                                                     <td><?php echo  $valor->descripcion;?></td>
                                                     <td><?php echo $valor->descripcionPresentacion." X ".$valor->valorMedida. " ".$valor->descripcionUnidadmedida. " ". $valor->nombreProducto;?></td>
-                                                    <td></td>
-                                                    <td></td>
-                                               
-
+                                                    <td class="col-xs-1"></td>
+                                                    <td class="col-xs-2"></td>
+                                                    <td class="col-xs-1"></td>
+                                                
+                                                   
+ 
                                                 </tr>
 
 
