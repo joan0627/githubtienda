@@ -18,9 +18,13 @@ class Model_compra extends Ci_model
 
 	/*************************************************************/
 	// **Aqui comienza las consultas sql para la tabla compras // **
-	/********
-	 * 
-	 * *****************************************************/
+	// ******************************************************//
+
+	function insertarCompra($datosCompra){
+
+		$this->db->insert($this->tablaCompra, $datosCompra);
+		 return $this->db->insert_id();
+	}
 
 
 	function obtenerId()
@@ -38,13 +42,6 @@ class Model_compra extends Ci_model
 	   }
 
 	   return $consulta->row_array();
-	}
-
-
-	function insertarCompra($datosCompra){
-
-		$this->db->insert($this->tablaCompra, $datosCompra);
-		 return $this->db->insert_id();
 	}
 
 
