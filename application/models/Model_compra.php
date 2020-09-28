@@ -10,6 +10,10 @@ class Model_compra extends Ci_model
     public $tablaProveedor = 'proveedor';
 	public $idProveedorPK = 'documento';
 
+	public $tablaDetalle = 'detallecompra';
+	public $idDetallePK = 'idDetalleCompra';
+
+
 	public function _construct()
 	{
 		
@@ -40,12 +44,21 @@ class Model_compra extends Ci_model
 	   return $consulta->row_array();
 	}
 
-
+	//Función insertar el encabezado de la compra
 	function insertarCompra($datosCompra){
 
 		$this->db->insert($this->tablaCompra, $datosCompra);
 		 return $this->db->insert_id();
 	}
+
+	//Función insertar el detalle de la compra
+	function insertarDetalle($datosDetalle){
+
+		$this->db->insert($this->tablaDetalle, $datosDetalle);
+		 return $this->db->insert_id();
+		 //OJO AQUI PUEDE TAMBIEN IR EL INSERT BATCH
+	}
+
 
 
 	//Función para buscar todos los proveedores: Select * from proveedor

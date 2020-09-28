@@ -87,8 +87,8 @@
 
                                     <?php foreach ($proveedores as $valor) : ?>
                                         <option value="" selected hidden>-Seleccione un proveedor-</option>;
-                                        <option value="1001661421">
-                                            <?php echo  $valor->documento; ?></option>
+                                        <option value="<?php  echo  $valor->documento; ?>">
+                                            <?php echo  $valor->nombre; ?></option>
 
                                     <?php endforeach; ?>
                                     <?php echo form_error('proveedor', '<p class="text-danger">', '</p>'); ?>
@@ -176,18 +176,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>100</td>
-                                        <td>Solla Bulto NutreCan Croquetas Adulto Carne y Pollo 30KG</td>
-                                        <td>2</td>
-                                        <td>$55.000</td>
-                                        <td>$110.000</td>
-                                        <td style="width: 7%"> <input type="text" class="form-control text-center" placeholder="%" value="8%"></td>
-
-                                        <td>
-                                            <a class="btn btn-danger btn-sm">
-                                                <i class="fas fa-minus-circle"></i>
-                                                Quitar
-                                            </a></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
 
                                 </tbody>
@@ -258,8 +253,11 @@
                                                 <th>Código</th>
                                                 <th>Categoría</th>
                                                 <th>Descripción</th>
-                                                <th>Cantidad</th>
-                                                <th>Costo</th>
+                                                <th style="text-align:center;">Cantidad</th>
+                                                <th style="text-align:center;">Costo</th>
+                                                <th style="text-align:center;">Iva</th>
+                                                <th style="text-align:left;">Acción</th>
+                                                
 
                                             </tr>
                                         </thead>
@@ -272,7 +270,8 @@
                                                     <td><?php echo $valor->descripcionPresentacion . " X " . $valor->valorMedida . " " . $valor->descripcionUnidadmedida . " " . $valor->nombreProducto; ?></td>
                                                     <td></td>
                                                     <td></td>
-
+                                                    <td></td>
+                                                    <td></td>
 
                                                 </tr>
 
@@ -282,10 +281,8 @@
                                         </tbody>
 
                                         <tfoot>
-                                            <tr>
-                                                <td> <button type="button" id="anadir">Añadir</button>
-                                                </td>
-                                            </tr>
+                                            
+                                       
 
                                         </tfoot>
                                     </table>
@@ -315,7 +312,7 @@
 
 <div class="text-right card-footer">
 
-    <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="" class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>
+    <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="registrarCompra" class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>
     <a style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url(); ?>compras" class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 </div>
 </form>

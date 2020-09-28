@@ -1,137 +1,120 @@
 
-$(document).ready(function() {
- 
-  
-	var table = $('#example1').DataTable({
-	
-		"language": {
+
+$(document).ready(function () {
+	var table = $("#example1").DataTable({
+		language: {
 			searchPlaceholder: "Estoy buscando...",
-		  "url":'../assets/plugins/datatables/Spanish.lang'
-		  
+			url: "../assets/plugins/datatables/Spanish.lang",
 		},
-		
-		"bInfo": false,
-		"lengthMenu": [
+
+		bInfo: false,
+		lengthMenu: [
 			[5, 15, 25, 50, 100, -1],
-			[5, 15, 25, 50, 100, "Todo"]
-		  ],
-		 // data: null,
-		  columns: [
-			
-			  { 'data': 'codigo'},
-			  { 'data':  'categoria' },
-			  { 'data':  'descripcion' },
-			  {data: null, "defaultContent":" <div class='input-group pull-right'><input type='number' class='form-control 'style='width:85% ;text-align:right' id='cant' value='1'></div>"},
-			  {data: null, "defaultContent":" <div class='input-group pull-right'><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input type='text' class='form-control 'style='width:85% ;text-align:right' value='0'></div>"},
-			  {data: null, "defaultContent":"<button><i class='fas fa-cart-plus' style='font-size:24px;color: #5CB85C;'></i></button></td>"}
-		  ],
-		
-		
+			[5, 15, 25, 50, 100, "Todo"],
+		],
+		// data: null,
+		columns: [
+			{ data: "codigo" },
+			{ data: "categoria" },
+			{ data: "descripcion" },
+			{
+				data: null,
+				defaultContent:
+					"<div class='input-group' style='width: 80%;'><input type='number' class='form-control'  value='1'></div>",
+			},
+			{
+				data: null,
+				defaultContent:
+				" <div class='input-group '><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input type='text' class='form-control 'style='width:95% ;text-align:right' value='0'></div>",
+			},
+			{
+				data: null,
+				defaultContent:
+				" <div class='input-group '><input type='number' class='form-control 'style='width:85% ;' value='0'><div class='input-group-addon' style='color:gray; font-weight: bold; font-size:20px'>%</div></div>",
+			},
+			{
+				data: null,
+				defaultContent:
+					"<button class='name' style=' border: none; background: none; outline: none;'><i class='fas fa-cart-plus' style='font-size:28px;color: #5CB85C; '></i></button></td>",
+			},
+		],
 	});
 
 
 
- 
-    table.on( 'click', 'tr', function () {
-		
-		$(this).toggleClass('selected');
-
-		var filas= table.rows('.selected').data().length ;
-		$("#anadir").text('Añadir'+'('+filas+')');
-		
-		var codigoP = $(this).closest('tr').find('td:eq(0)').text();
-		var descripcion = $(this).closest('tr').find('td:eq(2)').text();
-		var cantidad = $(this).closest('tr').find('td:eq(3)').text();
-		var costo = $(this).closest('tr').find('td:eq(4)').text();
-
-
-			//var data =table.row($(this).parents("tr").data());
-			//console.log(data);
-		
-			
-			//$(this).children('td').each(function() {
-				//var valor = $(this).find("td:last-child").text();
-				//var valor =($(this).text());
-				//console.log(valor);
-
-
-		
-				var t = $('#example2').DataTable();
-				var datos = table.row($(this).parents('tr')).data();
-			 
-				$('#anadir').on( 'click', function () {
-					t.row.add( [
-					datos,
-					datos,
-					datos,
-					datos,
-					
-					datos,
-					
-					"Iva",
-					"Boton",
-					
-					
-					] ).draw( false );
-			 
-					//counter++;
-				} );
-			 
-				// Automatically add a first row of data
-				//$('#addRow').click();
-			
-
-		
-	
-
-		//	} );
-
-
-		/*	var ids = $.map(table.rows('.selected').data(), function (item) {
-				return item[3	];
-
-				
-			});
-			console.log("estos son"+ids);
-*/
-			//	alert( $(this).text());
-			//var columna = table.row('.selected').data();
-			//alert( columna);
-		
-		
-		
-		
-	} );
-
-
 	
 
 
-  });
+	  
+$('#example1 tbody').on('click', '.name', function () {
+
+	//var row = $(this).closest('tr');
+  
+  //var data = table.row( row ).data().name;
+
+	var codigoP = $(this).closest("tr").find("td:eq(0)").text();
+	 var descripcion = $(this).closest("tr").find("td:eq(2)").text();
+	var cantidad = $(this).closest("tr").find("td:eq(3)").find("input").val();
+	var costo = $(this).closest("tr").find("td:eq(4)").find("input").val();
+	var iva = $(this).closest("tr").find("td:eq(5)").find("input").val();
+	var subtotal = costo * cantidad;
+  
+
+  var t = $("#example2").DataTable();
+
+
+	t.row
+		.add([
+			codigoP,
+			 descripcion, 
+			 cantidad, 
+			 costo, 
+			 subtotal,
+			  iva, 
+			  "<button class='eliminar btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i> Quitar </button>",
+
+     
+			])
+		.draw(false);
+
+	
+		
+});
 
 
 
-/*
+
+
+});
+	
+
+
+//Función para quitar un elemento de la tabla al pulsar el botón quitar
   $(document).ready(function(){
     
-    $("#example1").on('click', 'tr',  function(e) {
-		var table = $('#example1').DataTable();
-	  $(this).toggleClass('selected');
-	
-       
-			var filas= table.rows('.selected').data().length ;
-			$("#anadir").val(filas);
-		
-		e.preventDefault();
+    $("#example2").on('click', '.eliminar',  function() {
+		var t= $('#example2').DataTable();
+		let $tr = $(this).closest('tr');
+		  
+		// Le pedimos al DataTable que borre la fila
+		t.row($tr).remove().draw(false);
   });
 });
 
-*/
+
 
 
   
 
 $(document).ready(function() {
+	var prueba= 290;
+	var codigoP = $(this).closest("tr").find("td:eq(0)").text();
+	var descripcion = $(this).closest("tr").find("td:eq(1)").text();
+   var cantidad = $(this).closest("tr").find("td:eq(2)").text();
+   var costo = $(this).closest("tr").find("td:eq(3)").text();
+   var subtotal = $(this).closest("tr").find("td:eq(4)").text();
+   var iva = $(this).closest("tr").find("td:eq(5)").text();
+
 	$('#example2').DataTable( {
 		"language": {
 			searchPlaceholder: "Estoy buscando...",
@@ -150,8 +133,96 @@ $(document).ready(function() {
 				}
 			}
 			
-		]
+		],
+
+	
+	/*	"ajax": {
+			type: 'POST',
+			url: '/tienda/Compra/registro/',
+			data: { 
+				'codigo':codigoP,
+				'cantidad':cantidad,
+				'costo':costo,
+				'subtotal':subtotal,
+				'iva':iva
+
+
+			 },
+			 success: function (data) {
+				 alert('Los datos fueron agregados con exito');
+
+			 },error:function(jqXHR, textStatus,errorThrown){
+				 console.log('error');
+			 }
+
+		},
+		     */
+      
 	} );
+
+	$('#registrarCompra').click(function(){
+		
+			alert('me hixo xlo');
+
+			$.ajax({
+				type: 'POST',
+				url: '/tienda/Compra/registro/',
+				data: { 
+					'codigo': prueba,
+					'cantidad':cantidad,
+					'costo':costo,
+					'subtotal':subtotal,
+					'iva':iva
+	
+	
+				 },
+				success: function () {
+				
+					Swal.fire(
+						{	
+
+						title: '¡El codigo es!' +codigoP,
+						text: "Se guardo" +prueba,
+						type: 'success',
+						confirmButtonColor: '#28a745',
+							
+						}
+					
+								   
+					)
+
+				},
+				error: function () {
+					Swal.fire(
+						{
+							
+							title: '¡Proceso no completado!',
+							text: "No se guardo",
+							type: 'warning',
+							confirmButtonColor: '#28a745',
+						}
+						
+								   
+					)
+				},
+				 statusCode: {
+					400: function (data) {
+						var json = JSON.parse(data.responseText);
+						Swal.fire(
+							'¡Error!',
+							json.msg,
+							'error'
+						)
+
+					}
+				}
+			})
+
+	});
+
+
+
+
   });
 
   ///////////////////////////////////////////////////////////////////////////

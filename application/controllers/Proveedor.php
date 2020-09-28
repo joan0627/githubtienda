@@ -271,8 +271,7 @@ class Proveedor extends CI_controller
 		else
 		{
 			$this->Model_proveedor->borrar($_documento);
-			$this->output
-			->set_status_header(200);
+			$this->output->set_status_header(200);
 			
 		}
 	}
