@@ -18,42 +18,40 @@
 			</div>
 			<br>
 		</div><!-- FIN/.container-fluid -->
-		
-		<!--boton crear servicio-->
-		<div class="container-fluid">
-            <div class="row mb-1">
+		<form method="get">
+			<div class="container-fluid">
+                <div class="row mb-1">
 
-			<div class="col-auto col-md-6 mr-auto ">
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <button type="button" class="btn bg-gray dropdown-toggle" data-toggle="dropdown">
-                                <i class="fas fa-filter"></i> Filtrar
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-item"><a href="#">Activo</a></li>
-                                <li class="dropdown-item"><a href="#">Inactivo</a></li>
-                                <li class="dropdown-item"><a href="#">Administrador</a></li>
-                                <li class="dropdown-item"><a href="#">Empleado</a></li>
+                    <div class="col-auto col-md-4 mr-auto ">
+                        <div class="input-group  mb-3">
 
-                            </ul>
+                            <input name="buscar" type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
+							</span>
 
+                            <span class="col-auto input-group-btn">
+                                <a type="button" role="link" class="btn bg-gray" onclick="location.href='servicio';"><i class="fas fa-sync-alt"></i></a>
+
+                            </span>
 
                         </div>
-                        <!-- /btn-group -->
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn bg-gray" type="button"><i class="fas fa-search"></i></button>
-                        </span>
+
                     </div>
-                </div>
 
-                <div class="col-auto">
+                    <div class="col-auto">
 
-                    <a href="<?php echo base_url();?>servicio/crearserviciosu" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear servicio</a>
+                        <a href="<?php echo base_url(); ?>servicio/registro" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear
+                            Servicio</a>
+                    </div>
+
+
+
+
                 </div>
             </div>
-        </div>
-		<!--Fin boton crear servicio-->
+        </form>
+
 
 	</section>
 
@@ -82,13 +80,13 @@
 					<thead>
 						<tr>
 							<th>
-								Imagen
-							</th>
-							<th>
 								Código
 							</th>
 							<th>
 								Nombre
+							</th>
+							<th >
+								Tipo servicio
 							</th>
 							<th >
 								Descripción
@@ -101,53 +99,48 @@
 						</tr>
 					</thead>
 					<tbody>
-						
+
+							<?php foreach ($resultado as $key => $d) : ?>
 						<tr>
 
-							<td>
-							<div class="timeline-body">
-                                    <img src="<?php echo base_url();?>assets/img/servicios/peluqueria.png" alt="...">
-
-                                </div>
+							<td><?php echo  $d->idServicio;?></td>
+							<td><?php echo  $d->nombreServicio;?></td>
+							<td><?php echo  $d->descripcionTipoServicio;?></td>
+							<td style="width:310px;"><?php echo  $d->descripcion;?></td>
+							<td style="color:green; "><label><?php echo  $d->precio;?></label></td>
 								
-						
-							</td>
-							<td>P1203</td>
-							<td> Peluqueria canina</td>
-							<td style="width:310px;">Corte y cepillado de canino con shampoo especial antipulgas y loción protectora.</td>
-							<td><label style="color:green; ">$25.000</label></td>
 
 
 
-							<td class="project-actions text-right ">
-								<a class="btn btn-primary btn-sm" href="verDetalleserviciosu">
-									<i class="fas fa-eye"></i>
-									</i>
-									Ver
-								</a>
+								<td class="project-actions text-right ">
+									<a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>servicio/detalle/<?php echo $d->idServicio; ?>">
+										<i class="fas fa-eye"></i>
+										</i>
+										Ver
+									</a>
 
 
 
-								<a class="btn btn-info btn-sm" href="actualizarserviciosu">
-						
-									<i class="fas fa-pencil-alt">
-									</i>
-									Editar
-								</a>
+									<a class="btn btn-info btn-sm" href="actualizarserviciosu">
+							
+										<i class="fas fa-pencil-alt">
+										</i>
+										Editar
+									</a>
 
 
-								<a class="btn btn-danger btn-sm"  href="#"    
-								onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')"
-								>
-									<i class="fas fa-trash">
-									</i>
-									Borrar
-								</a>
-							</td>
+									<a class="btn btn-danger btn-sm"  href="#"    
+									onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')"
+									>
+										<i class="fas fa-trash">
+										</i>
+										Borrar
+									</a>
+								</td>
 
 
 						</tr>
-
+ 					<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
@@ -156,7 +149,12 @@
 			<!--Inicio del footer del contenido-->
 			<div class="card-footer">
 
-
+			<?php if($this->session->flashdata('busqueda')): ?>
+            
+			<div class="alert alert-warning text-center" > <?= $this->session->flashdata('busqueda'); $this->session->sess_destroy();?> </div> 
+		 
+			
+		 <?php endif?>
 			</div>
 			<!--Fin del footer del contenido-->
 

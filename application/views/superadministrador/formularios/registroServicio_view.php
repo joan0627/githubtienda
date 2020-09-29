@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Servicio</a></li>
-                        <li class="breadcrumb-item active">Registro de servicios</li>
+                        <li class="breadcrumb-item active">Registro servicio</li>
                     </ol>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label>Código</label> <label style="color: red;"> *</label>
                                 <input name="codigo" type="text" class="form-control"
-                                    placeholder="Ingrese el código del servicio" value="">
+                                    placeholder="Ingrese el código del servicio" >
 
                             </div>
 
@@ -69,12 +69,31 @@
 
                                 <div class="form-group">
                                     <label>Tipo de servicio</label> <label style="color: red;"> *</label>
-                                    <select class="form-control " style="width: 100%;">
-                                        <option selected hidden="selected">-Seleccione el tipo de servicio-</option>
-                                        <option>Belleza</option>
-                                        <option>Vacunación</option>
-                                        <option>Desparasitación</option>
+                                    <select class="form-control " style="width: 100%;" name="tipoServicio">
+                                    <?php if ($tiposervicio != "") : ?>
+                                    <?php foreach ($tipoServicios as $clave => $valor) : ?>
+                                    <?php if ($tiposervicio == $valor->idTipoServicio) : ?>
 
+                                    <option hidden value=" <?php echo  $valor->idTipoServicio; ?>" selected>
+                                    <?php echo  $valor->descripcionTipoServicio; ?></option>
+
+                                    <?php foreach ($tipoServicios as $clave => $valor) : ?>
+
+                                    <option value=" <?php echo  $valor->idTipoServicio; ?>">
+                                        <?php echo  $valor->descripcionTipoServicio; ?></option>
+
+                                    <?php endforeach; ?>
+
+                                    <?php endif;  ?>
+                                    <?php endforeach; ?>
+                                    <?php else :
+										foreach ($tipoServicios as $clave => $valor) : ?>
+                                    <option value="" selected hidden>-Seleccione un tipo de servicio-</option>;
+                                    <option value=" <?php echo  $valor->idTipoServicio; ?>">
+                                        <?php echo  $valor->descripcionTipoServicio; ?></option>
+
+                                    <?php endforeach; ?>
+                                    <?php endif ?>
                                     </select>
                                 </div>
 
@@ -87,7 +106,7 @@
 
                                 <label>Descripción</label> <label style="color: red;"> * </label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Describa el detalle del servicio"></textarea>
+                                    placeholder="Describa el detalle del servicio" name="descripcion"></textarea>
                             </div>
 
                         </div>
@@ -101,7 +120,7 @@
                             <div class="form-group">
                                 <label>Recomendaciones previas</label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Tener en cuenta antes de la cita..." name="vision"></textarea>
+                                    placeholder="Tener en cuenta antes de la cita..." name="recomendacionesPrevias"></textarea>
                             </div>
                         </div>
 
@@ -109,7 +128,7 @@
                             <div class="form-group">
                                 <label>Recomendaciones posteriores</label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Tener en cuenta después de la cita..." name="vision"></textarea>
+                                    placeholder="Tener en cuenta después de la cita..." name="recomendacionesPosteriores"></textarea>
                             </div>
 
                         </div>
@@ -126,43 +145,14 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio del servicio">
+                                <input type="text" class="form-control" placeholder="Ingrese el precio del servicio" name="precio">
 
                             </div>
 
                         </div>
+                        
 
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputFile">Imagen del servicio</label> <label style="color: red;">
-                                    * </label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile"></label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Cargar</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Vista previa de la imagen</label>
-                                <div class="timeline-body">
-                                    <img src="http://placehold.it/250x200" alt="...">
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
 
                     <!--Inicio del footer del contenido-->
                     <!--Inicio del footer del contenido-->
@@ -170,7 +160,7 @@
 
                         <button type="submit" id="botonRegistroServicio"
                             class="btn btn-success col-2">Registrar</button>
-                        <a href="listaserviciosu" class="btn btn-success col-2">Atrás</a>
+                        <a href="<?php echo base_url(); ?>servicio" class="btn btn-success col-2">Atrás</a>
                     </div>
                     <!--Fin del footer del contenido-->
 

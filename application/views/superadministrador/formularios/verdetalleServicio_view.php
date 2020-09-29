@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label>Código</label> 
                                 <input name="codigo" type="text" class="form-control"
-                                    value="P1203" readOnly="readonly">
+                                value="<?php echo $clave['idServicio']; ?>" readOnly="readonly">
 
                             </div>
 
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label>Nombre</label> 
                                 <input name="nombre" type="text" class="form-control"
-                                    value="Peluqueria Canina" readOnly="readonly">
+                                value="<?php echo $clave['nombreServicio']; ?>" readOnly="readonly">
 
                             </div>
 
@@ -67,9 +67,9 @@
 
 
                                 <div class="form-group">
-                                    <label>Responsable</label> 
-                                    <input name="nombre" type="text" class="form-control"
-                                    value="Fredy" readOnly="readonly">
+                                    <label>Tipo servicio</label> 
+                                    <input type="text" class="form-control"
+                                    value="<?php  echo $clave['descripcionTipoServicio']?>" readOnly="readonly">
                                 </div>
 
                             </div>
@@ -79,7 +79,7 @@
 
                                 <label>Descripción</label> 
                                 <textarea class="form-control" rows="3"
-                                    value=" " readOnly="readonly">Corte y cepillado de canino con shampoo especial antipulgas y loción protectora</textarea>
+                                readOnly="readonly"><?php echo $clave['descripcion']; ?></textarea>
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@
                                 <div class="form-group">
                                     <label>Recomendaciones previas</label>
                                     <textarea class="form-control" rows="3"
-                                        value="" readOnly="readonly">Traer el carnet de citas</textarea>
+                                        value="" readOnly="readonly"><?php echo $clave['recomendacionesPrevias']; ?></textarea>
                                 </div>
 
                             </div>
@@ -105,7 +105,7 @@
                             <div class="form-group">
                                 <label>Recomendaciones posteriores</label>
                                 <textarea class="form-control" rows="3"
-								value="" readOnly="readonly">No bañar en 45 dias habiles despues del tratamiento con shampoo especializado</textarea>
+								value="" readOnly="readonly"><?php echo $clave['recomendacionesPosteriores']; ?></textarea>
                             </div>
 
                         </div>
@@ -121,34 +121,20 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" value="25.000" readOnly="readonly">
+                                <input type="text" class="form-control" value="<?php echo $clave['precio']?>" readOnly="readonly">
                                 
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="row">
-                   
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Vista previa de la imagen</label>
-                                <div class="timeline-body">
-                                    <img src="http://placehold.it/250x200" alt="...">
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
 
                     <!--Inicio del footer del contenido-->
                     <!--Inicio del footer del contenido-->
                     <div class="card-footer">
 
-                        <a href="listaserviciosu" class="btn btn-success col-2">Atrás</a>
+                        <a href="<?php echo base_url(); ?>servicio" class="btn btn-success col-2">Atrás</a>
                     </div>
                     <!--Fin del footer del contenido-->
 

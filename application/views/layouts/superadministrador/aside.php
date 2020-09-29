@@ -93,43 +93,14 @@
                       </a>
                   </li>
 
-
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-barbershop-50.png"
-                              class="nav-icon">
+                  <li class="nav-item">
+                      <a href="<?php echo base_url();?>servicio" class="nav-link">
+                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-barbershop-50.png" class="nav-icon">
                           <p>
-                              Servicios
-                              <i class="fas fa-angle-left right"></i>
+                            Servicios
                           </p>
                       </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="<?php echo base_url();?>servicio/listaserviciosu" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-list-50.png"
-                                      class="nav-icon">
-                                  <p>Lista de servicios</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="<?php echo base_url();?>servicio/listasvacunas" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-syringe-50.png"
-                                      class="nav-icon">
-                                  <p>Vacunación</p>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="<?php echo base_url();?>servicio/listamedicamentos" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-pill-50.png"
-                                      class="nav-icon">
-                                  <p>Desparasitación</p>
-                              </a>
-                          </li>
-
-                      </ul>
                   </li>
-
-
 
 
                   <li class="nav-item has-treeview">
