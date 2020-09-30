@@ -169,13 +169,6 @@ function buscarPresentaciones() {
 
 
 
-
-
-
-
-	
-
-
 }
 
 ?>
