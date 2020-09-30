@@ -71,7 +71,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label>Código</label>
-                                <input name="idCompra" readOnly="readonly" type="text" class="form-control" value="<?php
+                                <input id="idCompra" readOnly="readonly" type="text" class="form-control" value="<?php
                                                                                                                     if ($this->session->flashdata('codigoCompra')) {
                                                                                                                         echo 1;
                                                                                                                     }
@@ -175,15 +175,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
 
                                 </tbody>
                                 <tfoot>

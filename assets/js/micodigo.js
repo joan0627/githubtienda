@@ -107,13 +107,14 @@ $('#example1 tbody').on('click', '.name', function () {
   
 
 $(document).ready(function() {
-	var prueba= 290;
-	var codigoP = $(this).closest("tr").find("td:eq(0)").text();
+	var codigoP =$(this).closest("tr").find("td:eq(0)").text();
+	
 	var descripcion = $(this).closest("tr").find("td:eq(1)").text();
    var cantidad = $(this).closest("tr").find("td:eq(2)").text();
    var costo = $(this).closest("tr").find("td:eq(3)").text();
    var subtotal = $(this).closest("tr").find("td:eq(4)").text();
    var iva = $(this).closest("tr").find("td:eq(5)").text();
+	
 
 	$('#example2').DataTable( {
 		"language": {
@@ -159,64 +160,103 @@ $(document).ready(function() {
 		     */
       
 	} );
+	
 
-	$('#registrarCompra').click(function(){
+
+	$('#registrarCompra').click(function(ev){
+		//ev.preventDefault();
 		
-			alert('me hixo xlo');
+		//var table = $('#example2').DataTable();
+		//var total = table. 
+		//alert (total);
+		var prueba= 290;
+		var prueba1= 543;
+		var prueba2= 675;
+		var prueba3= 776;
+		var prueba4= 4523;
+		var codigoFactura=$('#idCompra').val();
+		console.log('Esta es la factura'+codigoFactura);
+		
+	//	var data = table.rows(0).data();
+	 
+		//var form_data  = table.rows().data();
+ 
+		/*$.each( form_data, function( key, value ) {
+		  var codiguin= (key,value);
+		  //alert(codiguin);
+		});*/
 
-			$.ajax({
-				type: 'POST',
-				url: '/tienda/Compra/registro/',
-				data: { 
-					'codigo': prueba,
-					'cantidad':cantidad,
-					'costo':costo,
-					'subtotal':subtotal,
-					'iva':iva
-	
-	
-				 },
-				success: function () {
+		$('#example2 tbody tr').each(function() {
+		
+			var codigo = $(this).find('td').eq(0).text();
+		var cantidad = $(this).find('td').eq(2).text();
+		var costo = $(this).find('td').eq(3).text();
+		var iva = $(this).find('td').eq(5).text();
+		
+		console.log(codigo);
+
+
+
+		$.ajax({
 				
-					Swal.fire(
-						{	
+				
+			url: '/tienda/Compra/detalle',
+			type: 'POST',
+			datatype:'json',
+			data: {
+			     'codigoFactura':codigoFactura,
+				 'codigo': codigo,
+				 'cantidad':cantidad,
+				 'costo':costo,
+				 'iva': iva
+		},
+			success: function () {
+			
+				Swal.fire(
+					{	
 
-						title: '¡El codigo es!' +codigoP,
-						text: "Se guardo" +prueba,
-						type: 'success',
-						confirmButtonColor: '#28a745',
-							
-						}
-					
-								   
-					)
-
-				},
-				error: function () {
-					Swal.fire(
-						{
-							
-							title: '¡Proceso no completado!',
-							text: "No se guardo",
-							type: 'warning',
-							confirmButtonColor: '#28a745',
-						}
+					title: '¡El codigo es!' +codigoP,
+					text: "Se guardo" +codigo,
+					type: 'success',
+					confirmButtonColor: '#28a745',
 						
-								   
-					)
-				},
-				 statusCode: {
-					400: function (data) {
-						var json = JSON.parse(data.responseText);
-						Swal.fire(
-							'¡Error!',
-							json.msg,
-							'error'
-						)
-
 					}
+				
+							   
+				)
+
+			},
+			error: function () {
+				Swal.fire(
+					{
+						
+						title: '¡Proceso no completado!',
+						text: "No se guardo",
+						type: 'warning',
+						confirmButtonColor: '#28a745',
+					}
+					
+							   
+				)
+			},
+			 statusCode: {
+				400: function (data) {
+					var json = JSON.parse(data.responseText);
+					Swal.fire(
+						'¡Error!',
+						json.msg,
+						'error'
+					)
+
 				}
-			})
+			}
+		})
+			
+		});
+
+		
+		
+
 
 	});
 

@@ -55,8 +55,6 @@ class Compra extends CI_controller
 	public function registro()
 	{
 
-		
-	
 
 			$resultado = $this->Model_compra->obtenerId();
 			$resultado1 = $this->Model_proveedor->BuscarTodosProveedor();
@@ -85,29 +83,7 @@ class Compra extends CI_controller
 			$datosCarga["fechaFacturaProveedor"] = $this->input->post("fechafacturaProveedor");
 
 
-			//Guardar el detalle
-
-			$data= $this->input->post();
-
-			$codigo= $this->input->post('codigo',true);
-
-		
-
-			if(empty($codigo)){
-				$this->output
-				->set_status_header(400)
-				->set_output(json_encode(array ('msg'=>'El codigo esta vacío')));
-			}
-
-			else
-			{
-			   echo("no esta vacio");
-			}
-
-			$datosCompra = array(
-			
-			);
-
+				
 			/*********************/
 			// *			Validación de los campos					*// 
 			/*********************/
@@ -125,20 +101,20 @@ class Compra extends CI_controller
 				//$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado correctamente.');
 				redirect("compra");
 
+
 			}
+
 			else
 			{
 
 
 				$this->load->view('layouts/superadministrador/header');
-				//$this->load->view('layouts/superadministrador/aside');
+				$this->load->view('layouts/superadministrador/aside');
 				$this->load->view('superadministrador/formularios/registroCompra_view',$datosCarga);
 				$this->load->view('layouts/footer');
-
 			}
-
+	
 	}
-
 
 	public function actualizarcomprasu()
 	{
@@ -155,6 +131,42 @@ class Compra extends CI_controller
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/formularios/verdetalleServicio_view');
 		$this->load->view('layouts/footer');
+		
+	}
+
+	public function detalle(){
+
+		
+		
+			//Guardar el detalle
+			$_idCompra=$this->input->post("codigoFactura");
+			$_codigo= $this->input->post('codigo');
+			$_cantidad= $this->input->post('cantidad');
+			$_costo= $this->input->post('costo');
+			$_iva= $this->input->post('iva');
+
+			$datosPrueba = array(
+				'idDetalleCompra' => '',
+				 'idCompra' => 	$_idCompra,
+				 'idProducto' => $_codigo,
+				 'cantidad' => $_cantidad,
+				 'costoProducto' => $_costo,
+				 'iva' => $_iva
+			);
+			
+
+				$this->output
+				->set_status_header(400)
+				->set_output(json_encode(array ('msg'=>'El documento no puede ser vacío')));
+			
+		
+				echo json_encode($datosPrueba);
+
+				$this->Model_compra->insertarDetalle($datosPrueba);
+				$this->output->set_status_header(200);
+				
+			
+	
 		
 	}
 	

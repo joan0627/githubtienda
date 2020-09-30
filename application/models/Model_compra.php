@@ -7,6 +7,9 @@ class Model_compra extends Ci_model
 	public $idCompraPK = 'idCompras';
 
 
+	public $tablaPrueba = 'prueba';
+	
+
     public $tablaProveedor = 'proveedor';
 	public $idProveedorPK = 'documento';
 
@@ -48,6 +51,12 @@ class Model_compra extends Ci_model
 	function insertarCompra($datosCompra){
 
 		$this->db->insert($this->tablaCompra, $datosCompra);
+		 return $this->db->insert_id();
+	}
+
+	function insertarPrueba($datos){
+
+		$this->db->insert($this->tablaPrueba, $datos);
 		 return $this->db->insert_id();
 	}
 
