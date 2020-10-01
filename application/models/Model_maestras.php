@@ -22,7 +22,8 @@ class Model_maestras extends Ci_model
 	   $this->db->select();
 	   $this->db->from($this->tablaTipoDocumento);
 	   $consulta = $this->db->get();
-	   return $consulta->result_array();
+	   //return $consulta->result_array();
+	   return json_encode($consulta->result());
 
 
 	}

@@ -120,26 +120,6 @@
 
                                 <div class=" tab-pane " id="tipodocumento">
 
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-
-
-                                        <div class="row mb-1">
-
-
-
-                                            <div class="col-auto">
-
-                                                <button href="#registrotipodocumento" data-toggle="tab"
-                                                    class="btn btn-success" data-toggle="modal"
-                                                    data-target="#modal-registro"><i class="fas fa-plus-circle"></i>
-                                                    Crear</button>
-                                            </div>
-
-
-                                        </div>
-
-                                    </section>
 
 
 
@@ -158,8 +138,17 @@
 
                                         <!--Inicio del card body-->
                                         <div class="card-body p-0">
-                                            <table id="tablaMaestra" class="display table table-striped projects">
+                                            <div class="col-auto">
+
+                                                <!-- Boton con función para abrir el modal de registro de tipo de documento -->
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                    data-target="#myModal"><i
+                                                        class="fas fa-plus-circle"></i>Crear</button>
+
+                                            </div>
+                                            <table id="tablaMaestra" class="table table-striped" style="width:100%">
                                                 <thead>
+
                                                     <tr>
                                                         <th>Id</th>
                                                         <th>Descripción</th>
@@ -167,7 +156,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                   
 
                                                 </tbody>
                                             </table>
@@ -187,209 +175,190 @@
 
 
 
-                                </div>
-                                <!-- Inicio Modal -->
-                                <div class="modal fade " id="modal-registro">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
+                                    <!-- Modal -->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog modal-lg">
 
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                                   
+                                                </div>
+                                                <div class="modal-body">
 
-                                                <button type="button" class="close cerrarModal" data-dismiss="modal"
-                                                    data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
+                                                    <div class="card">
 
-                                                <div class="card">
+                                                        <div class="card-body">
+                                                          
+                                                                <div class="card card-success">
+                                                                    <!-- Incio Caja superior -->
+                                                                    <div class="card-header">
+                                                                        <h3 class="card-title">Registro de tipo de documento </h3>
 
-                                                    <div class="card-body">
-                                                        <div class=" tab-pane" id="registrotipodocumento">
-
-
-                                                            <!-- Inicio Contenido Total -->
-                                                            <div class="card card-success">
-                                                                <!-- Incio Caja superior -->
-                                                                <div class="card-header">
-                                                                    <h3 class="card-title">Registro de tipo de documento
-                                                                    </h3>
-
-
-                                                                </div>
-                                                                <!-- Fin Caja superior -->
+                                                                    </div>
+                                                                    <!-- Fin Caja superior -->
 
 
 
-                                                                <!--Inicio del card body-->
-                                                                <div class="card-body p-0">
-                                                                    <form role="form" method="POST">
-                                                                        <!--Inicio del card body-->
-                                                                        <div class="card-body ">
-                                                                            <div class="row">
+                                                                    <!--Inicio del card body-->
+                                                                    <div class="card-body p-0">
+                                                                        <form role="form" method="POST">
+                                                                            <!--Inicio del card body-->
+                                                                            <div class="card-body ">
+                                                                                <div class="row">
 
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
 
-                                                                                        <label>Código</label>
-                                                                                        <input name="codigo" type="text"
-                                                                                            class="form-control "
-                                                                                            placeholder="001 "
-                                                                                            textOnly="textonly">
+                                                                                            <label>Código</label>
+                                                                                            <input name="codigo"
+                                                                                                type="text"
+                                                                                                class="form-control "
+                                                                                                placeholder="001 "
+                                                                                                textOnly="textonly">
+                                                                                        </div>
                                                                                     </div>
+
+
+
+                                                                                    <div class="col-md-6">
+
+                                                                                        <div class="form-group">
+                                                                                            <label>Descripción</label>
+                                                                                            <label style="color: red;">
+                                                                                                *</label>
+                                                                                            <input name="nombre"
+                                                                                                type="text"
+                                                                                                class="form-control"
+                                                                                                placeholder="Ingrese la descripción">
+                                                                                        </div>
+                                                                                    </div>
+
                                                                                 </div>
 
 
+                                                                                <!--Fin del card body-->
 
-                                                                                <div class="col-md-6">
+                                                                                <!--Inicio del footer del contenido-->
+                                                                                <div class="card-footer">
 
-                                                                                    <div class="form-group">
-                                                                                        <label>Descripción</label>
-                                                                                        <label style="color: red;">
-                                                                                            *</label>
-                                                                                        <input name="nombre" type="text"
-                                                                                            class="form-control"
-                                                                                            placeholder="Ingrese la descripción">
-                                                                                    </div>
+
+                                                                                    <button type="submit"
+                                                                                        id="botonRegistroProveedor"
+                                                                                        class="btn btn-success col-2">Registrar</button>
+
                                                                                 </div>
 
+                                                                                <!--Fin del footer del contenido-->
                                                                             </div>
 
 
-                                                                            <!--Fin del card body-->
+                                                                        </form>
 
-                                                                            <!--Inicio del footer del contenido-->
-                                                                            <div class="card-footer">
+                                                                    </div>
+                                                                    <!--Fin del card body-->
 
-
-                                                                                <button type="submit"
-                                                                                    id="botonRegistroProveedor"
-                                                                                    class="btn btn-success col-2">Registrar</button>
-
-                                                                            </div>
-
-                                                                            <!--Fin del footer del contenido-->
-                                                                        </div>
+                                                                    <!--Inicio del footer del contenido-->
+                                                                    <div class="card-footer">
 
 
-                                                                    </form>
+                                                                    </div>
+                                                                    <!--Fin del footer del contenido-->
 
-                                                                </div>
-                                                                <!--Fin del card body-->
-
-                                                                <!--Inicio del footer del contenido-->
-                                                                <div class="card-footer">
-
-
-                                                                </div>
-                                                                <!--Fin del footer del contenido-->
-
-                                                            </div> <!-- Fin Contenido Total -->
+                                                                </div> <!-- Fin Contenido Total -->
 
                                                         </div>
+
+
+
+
                                                     </div>
-
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">Cerrar</button>
+                                                    </div>
                                                 </div>
-                                                <!-- /.card -->
-                                            </div>
 
+                                            </div>
                                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     </div>
-                                </div>
-                                <!-- Fin Modal -->
-
-                                <div class=" tab-pane" id="registrotipodocumento">
 
 
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Registro de tipo de documento</h3>
+                                    <!-- Inicio Modal -->
 
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <form role="form" method="POST">
-                                                <!--Inicio del card body-->
-                                                <div class="card-body ">
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-
-                                                                <label>Código</label>
-                                                                <input name="codigo" type="text" class="form-control "
-                                                                    placeholder="001 " textOnly="textonly">
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="col-md-6">
-
-                                                            <div class="form-group">
-                                                                <label>Descripción</label> <label style="color: red;">
-                                                                    *</label>
-                                                                <input name="nombre" type="text" class="form-control"
-                                                                    placeholder="Ingrese la descripción">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-
-                                                    <!--Fin del card body-->
-
-                                                    <!--Inicio del footer del contenido-->
-                                                    <div class="card-footer">
-
-
-                                                        <button type="submit" id="botonRegistroDocumento"
-                                                            class="btn btn-success col-2">Registrar</button>
-                                                        <a href="listaproveedoresu" id="botonAtras"
-                                                            class="btn btn-success col-2">Atrás</a>
-
-                                                    </div>
-
-                                                    <!--Fin del footer del contenido-->
-                                                </div>
-
-
-                                            </form>
-
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
+                                    <!-- Fin Modal -->
 
                                 </div>
+
+
+
+
 
                             </div>
-
-
-
-
+                            <!-- /.col -->
 
                         </div>
-                        <!-- /.col -->
+
 
                     </div>
 
 
-                </div>
+
+
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->

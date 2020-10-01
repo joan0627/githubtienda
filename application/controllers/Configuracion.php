@@ -39,15 +39,10 @@ class Configuracion extends CI_Controller {
 
 	public function listadoTipoDocumento(){
    
-		$datosTipoDocumento= $this->Model_maestras->BuscarTiposDocumentos();
-		$listado= array();
-		
-		/*for($i=0;$i<count($datosTipoDocumento);$i++){
-		$listado [] = array(
-		"0"=>$datosTipoDocumento[$i] ['idTipoDocumento'],
-		"1"=>$datosTipoDocumento[$i] ['descripcion']);
-		
-		}*/	
+		$data= $this->Model_maestras->BuscarTiposDocumentos();
+	
+		echo($data);  
+	  
 
 	}
 

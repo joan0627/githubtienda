@@ -487,15 +487,16 @@ $(document).ready(function () {
 		bInfo: false,
 
 		lengthChange: false,
+		bPaginate:false,
 		"ajax": {
 			type: 'POST',
-			url: '/tienda/Configuracion/listadoTipoDocumento/',
-
+			url: '/tienda/Configuracion/listadoTipoDocumento',
+			"dataSrc": '',
 		},
-		"colums":[
+		"columns":[
 
 			{"data": "idTipoDocumento"},
-			{"data": "descrpcion"}
+			{"data": "descripcion"}
 
 		]
 	});
