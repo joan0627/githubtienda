@@ -89,7 +89,7 @@
                 <div class="col-md-9">
                     <div class="card">
 
-                        <div class="card-body ">
+                        <div class="card-body">
                             <div class="tab-content">
 
                                 <div class=" active tab-pane " id="datos">
@@ -121,171 +121,141 @@
                                 <div class=" tab-pane " id="tipodocumento">
 
 
-
-
                                     <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de tipos de documento</h3>
+
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de tipos de documento</h3>
 
 
-                                        </div>
-                                        <!-- Fin Caja superior -->
+                                    </div>
+                                    <!-- Fin Caja superior -->
 
 
-                                        <br>
+                                    <br>
 
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <div class="col-auto">
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra" class="table table-striped" style="width:100%">
+                                            <thead>
 
-                                                <!-- Boton con función para abrir el modal de registro de tipo de documento -->
-                                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                                    data-target="#myModal"><i
-                                                        class="fas fa-plus-circle"></i> Crear</button>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            </div>
-                                            <table id="tablaMaestra" class="table table-striped" style="width:100%">
-                                                <thead>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--Fin del card body-->
 
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Descripción</th>
-                                                        <th>Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
+                                    <!--Inicio del footer del contenido-->
+                                    <div class="card-footer">
 
 
-                                        </div>
-                                        <!--Fin del footer del contenido-->
+                                    </div>
+                                    <!--Fin del footer del contenido-->
 
-                                    </div> <!-- Fin Contenido Total -->
+
 
 
 
 
 
                                     <!-- Modal -->
-                                    <div id="myModal" class="modal fade" role="dialog">
+                                    <div id="modalRegistroTipoDocumento" class="modal fade" role="dialog">
                                         <div class="modal-dialog modal-lg">
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close"
-                                                        data-dismiss="modal">&times;</button>
-                                                   
-                                                </div>
+
                                                 <div class="modal-body">
 
-                                                    <div class="card">
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 class="card-title">Registro de tipo de documento </h3>
 
-                                                        <div class="card-body">
-                                                          
-                                                                <div class="card card-success">
-                                                                    <!-- Incio Caja superior -->
-                                                                    <div class="card-header">
-                                                                        <h3 class="card-title">Registro de tipo de documento </h3>
-
-                                                                    </div>
-                                                                    <!-- Fin Caja superior -->
+                                                        </div>
+                                                        <!-- Fin Caja superior -->
 
 
 
-                                                                    <!--Inicio del card body-->
-                                                                    <div class="card-body p-0">
-                                                                        <form role="form" method="POST">
-                                                                            <!--Inicio del card body-->
-                                                                            <div class="card-body ">
-                                                                                <div class="row">
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form role="form" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body ">
+                                                                    <div class="row">
 
-                                                                                    <div class="col-md-6">
-                                                                                        <div class="form-group">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
 
-                                                                                            <label>Código</label>
-                                                                                            <input name="codigo"
-                                                                                                type="text"
-                                                                                                class="form-control "
-                                                                                                placeholder="001 "
-                                                                                                textOnly="textonly"
-                                                                                                id="idTipoDocumento"
-                                                                                                readonly="readonly"
-                                                                                                value="<?php
+                                                                                <label>Código</label>
+                                                                                <input name="codigo" type="text"
+                                                                                    class="form-control "
+                                                                                    placeholder="001 "
+                                                                                    textOnly="textonly"
+                                                                                    id="idTipoDocumento"
+                                                                                    readonly="readonly"
+                                                                                    value="<?php
                                                                                                                     if ($this->session->flashdata('idTipoDocumento')) {
                                                                                                                         echo 1;
                                                                                                                     }
                                                                                                                     echo $clave['idTipoDocumento'] + 1; ?>">
-                                                                                        </div>
-                                                                                    </div>
-
-
-
-                                                                                    <div class="col-md-6">
-
-                                                                                        <div class="form-group">
-                                                                                            <label>Descripción</label>
-                                                                                            <label style="color: red;">
-                                                                                                *</label>
-                                                                                            <input id="descripcionTipoDocumento"
-                                                                                                type="text"
-                                                                                                class="form-control"
-                                                                                                placeholder="Ingrese la descripción">
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                </div>
-
-
-                                                                                <!--Fin del card body-->
-
-                                                                                <!--Inicio del footer del contenido-->
-                                                                                <div class="card-footer">
-
-
-                                                                                    <button type="submit"
-                                                                                        id="btnRegistroTipoDocumento"
-                                                                                        class="btn btn-success col-2">Registrar</button>
-
-                                                                                </div>
-
-                                                                                <!--Fin del footer del contenido-->
                                                                             </div>
+                                                                        </div>
 
 
-                                                                        </form>
+
+                                                                        <div class="col-md-6">
+
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">
+                                                                                    *</label>
+                                                                                <input id="descripcionTipoDocumento"
+                                                                                    type="text" class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
 
                                                                     </div>
+
+
                                                                     <!--Fin del card body-->
 
                                                                     <!--Inicio del footer del contenido-->
-                                                                    <div class="card-footer">
 
 
-                                                                    </div>
                                                                     <!--Fin del footer del contenido-->
+                                                                </div>
 
-                                                                </div> <!-- Fin Contenido Total -->
+
+                                                            </form>
 
                                                         </div>
+                                                        <!--Fin del card body-->
+
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
 
 
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
+                                                                type="submit" id="btnRegistroTipoDocumento"
+                                                                class="btn btn-success col-2">Registrar</button>
 
+                                                        </div>
+                                                        <!--Fin del footer del contenido-->
 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default"
-                                                            data-dismiss="modal">Cerrar</button>
-                                                    </div>
+                                                    </div> <!-- Fin Contenido Total -->
+
                                                 </div>
 
                                             </div>

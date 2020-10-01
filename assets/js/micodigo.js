@@ -486,20 +486,49 @@ $(document).ready(function () {
 		bInfo: false,
 
 		lengthChange: false,
-		bPaginate:false,
-		"ajax": {
-			type: 'POST',
-			url: '/tienda/Configuracion/listadoTipoDocumento',
-			"dataSrc": '',
+		bPaginate: false,
+		"dom": '<"pull-left"f>B',
+
+		buttons: {
+			buttons: [
+				{
+					text: "<i class='fas fa-plus-circle'></i> Crear",
+					action: function (e, node, config){
+						$('#modalRegistroTipoDocumento').modal('show')
+						}
+				}
+			],
+			dom: {
+				button: {
+					tag: "button",
+					className: "btn btn-success"
+				},
+				buttonLiner: {
+					tag: null
+				}
+			}
 		},
-		"columns":[
 
-			{"data": "idTipoDocumento"},
-			{"data": "descripcion"}
+			"ajax": {
+				type: 'POST',
+				url: '/tienda/Configuracion/listadoTipoDocumento',
+				"dataSrc": '',
+			},
+			"columns": [
 
-		]
-	});
-}); 
+				{ "data": "idTipoDocumento" },
+				{ "data": "descripcion" },
+				{
+					"defaultContent":
+
+						"<div style='text-align: center;'><a class='btn btn-info btn-sm' href=''><i class='fas fa-pencil-alt'></i> Editar </a> <a class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </a></div>",
+
+				}
+
+
+			]
+		});
+});
 
 
 $(document).ready(function () {
@@ -507,63 +536,64 @@ $(document).ready(function () {
 	$("#btnRegistroTipoDocumento").click(function (ev) {
 		var tablaMaestra = $("#tablaMaestra").DataTable();
 		ev.preventDefault();
-		var descripcion = $('#descripcionTipoDocumento').val(); 
-		var idTipoDocumento = $('#idTipoDocumento').val(); 
+		var descripcion = $('#descripcionTipoDocumento').val();
+		var idTipoDocumento = $('#idTipoDocumento').val();
 		//alert($idTipoDocumento),
-				$.ajax({
-					type: 'POST',
-					url: '/tienda/configuracion/registroTipoDocumento',
-					data: { 'idTipoDocumento': idTipoDocumento,
-							 'descripcion': descripcion
-							
-							},
-					
-				
-					success: function () {						
-						Swal.fire(
-							{
+		$.ajax({
+			type: 'POST',
+			url: '/tienda/configuracion/registroTipoDocumento',
+			data: {
+				'idTipoDocumento': idTipoDocumento,
+				'descripcion': descripcion
 
-								title: '¡Proceso completado!',
-								text: "Se inserto correctamente",
-								type: 'success',
-								confirmButtonColor: '#28a745',
-
-							}
+			},
 
 
-						)					
-						idTipoDocumento = Number(idTipoDocumento)+1;
-						$('#idTipoDocumento').val(idTipoDocumento); 
-						$('#descripcionTipoDocumento').val(""); 
-						tablaMaestra.ajax.reload();
-					},
-					
-					error: function () {
-						Swal.fire(
-							{
+			success: function () {
+				Swal.fire(
+					{
 
-								title: '¡Proceso no completado!',
-								text: "NO INSERTADO LOCO ",
-								type: 'warning',
-								confirmButtonColor: '#28a745',
-							}
+						title: '¡Proceso completado!',
+						text: 'El tipo documento "' + descripcion+'" se ha registrado correctamente.',
+						type: 'success',
+						confirmButtonColor: '#28a745',
 
-
-						)
-					},
-					statusCode: {
-						400: function (data) {
-							var json = JSON.parse(data.responseText);
-							Swal.fire(
-								'¡Error!',
-								json.msg,
-								'error'
-							)
-
-						}
 					}
-				})				
-				
+
+
+				)
+				idTipoDocumento = Number(idTipoDocumento) + 1;
+				$('#idTipoDocumento').val(idTipoDocumento);
+				$('#descripcionTipoDocumento').val("");
+				tablaMaestra.ajax.reload();
+			},
+
+			error: function () {
+				Swal.fire(
+					{
+
+						title: '¡Proceso no completado!',
+						text: "NO INSERTADO LOCO ",
+						type: 'warning',
+						confirmButtonColor: '#28a745',
+					}
+
+
+				)
+			},
+			statusCode: {
+				400: function (data) {
+					var json = JSON.parse(data.responseText);
+					Swal.fire(
+						'¡Error!',
+						json.msg,
+						'error'
+					)
+
+				}
+			}
+		})
+
 	});
 
 });

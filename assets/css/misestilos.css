@@ -10,6 +10,10 @@
     font-size: 85%;
 }
 
-/*.dataTables_filter {
-    text-align: left !important;
-    }*/
+
+.pull-left{float:left!important;}
+.pull-right{float:right!important;}
+
+.dataTables_wrapper .dt-buttons {
+    float:right;
+  }
