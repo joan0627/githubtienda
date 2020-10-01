@@ -64,6 +64,23 @@ class Configuracion extends CI_Controller {
 		
 	}
 
+	public function delete(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id del tipo de documento no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrar($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
 	/*public function prueba(){
 		$prueba = $this->input->post("prueba");
 

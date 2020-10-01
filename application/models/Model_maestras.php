@@ -50,6 +50,17 @@ class Model_maestras extends Ci_model
 		 return $this->db->insert_id();
 	}
 
+
+		//Función para borrar un proveedor
+		function borrar($id){
+			$this->db->select();
+			$this->db->from($this->tablaTipoDocumento);
+			$this->db->where($this->tipoDocumentoPK,$id);
+			$this->db->delete($this->tablaTipoDocumento);
+	
+	
+		}
+
 }
 
 ?>

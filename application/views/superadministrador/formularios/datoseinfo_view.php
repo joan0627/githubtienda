@@ -43,7 +43,7 @@
                                 </li>
 
 
-                                <li class="nav-item"><a class="nav-link" href="#categoria"
+                                <li id="categoriatab" class="nav-item"><a class="nav-link" href="#categoria"
                                         data-toggle="tab">Categoría</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="#marca" data-toggle="tab">Marca</a>
@@ -251,6 +251,11 @@
                                                                 type="submit" id="btnRegistroTipoDocumento"
                                                                 class="btn btn-success col-2">Registrar</button>
 
+                                                                <button type="button" class="btn btn-success col-2"  data-dismiss="modal" style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Atrás</button>
+
+
+                                                
+
                                                         </div>
                                                         <!--Fin del footer del contenido-->
 
@@ -260,57 +265,6 @@
 
                                             </div>
                                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                     </div>
 
