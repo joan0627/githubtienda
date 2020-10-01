@@ -14,9 +14,8 @@ class Configuracion extends CI_Controller {
 		$this->load->model('Model_maestras');
 		$this->load->database();
 		$this->load->helper("url");
-
+		$this->load->library('session');
 	}
-
 
 
 	public function home()
@@ -29,10 +28,12 @@ class Configuracion extends CI_Controller {
 
 	public function informacion()
 	{
+		$resultado = $this->Model_maestras->obtenerIdTipoDocumento();
+		$datosCarga['clave']= $resultado;
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/datoseinfo_view');
+		$this->load->view('superadministrador/formularios/datoseinfo_view', $datosCarga);
 		$this->load->view('layouts/footer');
 
 	}
@@ -44,6 +45,23 @@ class Configuracion extends CI_Controller {
 		echo($data);  
 	  
 
+	}
+
+	public  function registroTipoDocumento(){
+
+		$idTipoDocumento = $this->input->post("idTipoDocumento");
+		$descripcionTipodocumento = $this->input->post("descripcion");
+
+		$datosTipoDocumento = array(
+			
+			'idTipoDocumento' => $idTipoDocumento,
+			'descripcion' => $descripcionTipodocumento
+			
+		);
+
+	
+		$this->Model_maestras->insertarTipoDocumento($datosTipoDocumento);
+		
 	}
 
 	/*public function prueba(){

@@ -143,7 +143,7 @@
                                                 <!-- Boton con función para abrir el modal de registro de tipo de documento -->
                                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                                     data-target="#myModal"><i
-                                                        class="fas fa-plus-circle"></i>Crear</button>
+                                                        class="fas fa-plus-circle"></i> Crear</button>
 
                                             </div>
                                             <table id="tablaMaestra" class="table table-striped" style="width:100%">
@@ -217,7 +217,14 @@
                                                                                                 type="text"
                                                                                                 class="form-control "
                                                                                                 placeholder="001 "
-                                                                                                textOnly="textonly">
+                                                                                                textOnly="textonly"
+                                                                                                id="idTipoDocumento"
+                                                                                                readonly="readonly"
+                                                                                                value="<?php
+                                                                                                                    if ($this->session->flashdata('idTipoDocumento')) {
+                                                                                                                        echo 1;
+                                                                                                                    }
+                                                                                                                    echo $clave['idTipoDocumento'] + 1; ?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -229,7 +236,7 @@
                                                                                             <label>Descripción</label>
                                                                                             <label style="color: red;">
                                                                                                 *</label>
-                                                                                            <input name="nombre"
+                                                                                            <input id="descripcionTipoDocumento"
                                                                                                 type="text"
                                                                                                 class="form-control"
                                                                                                 placeholder="Ingrese la descripción">
@@ -246,7 +253,7 @@
 
 
                                                                                     <button type="submit"
-                                                                                        id="botonRegistroProveedor"
+                                                                                        id="btnRegistroTipoDocumento"
                                                                                         class="btn btn-success col-2">Registrar</button>
 
                                                                                 </div>

@@ -379,7 +379,6 @@ $(document).ready(function () {
 
 			if (result.value) {
 
-
 				$.ajax({
 					type: 'POST',
 					url: '/tienda/producto/deleteProducto',
@@ -501,6 +500,73 @@ $(document).ready(function () {
 		]
 	});
 }); 
+
+
+$(document).ready(function () {
+
+	$("#btnRegistroTipoDocumento").click(function (ev) {
+		var tablaMaestra = $("#tablaMaestra").DataTable();
+		ev.preventDefault();
+		var descripcion = $('#descripcionTipoDocumento').val(); 
+		var idTipoDocumento = $('#idTipoDocumento').val(); 
+		//alert($idTipoDocumento),
+				$.ajax({
+					type: 'POST',
+					url: '/tienda/configuracion/registroTipoDocumento',
+					data: { 'idTipoDocumento': idTipoDocumento,
+							 'descripcion': descripcion
+							
+							},
+					
+				
+					success: function () {						
+						Swal.fire(
+							{
+
+								title: '¡Proceso completado!',
+								text: "Se inserto correctamente",
+								type: 'success',
+								confirmButtonColor: '#28a745',
+
+							}
+
+
+						)					
+						idTipoDocumento = Number(idTipoDocumento)+1;
+						$('#idTipoDocumento').val(idTipoDocumento); 
+						$('#descripcionTipoDocumento').val(""); 
+						tablaMaestra.ajax.reload();
+					},
+					
+					error: function () {
+						Swal.fire(
+							{
+
+								title: '¡Proceso no completado!',
+								text: "NO INSERTADO LOCO ",
+								type: 'warning',
+								confirmButtonColor: '#28a745',
+							}
+
+
+						)
+					},
+					statusCode: {
+						400: function (data) {
+							var json = JSON.parse(data.responseText);
+							Swal.fire(
+								'¡Error!',
+								json.msg,
+								'error'
+							)
+
+						}
+					}
+				})				
+				
+	});
+
+});
 
 
 //Cerrar de manera forzada el Modal 
