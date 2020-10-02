@@ -47,20 +47,36 @@ class Configuracion extends CI_Controller {
 
 	}
 
-	public  function registroTipoDocumento(){
+	public  function registro_editarTd(){
 
-		$idTipoDocumento = $this->input->post("idTipoDocumento");
-		$descripcionTipodocumento = $this->input->post("descripcion");
+		$ValorId= $this->input->post("idTipoDocumento");
+		$valorDescripcion = $this->input->post("descripcion");
+		
 
-		$datosTipoDocumento = array(
-			
-			'idTipoDocumento' => $idTipoDocumento,
-			'descripcion' => $descripcionTipodocumento
-			
-		);
-
+		if ($valorDescripcion=="") {
 	
-		$this->Model_maestras->insertarTipoDocumento($datosTipoDocumento);
+			$datosTipoDocumento = array(
+				
+				'idTipoDocumento' => $ValorId,
+				'descripcion' => $valorDescripcion
+			); 
+			$this->Model_maestras->insertarTipoDocumento($datosTipoDocumento);
+		}
+		
+		else{
+
+			echo "la descripcion es: ". $valorDescripcion;
+			echo "El id es: ". $ValorId;
+
+			$datosTipoDocumento = array(
+				
+				'descripcion' => $valorDescripcion,
+				
+			);
+		
+			$this->Model_maestras->actualizarTipoDocumento($ValorId, $datosTipoDocumento);
+		}
+	
 		
 	}
 
@@ -80,6 +96,8 @@ class Configuracion extends CI_Controller {
 			
 		}
 	}
+
+
 
 	/*public function prueba(){
 		$prueba = $this->input->post("prueba");

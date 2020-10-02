@@ -5,7 +5,7 @@ class Model_maestras extends Ci_model
 
 	//Nombre de la tabla
 	public $tablaTipoDocumento = 'tipodocumento';
-	public $tablaPrueba = 'prueba';
+
 
 	//Nombre de la llave primaria
 	public $tipoDocumentoPK = 'idTipoDocumento';
@@ -58,8 +58,15 @@ class Model_maestras extends Ci_model
 			$this->db->where($this->tipoDocumentoPK,$id);
 			$this->db->delete($this->tablaTipoDocumento);
 	
-	
 		}
+
+		// Función para un producto 
+	function actualizarTipoDocumento($idTipoDocumento, $datosTipoDocumento){
+		
+		$this->db->where($this->tipoDocumentoPK ,$idTipoDocumento);
+		$this->db->update($this->tablaTipoDocumento, $datosTipoDocumento);
+	}
+
 
 }
 

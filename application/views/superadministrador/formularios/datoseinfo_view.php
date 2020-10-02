@@ -197,7 +197,7 @@
                                                                             <div class="form-group">
 
                                                                                 <label>Código</label>
-                                                                                <input name="codigo" type="text"
+                                                                                <input id="codigoTipoDocumento" type="text"
                                                                                     class="form-control "
                                                                                     placeholder="001 "
                                                                                     textOnly="textonly"
@@ -206,7 +206,7 @@
                                                                                     value="<?php
                                                                                                                     if ($this->session->flashdata('idTipoDocumento')) {
                                                                                                                         echo 1;
-                                                                                                                    }
+                                                                                                                     }
                                                                                                                     echo $clave['idTipoDocumento'] + 1; ?>">
                                                                             </div>
                                                                         </div>

@@ -478,9 +478,9 @@ $(document).ready(function () {
 	//$('.dataTables_filter').addClass('pull-left');
 	var prueba = "Este es el dato de prueba";
 
-	
+
 	var tablaMaestra = $("#tablaMaestra").DataTable({
-		
+
 		language: {
 			searchPlaceholder: "Estoy buscando...",
 			url: "../assets/plugins/datatables/Spanish.lang",
@@ -496,10 +496,10 @@ $(document).ready(function () {
 			buttons: [
 				{
 					text: "<i class='fas fa-plus-circle'></i> Crear",
-					action: function (e, node, config){
+					action: function (e, node, config) {
 						$('#modalRegistroTipoDocumento').modal('show');
 						$('#descripcionTipoDocumento').val("");
-						}
+					}
 				}
 			],
 			dom: {
@@ -513,28 +513,28 @@ $(document).ready(function () {
 			}
 		},
 
-			"ajax": {
-				type: 'POST',
-				url: '/tienda/Configuracion/listadoTipoDocumento',
-				"dataSrc": '',
-			},
-			"columns": [
+		"ajax": {
+			type: 'POST',
+			url: '/tienda/Configuracion/listadoTipoDocumento',
+			"dataSrc": '',
+		},
+		"columns": [
 
-				{ "data": "idTipoDocumento" },
-				{ "data": "descripcion" },
-				{
-					"defaultContent":
+			{ "data": "idTipoDocumento" },
+			{ "data": "descripcion" },
+			{
+				"defaultContent":
 
-						"<div style='text-align: center;'><a class='btn btn-info btn-sm' href=''><i class='fas fa-pencil-alt'></i> Editar </a> <a id='eliminartd' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </a></div>",
+					"<div style='text-align: center;'><a class='btn btn-info btn-sm' id='editartd' href=''><i class='fas fa-pencil-alt'></i> Editar </a> <a id='eliminartd' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </a></div>",
 
-				}
+			}
 
 
-			]
-		});
+		]
+	});
 });
 
-
+//Codigo para registrar un tipo de docuemento
 $(document).ready(function () {
 
 	$("#btnRegistroTipoDocumento").click(function (ev) {
@@ -545,7 +545,7 @@ $(document).ready(function () {
 		//alert($idTipoDocumento),
 		$.ajax({
 			type: 'POST',
-			url: '/tienda/configuracion/registroTipoDocumento',
+			url: '/tienda/configuracion/registro_editarTd',
 			data: {
 				'idTipoDocumento': idTipoDocumento,
 				'descripcion': descripcion
@@ -558,7 +558,7 @@ $(document).ready(function () {
 					{
 
 						title: '¡Proceso completado!',
-						text: 'El tipo documento "' + descripcion+'" se ha registrado correctamente.',
+						text: 'El tipo documento "' + descripcion + '" se ha registrado correctamente.',
 						type: 'success',
 						confirmButtonColor: '#28a745',
 
@@ -577,7 +577,7 @@ $(document).ready(function () {
 					{
 
 						title: '¡Proceso no completado!',
-						text: 'El tipo documento "' + descripcion+'"no se ha podido registrar.',
+						text: 'El tipo documento "' + descripcion + '"no se ha podido registrar.',
 						type: 'warning',
 						confirmButtonColor: '#28a745',
 					}
@@ -682,6 +682,76 @@ $(document).ready(function () {
 
 })();
 
+//Código para editar el Tipo de documento
+(function () {
+
+	$("#tablaMaestra").on('click', '#editartd', function (ev) {
+		ev.preventDefault();
+		var id = $(this).parents('tr').find('td:eq(0)').text();
+		var TipoDocumento = $(this).parents('tr').find('td:eq(1)').text();
+	
+
+		$('#modalRegistroTipoDocumento').modal('show');
+
+		$('#codigoTipoDocumento').val(id);
+		$('#descripcionTipoDocumento').val(TipoDocumento);
+		var nuevaDescripcion = $('#descripcionTipoDocumento').val();
+		var nuevoId = $('#codigoTipoDocumento').val();
+
+		$.ajax({
+			type: 'POST',
+			url: '/tienda/Configuracion/registro_editarTd',
+			data: { 'idTipoDocumento': nuevoId },
+			data: { 'descripcion': nuevaDescripcion },
+
+			$("#btnRegistroTipoDocumento").click(function (ev) {
+			});
+
+			success: function () {
+				Swal.fire(
+					{
+
+						title: '¡Proceso completado!',
+						text: "El tipo de documento " + TipoDocumento + " ha sido eliminado exitosamente.",
+						type: 'success',
+						confirmButtonColor: '#28a745',
+
+					}
+
+
+				)
+
+			},
+			error: function () {
+				Swal.fire(
+					{
+
+						title: '¡Proceso no completado!',
+						text: "El tipo de documento " + TipoDocumento + " no se puede eliminar porque está asociado a otro proceso.",
+						type: 'warning',
+						confirmButtonColor: '#28a745',
+					}
+
+
+				)
+			},
+			statusCode: {
+				400: function (data) {
+					var json = JSON.parse(data.responseText);
+					Swal.fire(
+						'¡Error!',
+						json.msg,
+						'error'
+					)
+
+				}
+			}
+		})
+
+	});
+
+});
+
 
 
 //Cerrar de manera forzada el Modal 
@@ -695,7 +765,7 @@ $(document).ready(function () {
 $(document).ready(function () {
 
 	$("#categoriatab").on('click', function () {
-	
+
 		alert('click en tab');
 	});
 });
