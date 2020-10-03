@@ -142,7 +142,7 @@ function buscarTodasMarcas() {
 	$this->db->from($this->tablaMarca);
 
 	$consulta = $this->db->get();
-	return $consulta->result_array();
+	return $consulta->result();
 	
 }
 

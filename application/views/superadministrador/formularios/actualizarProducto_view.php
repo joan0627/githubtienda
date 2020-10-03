@@ -121,15 +121,34 @@
 
                                 <label>Marca</label> <label style="color: red;"> *</label>
                                 <select name="marca" class="form-control">
+                                <?php if ($marca != "") : ?>
+                                    <?php foreach ($marcas as $clave => $valor) : ?>
+                                    <?php if ($marca== $valor->idMarca) : ?>
 
-                                    <option hidden value=" <?php echo  $clave['marca']; ?>" selected>
-                                        <?php echo  $clave['descripcionMarca']; ?></option>
+                                    <option hidden value=" <?php echo  $valor->idMarca; ?>" selected >
+                                        <?php
 
-                                    <?php foreach ($marcas as $valor) : ?>
-                                    <option  value=" <?php echo  $valor['idMarca']; ?>"><?php echo $valor['descripcionMarca'];?></option>
 
-                                        <?php endforeach; ?>
+													echo  $valor->descripcionMarca; ?></option>
+                                    <?php
+												foreach ($marcas as $clave => $valor) : ?>
 
+
+                                    <option value=" <?php echo  $valor->idMarca; ?>">
+                                        <?php echo  $valor->descripcionMarca; ?></option>
+
+                                    <?php endforeach; ?>
+
+                                    <?php endif;  ?>
+                                    <?php endforeach; ?>
+                                    <?php else :
+										foreach ($marcas as $clave => $valor) : ?>
+                                    <option value="" selected hidden>-Seleccione una marca-</option>;
+                                    <option value=" <?php echo  $valor->idMarca; ?>">
+                                        <?php echo  $valor->descripcionMarca; ?></option>
+
+                                    <?php endforeach; ?>
+                                    <?php endif ?>
 
                                 </select>
                                 
@@ -145,8 +164,7 @@
                             <div class="form-group">
                                 <label>Presentación</label> <label style="color: red;"> * </label>
                                 <select name="presentacion" class="form-control">
-
-                                    <?php if ($presentacion != "") : ?>
+                                <?php if ($presentacion != "") : ?>
                                     <?php foreach ($presentaciones as $clave => $valor) : ?>
                                     <?php if ($presentacion == $valor->idPresentacion) : ?>
 

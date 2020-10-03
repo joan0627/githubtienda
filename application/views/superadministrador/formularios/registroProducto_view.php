@@ -76,7 +76,7 @@
 
                                     <?php if ($categoria != "") : ?>
                                     <?php foreach ($categorias as $clave => $valor) : ?>
-                                    <?php if ($categoria == $valor->idCategoria) : ?>
+                                    <?php if ($categoria== $valor->idCategoria) : ?>
 
                                     <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected >
                                         <?php
@@ -120,11 +120,11 @@
 
                                 <label>Marca</label> <label style="color: red;"> *</label>
                                 <select name="marca" class="form-control">
-                                    <?php if ($marca != "") : ?>
+                                <?php if ($marca != "") : ?>
                                     <?php foreach ($marcas as $clave => $valor) : ?>
-                                    <?php if ($marca == $valor->idMarca) : ?>
+                                    <?php if ($marca== $valor->idMarca) : ?>
 
-                                    <option hidden value=" <?php echo  $valor->idMarca; ?>" selected>
+                                    <option hidden value=" <?php echo  $valor->idMarca; ?>" selected >
                                         <?php
 
 
@@ -148,7 +148,6 @@
 
                                     <?php endforeach; ?>
                                     <?php endif ?>
-
                                 </select>
                                 <?php echo form_error('marca', '<p class="text-danger">', '</p>'); ?>
 
@@ -331,7 +330,7 @@
                             <label>Contraindicaciones</label>
                             <textarea class="form-control" rows="3"
                                 placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
-                                ><?php echo $contradindicaciones;?></textarea>
+                                ><?php echo $contraindicaciones;?></textarea>
                                 <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
@@ -392,7 +391,7 @@
                     <div class="text-center card-footer">
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
-                            id="registroProveedor" class="btn btn-success col-2">Registrar</button>
+                            id="registroProducto" class="btn btn-success col-2">Registrar</button>
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="<?php echo base_url(); ?>producto"
                             id="botonAtras" class="btn btn-success col-2">Atrás</a>
 

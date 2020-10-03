@@ -77,8 +77,8 @@ class Producto extends CI_controller
 	{
 
 		    $datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcionProducto"] = $datosCarga["idCategoria"] =
-			$datosCarga["marca"] = $datosCarga["idPresentacion"] = $datosCarga["valorMedida"] = $datosCarga["idUnidadMedida"] =
-			$datosCarga["existencia"] = $datosCarga["idEspecieProducto"] = $datosCarga["indicaciones"] = $datosCarga["contradindicaciones"] = 
+			$datosCarga["idMarca"] = $datosCarga["idPresentacion"] = $datosCarga["valorMedida"] = $datosCarga["idUnidadMedida"] =
+			$datosCarga["existencia"] = $datosCarga["idEspecieProducto"] = $datosCarga["indicaciones"] = $datosCarga["contraindicaciones"] = 
 			$datosCarga["edadAplicacion"] = $datosCarga["precio"] = "";
 
 			
@@ -108,8 +108,7 @@ class Producto extends CI_controller
 			$datosCarga["edad"] = $this->input->post("edad");
 			$datosCarga["edadAplicacion"] = $this->input->post("unidadTiempo");
 
-			
-			//var_dump($datosCarga["edadAplicacion"],$datosCarga["edad"]);
+		
 
 			/*************************************************************/
 			// **			Validaciónn de los campos					**// 
@@ -210,7 +209,7 @@ class Producto extends CI_controller
 		$data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
 		$data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();*/
 		
-		//
+	
 		    $data['clave']  = $this->Model_producto->buscarDatosProducto($idProducto);
 			$data['categorias'] = $this->Model_producto->buscarTodasCategorias();
 			$data['marcas'] = $this->Model_producto->buscarTodasMarcas();
@@ -234,7 +233,7 @@ class Producto extends CI_controller
 			$datosProducto["existencia"] = $this->input->post("existencia");
 			$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
 			$datosProducto["indicaciones"] = $this->input->post("indicaciones");
-			$datosProducto["contradindicaciones"] = $this->input->post("contraIndicaciones");
+			$datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
 			$Unidadtiempo = $this->input->post("unidadTiempo");
 			$datosProducto["edadAplicacion"] = $this->input->post("edad").' '.$Unidadtiempo; 
 			$datosProducto["precio"] = $this->input->post("precioVenta");
@@ -271,7 +270,7 @@ class Producto extends CI_controller
 			$resultado = $this->Model_producto->buscarDatosProducto($idProducto);
 
 			$data['clave']= $resultado;
-
+			
 
 			if (isset($resultado)) {
 
