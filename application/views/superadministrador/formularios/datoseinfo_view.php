@@ -203,11 +203,7 @@
                                                                                     textOnly="textonly"
                                                                                     id="idTipoDocumento"
                                                                                     readonly="readonly"
-                                                                                    value="<?php
-                                                                                                                    if ($this->session->flashdata('idTipoDocumento')) {
-                                                                                                                        echo 1;
-                                                                                                                     }
-                                                                                                                    echo $clave['idTipoDocumento'] + 1; ?>">
+                                                                                    value="<?php if ($this->session->flashdata('idTipoDocumento')) { echo 1; } echo $clave['idTipoDocumento'] + 1; ?>">
                                                                             </div>
                                                                         </div>
 

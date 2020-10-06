@@ -525,7 +525,7 @@ $(document).ready(function () {
 			{
 				"defaultContent":
 
-					"<div style='text-align: center;'><a class='btn btn-info btn-sm' id='editartd' href=''><i class='fas fa-pencil-alt'></i> Editar </a> <a id='eliminartd' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </a></div>",
+					"<div style='text-align: center;'><a class='btn btn-info btn-sm' id='editartd'><i class='fas fa-pencil-alt'></i> Editar </a> <a id='eliminartd' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </a></div>",
 
 			}
 
@@ -537,52 +537,58 @@ $(document).ready(function () {
 //Codigo para registrar un tipo de docuemento
 $(document).ready(function () {
 
-	$("#btnRegistroTipoDocumento").click(function (ev) {
-		var tablaMaestra = $("#tablaMaestra").DataTable();
+	
+	var tablaMaestra = $("#tablaMaestra").DataTable();
+	$('#codigoTipoDocumento').val("");
+	$('#descripcionTipoDocumento').val("");
+
+	  $("#btnRegistroTipoDocumento").click(function (ev) {
 		ev.preventDefault();
+
+		var idTipoDocumento = $('#codigoTipoDocumento').val();
 		var descripcion = $('#descripcionTipoDocumento').val();
-		var idTipoDocumento = $('#idTipoDocumento').val();
-		//alert($idTipoDocumento),
+       // var r = 'registro';
+
 		$.ajax({
 			type: 'POST',
-			url: '/tienda/configuracion/registro_editarTd',
+			url: '/tienda/configuracion/registrarActualizar',
 			data: {
 				'idTipoDocumento': idTipoDocumento,
-				'descripcion': descripcion
-
+				'descripcion': descripcion,
+				
 			},
-
-
+	
+	
 			success: function () {
 				Swal.fire(
 					{
-
+	
 						title: '¡Proceso completado!',
 						text: 'El tipo documento "' + descripcion + '" se ha registrado correctamente.',
 						type: 'success',
 						confirmButtonColor: '#28a745',
-
+	
 					}
-
-
+	
+	
 				)
 				idTipoDocumento = Number(idTipoDocumento) + 1;
 				$('#idTipoDocumento').val(idTipoDocumento);
 				$('#descripcionTipoDocumento').val("");
 				tablaMaestra.ajax.reload();
 			},
-
+	
 			error: function () {
 				Swal.fire(
 					{
-
+	
 						title: '¡Proceso no completado!',
 						text: 'El tipo documento "' + descripcion + '"no se ha podido registrar.',
 						type: 'warning',
 						confirmButtonColor: '#28a745',
 					}
-
-
+	
+	
 				)
 			},
 			statusCode: {
@@ -593,14 +599,58 @@ $(document).ready(function () {
 						json.msg,
 						'error'
 					)
-
+	
 				}
 			}
 		})
 
+		//var id = $(this).parents('tr').find('td:eq(0)').text();
+		//var TipoDocumento = $(this).parents('tr').find('td:eq(1)').text();
+
+		//$('#codigoTipoDocumento').val(id);
+		//$('#descripcionTipoDocumento').val(TipoDocumento);
+
+		
+		
+	
+		//var idTipoDocumento = $('#idTipoDocumento').val();
+	//	var descripcion = $('#descripcionTipoDocumento').val();
+		//var r=true;
+	
+
+
 	});
 
+	
+
+	
+
 });
+
+
+
+//Código para editar el Tipo de documento
+$(document).ready(function () {
+	$("#tablaMaestra").on('click', '#editartd', function (ev) {
+		ev.preventDefault();
+	
+		var id = $(this).parents('tr').find('td:eq(0)').text();
+		var descripcion = $(this).parents('tr').find('td:eq(1)').text();
+	
+		
+	
+		$('#modalRegistroTipoDocumento').modal('show');
+	
+	
+		$('#codigoTipoDocumento').val(id);
+		$('#descripcionTipoDocumento').val(descripcion);
+	
+		
+		//var descripcion = $('#descripcionTipoDocumento').val();
+	});
+});
+
+
 
 //Código para eliminar el Tipo de documento
 (function () {
@@ -682,86 +732,10 @@ $(document).ready(function () {
 
 })();
 
-//Código para editar el Tipo de documento
-(function () {
-
-	$("#tablaMaestra").on('click', '#editartd', function (ev) {
-		ev.preventDefault();
-		var id = $(this).parents('tr').find('td:eq(0)').text();
-		var TipoDocumento = $(this).parents('tr').find('td:eq(1)').text();
-	
-
-		$('#modalRegistroTipoDocumento').modal('show');
-
-		$('#codigoTipoDocumento').val(id);
-		$('#descripcionTipoDocumento').val(TipoDocumento);
-		var nuevaDescripcion = $('#descripcionTipoDocumento').val();
-		var nuevoId = $('#codigoTipoDocumento').val();
-
-		$.ajax({
-			type: 'POST',
-			url: '/tienda/Configuracion/registro_editarTd',
-			data: { 'idTipoDocumento': nuevoId },
-			data: { 'descripcion': nuevaDescripcion },
-
-			$("#btnRegistroTipoDocumento").click(function (ev) {
-			});
-
-			success: function () {
-				Swal.fire(
-					{
-
-						title: '¡Proceso completado!',
-						text: "El tipo de documento " + TipoDocumento + " ha sido eliminado exitosamente.",
-						type: 'success',
-						confirmButtonColor: '#28a745',
-
-					}
-
-
-				)
-
-			},
-			error: function () {
-				Swal.fire(
-					{
-
-						title: '¡Proceso no completado!',
-						text: "El tipo de documento " + TipoDocumento + " no se puede eliminar porque está asociado a otro proceso.",
-						type: 'warning',
-						confirmButtonColor: '#28a745',
-					}
-
-
-				)
-			},
-			statusCode: {
-				400: function (data) {
-					var json = JSON.parse(data.responseText);
-					Swal.fire(
-						'¡Error!',
-						json.msg,
-						'error'
-					)
-
-				}
-			}
-		})
-
-	});
-
-});
-
-
-
-//Cerrar de manera forzada el Modal 
-/*$(".cerrarModal").click(function(){
-	$("#modal-registro").modal('hide')
-  });
-*/
 
 
 //Función para quitar un elemento de la tabla al pulsar el botón quitar
+/*
 $(document).ready(function () {
 
 	$("#categoriatab").on('click', function () {
@@ -769,3 +743,4 @@ $(document).ready(function () {
 		alert('click en tab');
 	});
 });
+*/

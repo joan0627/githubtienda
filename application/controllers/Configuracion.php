@@ -47,35 +47,38 @@ class Configuracion extends CI_Controller {
 
 	}
 
-	public  function registro_editarTd(){
+	public  function registrarActualizar($_valorId=null){
 
-		$ValorId= $this->input->post("idTipoDocumento");
-		$valorDescripcion = $this->input->post("descripcion");
+		$_valorId= $this->input->post("idTipoDocumento");
+		$_valorDescripcion = $this->input->post("descripcion");
+		//$_registro = $this->input->post("r");
+
+		$datosTipoDocumento = array(
+				
+			'idTipoDocumento' => $_valorId,
+			'descripcion' => $_valorDescripcion
+		); 
+
+			//voy aqui: nofunciona el insertar pero el actualizar si
+			if(isset($_valorId)){
+				$this->Model_maestras->actualizarTipoDocumento($_valorId,$datosTipoDocumento);
+
+			}
+			else{
+				$this->Model_maestras->insertarTipoDocumento($datosTipoDocumento);
+			}
 		
+			
 
-		if ($valorDescripcion=="") {
 	
-			$datosTipoDocumento = array(
-				
-				'idTipoDocumento' => $ValorId,
-				'descripcion' => $valorDescripcion
-			); 
-			$this->Model_maestras->insertarTipoDocumento($datosTipoDocumento);
-		}
 		
-		else{
-
-			echo "la descripcion es: ". $valorDescripcion;
-			echo "El id es: ". $ValorId;
-
-			$datosTipoDocumento = array(
-				
-				'descripcion' => $valorDescripcion,
-				
-			);
 		
-			$this->Model_maestras->actualizarTipoDocumento($ValorId, $datosTipoDocumento);
-		}
+
+
+
+
+
+
 	
 		
 	}
