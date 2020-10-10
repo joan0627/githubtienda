@@ -104,9 +104,9 @@
 						<tr>
 
 							<td><?php echo  $d->idServicio;?></td>
-							<td><?php echo  $d->nombreServicio;?></td>
-							<td><?php echo  $d->descripcionTipoServicio;?></td>
-							<td style="width:310px;"><?php echo  $d->descripcion;?></td>
+							<td style="width: 200px;"><?php echo  $d->nombreServicio;?></td>
+							<td ><?php echo  $d->descripcionTipoServicio;?></td>
+							<td style="width:250px;"><?php echo  $d->descripcion;?></td>
 							<td style="color:green; "><label><?php echo  $d->precio;?></label></td>
 								
 
@@ -129,9 +129,7 @@
 									</a>
 
 
-									<a class="btn btn-danger btn-sm"  href="#"    
-									onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')"
-									>
+									<a class="btn btn-danger btn-sm"  data-documento= "<?=$d->idServicio?>" id="deleteServicio" href="delete/<?php echo $d->idServicio; ?>">
 										<i class="fas fa-trash">
 										</i>
 										Borrar
@@ -168,3 +166,18 @@
 
 	</section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+
+<?php if ($this->session->flashdata('message')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?> 
