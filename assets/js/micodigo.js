@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 	var table = $("#example1").DataTable({
 		language: {
@@ -25,12 +23,12 @@ $(document).ready(function () {
 			{
 				data: null,
 				defaultContent:
-				" <div class='input-group '><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input type='text' class='form-control 'style='width:95% ;text-align:right' value='0'></div>",
+					" <div class='input-group '><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input type='text' class='form-control 'style='width:95% ;text-align:right' value='0'></div>",
 			},
 			{
 				data: null,
 				defaultContent:
-				" <div class='input-group '><input type='number' class='form-control 'style='width:85% ;' value='0'><div class='input-group-addon' style='color:gray; font-weight: bold; font-size:20px'>%</div></div>",
+					" <div class='input-group '><input type='number' class='form-control 'style='width:85% ;' value='0'><div class='input-group-addon' style='color:gray; font-weight: bold; font-size:20px'>%</div></div>",
 			},
 			{
 				data: null,
@@ -40,479 +38,620 @@ $(document).ready(function () {
 		],
 	});
 
+	$("#example1 tbody").on("click", ".name", function () {
+		//var row = $(this).closest('tr');
+
+		//var data = table.row( row ).data().name;
+
+		var codigoP = $(this).closest("tr").find("td:eq(0)").text();
+		var descripcion = $(this).closest("tr").find("td:eq(2)").text();
+		var cantidad = $(this).closest("tr").find("td:eq(3)").find("input").val();
+		var costo = $(this).closest("tr").find("td:eq(4)").find("input").val();
+		var iva = $(this).closest("tr").find("td:eq(5)").find("input").val();
+		var subtotal = costo * cantidad;
+
+		var t = $("#example2").DataTable();
+
+		t.row
+			.add([
+				codigoP,
+				descripcion,
+				cantidad,
+				costo,
+				subtotal,
+				iva,
+				"<button class='eliminar btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i> Quitar </button>",
+			])
+			.draw(false);
+	});
+});
+
+$(document).ready(function () {
+	$("#example2").DataTable({
+		language: {
+			searchPlaceholder: "Estoy buscando...",
+			url: "../assets/plugins/datatables/Spanish.lang",
+		},
+		bInfo: false,
+		bFilter: false,
+		bPaginate: false,
+		dom: "Bfrtip",
+		buttons: [
+			{
+				text: "Nueva compra",
+				action: function (e, dt, node, config) {
+					dt.ajax.reload();
+				},
+			},
+		],
+	});
+});
+
+//funcion encabezado
+$(document).ready(function () {
+	
+	$("#registrarCompra").click(function (ev) {
+		ev.preventDefault();
+
+		var fechaCompra = $("#fechaCompra").val();
+		var codigoCompra = $("#idCompra").val();
+		var proveedor = $("#proveedor").val();
+		var facturaProveedor = $("#facturaProveedor").val();
+		var fechafacturaProveedor = $("#fechafacturaProveedor").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/tienda/Compra/detalle/",
+			data: {
+				fechaCompra: fechaCompra,
+				codigoCompra: codigoCompra,
+				proveedor: proveedor,
+				facturaProveedor: facturaProveedor,
+				fechafacturaProveedor: fechafacturaProveedor,
+			},
+			success: function () {
+				Swal.fire({
+					title: "¡El codigo es!" ,
+					text: "Se guardo" ,
+					type: "success",
+					confirmButtonColor: "#28a745",
+				});
+			},
+			error: function () {
+				Swal.fire({
+					title: "¡Proceso no completado!",
+					text: "No se guardo",
+					type: "warning",
+					confirmButtonColor: "#28a745",
+				})
+				
+			},
+		});
+
+
+
+
+
+	//CODIGO PARA REGISTRAR EL DETALLE
+	$("#example2 tbody tr").each(function () {
+		var codigoP = $(this).children().eq(0).text();
+
+		//var codigoP = $(this).closest("tr").find("td:eq(0)").text();
+		//var descripcion = $(this).closest("tr").find("td:eq(1)").text();
+		var cantidad = $(this).closest("tr").find("td:eq(2)").text();
+		var costo = $(this).closest("tr").find("td:eq(3)").text();
+		var subtotal = $(this).closest("tr").find("td:eq(4)").text();
+		var iva = $(this).closest("tr").find("td:eq(5)").text();
+
+		
+		$.ajax({
+			type: "POST",
+			url: "/tienda/Compra/detallereal/",
+			data: {
+				codigoCompra: codigoCompra,
+				codigo: codigoP,
+				cantidad: cantidad,
+				costo: costo,
+				subtotal: subtotal,
+				iva: iva,
+			},
+			success: function () {
+				Swal.fire({
+					title: "¡El codigo es!",
+					text: "Se guardo",
+					type: "success",
+					confirmButtonColor: "#28a745",
+				});
+			},
+			error: function () {
+				Swal.fire({
+					title: "¡Proceso no completado!",
+					text: "No se guardo",
+					type: "warning",
+					confirmButtonColor: "#28a745",
+				});
+			},
+			statusCode: {
+				400: function (data) {
+					var json = JSON.parse(data.responseText);
+					Swal.fire("¡Error!", json.msg, "error");
+				},
+			},
+		});
 
 
 	
 
-
-	  
-$('#example1 tbody').on('click', '.name', function () {
-
-	//var row = $(this).closest('tr');
-  
-  //var data = table.row( row ).data().name;
-
-	var codigoP = $(this).closest("tr").find("td:eq(0)").text();
-	 var descripcion = $(this).closest("tr").find("td:eq(2)").text();
-	var cantidad = $(this).closest("tr").find("td:eq(3)").find("input").val();
-	var costo = $(this).closest("tr").find("td:eq(4)").find("input").val();
-	var iva = $(this).closest("tr").find("td:eq(5)").find("input").val();
-	var subtotal = costo * cantidad;
-  
-
-  var t = $("#example2").DataTable();
+});	
 
 
-	t.row
-		.add([
-			codigoP,
-			 descripcion, 
-			 cantidad, 
-			 costo, 
-			 subtotal,
-			  iva, 
-			  "<button class='eliminar btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i> Quitar </button>",
 
-     
-			])
-		.draw(false);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	});
+});
+
+
+	
+		//ev.preventDefault();
+ 
 	
 		
-});
-
-
-
-
-
-});
 	
 
 
 //Función para quitar un elemento de la tabla al pulsar el botón quitar
-  $(document).ready(function(){
-    
-    $("#example2").on('click', '.eliminar',  function() {
-		var t= $('#example2').DataTable();
-		let $tr = $(this).closest('tr');
-		  
+$(document).ready(function () {
+	$("#example2").on("click", ".eliminar", function () {
+		var t = $("#example2").DataTable();
+		let $tr = $(this).closest("tr");
+
 		// Le pedimos al DataTable que borre la fila
 		t.row($tr).remove().draw(false);
-  });
+	});
 });
 
+///////////////////////////////////////////////////////////////////////////
 
-
-
-  
-
-$(document).ready(function() {
-	var codigoP =$(this).closest("tr").find("td:eq(0)").text();
-	
-	var descripcion = $(this).closest("tr").find("td:eq(1)").text();
-   var cantidad = $(this).closest("tr").find("td:eq(2)").text();
-   var costo = $(this).closest("tr").find("td:eq(3)").text();
-   var subtotal = $(this).closest("tr").find("td:eq(4)").text();
-   var iva = $(this).closest("tr").find("td:eq(5)").text();
-	
-
-	$('#example2').DataTable( {
-		"language": {
-			searchPlaceholder: "Estoy buscando...",
-		  "url":'../assets/plugins/datatables/Spanish.lang'
-		  
-		},
-		"bInfo": false,
-		"bFilter":false,
-		"bPaginate": false,
-		dom: 'Bfrtip',
-		buttons: [
-			{
-				text: 'Nueva compra',
-				action: function ( e, dt, node, config ) {
-					dt.ajax.reload();
-				}
-			}
-			
-		],
-
-	
-	/*	"ajax": {
-			type: 'POST',
-			url: '/tienda/Compra/registro/',
-			data: { 
-				'codigo':codigoP,
-				'cantidad':cantidad,
-				'costo':costo,
-				'subtotal':subtotal,
-				'iva':iva
-
-
-			 },
-			 success: function (data) {
-				 alert('Los datos fueron agregados con exito');
-
-			 },error:function(jqXHR, textStatus,errorThrown){
-				 console.log('error');
-			 }
-
-		},
-		     */
-      
-	} );
-	
-
-
-	$('#registrarCompra').click(function(ev){
-		//ev.preventDefault();
-		
-		//var table = $('#example2').DataTable();
-		//var total = table. 
-		//alert (total);
-		var prueba= 290;
-		var prueba1= 543;
-		var prueba2= 675;
-		var prueba3= 776;
-		var prueba4= 4523;
-		var codigoFactura=$('#idCompra').val();
-		console.log('Esta es la factura'+codigoFactura);
-		
-	//	var data = table.rows(0).data();
-	 
-		//var form_data  = table.rows().data();
- 
-		/*$.each( form_data, function( key, value ) {
-		  var codiguin= (key,value);
-		  //alert(codiguin);
-		});*/
-
-		$('#example2 tbody tr').each(function() {
-		
-			var codigo = $(this).find('td').eq(0).text();
-		var cantidad = $(this).find('td').eq(2).text();
-		var costo = $(this).find('td').eq(3).text();
-		var iva = $(this).find('td').eq(5).text();
-		
-		console.log(codigo);
-
-
-
-		$.ajax({
-				
-				
-			url: '/tienda/Compra/detalle',
-			type: 'POST',
-			datatype:'json',
-			data: {
-			     'codigoFactura':codigoFactura,
-				 'codigo': codigo,
-				 'cantidad':cantidad,
-				 'costo':costo,
-				 'iva': iva
-		},
-			success: function () {
-			
-				Swal.fire(
-					{	
-
-					title: '¡El codigo es!' +codigoP,
-					text: "Se guardo" +codigo,
-					type: 'success',
-					confirmButtonColor: '#28a745',
-						
-					}
-				
-							   
-				)
-
-			},
-			error: function () {
-				Swal.fire(
-					{
-						
-						title: '¡Proceso no completado!',
-						text: "No se guardo",
-						type: 'warning',
-						confirmButtonColor: '#28a745',
-					}
-					
-							   
-				)
-			},
-			 statusCode: {
-				400: function (data) {
-					var json = JSON.parse(data.responseText);
-					Swal.fire(
-						'¡Error!',
-						json.msg,
-						'error'
-					)
-
-				}
-			}
-		})
-			
-		});
-
-		
-		
-
-
-	});
-
-
-
-
-  });
-
-  ///////////////////////////////////////////////////////////////////////////
-
-  /*
+/*
 (function () {
 
-	$("tr td #add").click(function (ev) {
-		ev.preventDefault();
-		var categoria = $(this).parents('tr').find('td:eq(1)').text();
-		var idProducto = $(this).attr('data-id');
+  $("tr td #add").click(function (ev) {
+	  ev.preventDefault();
+	  var categoria = $(this).parents('tr').find('td:eq(1)').text();
+	  var idProducto = $(this).attr('data-id');
 
-		console.log("este es el id del producto"+idProducto);
-		var self = this;
+	  console.log("este es el id del producto"+idProducto);
+	  var self = this;
 
-		Swal.fire({
+	  Swal.fire({
 
-			title: '¡Atención!',
-			text: "¿Estás seguro que deseas eliminar el proveedor "+categoria+" ?",
-			type: 'question',
-			showCancelButton: true,
-			confirmButtonColor: '#28a745',
-			cancelButtonColor: '#28a745',
-			confirmButtonText: 'Si',
-			cancelButtonText: 'No'
-		}).then((result) => {
+		  title: '¡Atención!',
+		  text: "¿Estás seguro que deseas eliminar el proveedor "+categoria+" ?",
+		  type: 'question',
+		  showCancelButton: true,
+		  confirmButtonColor: '#28a745',
+		  cancelButtonColor: '#28a745',
+		  confirmButtonText: 'Si',
+		  cancelButtonText: 'No'
+	  }).then((result) => {
 
-			if (result.value) {
-
-
-			
+		  if (result.value) {
 
 
-			}
-		})
-	});
+	  	
+
+
+		  }
+	  })
+  });
 
 
 })();
 
 */
 
-  ///////////////////////////////////////////////////////////////////////////
-
-
-
-
+///////////////////////////////////////////////////////////////////////////
 
 /* Código para la funcion eliminar utilizando sweetalert 2 */
 (function () {
-
 	$("tr td #add").click(function (ev) {
 		ev.preventDefault();
-		var nombre = $(this).parents('tr').find('td:eq(1)').text();
-		var documento = $(this).attr('data-documento');
+		var nombre = $(this).parents("tr").find("td:eq(1)").text();
+		var documento = $(this).attr("data-documento");
 		var self = this;
 
 		Swal.fire({
-
-			title: '¡Atención!',
-			text: "¿Estás seguro que deseas eliminar el proveedor "+nombre+" ?",
-			type: 'question',
+			title: "¡Atención!",
+			text: "¿Estás seguro que deseas eliminar el proveedor " + nombre + " ?",
+			type: "question",
 			showCancelButton: true,
-			confirmButtonColor: '#28a745',
-			cancelButtonColor: '#28a745',
-			confirmButtonText: 'Si',
-			cancelButtonText: 'No'
+			confirmButtonColor: "#28a745",
+			cancelButtonColor: "#28a745",
+			confirmButtonText: "Si",
+			cancelButtonText: "No",
 		}).then((result) => {
-
 			if (result.value) {
-
-
 				$.ajax({
-					type: 'POST',
-					url: '/tienda/Proveedor/delete',
-					data: { 'documento': documento },
+					type: "POST",
+					url: "/tienda/Proveedor/delete",
+					data: { documento: documento },
 					success: function () {
-						$(self).parents('tr').remove();
-						Swal.fire(
-							{	
-
-							title: '¡Proceso completado!',
-							text: "El proveedor "+nombre+" ha sido eliminado exitosamente.",
-							type: 'success',
-							confirmButtonColor: '#28a745',
-								
-							}
-						
-							 	      
-						)
-
+						$(self).parents("tr").remove();
+						Swal.fire({
+							title: "¡Proceso completado!",
+							text:
+								"El proveedor " + nombre + " ha sido eliminado exitosamente.",
+							type: "success",
+							confirmButtonColor: "#28a745",
+						});
 					},
 					error: function () {
-						Swal.fire(
-							{
-								
-								title: '¡Proceso no completado!',
-								text: "El proveedor "+nombre+" no se puede eliminar porque está asociado a otro proceso.",
-								type: 'warning',
-								confirmButtonColor: '#28a745',
-							}
-							
-							 	      
-						)
+						Swal.fire({
+							title: "¡Proceso no completado!",
+							text:
+								"El proveedor " +
+								nombre +
+								" no se puede eliminar porque está asociado a otro proceso.",
+							type: "warning",
+							confirmButtonColor: "#28a745",
+						});
 					},
-					 statusCode: {
+					statusCode: {
 						400: function (data) {
 							var json = JSON.parse(data.responseText);
-							Swal.fire(
-								'¡Error!',
-								json.msg,
-								'error'
-							)
-
-						}
-					}
-				})
-
-
-
+							Swal.fire("¡Error!", json.msg, "error");
+						},
+					},
+				});
 			}
-		})
+		});
 	});
-
-
 })();
 
+/*****************************************************************************/
+// ** Código para la funcion eliminar un producto utilizando sweetalert 2 // **
+/*****************************************************************************/
 
-	/*****************************************************************************/
-	// ** Código para la funcion eliminar un producto utilizando sweetalert 2 // **
-	/*****************************************************************************/
+(function () {
+	$("tr td #deleteProducto").click(function (ev) {
+		ev.preventDefault();
+		var nombreProducto = $(this).parents("tr").find("td:eq(1)").text();
+		var idProducto = $(this).attr("data-documento");
+		var self = this;
 
-
-
-	(function () {
-
-		$("tr td #deleteProducto").click(function (ev) {
-			ev.preventDefault();
-			var nombreProducto = $(this).parents('tr').find('td:eq(1)').text();
-			var idProducto = $(this).attr('data-documento');
-			var self = this;
-	
-			Swal.fire({
-	
-				title: '¡Atención!',
-				text: "¿Estás seguro que deseas eliminar el producto "+nombreProducto+" ?",
-				type: 'question',
-				showCancelButton: true,
-				confirmButtonColor: '#28a745',
-				cancelButtonColor: '#28a745',
-				confirmButtonText: 'Si',
-				cancelButtonText: 'No'
-			}).then((result) => {
-	
-				if (result.value) {
-	
-	
-					$.ajax({
-						type: 'POST',
-						url: '/tienda/producto/deleteProducto',
-						data: { 'idProducto': idProducto },
-						success: function () {
-							$(self).parents('tr').remove();
-							Swal.fire(
-								{	
-	
-								title: '¡Proceso completado!',
-								text: "El producto "+nombreProducto+" ha sido eliminado exitosamente.",
-								type: 'success',
-								confirmButtonColor: '#28a745',
-									
-								}
-							
-										   
-							)
-	
+		Swal.fire({
+			title: "¡Atención!",
+			text:
+				"¿Estás seguro que deseas eliminar el producto " +
+				nombreProducto +
+				" ?",
+			type: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#28a745",
+			cancelButtonColor: "#28a745",
+			confirmButtonText: "Si",
+			cancelButtonText: "No",
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "/tienda/producto/deleteProducto",
+					data: { idProducto: idProducto },
+					success: function () {
+						$(self).parents("tr").remove();
+						Swal.fire({
+							title: "¡Proceso completado!",
+							text:
+								"El producto " +
+								nombreProducto +
+								" ha sido eliminado exitosamente.",
+							type: "success",
+							confirmButtonColor: "#28a745",
+						});
+					},
+					error: function () {
+						Swal.fire({
+							title: "¡Proceso no completado!",
+							text:
+								"El producto " +
+								nombreProducto +
+								" no se puede eliminar, ya que esta asociado a otro proceso.",
+							type: "warning",
+							confirmButtonColor: "#28a745",
+						});
+					},
+					statusCode: {
+						400: function (data) {
+							var json = JSON.parse(data.responseText);
+							Swal.fire("¡Error!", json.msg, "error");
 						},
-						error: function () {
-							Swal.fire(
-								{
-									
-									title: '¡Proceso no completado!',
-									text: "El producto "+nombreProducto+" no se puede eliminar, ya que esta asociado a otro proceso.",
-									type: 'warning',
-									confirmButtonColor: '#28a745',
-								}
-								
-										   
-							)
-						},
-						 statusCode: {
-							400: function (data) {
-								var json = JSON.parse(data.responseText);
-								Swal.fire(
-									'¡Error!',
-									json.msg,
-									'error'
-								)
-	
-							}
-						}
-					})
-	
-	
-	
-				}
-			})
+					},
+				});
+			}
 		});
-	
-	
-	})();
-	
-	// Función para dehabilitar campos segun el select que seleccione.
-	/*
-	function habilitar(objecto) {
-		var hab;
-		frm=objecto.form;
-	
-		frm.edad.disabled = false;
-		frm.unidadTiempo.disabled = false;
-		frm.indicaciones.disabled = false;
-		frm.contraIndicaciones.disabled = false;
-		 
-		num=objecto.selectedIndex;
-		
-			if (num==1) hab=true;
-	
-			else if (num==3) hab=false;
-			
-			else if (num==5) hab=true;
-	
-			else if (num==7) hab=true;
-			frm.edad.disabled=hab;
-			frm.unidadTiempo.disabled=hab;
-			frm.indicaciones.disabled=hab;
-			frm.contraIndicaciones.disabled=hab;
-		
-	
-	
-	  }
-	  
-	
-	$(document).ready(function(){
-		$('categoria').on('change', function() {
-			var ValorSelect = 0;
-			$("indicaciones").show()
-	
-		  });
 	});
-	*/
+})();
+
+// Función para dehabilitar campos segun el select que seleccione.
+/*
+function habilitar(objecto) {
+	var hab;
+	frm=objecto.form;
 	
+	frm.edad.disabled = false;
+	frm.unidadTiempo.disabled = false;
+	frm.indicaciones.disabled = false;
+	frm.contraIndicaciones.disabled = false;
+	 
+	num=objecto.selectedIndex;
+	
+		if (num==1) hab=true;
+	
+		else if (num==3) hab=false;
+		
+		else if (num==5) hab=true;
+	
+		else if (num==7) hab=true;
+		frm.edad.disabled=hab;
+		frm.unidadTiempo.disabled=hab;
+		frm.indicaciones.disabled=hab;
+		frm.contraIndicaciones.disabled=hab;
+	
+	
+	
+  }
+  
+	
+$(document).ready(function(){
+	$('categoria').on('change', function() {
+		var ValorSelect = 0;
+		$("indicaciones").show()
+	
+	  });
+});
+*/
+$(document).ready(function () {
+	//$('.dataTables_filter').addClass('pull-left');
+	var prueba = "Este es el dato de prueba";
+
+	var tablaMaestra = $("#tablaMaestra").DataTable({
+		language: {
+			searchPlaceholder: "Estoy buscando...",
+			url: "../assets/plugins/datatables/Spanish.lang",
+		},
+
+		bInfo: false,
+
+		lengthChange: false,
+		bPaginate: false,
+		dom: '<"pull-left"f>B',
+
+		buttons: {
+			buttons: [
+				{
+					text: "<i class='fas fa-plus-circle'></i> Crear",
+					action: function (e, node, config) {
+						$("#modalRegistroTipoDocumento").modal("show");
+						$("#descripcionTipoDocumento").val("");
+					},
+				},
+			],
+			dom: {
+				button: {
+					tag: "button",
+					className: "btn btn-success",
+				},
+				buttonLiner: {
+					tag: null,
+				},
+			},
+		},
+
+		ajax: {
+			type: "POST",
+			url: "/tienda/Configuracion/listadoTipoDocumento",
+			dataSrc: "",
+		},
+		columns: [
+			{ data: "idTipoDocumento" },
+			{ data: "descripcion" },
+			{
+				defaultContent:
+					"<div style='text-align: center;'><a class='btn btn-info btn-sm' id='editartd'><i class='fas fa-pencil-alt'></i> Editar </a> <a id='eliminartd' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </a></div>",
+			},
+		],
+	});
+});
+
+//Codigo para registrar un tipo de docuemento
+$(document).ready(function () {
+	var tablaMaestra = $("#tablaMaestra").DataTable();
+	//$('#codigoTipoDocumento').val("");
+	//$('#descripcionTipoDocumento').val("");
+
+	$("#btnRegistroTipoDocumento").click(function (ev) {
+		ev.preventDefault();
+
+		var idTipoDocumento = $("#codigoTipoDocumento").val();
+		var descripcion = $("#descripcionTipoDocumento").val();
+		// var r = 'registro';
+
+		$.ajax({
+			type: "POST",
+			url: "/tienda/configuracion/registrarActualizar",
+			data: {
+				idTipoDocumento: idTipoDocumento,
+				descripcion: descripcion,
+			},
+
+			success: function () {
+				Swal.fire({
+					title: "¡Proceso completado!",
+					text:
+						'El tipo documento "' +
+						descripcion +
+						'" se ha registrado correctamente.',
+					type: "success",
+					confirmButtonColor: "#28a745",
+				});
+				idTipoDocumento = Number(idTipoDocumento) + 1;
+				$("#idTipoDocumento").val(idTipoDocumento);
+				$("#descripcionTipoDocumento").val("");
+				tablaMaestra.ajax.reload();
+			},
+
+			error: function () {
+				Swal.fire({
+					title: "¡Proceso no completado!",
+					text:
+						'El tipo documento "' + descripcion + '"no se ha podido registrar.',
+					type: "warning",
+					confirmButtonColor: "#28a745",
+				});
+			},
+			statusCode: {
+				400: function (data) {
+					var json = JSON.parse(data.responseText);
+					Swal.fire("¡Error!", json.msg, "error");
+				},
+			},
+		});
+
+		//var id = $(this).parents('tr').find('td:eq(0)').text();
+		//var TipoDocumento = $(this).parents('tr').find('td:eq(1)').text();
+
+		//$('#codigoTipoDocumento').val(id);
+		//$('#descripcionTipoDocumento').val(TipoDocumento);
+
+		//var idTipoDocumento = $('#idTipoDocumento').val();
+		//	var descripcion = $('#descripcionTipoDocumento').val();
+		//var r=true;
+	});
+});
+
+//Código para editar el Tipo de documento
+$(document).ready(function () {
+	$("#tablaMaestra").on("click", "#editartd", function (ev) {
+		ev.preventDefault();
+
+		var id = $(this).parents("tr").find("td:eq(0)").text();
+		var descripcion = $(this).parents("tr").find("td:eq(1)").text();
+
+		$("#modalRegistroTipoDocumento").modal("show");
+
+		$("#codigoTipoDocumento").val(id);
+		$("#descripcionTipoDocumento").val(descripcion);
+
+		//var descripcion = $('#descripcionTipoDocumento').val();
+	});
+});
+
+//Código para eliminar el Tipo de documento
+(function () {
+	$("#tablaMaestra").on("click", "#eliminartd", function (ev) {
+		ev.preventDefault();
+		var id = $(this).parents("tr").find("td:eq(0)").text();
+		var TipoDocumento = $(this).parents("tr").find("td:eq(1)").text();
+
+		var self = this;
+
+		Swal.fire({
+			title: "¡Atención!",
+			text:
+				"¿Estás seguro que deseas eliminar el tipo de documento con id " +
+				id +
+				" ?",
+			type: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#28a745",
+			cancelButtonColor: "#28a745",
+			confirmButtonText: "Si",
+			cancelButtonText: "No",
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "/tienda/Configuracion/delete",
+					data: { id: id },
+					success: function () {
+						$(self).parents("tr").remove();
+						Swal.fire({
+							title: "¡Proceso completado!",
+							text:
+								"El tipo de documento " +
+								TipoDocumento +
+								" ha sido eliminado exitosamente.",
+							type: "success",
+							confirmButtonColor: "#28a745",
+						});
+					},
+					error: function () {
+						Swal.fire({
+							title: "¡Proceso no completado!",
+							text:
+								"El tipo de documento " +
+								TipoDocumento +
+								" no se puede eliminar porque está asociado a otro proceso.",
+							type: "warning",
+							confirmButtonColor: "#28a745",
+						});
+					},
+					statusCode: {
+						400: function (data) {
+							var json = JSON.parse(data.responseText);
+							Swal.fire("¡Error!", json.msg, "error");
+						},
+					},
+				});
+			}
+		});
+	});
+})();
+
+//Función para quitar un elemento de la tabla al pulsar el botón quitar
+/*
+$(document).ready(function () {
+
+	$("#categoriatab").on('click', function () {
+
+		alert('click en tab');
+	});
+});
+*/
 
 

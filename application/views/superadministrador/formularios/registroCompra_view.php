@@ -17,7 +17,7 @@
             </div>
         </div><!-- FIN/.container-fluid -->
     </section>
-    <?php echo validation_errors(); ?>
+  
     <!-- Incio seccion contenido -->
     <section class="content">
 
@@ -52,7 +52,7 @@
 
                 <br>
                 <!-- info row -->
-                <form role="form" method="POST">
+                <form id="basic-form" method="POST">
                     <!--Inicio del card body-->
 
 
@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 <label>Fecha</label>
-                                <input name="fechaCompra" type="text" readOnly="readonly" class="form-control" value="<?php echo date("Y-m-d"); ?>">
+                                <input id="fechaCompra" type="text" readOnly="readonly" class="form-control" value="<?php echo date("Y-m-d"); ?>">
 
                             </div>
 
@@ -83,7 +83,7 @@
                         <div class="col-md-3">
                             <div id="selectproveedor" class="form-group">
                                 <label>Proveedor</label>
-                                <select class="form-control select2 " name="proveedor">
+                                <select class="form-control select2 " id="proveedor">
 
                                     <?php foreach ($proveedores as $valor) : ?>
                                         <option value="" selected hidden>-Seleccione un proveedor-</option>;
@@ -91,7 +91,7 @@
                                             <?php echo  $valor->nombre; ?></option>
 
                                     <?php endforeach; ?>
-                                    <?php echo form_error('proveedor', '<p class="text-danger">', '</p>'); ?>
+                                   
                                 </select>
 
                             </div>
@@ -100,9 +100,9 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label style="width:120px">Factura N°</label>
-                                <input name="facturaProveedor" type="text" class="form-control" value="<?php echo $facturaProveedor; ?>">
+                                <input id="facturaProveedor" type="text" class="form-control" value="<?php echo $facturaProveedor; ?>">
                             </div>
-                            <?php echo form_error('facturaProveedor', '<p class="text-danger">', '</p>'); ?>
+                           
 
                         </div>
 
@@ -110,9 +110,9 @@
                             <div class="form-group">
 
                                 <label>Fecha factura</label>
-                                <input name="fechafacturaProveedor" type="date" class="form-control" value="<?php echo $fechaFacturaProveedor; ?>">
+                                <input id="fechafacturaProveedor" type="text"  class="form-control" value="<?php echo $fechaFacturaProveedor; ?>" required>
                             </div>
-                            <?php echo form_error('fechafacturaProveedor', '<p class="text-danger">', '</p>'); ?>
+                           
 
                         </div>
 
@@ -127,8 +127,7 @@
 
 
                     </div>
-
-
+             
                     <?php
 
                     /*
@@ -303,11 +302,13 @@
 
 <div class="text-right card-footer">
 
-    <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="registrarCompra" class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>
+    <input style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="registrarCompra" type="submit" class="submit" type="submit" value="SUBMIT">
+  <!--  <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="registrarCompra" class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>-->
     <a style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url(); ?>compras" class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 </div>
-</form>
 
+
+</form>
 
 
 

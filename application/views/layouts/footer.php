@@ -53,7 +53,8 @@
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.min.js"></script>
 
 
-<!-- Link de nuestro codigo js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<!-- Link de nuestro codigo js -->
 <script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
 
 

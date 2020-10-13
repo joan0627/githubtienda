@@ -16,12 +16,12 @@ class Compra extends CI_controller
 		$this->load->model('Model_compra');
 		$this->load->database();
 		$this->load->helper("url");
-		$this->load->library('form_validation');
+		//$this->load->library('form_validation');
 		$this->load->library('session');
 
-		$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
+		/*$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
 		$this->form_validation->set_rules('facturaProveedor', 'factura N°', 'required');
-		$this->form_validation->set_rules('fechafacturaProveedor', 'fecha factura', 'required');
+		$this->form_validation->set_rules('fechafacturaProveedor', 'fecha factura', 'required');*/
 
 	
 	}
@@ -76,43 +76,20 @@ class Compra extends CI_controller
 			
 
 			//Datos carga en general
-			$datosCarga["fechaRegistroCompra"] = $this->input->post("fechaCompra");
-			$datosCarga["idCompras"] = $this->input->post("idCompra");
-			$datosCarga["documentoProveedor"] = $this->input->post("proveedor");
-			$datosCarga["facturaProveedor"] = $this->input->post("facturaProveedor");
-			$datosCarga["fechaFacturaProveedor"] = $this->input->post("fechafacturaProveedor");
-
+		
 
 				
 			/*********************/
 			// *			Validación de los campos					*// 
 			/*********************/
 	
-			if ($this->form_validation->run()) {
-
-				$datosCompra["fechaRegistroCompra"] = $this->input->post("fechaCompra");
-				$datosCompra["idCompras"] = $this->input->post("idCompra");
-				$datosCompra["documentoProveedor"] = $this->input->post("proveedor");
-				$datosCompra["facturaProveedor"] = $this->input->post("facturaProveedor");
-				$datosCompra["fechaFacturaProveedor"] = $this->input->post("fechafacturaProveedor");
-				$datosCompra["estado"] = true;
-	
-				$this->Model_compra->insertarCompra($datosCompra);
-				//$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado correctamente.');
-				redirect("compra");
-
-
-			}
-
-			else
-			{
 
 
 				$this->load->view('layouts/superadministrador/header');
 				$this->load->view('layouts/superadministrador/aside');
 				$this->load->view('superadministrador/formularios/registroCompra_view',$datosCarga);
 				$this->load->view('layouts/footer');
-			}
+			
 	
 	}
 
@@ -125,49 +102,81 @@ class Compra extends CI_controller
 		
 	}
 
-	public function verDetallecomprasu()
+	public function validation()
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/verdetalleServicio_view');
-		$this->load->view('layouts/footer');
+		//$this->load->view('layouts/superadministrador/header');
+		//$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/formularios/validationprueba');
+		//*$this->load->view('layouts/footer');
 		
 	}
 
 	public function detalle(){
+	
 
+			$datosCompra["fechaRegistroCompra"] = $this->input->post("fechaCompra");
+			$datosCompra["idCompras"] = $this->input->post("codigoCompra");
+			$datosCompra["documentoProveedor"] = $this->input->post("proveedor");
+			$datosCompra["facturaProveedor"] = $this->input->post("facturaProveedor");
+			$datosCompra["fechaFacturaProveedor"] = $this->input->post("fechafacturaProveedor");
+			$datosCompra["estado"] = true;
+	
 		
+	
 		
-			//Guardar el detalle
-			$_idCompra=$this->input->post("codigoFactura");
-			$_codigo= $this->input->post('codigo');
-			$_cantidad= $this->input->post('cantidad');
-			$_costo= $this->input->post('costo');
-			$_iva= $this->input->post('iva');
 
-			$datosPrueba = array(
-				'idDetalleCompra' => '',
-				 'idCompra' => 	$_idCompra,
-				 'idProducto' => $_codigo,
-				 'cantidad' => $_cantidad,
-				 'costoProducto' => $_costo,
-				 'iva' => $_iva
-			);
+				$this->Model_compra->insertarCompra($datosCompra);
+
 			
-
-				$this->output
-				->set_status_header(400)
-				->set_output(json_encode(array ('msg'=>'El documento no puede ser vacío')));
+	
 			
 		
-				echo json_encode($datosPrueba);
+		
+			//$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado correctamente.');
+		//	redirect("compra");
+	
 
-				$this->Model_compra->insertarDetalle($datosPrueba);
-				$this->output->set_status_header(200);
-				
 			
 	
 		
+	}
+
+
+	public function detallereal()
+	{
+		$datosCompra["idCompras"] = $this->input->post("codigoCompra");
+	//Guardar el detalle
+	$_idCompra=$datosCompra["idCompras"];
+	$_codigo=$this->input->post('codigo');;
+	$_cantidad= $this->input->post('cantidad');
+	$_costo= $this->input->post('costo');
+	$_iva= $this->input->post('iva');
+
+
+
+
+	$datosPrueba = array(
+		'idDetalleCompra' => '',
+		 'idCompra' => 	$_idCompra,
+		 'idProducto' => $_codigo,
+		 'cantidad' => $_cantidad,
+		 'costoProducto' => $_costo,
+		 'iva' => $_iva
+	);
+	
+
+		$this->output
+		->set_status_header(400)
+		->set_output(json_encode(array ('msg'=>'El documento no puede ser vacío')));
+	
+
+		echo json_encode($datosPrueba);
+
+		$this->Model_compra->insertarDetalle($datosPrueba);
+		$this->output->set_status_header(200);
+		
+
+
 	}
 	
 
