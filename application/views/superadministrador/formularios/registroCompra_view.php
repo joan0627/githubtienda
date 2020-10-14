@@ -83,7 +83,7 @@
                         <div class="col-md-3">
                             <div id="selectproveedor" class="form-group">
                                 <label>Proveedor</label>
-                                <select class="form-control select2 " id="proveedor">
+                                <select class="form-control select2 " name="proveedor" id="proveedor">
 
                                     <?php foreach ($proveedores as $valor) : ?>
                                         <option value="" selected hidden>-Seleccione un proveedor-</option>;
@@ -100,7 +100,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label style="width:120px">Factura N°</label>
-                                <input id="facturaProveedor" type="text" class="form-control" value="<?php echo $facturaProveedor; ?>">
+                                <input id="facturaProveedor" name="facturaProveedor" type="text" class="form-control" value="<?php echo $facturaProveedor; ?>">
                             </div>
                            
 
@@ -110,7 +110,7 @@
                             <div class="form-group">
 
                                 <label>Fecha factura</label>
-                                <input id="fechafacturaProveedor" type="text"  class="form-control" value="<?php echo $fechaFacturaProveedor; ?>" required>
+                                <input id="fechafacturaProveedor" name="fechafacturaProveedor" type="date"  class="form-control" value="<?php echo $fechaFacturaProveedor; ?>" >
                             </div>
                            
 
@@ -302,7 +302,7 @@
 
 <div class="text-right card-footer">
 
-    <input style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="registrarCompra" type="submit" class="submit" type="submit" value="SUBMIT">
+    <input style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="registrarCompra" type="submit"  type="submit" value="SUBMIT">
   <!--  <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit" id="registrarCompra" class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>-->
     <a style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url(); ?>compras" class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 </div>

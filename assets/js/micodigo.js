@@ -89,51 +89,86 @@ $(document).ready(function () {
 
 //funcion encabezado
 $(document).ready(function () {
+
+
+	var validar_formulario = $("#basic-form").validate({
+
+		rules: {
+			proveedor:{required:true},
+			facturaProveedor:{required:true, minlength: 2},
+			fechafacturaProveedor:{ required: true}
+		
+			
+			
+		},
+		messages: {
+			proveedor: "El campo proveedor es obligatorio. ",
+			facturaProveedor: "El campo número de la factura es obligatorio. ",
+			fechafacturaProveedor: "El campo fecha de la factura es obligatorio. ",
+		
+		
+		},
+	
+	  });
+
+
+
+
 	
 	$("#registrarCompra").click(function (ev) {
 		ev.preventDefault();
-
 		var fechaCompra = $("#fechaCompra").val();
 		var codigoCompra = $("#idCompra").val();
 		var proveedor = $("#proveedor").val();
 		var facturaProveedor = $("#facturaProveedor").val();
 		var fechafacturaProveedor = $("#fechafacturaProveedor").val();
 
-		$.ajax({
-			type: "POST",
-			url: "/tienda/Compra/detalle/",
-			data: {
-				fechaCompra: fechaCompra,
-				codigoCompra: codigoCompra,
-				proveedor: proveedor,
-				facturaProveedor: facturaProveedor,
-				fechafacturaProveedor: fechafacturaProveedor,
-			},
-			success: function () {
-				Swal.fire({
-					title: "¡El codigo es!" ,
-					text: "Se guardo" ,
-					type: "success",
-					confirmButtonColor: "#28a745",
-				});
-			},
-			error: function () {
-				Swal.fire({
-					title: "¡Proceso no completado!",
-					text: "No se guardo",
-					type: "warning",
-					confirmButtonColor: "#28a745",
-				})
-				
-			},
-		});
+		if (validar_formulario.form()) //asi se comprueba si el form esta validado o no
+		{   
+			$.ajax({
+				type: "POST",
+				url: "/tienda/Compra/detalle/",
+				data: {
+					fechaCompra: fechaCompra,
+					codigoCompra: codigoCompra,
+					proveedor: proveedor,
+					facturaProveedor: facturaProveedor,
+					fechafacturaProveedor: fechafacturaProveedor,
+				},
+				success: function () {
+					Swal.fire({
+						title: "¡El codigo es!" ,
+						text: "Se guardo" ,
+						type: "success",
+						confirmButtonColor: "#28a745",
+					});
+				},
+				error: function () {
+					Swal.fire({
+						title: "¡Proceso no completado!",
+						text: "No se guardo",
+						type: "warning",
+						confirmButtonColor: "#28a745",
+					})
+					
+				},
+			});
+		//	var _form = $("#basic-form").serialize();
+		//	console.log("form:\n", _form);
+		 }
+
+		 else{
+			 console.log('faltan campos obligatorios');
+		 }
 
 
 
+		
 
 
 	//CODIGO PARA REGISTRAR EL DETALLE
 	$("#example2 tbody tr").each(function () {
+		var tabladetallecompra = $("#example2").DataTable();
 		var codigoP = $(this).children().eq(0).text();
 
 		//var codigoP = $(this).closest("tr").find("td:eq(0)").text();
@@ -142,6 +177,10 @@ $(document).ready(function () {
 		var costo = $(this).closest("tr").find("td:eq(3)").text();
 		var subtotal = $(this).closest("tr").find("td:eq(4)").text();
 		var iva = $(this).closest("tr").find("td:eq(5)").text();
+
+		if(tabladetallecompra.rows().count()>0){
+
+
 
 		
 		$.ajax({
@@ -179,7 +218,17 @@ $(document).ready(function () {
 			},
 		});
 
-
+	}
+	else
+	{
+		Swal.fire({
+			title: "¡Proceso no completado!",
+			text: "la cosa esta no tiene detalle",
+			type: "warning",
+			confirmButtonColor: "#28a745",
+		});
+		console.log('no hay mas de 0 en el detalle');
+	}
 	
 
 });	
