@@ -132,9 +132,12 @@
 
                     <!--Inicio del footer del contenido-->
                     <!--Inicio del footer del contenido-->
-                    <div class="card-footer">
+                    <div class="text-center card-footer">
 
-                        <a href="<?php echo base_url(); ?>servicio" class="btn btn-success col-2">Atrás</a>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
+                        href="<?php echo base_url(); ?>servicio"
+                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+
                     </div>
                     <!--Fin del footer del contenido-->
 

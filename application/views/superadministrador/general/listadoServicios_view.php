@@ -27,7 +27,7 @@
 
                             <input name="buscar" type="text" class="form-control">
                             <span class="input-group-btn">
-                                <button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
+                                <button class="btn bg-primary" type="submit"><i class="fas fa-search"></i></button>
 							</span>
 
                             <span class="col-auto input-group-btn">
@@ -121,7 +121,7 @@
 
 
 
-									<a class="btn btn-info btn-sm" href="actualizarserviciosu">
+									<a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>servicio/actualizar/<?php echo $d->idServicio; ?>">
 							
 										<i class="fas fa-pencil-alt">
 										</i>
