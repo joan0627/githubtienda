@@ -117,6 +117,9 @@ $(document).ready(function () {
 	
 	$("#registrarCompra").click(function (ev) {
 		ev.preventDefault();
+		
+		
+
 		var fechaCompra = $("#fechaCompra").val();
 		var codigoCompra = $("#idCompra").val();
 		var proveedor = $("#proveedor").val();
@@ -399,6 +402,7 @@ $(document).ready(function () {
 (function () {
 	$("tr td #deleteProducto").click(function (ev) {
 		ev.preventDefault();
+
 		var nombreProducto = $(this).parents("tr").find("td:eq(1)").text();
 		var idProducto = $(this).attr("data-documento");
 		var self = this;
@@ -703,4 +707,27 @@ $(document).ready(function () {
 });
 */
 
+$(document).ready(function () {
+	$("#cerrarsesion").on("click",  function (ev) {
+		ev.preventDefault();
 
+		Swal.fire({
+			title: "¡Atención!",
+			text:
+				"¿Estás seguro que deseas cerrar sesión? " ,
+			type: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#28a745",
+			cancelButtonColor: "#28a745",
+			confirmButtonText: "Si",
+			cancelButtonText: "No",
+		}).then((result) => {
+			if (result.value) {
+
+				
+				$(location).attr('href','login/cerrarsesion');
+			}
+		});
+	
+	});
+});

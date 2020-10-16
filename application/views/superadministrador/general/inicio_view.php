@@ -128,7 +128,7 @@
                 <section class="col-lg-5 connectedSortable">
 
         
-
+              
                  
 
                
@@ -144,3 +144,19 @@
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+
+
+<?php if ($this->session->flashdata('authiniciosesion')) { ?>
+<script type="text/javascript">
+
+$.toaster({ message : '<?php echo $this->session->flashdata('authiniciosesion') ?>', title : 'Bienvenido' });
+//toastr.success('<?php echo $this->session->flashdata('authiniciosesion') ?>', 'Bienvenido')
+
+</script>
+
+
+
+
+
+<?php } ?>
+  

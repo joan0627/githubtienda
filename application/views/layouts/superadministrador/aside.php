@@ -20,8 +20,8 @@
                       alt="User Image">
               </div>
               <div class="info">
-				  <a href="#" class="d-block text-center" >Joan Bolivar</a>
-				  <p class="text-muted text-center">Super Administrador</p>
+				  <a href="#" class="d-block text-center" ><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?></a>
+				  <p class="text-muted text-center"><?php if ($rol= $this->session->userdata("idRol")){ if($rol==1){ echo 'Administrador';} else{echo 'Empleado';} }   ?></p>
               </div>
           </div>
 

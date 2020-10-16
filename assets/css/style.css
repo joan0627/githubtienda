@@ -1,6 +1,6 @@
 .login-dark {
 	height:1000px;
-	/*background:#475d62 url(../../assets/img/inicio.jpg);*/
+	background:#475d62 url(../../assets/img/inicio2.jpeg);
 	background-size:cover;
 	position:relative;
   }
@@ -23,7 +23,7 @@
 	text-align:center;
 	padding:15px 0 20px;
 	font-size:100px;
-	color:#2980ef;
+	color:#28A745;
   }
   
   .login-dark form .form-control {
@@ -37,7 +37,7 @@
   }
   
   .login-dark form .btn-primary {
-	background:#214a80;
+	background:#218838;
 	border:none;
 	border-radius:4px;
 	padding:11px;

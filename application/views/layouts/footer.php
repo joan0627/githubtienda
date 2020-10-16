@@ -13,8 +13,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -52,8 +50,14 @@
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.min.js"></script>
 
-
+<!-- JQuery Validate -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+
+
+<!-- Toaster-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
+
 	<!-- Link de nuestro codigo js -->
 <script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
 
