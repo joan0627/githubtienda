@@ -8,6 +8,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -27,8 +29,6 @@
      <!-- DataTable Select-->
      <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datatables/Select-1.3.1/css/select.dataTables.min.css">
 
-
-
     <!-- overlayScrollbars -->
     <link rel="stylesheet"
         href="<?php echo base_url();?>assets/plugins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -41,17 +41,26 @@
 	<!-- Sweet Alert 2: mensajes animados -->
 	<link href="<?php echo base_url();?>assets/plugins/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
    
+    <!-- jQuery -->
+    <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery-3.5.1.min.js"></script>
 
     <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
     <script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
+    <!-- Toaster-->
+    <script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
+    <!-- Toastr-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/toastr/toastr.min.js"></script>
 
     <link href="<?php echo base_url();?>assets/css/misestilos.css" rel="stylesheet">
 
       <!-- Select2 -->
       <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
       
+      <!-- Toastr -->
+      <link href="<?php echo base_url();?>assets/plugins/plugins/toastr/toastr.min.css" rel="stylesheet">
 
+      
        <!-- Tema diferente de bootrap
       <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap-theme.min.css">-->
 
@@ -110,7 +119,7 @@
                 <li class=" dropdown user user-menu">
                     <a href="#" class="  nav-link" data-toggle="dropdown">
                         <img src="<?php echo base_url()?>assets/img/avatarjoan.jpg" class="user-image " alt="User Image">
-                        <span class="hidden-xs">Joan Bolivar</span>
+                        <span class="hidden-xs"><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <li class="user-body">
@@ -124,7 +133,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <a href="<?php echo base_url(); ?>login/cerrarsesion">Cerrar Sesión</a>
+                                    <a id='cerrarsesion'href="">Cerrar Sesión</a>
                                 </div>
                             </div>
 

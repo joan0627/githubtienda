@@ -20,8 +20,8 @@
                       alt="User Image">
               </div>
               <div class="info">
-				  <a href="#" class="d-block text-center" >Joan Bolivar</a>
-				  <p class="text-muted text-center">Super Administrador</p>
+				  <a href="#" class="d-block text-center" ><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?></a>
+				  <p class="text-muted text-center"><?php if ($rol= $this->session->userdata("idRol")){ if($rol==1){ echo 'Administrador';} else{echo 'Empleado';} }   ?></p>
               </div>
           </div>
 
@@ -32,7 +32,7 @@
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                   <li class="nav-item">
-                      <a href="<?php echo base_url();?>inicio/principalsuper" class="nav-link">
+                      <a href="<?php echo base_url();?>inicio" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-dog-house-50.png" class="nav-icon">
                           <p>
 

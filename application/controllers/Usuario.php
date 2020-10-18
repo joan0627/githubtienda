@@ -53,10 +53,10 @@ class Usuario extends CI_controller
 
 	
 			
-			$datosUsuario["nombre"] = $this->input->post("nombre");
+			$datosUsuario["nombre"] =ucwords(strtolower($this->input->post("nombre")));
 			$datosUsuario["celular"] = $this->input->post("celular");
 			$datosUsuario["nombreUsuario"] = $this->input->post("username");
-			$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
+			$datosUsuario["contrasena"] = md5($this->input->post("contrasena"));
 			$datosUsuario["idRol"] = $this->input->post("rol");
 			$datosUsuario["estado"] = true;
 			
@@ -92,7 +92,7 @@ class Usuario extends CI_controller
 	{
 		if($this->form_validation->run())
 		{
-			$datosUsuario["nombre"] = $this->input->post("nombre");
+			$datosUsuario["nombre"] =ucwords(strtolower($this->input->post("nombre")));	
 			$datosUsuario["celular"] = $this->input->post("celular");
 			$datosUsuario["nombreUsuario"] = $this->input->post("username");
 			//$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
@@ -103,6 +103,7 @@ class Usuario extends CI_controller
 
 			$this->session->set_flashdata('actualizar', 'El usuario ' .$datosUsuario["nombreUsuario"].' se ha actualizado correctamente.');
 
+			
 			redirect("usuario");
 		}
 		else

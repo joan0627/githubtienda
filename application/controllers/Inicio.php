@@ -8,20 +8,11 @@ class Inicio extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/aside');
-		$this->load->view('errors/pagina404_view');
-		$this->load->view('layouts/footer');
-	}
-
-
-	/* Inicio de métodos del rol de Super Administrador */
-	public function principalsuper()
-	{
-		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/general/inicio_view');
 		$this->load->view('layouts/footer');
 	}
+
 
 	
 	/* Fin de métodos del rol de Super Administrador */

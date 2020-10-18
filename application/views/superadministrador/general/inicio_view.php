@@ -128,7 +128,7 @@
                 <section class="col-lg-5 connectedSortable">
 
         
-
+              
                  
 
                
@@ -144,3 +144,42 @@
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+
+
+<?php if ($this->session->flashdata('authiniciosesion')) { ?>
+    <script>
+    $.toaster({
+        settings: {
+            'timeout': 5500,
+
+
+        }
+    });
+    $.toaster({
+        message: '<?php echo $this->session->flashdata('authiniciosesion') ?>',
+        title: 'Bienvenido',
+        priority: 'success',
+
+    });;
+    </script>
+
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('msgestablecerpregunta')) { ?>
+    <script>
+    $.toaster({
+        settings: {
+            'timeout': 5500,
+
+
+        }
+    });
+    $.toaster({
+        message: '<?php echo $this->session->flashdata('msgestablecerpregunta') ?>',
+        title: 'Éxito',
+        priority: 'success',
+
+    });;
+    </script>
+
+    <?php } ?>
