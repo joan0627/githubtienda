@@ -13,6 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <link href="<?php echo base_url();?>assets/plugins/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
 
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
 
     <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
@@ -37,7 +39,7 @@
             <div class="form-group"><input class="form-control" type="password" name="password"
                     placeholder="Contraseña">  <?php echo form_error('password', '<p class="text-danger">', '</p  >'); ?>
                 </div>
-            <div class="form-group"><button id="iniciarsesion" class="btn btn-primary btn-block" type="submit">Inciar
+            <div class="form-group"><button id="iniciarsesion" class="btn btn-primary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Iniciar
                     sesión</button></div><a href="<?php echo base_url();?>login/restablecer" class="forgot">¿Ha olvidado
                 su contraseña?</a>
         </form>
@@ -83,6 +85,26 @@
         message: '<?php echo $this->session->flashdata('authiniciosesioninv') ?>',
         title: 'Atención',
         priority: 'warning',
+
+    });;
+    </script>
+
+    <?php } ?>
+
+
+    <?php if ($this->session->flashdata('restablecercontrasenaok')) { ?>
+    <script>
+    $.toaster({
+        settings: {
+            'timeout': 5500,
+
+
+        }
+    });
+    $.toaster({
+        message: '<?php echo $this->session->flashdata('restablecercontrasenaok') ?>',
+        title: 'Proceso completado',
+        priority: 'success',
 
     });;
     </script>

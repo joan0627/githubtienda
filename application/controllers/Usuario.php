@@ -103,6 +103,7 @@ class Usuario extends CI_controller
 
 			$this->session->set_flashdata('actualizar', 'El usuario ' .$datosUsuario["nombreUsuario"].' se ha actualizado correctamente.');
 
+			
 			redirect("usuario");
 		}
 		else
