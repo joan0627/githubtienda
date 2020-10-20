@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 	var table = $("#example1").DataTable({
 		language: {

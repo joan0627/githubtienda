@@ -8,20 +8,17 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <!-- Theme style -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/adminlte.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet"
-        href="<?php echo base_url();?>assets/plugins/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet"   href="<?php echo base_url();?>assets/plugins/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/adminlte.min.css">
 
     <!-- DataTable -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datatables/datatables.css">
@@ -30,8 +27,7 @@
      <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datatables/Select-1.3.1/css/select.dataTables.min.css">
 
     <!-- overlayScrollbars -->
-    <link rel="stylesheet"
-        href="<?php echo base_url();?>assets/plugins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/daterangepicker/daterangepicker.css">
     
@@ -50,16 +46,13 @@
     <!-- Toaster-->
     <script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
     <!-- Toastr-->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/toastr/toastr.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/plugins/toastr/toastr.min.js"></script>
 
     <link href="<?php echo base_url();?>assets/css/misestilos.css" rel="stylesheet">
 
       <!-- Select2 -->
       <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
       
-      <!-- Toastr -->
-      <link href="<?php echo base_url();?>assets/plugins/plugins/toastr/toastr.min.css" rel="stylesheet">
-
       
        <!-- Tema diferente de bootrap
       <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap-theme.min.css">-->
@@ -119,13 +112,13 @@
                 <li class=" dropdown user user-menu">
                     <a href="#" class="  nav-link" data-toggle="dropdown">
                         <img src="<?php echo base_url()?>assets/img/avatarjoan.jpg" class="user-image " alt="User Image">
-                        <span class="hidden-xs"><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?></span>
+                        <span class="hidden-xs"><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?> <i class="fas fa-angle-down right"></i> </span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <ul class="dropdown-menu  dropdown-menu-right">
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <a href="<?php echo base_url();?>usuario/perfilusuariosu">Mi perfil</a>
+                                    <a href="<?php echo base_url();?>usuario/perfilusuariosu"><i class="fas fa-user"></i> Mi perfil</a>
 
                                 </div>
 
@@ -133,7 +126,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <a id='cerrarsesion'href="">Cerrar Sesión</a>
+                                    <a id='cerrarsesion'href=""><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                                 </div>
                             </div>
 

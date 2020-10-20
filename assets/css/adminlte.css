@@ -5363,10 +5363,13 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
+  color: #155724 !important;
+  background: #d4edda !important;
+  border-color: #c3e6cb !important;
+
 }
+
+
 
 .alert-success hr {
   border-top-color: #b1dfbb;
@@ -13496,7 +13499,7 @@ body.text-sm .control-sidebar {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   padding: 0;
-  width: 280px;
+
 }
 
 .navbar-nav > .user-menu > .dropdown-menu,

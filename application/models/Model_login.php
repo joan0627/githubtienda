@@ -108,7 +108,18 @@ class Model_login extends CI_Model {
 		$this->db->where($this->nombreUsuario,$nombreUsuario);
 		$resultado= $this->db->get();
 
-		return $resultado->row_array();
+		
+
+		if($resultado->num_rows()==0)
+		{
+
+			return true;		
+
+		}
+		else
+		{
+			return false;
+		}
 
 	}
 		
@@ -153,6 +164,8 @@ class Model_login extends CI_Model {
 		$this->db->insert($this->tablaRespuesta, $datos);
 		return $this->db->insert_id();
 	}
+
+
 
 
 }

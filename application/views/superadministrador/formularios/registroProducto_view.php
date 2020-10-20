@@ -74,7 +74,7 @@
                                 <label>Categoría</label> <label style="color: red;"> *</label>
                                 <select name="categoria" id="categoria" class="form-control" >
 
-                                    <?php if ($categoria != "") : ?>
+                                    <?php if ($categoria!= "") : ?>
                                     <?php foreach ($categorias as $clave => $valor) : ?>
                                     <?php if ($categoria== $valor->idCategoria) : ?>
 

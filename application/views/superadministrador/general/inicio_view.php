@@ -150,7 +150,7 @@
     <script>
     $.toaster({
         settings: {
-            'timeout': 5500,
+            'timeout': 15500,
 
 
         }

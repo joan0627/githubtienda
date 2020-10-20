@@ -17,7 +17,7 @@
     <div class="login-dark">
         <form action="<?php echo base_url();?>login/restablecercontra" method="post">
             <h2 class="sr-only">Restablecer contraseña</h2>
-            <div class="illustration animate__animated animate__headShake"><i class="icon ion-ios-unlocked-outline "></i></div>
+            <div class="illustration animate__animated animate__bounce"><i class="icon ion-ios-unlocked-outline "></i></div>
             <div class="form-group"><input type="hidden" name="idUsuario" value="<?= $idUsuario; ?>"></div>
             <div class="form-group"><input type="hidden" name="nombreUsuario" value="<?= $nombreUsuario; ?>"></div>
 			<div class="form-group"><input  class="form-control" type="password" name="nuevacontrasena" placeholder="Ingrese la nueva contraseña">

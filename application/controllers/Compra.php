@@ -19,6 +19,14 @@ class Compra extends CI_controller
 		//$this->load->library('form_validation');
 		$this->load->library('session');
 
+			/*Protección URL*/
+			if(!$this->session->userdata('login'))
+			{
+				redirect(base_url().'login');
+				
+			
+			}
+
 		/*$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
 		$this->form_validation->set_rules('facturaProveedor', 'factura N°', 'required');
 		$this->form_validation->set_rules('fechafacturaProveedor', 'fecha factura', 'required');*/
