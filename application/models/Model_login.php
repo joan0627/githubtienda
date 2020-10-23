@@ -22,7 +22,7 @@ class Model_login extends CI_Model {
 
 		if($resultados->num_rows()>0)
 		{
-			 	return $resultados->row();;
+			 	return $resultados->row();
 
 			/*
 			foreach($resultados	->result()as $row)
@@ -106,28 +106,23 @@ class Model_login extends CI_Model {
 		$this->db->join($this->tablaRespuesta, 'respuesta.idUsuario = usuario.idUsuario');
 		$this->db->join($this->tablaPreguntaSeguridad, 'respuesta.idPreguntaSeguridad = preguntaseguridad.idPreguntaSeguridad');
 		$this->db->where($this->nombreUsuario,$nombreUsuario);
+	
+
 		$resultado= $this->db->get();
 
+		return $resultado->row_array();
+
 		
-
-		if($resultado->num_rows()==0)
-		{
-
-			return true;		
-
-		}
-		else
-		{
-			return false;
-		}
 
 	}
 		
 	public function actualizarpassword($idUsuario, $contrasenaNueva){
-
+	
 			$this->db->set('contrasena', $contrasenaNueva);
 			$this->db->where('idUsuario', $idUsuario);
 			$this->db->update('usuario'); 
+	
+			
 	}
 	
 
@@ -164,6 +159,30 @@ class Model_login extends CI_Model {
 		$this->db->insert($this->tablaRespuesta, $datos);
 		return $this->db->insert_id();
 	}
+
+
+	public function contrasenaActual($contraseñaactual)
+	{
+		$this->db->select();
+		$this->db->from($this->tablaUsuario);
+		$this->db->where('contrasena', $contraseñaactual);
+
+		$consulta = $this->db->get();
+		return $consulta->result();
+	}
+
+
+	public function consultacontrasena($idUsuario)
+	{
+		$this->db->select();
+		$this->db->from($this->tablaUsuario);
+		$this->db->where('idUsuario',$idUsuario);
+
+		$consulta = $this->db->get();
+		return $consulta->result();
+	}
+
+
 
 
 

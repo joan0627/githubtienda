@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El rincón de la mascota - Restablecer contraseña</title>
+    <link rel="icon" href="<?php echo base_url();?>assets/img/iconos/icons8-mascotas-16.png" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/estilorestablecer2.css">
@@ -16,7 +17,7 @@
         <form action="<?php echo base_url();?>login/restablecer" method="post">
             <h2 class="sr-only">Restablecer contraseña</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-            <input class="form-control" type="text" name="usernamev"
+            <input autofocus class="form-control" type="text" name="usernamev"
                     placeholder="Nombre de usuario">
                 <?php echo form_error('usernamev', '<p class="text-danger">', '</p>'); ?>
             
@@ -63,6 +64,25 @@
                 message: '<?php echo $this->session->flashdata('verificacionusuario') ?>',
                 title: 'Atención',
                 priority: 'warning',
+
+            });;
+            </script>
+
+            <?php } ?>
+
+            <?php if ($this->session->flashdata('verificacionusuario1')) { ?>
+            <script>
+            $.toaster({
+                settings: {
+                    'timeout': 3500,
+
+
+                }
+            });
+            $.toaster({
+                message: '<?php echo $this->session->flashdata('verificacionusuario1') ?>',
+                title: 'Información',
+                priority: 'info',
 
             });;
             </script>

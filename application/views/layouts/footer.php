@@ -58,7 +58,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
 
 	<!-- Link de nuestro codigo js -->
-<script src="<?php echo base_url(); ?>assets/js/micodigo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/mycodigo.js"></script>
 
 
 

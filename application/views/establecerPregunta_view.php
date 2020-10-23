@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El rincón de la mascota - Restablecer contraseña</title>
+    <link rel="icon" href="<?php echo base_url();?>assets/img/iconos/icons8-mascotas-16.png" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/estilorestablecer2.css">
@@ -56,7 +57,7 @@
           
             <div class="form-group">
 
-                <input class="form-control" type="text" name="respuestaSeguridad" placeholder="Ingrese la respuesta">
+                <input autofocus class="form-control" type="text" name="respuestaSeguridad" placeholder="Ingrese la respuesta">
                 <?php echo form_error('respuestaSeguridad', '<p class="text-danger">', '</p>'); ?>
             </div>
          
@@ -79,7 +80,8 @@
             </div>
 
             <div class="form-group"><input type="hidden" name="idUsuario" value="<?= $idUsuario; ?>"></div>
-            <div class="form-group"><input type="hidden" name="nombreUsuario" value="<?= $nombre; ?>"></div>
+            <div class="form-group"><input type="hidden" name="nombre" value="<?= $nombre; ?>">
+            <input type="hidden" name="nombreUsuario" value="<?= $nombreUsuario; ?>"></div>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js">

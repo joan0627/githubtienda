@@ -18,6 +18,13 @@ class Producto extends CI_controller
 		$this->load->library('session');
 	
 
+			/*Protección URL*/
+			if(!$this->session->userdata('login'))
+			{
+				redirect(base_url().'login');
+				
+			
+			}
 
 
 		$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[producto.idProducto]|alpha_dash');

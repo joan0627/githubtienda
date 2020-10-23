@@ -7,6 +7,8 @@
     <title>El rincón de la mascota</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="icon" href="<?php echo base_url();?>assets/img/iconos/icons8-mascotas-16.png" sizes="32x32" type="image/png">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/adminlte.css">
@@ -56,6 +58,8 @@
       
        <!-- Tema diferente de bootrap
       <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap-theme.min.css">-->
+
+    
 
 </head>
 
@@ -118,7 +122,8 @@
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <a href="<?php echo base_url();?>usuario/perfilusuariosu"><i class="fas fa-user"></i> Mi perfil</a>
+                                    <a href="<?php echo base_url();?>usuario/perfilusuariosu"><img src="<?php echo base_url();?>assets/img/iconos/icons8-usuario-16.png"
+                              class="nav-icon"> Mi perfil</a>
 
                                 </div>
 

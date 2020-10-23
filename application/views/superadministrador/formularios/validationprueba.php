@@ -84,7 +84,7 @@ input.error {
     <p>
     <input class="submit" type="submit" value="SUBMIT">
     </p>
-    <?php echo form_error('username', '<p class="text-danger">', '</p>'); ?>
+    
 </form>
 
 </body>

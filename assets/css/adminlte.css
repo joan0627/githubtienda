@@ -5408,9 +5408,9 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-danger {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
+  color: #721c24 !important;
+    background-color: #f8d7da !important; 
+    border-color: #f5c6cb !important; 
 }
 
 .alert-danger hr {
@@ -18840,9 +18840,9 @@ html.maximized-card {
 }
 
 .alert-danger {
-  color: #ffffff;
-  background: #dc3545;
-  border-color: #d32535;
+  color: #721c24 !important;
+    background-color: #f8d7da !important; 
+    border-color: #f5c6cb !important; 
 }
 
 .alert-default-danger {

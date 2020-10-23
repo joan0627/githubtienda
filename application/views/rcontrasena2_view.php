@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El rincón de la mascota - Restablecer contraseña</title>
+    <link rel="icon" href="<?php echo base_url();?>assets/img/iconos/icons8-mascotas-16.png" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/estilorestablecer2.css">
@@ -19,7 +20,7 @@
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input type="hidden" name="nombreUsuario" value="<?= $nombreUsuario; ?>"></div>
 			<div class="form-group"><input  class="form-control" type="text" name="pregunta" placeholder="<?= $pregunta; ?>" disabled></div>
-			<div class="form-group"><input class="form-control" type="text" name="respuestaSeguridad" placeholder="Ingrese la respuesta"></div>
+			<div class="form-group"><input autofocus class="form-control" type="text" name="respuestaSeguridad" placeholder="Ingrese la respuesta"></div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">

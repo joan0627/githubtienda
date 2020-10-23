@@ -239,42 +239,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	});
 });
 
@@ -724,11 +688,15 @@ $(document).ready(function () {
 			cancelButtonText: "No",
 		}).then((result) => {
 			if (result.value) {
-
-				
-				$(location).attr('href','login/cerrarsesion');
+                window.location.href = 'http://localhost:8888/tienda/login/cerrarsesion';
 			}
 		});
 	
 	});
 });
+
+
+
+
+//No dejar cerrar el modal
+$('#modalcontrasena').modal({backdrop: 'static', keyboard: false})

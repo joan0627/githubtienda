@@ -60,12 +60,12 @@
                         <div class="inner">
                             <h3>28</h3>
 
-							<p>Citas de: Junio</p>
-							<span>Total de citas: 208</span>
+                            <p>Citas de: Junio</p>
+                            <span>Total de citas: 208</span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-calendar"></i>
-					
+
                         </div>
                         <a href="#" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -79,9 +79,9 @@
                         <div class="inner">
                             <h3>$7'850.000</h3>
 
-							<p>Ventas de: Junio</p>
-							<span>Total de ventas: 126</span>
-							
+                            <p>Ventas de: Junio</p>
+                            <span>Total de ventas: 126</span>
+
                         </div>
                         <div class="icon">
                             <i class="ion ion-cash"></i>
@@ -97,89 +97,106 @@
                 <!-- Left col -->
                 <section class="col-lg-7 connectedSortable">
                     <!-- Custom tabs (Charts with tabs)-->
-                    
-            <!-- BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Reporte de ventas</h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+                    <!-- BAR CHART -->
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Reporte de ventas</h3>
 
-         
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                        class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart">
+                                <canvas id="barChart"
+                                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
 
-                    
-                   
+
+
+
+
+
                 </section>
                 <!-- /.Left col -->
                 <!-- right col (We are only adding the ID to make the widgets sortable)-->
                 <section class="col-lg-5 connectedSortable">
 
-        
-              
-                 
 
-               
-                   
+
+
+
+
+
                 </section>
                 <!-- right col -->
-            
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
 
-
-
-
-    </section><!-- Fin seccion contenido -->
-</div><!-- Fin content-wrapper -->
-
-
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+    </section>
+</div>
 <?php if ($this->session->flashdata('authiniciosesion')) { ?>
-    <script>
-    $.toaster({
-        settings: {
-            'timeout': 15500,
+<script>
+$.toaster({
+    settings: {
+        'timeout': 15500,
 
 
-        }
-    });
-    $.toaster({
-        message: '<?php echo $this->session->flashdata('authiniciosesion') ?>',
-        title: 'Bienvenido',
-        priority: 'success',
+    }
+});
+$.toaster({
+    message: '<?php echo $this->session->flashdata('authiniciosesion') ?>',
+    title: 'Bienvenido',
+    priority: 'success',
 
-    });;
-    </script>
+});;
+</script>
 
-    <?php } ?>
+<?php } ?>
 
-    <?php if ($this->session->flashdata('msgestablecerpregunta')) { ?>
-    <script>
-    $.toaster({
-        settings: {
-            'timeout': 5500,
+<?php if ($this->session->flashdata('msgestablecerpregunta')) { ?>
+<script>
+$.toaster({
+    settings: {
+        'timeout': 5500,
 
 
-        }
-    });
-    $.toaster({
-        message: '<?php echo $this->session->flashdata('msgestablecerpregunta') ?>',
-        title: 'Éxito',
-        priority: 'success',
+    }
+});
+$.toaster({
+    message: '<?php echo $this->session->flashdata('msgestablecerpregunta') ?>',
+    title: '¡Felicitaciones!',
+    priority: 'success',
 
-    });;
-    </script>
+});;
+</script>
 
-    <?php } ?>
+<?php } ?>
+
+<?php if ($this->session->flashdata('contrasena')) { ?>
+<script>
+$.toaster({
+    settings: {
+        'timeout': 15500,
+
+
+    }
+});
+$.toaster({
+    message: '<?php echo $this->session->flashdata('contrasena') ?>',
+    title: 'Proceso completado',
+    priority: 'success',
+
+});;
+</script>
+
+<?php } ?>

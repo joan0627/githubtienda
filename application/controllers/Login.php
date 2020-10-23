@@ -40,6 +40,9 @@ public function __construct()
 		
 	}
 
+
+	
+
 	public function iniciarsesion()
 	{
 
@@ -94,9 +97,7 @@ public function __construct()
 					
 							$this->session->set_userdata($data);
 							$this->session->set_flashdata('authiniciosesion',$data["nombre"]);
-							
-						
-						
+					
 
 							$logueos=$this->Model_login->consultalogueos($data["idUsuario"]);
 
@@ -107,21 +108,38 @@ public function __construct()
 
 							 $logueos=$this->Model_login->consultalogueos($data["idUsuario"]);
 
+							 
 							 //Y RESPUESTA ESTA VACIA
-							if($logueos["logueos"]==1 || $respuesta )
+							if( is_null($respuesta)) 
 							{
 							
 								$data['informacion']=$this->Model_login->buscarPreguntasSeguridad();
 								
 								$this->load->view('establecerPregunta_view',$data);
 					
-								//cargar modal de vista de establecimiento de pregunta de seguridad
-								
+							
 							}
 
 							else
 							{
-								redirect(base_url()."inicio",$data);
+								
+								if($logueos['logueos']==1)
+								{
+									$this->Model_login->setlogueos($data["idUsuario"],$logueos["logueos"]==0);
+									
+									$this->load->view('layouts/superadministrador/header');
+									$this->load->view('layouts/superadministrador/aside');
+									$this->load->view('superadministrador/general/vistaModal_view.php',$data);
+									$this->load->view('layouts/footer');
+									//redirect(base_url()."inicio/cambiocontrasena",$data);
+								
+								}
+								else
+								{
+									redirect(base_url()."inicio",$data);
+									
+								}
+								
 							}
 
 							//redirect(base_url()."inicio",$data);
@@ -162,23 +180,22 @@ public function __construct()
 	{
 
 		
-		$this->form_validation->set_rules('usernamev', 'nombre de usuario', 'required');
-
-		if ($this->input->server("REQUEST_METHOD") == "POST") 
-		{
-		
+			$this->form_validation->set_rules('usernamev', 'nombre de usuario', 'required');
 			 $nombreUsuario = $this->input->post("usernamev");
 
-			$res = $this->Model_login->BuscarUsuario($nombreUsuario);
+		
 
 			if ($this->form_validation->run())
 			{
+				$res = $this->Model_login->BuscarUsuario($nombreUsuario);
 				if($res=='NoExisteUsuario')
 				{
 	
 			   
-				$this->session->set_flashdata('verificacionusuario','Este nombre de usuario no está registrado en la base de datos.');
+				$this->session->set_flashdata('verificacionusuario','El usuario no se encuentra registrado en el sistema.');
+			
 				$this->load->view('rcontrasena1_view');
+				$this->session->sess_destroy();
 				}
 	
 				else
@@ -187,9 +204,10 @@ public function __construct()
 					
 					{
 	
-					$this->session->set_flashdata('verificacionusuario','Este usuario aún no tiene pregunta.');
-	
+					$this->session->set_flashdata('verificacionusuario1','El usuario aún no ha establecido una pregunta de seguridad. <br> Por favor inicie sesión.');
+					
 					$this->load->view('rcontrasena1_view');
+					$this->session->sess_destroy();
 					}
 					else
 					{
@@ -218,16 +236,8 @@ public function __construct()
 			
 
 
-		}
-		else
-		{
 		
-				$this->load->view('rcontrasena1_view');
-
-				
-
-			
-		}
+	
 
 		
 
@@ -318,8 +328,8 @@ public function __construct()
 
 	
 			$data['idUsuario']=$this->input->post("idUsuario"); 
-			$data['nombre']=$this->input->post("nombreUsuario");
-
+			$data['nombreUsuario']=$this->input->post("nombreUsuario");
+			$data['nombre']=$this->input->post("nombre");
 			$data["pregunta"] = $this->input->post("pregunta");
 			$data['informacion']=$this->Model_login->buscarPreguntasSeguridad();
 
@@ -332,16 +342,24 @@ public function __construct()
 				$datos["idPreguntaSeguridad"]  = $this->input->post("pregunta");
 				$datos["idUsuario"]  = $this->input->post("idUsuario"); 
 				$datos["respuesta"]  = $this->input->post("respuestaSeguridad");
-				$data["nombre"]  = $this->input->post("nombreUsuario");
+			
 			
 				$this->Model_login->insertarRespuesta($datos);
 
-				$this->session->set_flashdata('msgestablecerpregunta','Su pregunta de seguridad ha sido establecida exitosamente. Recuerde no olvidar nunca su respuesta.');
+				$this->session->set_flashdata('msgestablecerpregunta','Su pregunta de seguridad ha sido establecida exitosamente.<br> Recuerde no olvidar nunca su respuesta.');
 				$this->session->set_flashdata('authiniciosesion',$data["nombre"]);
 
 
-				redirect(base_url()."inicio",$data);
-
+				$logueos=$this->Model_login->consultalogueos($data["idUsuario"]);
+				$this->Model_login->setlogueos($data["idUsuario"],$logueos["logueos"]==0);
+				$this->load->view('layouts/superadministrador/header');
+				$this->load->view('layouts/superadministrador/aside');
+				$this->load->view('superadministrador/general/vistaModal_view.php',$data);
+				$this->load->view('layouts/footer');
+		
+				//$this->load->view('superadministrador/general/vistaModal_view.php',$data);
+				//redirect(base_url('inicio/cambiocontrasena'),$data);
+			
 			}
 
 			else{

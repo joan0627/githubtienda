@@ -3,6 +3,22 @@
 class Informe extends CI_controller
 {
 
+	public function __construct()
+	{
+		parent::__construct();
+
+	
+
+		/*Protección URL*/
+		if(!$this->session->userdata('login'))
+		{
+			redirect(base_url().'login');
+			
+		}
+
+
+	}
+	
 	public function index()
 	{
 		
