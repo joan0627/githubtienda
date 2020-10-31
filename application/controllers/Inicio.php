@@ -80,7 +80,7 @@ class Inicio extends CI_Controller {
 					$this->Model_login->setlogueos($datos["idUsuario"],$logueos["logueos"]=2);
 
 					$this->session->set_flashdata('authiniciosesion',$datos["nombre"]);
-					$this->session->set_flashdata('contrasena', 'Su contraseña ha sido actualizada con éxito.');
+					$this->session->set_flashdata('contrasena', 'Su contraseña ha sido actualizada exitosamente.');
 					redirect(base_url().'inicio');
 					
 

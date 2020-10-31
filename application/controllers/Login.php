@@ -356,7 +356,7 @@ public function __construct()
 				$this->load->view('layouts/superadministrador/aside');
 				$this->load->view('superadministrador/general/vistaModal_view.php',$data);
 				$this->load->view('layouts/footer');
-		
+				$this->session->set_flashdata('msgestablecerpregunta',FALSE);
 				//$this->load->view('superadministrador/general/vistaModal_view.php',$data);
 				//redirect(base_url('inicio/cambiocontrasena'),$data);
 			

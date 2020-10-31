@@ -52,6 +52,10 @@ class model_usuario extends Ci_model {
 				$this->session->set_flashdata('busqueda', 'No hay resultados ');
 	
 			}
+			else
+			{
+				$this->session->set_flashdata('busqueda', '');
+			}
 			return $consulta->result();
 	
 			

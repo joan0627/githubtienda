@@ -10,9 +10,10 @@
     font-size: 85%;
 }
 
-label.error {
+p.error {
 
-    color:red;
+    color: #dc3545 !important;
     
 }
+
 

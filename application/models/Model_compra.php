@@ -7,7 +7,11 @@ class Model_compra extends Ci_model
 	public $idCompraPK = 'idCompras';
 
 
+
 	public $tablaPrueba = 'prueba';
+
+	public $tablaUsuario = 'usuario';
+	public $idUsuarioPK = 'idUsuario';
 	
 
     public $tablaProveedor = 'proveedor';
@@ -16,6 +20,8 @@ class Model_compra extends Ci_model
 	public $tablaDetalle = 'detallecompra';
 	public $idDetallePK = 'idDetalleCompra';
 
+	public $tablaDetallecompra = 'detallecompra';
+	public $idDetallecompra = 'idDetalleCompra';
 
 	public function _construct()
 	{
@@ -70,6 +76,9 @@ class Model_compra extends Ci_model
 
 
 
+ 
+
+
 	//Función para buscar todos los proveedores: Select * from proveedor
 	 function BuscarTodasCompras()
 	 {
@@ -81,16 +90,22 @@ class Model_compra extends Ci_model
 	 }
 
 	//Función para buscar registros en el campo de busqueda
-	function BuscarDatos($buscar) {
-
-		$this->db->select();
-		$this->db->from($this->tablaProveedor);
-		$this->db->or_like("documento",$buscar);
-		$this->db->or_like("nombre",$buscar);
-		$this->db->or_like("nombreContacto",$buscar);
-		$this->db->or_like("diaVisita",$buscar);
-		$this->db->order_by('fechaRegistro', 'DESC');
+	function BuscarDatosCompra($buscar) {
+	
+		//$this->db->select();
+		$this->db->select('c.*,p.nombre as nombreP,u.nombre nombreU');
+		$this->db->from('compras c');
+		$this->db->join('proveedor p', ' p.documento = c.documentoProveedor');		
+		$this->db->join('usuario u', ' u.idUsuario = c.idUsuario');
+		//$this->db->or_like("idCompras",$buscar);
+		$this->db->or_like("fechaRegistroCompra",$buscar);
+		$this->db->or_like("p.nombre",$buscar);
+		$this->db->or_like("u.nombre",$buscar);
+		//$this->db->or_like("valor",$buscar);
+		$this->db->order_by('fechahora', 'DESC');
 		$consulta = $this->db->get();
+		
+
 
 		if($consulta->num_rows()==0)
 		{
@@ -98,11 +113,18 @@ class Model_compra extends Ci_model
 			$this->session->set_flashdata('busqueda', 'No hay resultados ');
 
 		}
+		else
+		{
+			$this->session->set_flashdata('busqueda', '');
+		}
 		return $consulta->result();
 
 		
-		
 	}
+
+
+
+
 	
 	// Función para llamar los datos de detalle de la tabla proveedor
 
@@ -153,6 +175,14 @@ class Model_compra extends Ci_model
 	   $consulta = $this->db->get();
 	   return $consulta->num_rows();
 	}
+
+// Función para un producto 
+function actualizarEstado($idCompra, $estado){
+
+	$this->db->set('estado', $estado);	
+	$this->db->where($this->idCompraPK ,$idCompra);
+	$this->db->update($this->tablaCompra);
+}
 
 
 

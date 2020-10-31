@@ -168,7 +168,7 @@
 
             <?php if($this->session->flashdata('busqueda')): ?>
             
-               <div class="alert alert-warning text-center" > <?= $this->session->flashdata('busqueda'); $this->session->sess_destroy();?> </div> 
+               <div class="alert alert-warning text-center" > <?= $this->session->flashdata('busqueda');?> </div> 
             
                
             <?php endif?>

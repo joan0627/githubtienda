@@ -48,7 +48,7 @@
 
 
 <!-- Select2 -->
-<script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.full.min.js"></script>
 
 <!-- JQuery Validate -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
@@ -57,11 +57,24 @@
 <!-- Toaster-->
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
 
+<!-- FullCalendar-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/fullcalendar/main.js"></script>
+
 	<!-- Link de nuestro codigo js -->
 <script src="<?php echo base_url(); ?>assets/js/mycodigo.js"></script>
 
+<!-- Link de codigo js para la Agenda -->
+<script src="<?php echo base_url(); ?>assets/js/calendario.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/currencyformatter.js/2.2.0/currencyFormatter.js"></script>
 
 
+
+<!-- Librerias inputMaks
+<script src="assets/plugins/plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
+-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/inputmask/jquery.inputmask.js"></script>
+<script src="<?php echo base_url(); ?>assets\plugins\plugins\inputmask\bindings\inputmask.binding.js"></script>
 
 </body>
 

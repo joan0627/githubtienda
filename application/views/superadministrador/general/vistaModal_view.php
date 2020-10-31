@@ -32,7 +32,7 @@
                                         <input type="hidden" name="idUsuario" value="<?= $idUsuario; ?>">
                                         <input type="hidden" name="nombre" value="<?= $nombre; ?>">
                                         <input type="hidden" name="nombreUsuario" value="<?= $nombreUsuario; ?>">
-                                        <input name="contrasenaactual" type="password" class="form-control"
+                                        <input autofocus name="contrasenaactual" type="password" class="form-control"
                                             placeholder="Ingrese su contraseña actual">
                                             <?php echo form_error('contrasenaactual', '<p class="text-danger">', '</p>'); ?>
 
@@ -86,7 +86,24 @@
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
 
+<?php if ($this->session->flashdata('msgestablecerpregunta')) { ?>
+<script>
+$.toaster({
+    settings: {
+        'timeout': 5500,
 
+
+    }
+});
+$.toaster({
+    message: '<?php echo $this->session->flashdata('msgestablecerpregunta') ?>',
+    title: '¡Felicitaciones!',
+    priority: 'success',
+
+});;
+</script>
+
+<?php } ?>
 
 <?php if ($this->session->flashdata('contrasenaerror')) { ?>
 <script>

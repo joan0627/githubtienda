@@ -148,7 +148,7 @@
 <script>
 $.toaster({
     settings: {
-        'timeout': 15500,
+        'timeout': 6500,
 
 
     }
@@ -163,30 +163,13 @@ $.toaster({
 
 <?php } ?>
 
-<?php if ($this->session->flashdata('msgestablecerpregunta')) { ?>
-<script>
-$.toaster({
-    settings: {
-        'timeout': 5500,
 
-
-    }
-});
-$.toaster({
-    message: '<?php echo $this->session->flashdata('msgestablecerpregunta') ?>',
-    title: '¡Felicitaciones!',
-    priority: 'success',
-
-});;
-</script>
-
-<?php } ?>
 
 <?php if ($this->session->flashdata('contrasena')) { ?>
 <script>
 $.toaster({
     settings: {
-        'timeout': 15500,
+        'timeout': 5500,
 
 
     }

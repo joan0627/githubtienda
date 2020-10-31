@@ -38,7 +38,13 @@
 
 	<!-- Sweet Alert 2: mensajes animados -->
 	<link href="<?php echo base_url();?>assets/plugins/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
+
+      <!-- Select2 -->
+      <link rel="stylesheet" href="<?php echo base_url();?>assets\plugins\plugins\select2\css\select2.min.css">
    
+     <link rel="stylesheet" href="<?php echo base_url();?>assets\plugins\plugins\select2-bootstrap4-theme/select2-bootstrap4.css">
+    
+
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery-3.5.1.min.js"></script>
 
@@ -52,13 +58,13 @@
 
     <link href="<?php echo base_url();?>assets/css/misestilos.css" rel="stylesheet">
 
-      <!-- Select2 -->
-      <link href="<?php echo base_url();?>assets/plugins/plugins/select2/css/select2.min.css" rel="stylesheet">
       
+    <!--FullCalendar-->
+      <link href="<?php echo base_url();?>assets/plugins/plugins/fullcalendar/main.css" rel="stylesheet">
+
       
        <!-- Tema diferente de bootrap
       <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap-theme.min.css">-->
-
     
 
 </head>
@@ -131,7 +137,8 @@
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <a id='cerrarsesion'href=""><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                                <a id='cerrarsesion' href=""><img src="<?php echo base_url();?>assets/img/iconos/icons8-salida-16.png"  class=""> Cerrar sesión</a>
+
                                 </div>
                             </div>
 

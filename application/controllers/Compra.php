@@ -19,13 +19,14 @@ class Compra extends CI_controller
 		//$this->load->library('form_validation');
 		$this->load->library('session');
 
-			/*Protección URL*/
-			if(!$this->session->userdata('login'))
-			{
-				redirect(base_url().'login');
+				/*Protección URL*/
+				if(!$this->session->userdata('login'))
+				{
+					redirect(base_url().'login');
+					
 				
-			
-			}
+				}
+	
 
 		/*$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
 		$this->form_validation->set_rules('facturaProveedor', 'factura N°', 'required');
@@ -34,13 +35,28 @@ class Compra extends CI_controller
 	
 	}
 
-	public function index()
+
+	public function index($page=1)
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/listadoCompras_view');
-		$this->load->view('layouts/footer');
 		
+		$page_size=2;
+		$offset=0* $page_size;
+
+		
+		
+		  $buscar = $this->input->get("buscar");
+		
+		 
+			$datosCompra['resultado'] = $this->Model_compra->BuscarDatosCompra($buscar);
+			
+			//$datosCompra['datosUsuario'] = $this->Model_compra->BuscarUsuario();
+		  //var_dump ($datosCompra['resultado'] );
+	   
+		   $this->load->view('layouts/superadministrador/header');
+		   $this->load->view('layouts/superadministrador/aside');
+		   $this->load->view('superadministrador/general/listadoCompras_view', $datosCompra);
+		   $this->load->view('layouts/footer');
+	   
 	}
 
 
@@ -79,8 +95,7 @@ class Compra extends CI_controller
 			$datosCarga['Productos'] = $this->Model_producto->BuscarDatos($buscar);
 
 
-			$datosCarga["idCompras"] = $datosCarga["documentoProveedor"] = $datosCarga["facturaProveedor"] = 
-			$datosCarga["fechaFacturaProveedor"] = $datosCarga["fechaRegistroCompra"] = "";
+			$datosCarga["idCompras"] = $datosCarga["documentoProveedor"] = $datosCarga["facturaProveedor"] = $datosCarga["fechaRegistroCompra"] = "";
 			
 
 			//Datos carga en general
@@ -119,26 +134,21 @@ class Compra extends CI_controller
 		
 	}
 
-	public function detalle(){
+	public function compra(){
 	
-
+		
 			$datosCompra["fechaRegistroCompra"] = $this->input->post("fechaCompra");
 			$datosCompra["idCompras"] = $this->input->post("codigoCompra");
 			$datosCompra["documentoProveedor"] = $this->input->post("proveedor");
+			$datosCompra["idUsuario"] = $this->session->userdata("idUsuario");
 			$datosCompra["facturaProveedor"] = $this->input->post("facturaProveedor");
-			$datosCompra["fechaFacturaProveedor"] = $this->input->post("fechafacturaProveedor");
+			$datosCompra["observaciones"] = $this->input->post("observaciones");	
+			$datosCompra["totalGlobal"]=$this->input->post("totalGlobal");
 			$datosCompra["estado"] = true;
 	
 		
-	
-		
-
 				$this->Model_compra->insertarCompra($datosCompra);
 
-			
-	
-			
-		
 		
 			//$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado correctamente.');
 		//	redirect("compra");
@@ -150,9 +160,10 @@ class Compra extends CI_controller
 	}
 
 
-	public function detallereal()
+	public function detalleCompra()
 	{
-		$datosCompra["idCompras"] = $this->input->post("codigoCompra");
+
+	$datosCompra["idCompras"] = $this->input->post("codigoCompra");
 	//Guardar el detalle
 	$_idCompra=$datosCompra["idCompras"];
 	$_codigo=$this->input->post('codigo');;
@@ -186,21 +197,22 @@ class Compra extends CI_controller
 
 
 	}
+
+
+	
+	public function anular(){
+
+			$estado = 0;
+			$idCompra= $this->input->post('idCompras');
+
+			$this->Model_compra->actualizarEstado($idCompra, $estado);
+
+		
+	}	
+
 	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
