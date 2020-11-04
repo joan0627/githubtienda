@@ -112,7 +112,7 @@
                             <td><?php echo  $d->idCompras;?></td>
                             <td><?php echo  $d->nombreP;?></td>
                             <td><?php echo  $d->nombreU;?></td>
-                            <td><?php echo  $d->totalGlobal;?></td>
+                            <td class="listadoCompramoney"><?php echo  $d->totalGlobal;?></td>
                             <td><?php echo  $d->fechaRegistroCompra;?></td>
 
                             <?php                            
