@@ -1,26 +1,17 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Prueba extends CI_controller
-{
+class  Prueba extends CI_Controller {
 
-	public function __construct()
+	
+
+	public function index()
 	{
-		parent::__construct();
-      //  $this->load->model('Model_login');
-        
-        //$this->load->library('pdf_report');
-		
-    }
 
-    public function index()
-    {
-      
+    $mpdf = new \Mpdf\Mpdf();
+    $mpdf->WriteHTML('<h1>Hola este es un pdf generado con html!</h1>');
+    $mpdf->Output();
+	
+	}
 
-    
-    }
-
-    
 }
-    
-
-?>
