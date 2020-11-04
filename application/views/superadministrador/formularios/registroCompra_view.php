@@ -84,7 +84,7 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label style="width:120px">Factura N°</label>
-                                <input id="facturaProveedor" name="facturaProveedor" type="text" class="form-control"
+                                <input id="facturaProveedor" name="facturaProveedor" placeholder="N°" type="text" class="form-control"
                                     value="<?php echo $facturaProveedor; ?>">
                             </div>
 

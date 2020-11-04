@@ -76,6 +76,9 @@
 <script src="<?php echo base_url(); ?>assets/plugins/plugins/inputmask/jquery.inputmask.js"></script>
 <script src="<?php echo base_url(); ?>assets\plugins\plugins\inputmask\bindings\inputmask.binding.js"></script>
 
+
+<!-- Libreria para formatiar la moneda CURRENCY-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/currencyFormatter.js-master/dist/currencyFormatter.min.js"></script>
 </body>
 
 </html>

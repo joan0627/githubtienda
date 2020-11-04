@@ -18,17 +18,17 @@ $(document).ready(function () {
 			{
 				data: null,
 				defaultContent:
-					"<div class='input-group' style='width: 80%;'><input min='1'max='10'  name='cant' type='number'  class=' form-control'  value='1'></div>",
+					"<div class='input-group' style='width: 80%;'><input  name='cant' type='text'  class=' form-control cantidadinput'></div>",
 			},
 			{
 				data: null,
 				defaultContent:
-					" <div class='input-group '><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input name='costoinput' type='text' class='costoinput form-control 'style='text-align:right' value='0'></div>",
+					" <div class='input-group '><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input  name='costoinput' type='text' class='costoinput form-control 'style='text-align:right' ></div>",
 			},
 			{
 				data: null,
 				defaultContent:
-					" <div class='input-group '><input max=99 type='number' class=' percent form-control 'style='width:85% ;' value='0'><div class='input-group-addon' style='color:gray; font-weight: bold; font-size:20px'>%</div></div>",
+					" <div class='input-group '><input  max=99 type='text' class=' percent form-control ivainput 'style='width:85% ;' value='0' ><div class='input-group-addon' style='color:gray; font-weight: bold; font-size:20px'>%</div></div>",
 			},
 			{
 				data: null,
@@ -38,11 +38,67 @@ $(document).ready(function () {
 		],
 	});
 
+	//Codigo para enmaskarar los input
+
+	//$("#codigoproducto").inputmask({ alias : "currency", mask : "$ 0.00", groupSeparator: "." });
+
+	$(".cantidadinput").inputmask({
+		rightAlign: true,
+		removeMaskOnSubmit: true,
+		prefix: "",
+		alias: "numeric",
+		//groupSeparator: "",
+		//autoGroup: true,
+		digits: 0,
+		digitsOptional: false,
+		min: 1,
+		allowMinus: false,
+		autoUnmask: true,
+		placeholder: "0",
+		clearMaskOnLostFocus: false,
+	});
+
+
+	$(".costoinput").inputmask({
+		alias: "currency",
+		radixPoint:",", 
+		groupSeparator: ".",
+		autoGroup: true,
+		digits: 2,
+		digitsOptional: false,
+		min: 0,
+		allowMinus: false,
+		placeholder: "0,00",
+		clearMaskOnLostFocus: false,
+	});
+
+
+	$(".ivainput").inputmask({
+		//Quita el enmaskaramiento al enviar el dato
+		//autoUnmask: INVESTIGAR
+
+		rightAlign: true,
+		removeMaskOnSubmit: true,
+		prefix: "",
+		alias: "numeric",
+		groupSeparator: ".",
+		autoGroup: true,
+		digits: 0,
+		digitsOptional: false,
+		min: 0,
+		max: 100,
+		allowMinus: false,
+		autoUnmask: true,
+		placeholder: "0",
+		clearMaskOnLostFocus: false,
+	});
+
+
+
 	$("#example1 tbody").on("click", ".btncarrito", function () {
 		//var row = $(this).closest('tr');
 		//ev.preventDefault();
 		//var data = table.row( row ).data().name;
-
 
 		var codigoP = $(this).closest("tr").find("td:eq(0)").text();
 		var descripcion = $(this).closest("tr").find("td:eq(2)").text();
@@ -52,38 +108,31 @@ $(document).ready(function () {
 		var costototal = costo * cantidad;
 		var totalivaproducto = costo * (iva / 100) * cantidad;
 		var sumaiva = totalivaproducto;
-		var cantidadT2 =0;
-        var v=true;
+		var cantidadT2 = 0;
+		var v = true;
 		var t = $("#example2").DataTable();
-
 
 		var validartabla = $("#a").validate({
 			rules: {
 				cant: { required: true },
-				
 			},
 			messages: {
 				cant: "El campo proveedor es obligatorio. ",
-				
 			},
 			errorElement: "p",
 		});
 
-	
-
-
 		/**
 		 * cantidad: no vacio, min:1, no se puedan numero negativos,no decimales
-		 * 
+		 *
 		 * costo: no se pueden numeros negativos, no vacio
-		 * 
+		 *
 		 * iva: minimo 1 maximo 100, no numeros negativos,
-		 * 
-		 * 
+		 *
+		 *
 		 */
 
-
-/*
+		/*
 		function validacion() {
 			if (cantidad=="") {
 			  // Si no se cumple la condicion...
@@ -195,80 +244,59 @@ $(document).ready(function () {
 			// se han cumplido, por lo que se devuelve el valor true
 			return true;
 		  }
-/**/ 
-	
+/**/
 
-			$(this).closest("tr").addClass('selected');
-			$("#example2 tbody tr").each(function () {
+		$(this).closest("tr").addClass("selected");
+		$("#example2 tbody tr").each(function () {
+			var codigoT2 = $(this).children().eq(0).text();
+			//cantidadT2 = $(this).closest("tr").find("td:eq(2)").text();
 
-				var codigoT2 = $(this).children().eq(0).text();
-				//cantidadT2 = $(this).closest("tr").find("td:eq(2)").text();
-	
-				if(codigoT2==codigoP)
-				{
-					
-	
-					cantidadT2 = $(this).closest("tr").find("td:eq(2)").text()
-					//$(this).closest("tr").find("td:eq(2)").text(parseInt(cantidadT2)+parseInt(cantidad));
-					v=false;
-					
-				}
-	
-				
-			});
-	
-			if(!v)
-			{
-				//alert(t.column(2).data());
-	
-				//cantidad = cantidad + t.column( 2 ).data() + codigoT2;
-				// t.column( 2 ).data() +codigoT2;
-				//.draw()
-				//t.column( 2 ).data();
-				Swal.fire({
-					title: "¡Atención!",
-					html: "El producto ya existe en la tabla de detalle. <br> Si desea cambiar algún valor deberá quitar el producto del detalle.",
-					type: "warning",
-					confirmButtonColor: "#28a745",
-				});
-				
-				
-	
-				
+			if (codigoT2 == codigoP) {
+				cantidadT2 = $(this).closest("tr").find("td:eq(2)").text();
+				//$(this).closest("tr").find("td:eq(2)").text(parseInt(cantidadT2)+parseInt(cantidad));
+				v = false;
 			}
-	
-			else
-			{
-				t.row
+		});
+
+		if (!v) {
+			//alert(t.column(2).data());
+
+			//cantidad = cantidad + t.column( 2 ).data() + codigoT2;
+			// t.column( 2 ).data() +codigoT2;
+			//.draw()
+			//t.column( 2 ).data();
+			Swal.fire({
+				title: "¡Atención!",
+				html:
+					"El producto ya existe en la tabla de detalle. <br> Si desea cambiar algún valor deberá quitar el producto del detalle.",
+				type: "warning",
+				confirmButtonColor: "#28a745",
+			});
+		} else {
+			t.row
 				.add([
 					codigoP,
 					descripcion,
 					cantidad,
-				    costo, 
-					costototal,
-					totalivaproducto,
+					OSREC.CurrencyFormatter.format(costo, { currency: 'COP'}),
+					OSREC.CurrencyFormatter.format(costototal, { currency: 'COP'}),
+					OSREC.CurrencyFormatter.format(totalivaproducto, { currency: 'COP' }),
 					"<button class='eliminar btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i> Quitar </button>",
+					
 				])
-				.draw()
-	
-			}
 
-		
-				
+				.draw();
 
+			
+		}
 
 
-		
-	
 	});
 
-
 });
-
+ 
 $(document).ready(function () {
-	
 	$("#example2").DataTable({
-		
 		language: {
 			searchPlaceholder: "Estoy buscando...",
 			url: "../assets/plugins/datatables/Spanish.lang",
@@ -278,23 +306,16 @@ $(document).ready(function () {
 		bPaginate: false,
 		dom: "Bfrtip",
 
-
-		
-	 buttons: [
+		buttons: [
 			{
-
 				text: "<i class='fas fa-table'></i> Limpiar tabla",
 				className: "btn btn-primary",
-			
-				
-				action: function (e, dt, node, config) {
 
+				action: function (e, dt, node, config) {
 					var tabladetallecompra = $("#example2").DataTable();
 					if (tabladetallecompra.rows().count() > 0) {
+						//	tabladetallecompra.buttons().enable(false);
 
-						
-					//	tabladetallecompra.buttons().enable(false);
-				
 						Swal.fire({
 							title: "¡Atención!",
 							text: "¿Estás seguro que deseas limpiar la tabla? ",
@@ -306,30 +327,19 @@ $(document).ready(function () {
 							cancelButtonText: "No",
 						}).then((result) => {
 							if (result.value) {
-							
 								tabladetallecompra.clear().draw();
 							}
 						});
-						
+					} else {
+						Swal.fire({
+							title: "¡Atención!",
+							text: "No hay datos disponibles para limpiar en esta tabla.",
+							type: "warning",
+							confirmButtonColor: "#28a745",
+						});
 					}
-
-					else
-					{
-
-						
-							Swal.fire({
-								title: "¡Atención!",
-								text: "No hay datos disponibles para limpiar en esta tabla.",
-								type: "warning",
-								confirmButtonColor: "#28a745",
-							});
-						
-
-
-					}
-
 				},
-			}
+			},
 			/*{
 
 
@@ -338,7 +348,6 @@ $(document).ready(function () {
 				text: '<i class="fas fa-copy"></i> Copiar',
 
 			}*/
-		
 		],
 
 		footerCallback: function (row, data, start, end, display) {
@@ -369,22 +378,14 @@ $(document).ready(function () {
 					return intVal(a) + intVal(b);
 				}, 0);
 
-			 totalGlobal = api.data().reduce(function (a, b) {
+			totalGlobal = api.data().reduce(function (a, b) {
 				return intVal(Totaliva) + intVal(total);
-
 			}, 0);
 
-			// Update footer	
-			$("tr:eq(0) th:eq(1)", api.table().footer()).html("$ " + total);
-			$("tr:eq(1) th:eq(1)", api.table().footer()).html("$ " + Totaliva);
-			$("tr:eq(2) th:eq(1)", api.table().footer()).html("$ " + totalGlobal);
-	
-
-			
-
-
-		
-			
+			// Update footer
+			$("tr:eq(0) th:eq(1)", api.table().footer()).html(OSREC.CurrencyFormatter.format(total, { currency: 'COP' }));
+			$("tr:eq(1) th:eq(1)", api.table().footer()).html(OSREC.CurrencyFormatter.format(Totaliva, { currency: 'COP' }));
+			$("tr:eq(2) th:eq(1)", api.table().footer()).html(OSREC.CurrencyFormatter.format(totalGlobal, { currency: 'COP' }));
 		},
 	});
 });
@@ -415,7 +416,6 @@ $(document).ready(function () {
 		var observaciones = $("#observaciones").val();
 		var tabladetallecompra = $("#example2").DataTable();
 
-
 		if (validar_formulario.form()) {
 			//asi se comprueba si el form esta validado o no
 			if (tabladetallecompra.rows().count() > 0) {
@@ -439,7 +439,7 @@ $(document).ready(function () {
 								proveedor: proveedor,
 								facturaProveedor: facturaProveedor,
 								observaciones: observaciones,
-								totalGlobal:totalGlobal
+								totalGlobal: totalGlobal,
 							},
 							success: function () {
 								/*Swal.fire({
@@ -480,7 +480,8 @@ $(document).ready(function () {
 												type: "success",
 												confirmButtonColor: "#28a745",
 											}).then(function () {
-												window.location = "http://localhost:8888/tienda/compra/";
+												window.location =
+													"http://localhost:8888/tienda/compra/";
 											});
 										},
 
@@ -536,23 +537,19 @@ $(document).ready(function () {
 		var codigoT2 = $($tr).children().eq(0).text();
 		console.log(codigoT2);
 		// Le pedimos al DataTable que borre la fila
-	
+
 		$("#example1 tbody tr").each(function () {
-			var codigoT1= $(this).children().eq(0).text();
+			var codigoT1 = $(this).children().eq(0).text();
 			//cantidadT2 = $(this).closest("tr").find("td:eq(2)").text();
 
-			if(codigoT1==codigoT2)
-			{
-				$(this).closest("tr").removeClass('selected');
-				///$(this).closest("tr").css('background-color', 'red');	
-				console.log('hizo clic en la misma fila')
+			if (codigoT1 == codigoT2) {
+				$(this).closest("tr").removeClass("selected");
+				///$(this).closest("tr").css('background-color', 'red');
+				console.log("hizo clic en la misma fila");
 			}
-			
 		});
 
 		t.row($tr).remove().draw(false);
-
-		
 	});
 });
 
@@ -991,31 +988,19 @@ $(document).ready(function () {
 //No dejar cerrar el modal
 $("#modalcontrasena").modal({ backdrop: "static", keyboard: false });
 
-
-
-$(document).ready(function() {
-
-
-	$('.js-example-placeholder-single').select2({
-		placeholder: '-Seleccione un proveedor-',
+$(document).ready(function () {
+	$(".js-example-placeholder-single").select2({
+		placeholder: "-Seleccione un proveedor-",
 		theme: "bootstrap4",
-		allowClear: true
-	
-	  });
-	
+		allowClear: true,
+	});
 });
-
-
-
-
 
 /*****************************************************************************/
 // ** Código para la funcion de anular una compra utilizando sweetalert 2 // **
 /*****************************************************************************/
 
-$(document).ready(function() {
-	
-	
+$(document).ready(function () {
 	$("tr td #anular").click(function (ev) {
 		ev.preventDefault();
 
@@ -1025,8 +1010,7 @@ $(document).ready(function() {
 
 		Swal.fire({
 			title: "¡Atención!",
-			text:
-				"¿Estás seguro que deseas anular la compra?",
+			text: "¿Estás seguro que deseas anular la compra?",
 			type: "question",
 			showCancelButton: true,
 			confirmButtonColor: "#28a745",
@@ -1039,12 +1023,10 @@ $(document).ready(function() {
 					type: "POST",
 					url: "/tienda/compra/anular",
 					data: { idCompras: idCompras },
-					success: function () {				
+					success: function () {
 						Swal.fire({
 							title: "¡Proceso completado!",
-							text:
-								"La compra" +
-								" ha sido anulada exitosamente.",
+							text: "La compra" + " ha sido anulada exitosamente.",
 							type: "success",
 							confirmButtonColor: "#28a745",
 						});
@@ -1054,10 +1036,10 @@ $(document).ready(function() {
 						//$('#ax tr').eq(0).replace('<td><span class="badge badge-danger">Anulada</span></td>');
 						//$('#anular').attr( "disabled" );
 						//$("#anular").prop('disabled', true);
-						//$(self).parents("td").remove();	
-					   $(this).parents("tr").find("td:eq(0)").text().remove();				
+						//$(self).parents("td").remove();
+						$(this).parents("tr").find("td:eq(0)").text().remove();
 					},
-					
+
 					error: function () {
 						Swal.fire({
 							title: "¡Proceso no completado!",
@@ -1081,10 +1063,10 @@ $(document).ready(function() {
 });
 
 
-//Codigo para enmaskarar los input
+$(document).ready(function () {
+	OSREC.CurrencyFormatter.formatAll({
+		selector: ".listadoCompramoney",
+		currency: "COP",
+	})
 
-$(document).ready(function(){
-
-	$("#facturaProveedor").inputmask({ alias: "currency"},{ "placeholder": "0.000000" });
-
-  });
+});
