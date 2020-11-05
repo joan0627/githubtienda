@@ -17,9 +17,9 @@ class Model_servicio extends Ci_model
 
 
 	
-	/*************************************************************/
-	// **			Funciones de Servicio		  				// **
-	/**************************************************************/
+	/*********************/
+	// *			Funciones de Servicio		  				// *
+	/**********************/
 
 
     //Función para insertar un producto
@@ -64,14 +64,22 @@ class Model_servicio extends Ci_model
 
 	}
 
-	function buscarDatosServicio($idServicio){
+	function buscarDatosServicio($idServicio){ 
 		$this->db->select();
 		$this->db->join($this->tablaTiposervicio, 'servicio.idTipoServicio = tiposervicio.idTipoServicio');
 		$resultado = $this->db->get_where('servicio', array('servicio.idServicio' => $idServicio), 1);
 
-	
 		return $resultado->row_array();
 
+	}
+
+
+
+	//Función para Actualizar un servicio
+	function actualizarServicio($idServicio, $datosServicio){
+		
+		$this->db->where($this->ServicioPK ,$idServicio);
+		$this->db->update($this->tablaServicio, $datosServicio);
 	}
 
 	function borrar($idServicio){

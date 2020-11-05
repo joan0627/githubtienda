@@ -7,9 +7,9 @@ class Producto extends CI_controller
 	public function __construct()
 	{
 
-		/*************************************************************/
-		// **Aqui se cargan todas las librerias que vamos a utilizar // **
-		/*************************************************************/
+		/*********************/
+		// *Aqui se cargan todas las librerias que vamos a utilizar // *
+		/*********************/
 		parent::__construct();
 		$this->load->model('Model_producto');
 		$this->load->database();
@@ -18,13 +18,6 @@ class Producto extends CI_controller
 		$this->load->library('session');
 	
 
-			/*Protección URL*/
-			if(!$this->session->userdata('login'))
-			{
-				redirect(base_url().'login');
-				
-			
-			}
 
 
 		$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[producto.idProducto]|alpha_dash');
@@ -117,9 +110,9 @@ class Producto extends CI_controller
 
 		
 
-			/*************************************************************/
-			// **			Validaciónn de los campos					**// 
-			/*************************************************************/
+			/*********************/
+			// *			Validaciónn de los campos					*// 
+			/*********************/
 
 			if ($this->form_validation->run()) {
 
@@ -208,42 +201,41 @@ class Producto extends CI_controller
 
 	public function actualizar($idProducto = "")
 	{
-/*
- 		//Arreglo para recorrer y buscar los select "Tablas fuertes"
-		$data['categorias'] = $this->Model_producto->buscarTodasCategorias();
-	
-		$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
-		$data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
-		$data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();*/
-		
-	
-		    $data['clave']  = $this->Model_producto->buscarDatosProducto($idProducto);
+
+		 //Arreglo para recorrer y buscar los select "Tablas fuertes"
+		 
+		 $data['clave']  = $this->Model_producto->buscarDatosProducto($idProducto);
+
+	/*
+		   
 			$data['categorias'] = $this->Model_producto->buscarTodasCategorias();
 			$data['marcas'] = $this->Model_producto->buscarTodasMarcas();
-			//$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
-			//$data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
-		//	$data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
+			$data['categorias'] = $this->Model_producto->buscarTodasCategorias();
+	
+			$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
+			$data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
+			$data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
 			
-		
+	*/
 		if($this->form_validation->run())
 		{
 			
 		
-			$datosProducto["idProducto"] = $this->input->post("codigo");
-			$datosProducto["nombreProducto"] = $this->input->post("nombre");
-			$datosProducto["descripcionProducto"] = $this->input->post("descripcion");
-			$datosProducto["idCategoria"] = $this->input->post("categoria");
-			$datosProducto["marca"] = $this->input->post("marca");
-			$datosProducto["idPresentacion"] = $this->input->post("presentacion");
-			$datosProducto["valorMedida"] = $this->input->post("valorDeMedida");
-			$datosProducto["idUnidadMedida"] = $this->input->post("unidadDeMedida");
-			$datosProducto["existencia"] = $this->input->post("existencia");
-			$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
-			$datosProducto["indicaciones"] = $this->input->post("indicaciones");
-			$datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
-			$Unidadtiempo = $this->input->post("unidadTiempo");
-			$datosProducto["edadAplicacion"] = $this->input->post("edad").' '.$Unidadtiempo; 
-			$datosProducto["precio"] = $this->input->post("precioVenta");
+			$data["idProducto"] = $this->input->post("codigo");
+			$data["nombreProducto"] = $this->input->post("nombre");
+			$data["descripcionProducto"] = $this->input->post("descripcion");
+			$data["idCategoria"] = $this->input->post("categoria");
+			$data["marca"] = $this->input->post("marca");
+			$data["idPresentacion"] = $this->input->post("presentacion");
+			$data["valorMedida"] = $this->input->post("valorDeMedida");
+			$data["idUnidadMedida"] = $this->input->post("unidadDeMedida");
+			$data["existencia"] = $this->input->post("existencia");
+			$data["idEspecieProducto"] = $this->input->post("tipoespecie");
+			$data["indicaciones"] = $this->input->post("indicaciones");
+			$data["contraindicaciones"] = $this->input->post("contraIndicaciones");
+			$data = $this->input->post("unidadTiempo");
+			$data["edadAplicacion"] = $this->input->post("edad").' '.$Unidadtiempo; 
+			$data["precio"] = $this->input->post("precioVenta");
 
 
 			$this->Model_producto->actualizarProducto($idProducto, $datosProducto);

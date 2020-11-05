@@ -70,11 +70,7 @@
                             <div class="form-group">
                                 <label>Código</label>
                                 <input id="idCompra" readOnly="readonly" type="text" class="form-control"
-                                    value="<?php
-                                                                                                                    if ($this->session->flashdata('codigoCompra')) {
-                                                                                                                        echo 1;
-                                                                                                                    }
-                                                                                                                    echo $clave['idCompras'] + 1; ?>">
+                                    value="<?php  echo $clave['idCompras'] + 1; ?>">
                             </div>
 
                         </div>
@@ -93,10 +89,10 @@
                         <div class="col-md-4" >
                             <div  class="form-group">
                                 <label>Proveedor</label>
-                                <select class="js-example-placeholder-single form-control" >
+                                <select  id="proveedor" name="proveedor" class="js-example-placeholder-single form-control" >
                                 <option></option>
                                     <?php foreach ($proveedores as $valor) : ?>
-                                   
+                                     
                                     <option value="<?php  echo  $valor->documento; ?>">
                                         <?php echo  $valor->nombre; ?></option>
 

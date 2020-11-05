@@ -179,7 +179,7 @@
                 <?php if($this->session->flashdata('busqueda')): ?>
 
                 <div class="alert alert-warning text-center">
-                    <?= $this->session->flashdata('busqueda'); ?> </div>
+                    <?= $this->session->flashdata('busqueda'); $this->session->sess_destroy();?> </div>
 
 
                 <?php endif?>
@@ -200,13 +200,31 @@
 </div><!-- Fin content-wrapper -->
 
 <?php if ($this->session->flashdata('message')) { ?>
-<script>
-Swal.fire({
-    type: 'success',
-    title: '¡Proceso completado!',
-    text: '<?= $this->session->flashdata(' message '); ?>',
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>
 
-});
-</script>
-
-<?php } ?>
+     <?php if ($this->session->flashdata('actualizar')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('actualizar'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>

@@ -169,35 +169,55 @@
 
 
                     </div>
-
-                    <!--Fin del card body-->
-
-                    <!--Inicio del footer del contenido-->
-                    <div class="text-center card-footer">
+                    <hr>
 
 
+                    <table id="tableProveedor" class="table table-striped" style="width:100%">
 
-                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
-                            id="registroProveedor" class="btn btn-success col-2">Registrar</button>
-                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="<?php echo base_url(); ?>proveedor"
-                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <thead>
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Age</th>
+                            </tr>
+                        </thead>
+                        
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Eve</td>
+                            <td>Jackson</td>
+                            <td>94</td>
+                        </tr>
 
+                        <tfoot>
 
+                        </tfoot>
+                    </table>
+                    <hr>
+
+                    <!-- Modal -->
+                    <div id="modalañadirMarca" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                            <div class="card card-success">
+                                <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+
+                        </div>
                     </div>
 
-
-                    <!--Fin del footer del contenido-->
-
-            </form>
-
-
-
-
-            <!--Fin del form-->
-
-
-        </div> <!-- Fin Contenido Total -->
-
-
-    </section><!-- Fin seccion contenido -->
-</div><!-- Fin content-wrapper -->

@@ -27,7 +27,7 @@
 
                             <input name="buscar" type="text" class="form-control">
                             <span class="input-group-btn">
-                                <button class="btn bg-gray" type="submit"><i class="fas fa-search"></i></button>
+                                <button class="btn bg-primary" type="submit"><i class="fas fa-search"></i></button>
 							</span>
 
                             <span class="col-auto input-group-btn">
@@ -104,9 +104,9 @@
 						<tr>
 
 							<td><?php echo  $d->idServicio;?></td>
-							<td><?php echo  $d->nombreServicio;?></td>
-							<td><?php echo  $d->descripcionTipoServicio;?></td>
-							<td style="width:310px;"><?php echo  $d->descripcion;?></td>
+							<td style="width: 200px;"><?php echo  $d->nombreServicio;?></td>
+							<td ><?php echo  $d->descripcionTipoServicio;?></td>
+							<td style="width:250px;"><?php echo  $d->descripcion;?></td>
 							<td style="color:green; "><label><?php echo  $d->precio;?></label></td>
 								
 
@@ -121,7 +121,7 @@
 
 
 
-									<a class="btn btn-info btn-sm" href="actualizarserviciosu">
+									<a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>servicio/actualizar/<?php echo $d->idServicio; ?>">
 							
 										<i class="fas fa-pencil-alt">
 										</i>
@@ -129,9 +129,7 @@
 									</a>
 
 
-									<a class="btn btn-danger btn-sm"  href="#"    
-									onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')"
-									>
+									<a class="btn btn-danger btn-sm"  data-documento= "<?=$d->idServicio?>" id="deleteServicio" href="delete/<?php echo $d->idServicio; ?>">
 										<i class="fas fa-trash">
 										</i>
 										Borrar
@@ -168,3 +166,18 @@
 
 	</section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+
+<?php if ($this->session->flashdata('message')) { ?>
+			<script> 
+		
+        Swal.fire({        
+		type: 'success',
+		title: '¡Proceso completado!',
+		text: '<?= $this->session->flashdata('message'); ?>', 
+		
+	}); 
+		
+		
+		</script>
+          
+     <?php } ?>

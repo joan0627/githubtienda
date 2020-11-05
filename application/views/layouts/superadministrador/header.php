@@ -45,17 +45,6 @@
      <link rel="stylesheet" href="<?php echo base_url();?>assets\plugins\plugins\select2-bootstrap4-theme/select2-bootstrap4.css">
     
 
-    <!-- jQuery -->
-    <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery-3.5.1.min.js"></script>
-
-    <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
-    <script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-
-    <!-- Toaster-->
-    <script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
-    <!-- Toastr-->
-    <script src="<?php echo base_url(); ?>assets/plugins/plugins/toastr/toastr.min.js"></script>
-
     <link href="<?php echo base_url();?>assets/css/misestilos.css" rel="stylesheet">
 
       
@@ -66,6 +55,47 @@
        <!-- Tema diferente de bootrap
       <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap-theme.min.css">-->
     
+     <!-- jQuery -->
+   <script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery/jquery-3.5.1.min.js"></script>
+
+
+
+<!-- DateTable -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/datatables.js"></script>
+<!-- DateTable Botones -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/Buttons-1.6.3/js/dataTables.buttons.min.js"></script>
+
+
+
+<!-- DateTable Botones HTML5-->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/Buttons-1.6.3/js/buttons.html5.min.js"></script>
+
+<!-- DateTable Select-->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/Select-1.3.1/js/dataTables.select.min.js"></script>
+
+<!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/select2/js/select2.full.min.js"></script>
+
+
+<!-- Librerias inputMaks-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/inputmask/jquery.inputmask.js"></script>
+<script src="<?php echo base_url(); ?>assets\plugins\plugins\inputmask\bindings\inputmask.binding.js"></script>
+
+
+<!-- Libreria para formatiar la moneda CURRENCY-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/currencyFormatter.js-master/dist/currencyFormatter.min.js"></script>
+	
+<!-- Toaster-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/toaster/toaster.js"></script>
+   
+  <!-- Toastr-->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/toastr/toastr.min.js"></script>
+
+<!-- JQuery Validate -->
+<script src="<?php echo base_url(); ?>assets/plugins/plugins/jquery-validation/jquery.validate.min.js"></script>
 
 </head>
 

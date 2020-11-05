@@ -18,6 +18,7 @@ class Compra extends CI_controller
 		$this->load->helper("url");
 		//$this->load->library('form_validation');
 		$this->load->library('session');
+		$this->load->library('form_validation');
 
 				/*Protección URL*/
 				if(!$this->session->userdata('login'))
@@ -134,7 +135,8 @@ class Compra extends CI_controller
 		
 	}
 
-	public function compra(){
+	public function compra()
+	{
 	
 		
 			$datosCompra["fechaRegistroCompra"] = $this->input->post("fechaCompra");
@@ -147,7 +149,7 @@ class Compra extends CI_controller
 			$datosCompra["estado"] = true;
 	
 		
-				$this->Model_compra->insertarCompra($datosCompra);
+			$this->Model_compra->insertarCompra($datosCompra);
 
 		
 			//$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado correctamente.');
@@ -172,7 +174,7 @@ class Compra extends CI_controller
 	$_iva= $this->input->post('iva');
 
 
-
+	
 
 	$datosPrueba = array(
 		'idDetalleCompra' => '',
@@ -184,16 +186,13 @@ class Compra extends CI_controller
 	);
 	
 
-		$this->output
-		->set_status_header(400)
-		->set_output(json_encode(array ('msg'=>'El documento no puede ser vacío')));
-	
-
-		echo json_encode($datosPrueba);
-
 		$this->Model_compra->insertarDetalle($datosPrueba);
 		$this->output->set_status_header(200);
 		
+
+		//Se actualiza la existencia
+		$existenciaActual=$this->Model_producto->consultaExistencia($_codigo);
+		$this->Model_producto->actualizarExistencia($_codigo,$existenciaActual["existencia"]+$_cantidad);
 
 
 	}

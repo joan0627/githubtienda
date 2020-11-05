@@ -42,7 +42,8 @@
                             <div class="form-group">
                                 <label>Código</label> <label style="color: red;"> *</label>
                                 <input name="codigo" type="text" class="form-control"
-                                    placeholder="Ingrese el código del servicio" >
+                                    placeholder="Ingrese el código del servicio" value="<?php echo $idServicio;?>">
+                                <?php echo form_error('codigo', '<p class="text-danger">', '</p>'); ?>
 
                             </div>
 
@@ -53,7 +54,8 @@
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> * </label>
                                 <input name="nombre" type="text" class="form-control"
-                                    placeholder="Ingrese el nombre del servicio">
+                                    placeholder="Ingrese el nombre del servicio" value="<?php echo $nombreServicio;?>">
+                                <?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
 
                             </div>
 
@@ -70,31 +72,32 @@
                                 <div class="form-group">
                                     <label>Tipo de servicio</label> <label style="color: red;"> *</label>
                                     <select class="form-control " style="width: 100%;" name="tipoServicio">
-                                    <?php if ($tiposervicio != "") : ?>
-                                    <?php foreach ($tipoServicios as $clave => $valor) : ?>
-                                    <?php if ($tiposervicio == $valor->idTipoServicio) : ?>
+                                        <?php if ($tiposervicio != "") : ?>
+                                        <?php foreach ($tipoServicios as $clave => $valor) : ?>
+                                        <?php if ($tiposervicio == $valor->idTipoServicio) : ?>
 
-                                    <option hidden value=" <?php echo  $valor->idTipoServicio; ?>" selected>
-                                    <?php echo  $valor->descripcionTipoServicio; ?></option>
+                                        <option hidden value=" <?php echo  $valor->idTipoServicio; ?>" selected>
+                                            <?php echo  $valor->descripcionTipoServicio; ?></option>
 
-                                    <?php foreach ($tipoServicios as $clave => $valor) : ?>
+                                        <?php foreach ($tipoServicios as $clave => $valor) : ?>
 
-                                    <option value=" <?php echo  $valor->idTipoServicio; ?>">
-                                        <?php echo  $valor->descripcionTipoServicio; ?></option>
+                                        <option value=" <?php echo  $valor->idTipoServicio; ?>">
+                                            <?php echo  $valor->descripcionTipoServicio; ?></option>
 
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
 
-                                    <?php endif;  ?>
-                                    <?php endforeach; ?>
-                                    <?php else :
+                                        <?php endif;  ?>
+                                        <?php endforeach; ?>
+                                        <?php else :
 										foreach ($tipoServicios as $clave => $valor) : ?>
-                                    <option value="" selected hidden>-Seleccione un tipo de servicio-</option>;
-                                    <option value=" <?php echo  $valor->idTipoServicio; ?>">
-                                        <?php echo  $valor->descripcionTipoServicio; ?></option>
+                                        <option value="" selected hidden>-Seleccione un tipo de servicio-</option>;
+                                        <option value=" <?php echo  $valor->idTipoServicio; ?>">
+                                            <?php echo  $valor->descripcionTipoServicio; ?></option>
 
-                                    <?php endforeach; ?>
-                                    <?php endif ?>
+                                        <?php endforeach; ?>
+                                        <?php endif ?>
                                     </select>
+                                    <?php echo form_error('tipoServicio', '<p class="text-danger">', '</p>'); ?>
                                 </div>
 
                             </div>
@@ -105,8 +108,10 @@
                             <div class="form-group">
 
                                 <label>Descripción</label> <label style="color: red;"> * </label>
-                                <textarea class="form-control" rows="3"
-                                    placeholder="Describa el detalle del servicio" name="descripcion"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Describa el detalle del servicio"
+                                    name="descripcion"><?php echo $descripcion;?></textarea>
+                                <?php echo form_error('descripcion', '<p class="text-danger">', '</p>'); ?>
+
                             </div>
 
                         </div>
@@ -120,7 +125,8 @@
                             <div class="form-group">
                                 <label>Recomendaciones previas</label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Tener en cuenta antes de la cita..." name="recomendacionesPrevias"></textarea>
+                                    placeholder="Tener en cuenta antes de la cita..."
+                                    name="recomendacionesPrevias"><?php echo $recomendacionesPrevias;?></textarea>
                             </div>
                         </div>
 
@@ -128,7 +134,8 @@
                             <div class="form-group">
                                 <label>Recomendaciones posteriores</label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Tener en cuenta después de la cita..." name="recomendacionesPosteriores"></textarea>
+                                    placeholder="Tener en cuenta después de la cita..."
+                                    name="recomendacionesPosteriores"><?php echo $recomendacionesPosteriores;?></textarea>
                             </div>
 
                         </div>
@@ -145,24 +152,31 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio del servicio" name="precio">
+                                <input type="text" class="form-control" placeholder="Ingrese el precio del servicio"
+                                    name="precio" value="<?php echo $precio;?>">
 
                             </div>
+                            <?php echo form_error('precio', '<p class="text-danger">', '</p>'); ?>
 
                         </div>
-                        
+
 
                     </div>
 
                     <!--Inicio del footer del contenido-->
                     <!--Inicio del footer del contenido-->
-                    <div class="card-footer">
+                    <div class="text-center card-footer">
 
-                        <button type="submit" id="botonRegistroServicio"
-                            class="btn btn-success col-2">Registrar</button>
-                        <a href="<?php echo base_url(); ?>servicio" class="btn btn-success col-2">Atrás</a>
+                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
+                            id="botonRegistroServicio" class="btn btn-success col-2">Registrar</button>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
+                            href="<?php echo base_url(); ?>servicio" id="botonAtras"
+                            class="btn btn-success col-2">Atrás</a>
+
                     </div>
                     <!--Fin del footer del contenido-->
+
+
 
 
 

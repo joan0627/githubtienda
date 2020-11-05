@@ -7,9 +7,9 @@ class Servicio extends CI_controller
 	public function __construct()
 	{
 
-		/*************************************************************/
-		// **Aqui se cargan todas las librerias que vamos a utilizar // **
-		/*************************************************************/
+		/*********************/
+		// *Aqui se cargan todas las librerias que vamos a utilizar // *
+		/*********************/
 		parent::__construct();
 		$this->load->model('Model_servicio');
 		$this->load->database();
@@ -17,25 +17,11 @@ class Servicio extends CI_controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 
-		/*Protección URL*/
-		if(!$this->session->userdata('login'))
-		{
-			redirect(base_url().'login');
-								
-		}
 
-		$this->form_validation->set_rules('codigo', 'codigo', 'required');
-		/*
-
-		$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[producto.idProducto]|alpha_dash');
-	
-		$this->form_validation->set_rules('categoria', 'categoría', 'required');
-		$this->form_validation->set_rules('marca', 'marca', 'required');
-		$this->form_validation->set_rules('existencia', 'existencia', 'required');
-		$this->form_validation->set_rules('unidadDeMedida', 'unidad de medida', 'required');
-		$this->form_validation->set_rules('valorDeMedida', 'valor de medida', 'required');
-		
-	*/
+		$this->form_validation->set_rules('nombre', 'nombre', 'required');
+		$this->form_validation->set_rules('tipoServicio', 'tipoServicio', 'required');
+		$this->form_validation->set_rules('descripcion', 'descripción', 'required');
+		$this->form_validation->set_rules('precio', 'precio', 'required');
 
 	}
 
@@ -62,7 +48,8 @@ class Servicio extends CI_controller
 
 	public function registro()
 	{
-		
+			$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[servicio.idServicio]|alpha_dash');
+
 		    $datosCarga["idServicio"] = $datosCarga["nombreServicio"] = $datosCarga["idTipoServicio"] = $datosCarga["descripcion"] =
 			$datosCarga["recomendacionesPrevias"] = $datosCarga["recomendacionesPosteriores"] = $datosCarga["precio"]= "";
 
@@ -82,9 +69,9 @@ class Servicio extends CI_controller
 			
 			
 
-			/*************************************************************/
-			// **			Validaciónn de los campos					**// 
-			/*************************************************************/
+			/*********************/
+			// *			Validaciónn de los campos					*// 
+			/*********************/
 
 			if ($this->form_validation->run()) {
 
@@ -132,6 +119,46 @@ class Servicio extends CI_controller
 				$this->load->view('layouts/footer');
 			}
 		}
+	}
+
+	public function actualizar($idServicio = "")
+	{
+		if($this->form_validation->run())
+		{
+				$datosServicio["idServicio"] = $this->input->post("codigo");
+				$datosServicio["nombreServicio"] = $this->input->post("nombre");
+				$datosServicio["idTipoServicio"] = $this->input->post("tipoServicio");
+				$datosServicio["descripcion"] = $this->input->post("descripcion");
+				$datosServicio["recomendacionesPrevias"] = $this->input->post("recomendacionesPrevias");
+				$datosServicio["recomendacionesPosteriores"] = $this->input->post("recomendacionesPosteriores");
+				$datosServicio["precio"] = $this->input->post("precio");
+
+			$this->Model_servicio->actualizarServicio($idServicio, $datosServicio);
+
+			$this->session->set_flashdata('actualizar', 'El servicio' .$datosCarga["nombreServicio"].' se ha actualizado correctamente.');
+			
+			redirect("servicio");
+
+		}
+		else
+		{
+
+			
+			$datos = $this->Model_servicio->buscarDatosServicio($idServicio);
+			
+			//Esta es la vista que carga los datos de los input
+
+			$data['clave']= $datos;
+			$data['tipoServicios'] = $this->Model_servicio->buscarTipoServicio();
+			
+             var_dump($data);
+			 $this->load->view('layouts/superadministrador/header');
+			 $this->load->view('layouts/superadministrador/aside');
+			 $this->load->view('superadministrador/formularios/actualizarServicio_view',$data);
+			 $this->load->view('layouts/footer');
+		}
+
+
 	}
 
 	public function delete(){

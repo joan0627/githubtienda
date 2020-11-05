@@ -25,9 +25,9 @@ class Model_producto extends Ci_model
 
 
 	
-	/*************************************************************/
-	// **			Funciones de producto		  				// **
-	/**************************************************************/
+	/*********************/
+	// *			Funciones de producto		  				// *
+	/**********************/
 
 
 //Función para insertar un producto
@@ -64,10 +64,6 @@ class Model_producto extends Ci_model
 			$this->session->set_flashdata('busqueda', 'No hay resultados');
 
 		}
-		else
-		{
-			$this->session->set_flashdata('busqueda', '');
-		}
 		return $consulta->result();
 
 		
@@ -75,7 +71,7 @@ class Model_producto extends Ci_model
 	}
  
 	
-
+	
 
 	function buscarDatosProducto($idProducto){
 		$this->db->select();
@@ -83,6 +79,7 @@ class Model_producto extends Ci_model
 		$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
 		$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
 		$this->db->join($this->tablaUnidadMedida, 'producto.idUnidadMedida = unidadmedida.idUnidadMedida');
+		$this->db->join($this->tablaEspecieproducto, 'producto.idEspecieProducto = especieproducto.idEspecieProducto');
 		$resultado = $this->db->get_where('producto', array('producto.idProducto' => $idProducto), 1);
 
 	
@@ -112,9 +109,9 @@ class Model_producto extends Ci_model
 
 
 
-	/*************************************************************/
-	// **			Funciones para cargar los selects		  // **
-	/**************************************************************/
+	/*********************/
+	// *			Funciones para cargar los selects		  // *
+	/**********************/
 
 // Función para buscar todas las categorias 
 function buscarTodasCategorias() {
@@ -172,9 +169,23 @@ function buscarPresentaciones() {
 }
 
 
+public function consultaExistencia($idProducto){
+	$this->db->select('existencia');
+	$this->db->from($this->tablaProducto);
+	$this->db->where('idProducto', $idProducto);
+	$resultado = $this->db->get();	
 
+	return $resultado->row_array();
 
+}
 
+public function actualizarExistencia($idProducto, $cantidad){
+
+	$this->db->set('existencia', $cantidad);
+	$this->db->where('idProducto', $idProducto);
+	$this->db->update('producto'); 	
+
+}
 
 
 	

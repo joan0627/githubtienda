@@ -32,7 +32,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form" action="" name="producto" method="POST" enctype="multipart/form-data">
+            <form role="form"  name="producto" method="POST" enctype="multipart/form-data">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -72,9 +72,9 @@
                             <div class="form-group">
 
                                 <label>Categoría</label> <label style="color: red;"> *</label>
-                                <select name="categoria" id="categoria" class="form-control" >
+                                <select name="categoria" id="categoria" class="form-control">
 
-                                    <?php if ($categoria!= "") : ?>
+                                    <?php if ($categoria != "") : ?>
                                     <?php foreach ($categorias as $clave => $valor) : ?>
                                     <?php if ($categoria== $valor->idCategoria) : ?>
 
@@ -314,22 +314,24 @@
 
                     </div>
 
-                    <div class="row"  >
+                    <div class="row indicaciones_Contra" style="display:none;">
                         <div class="col-md-6">
                             <div class="form-group" >
 
                                 <label>Indicaciones</label>
                                 <textarea class="form-control" rows="3"
-                                    placeholder="Especifique las indicaciones de la vacuna" name="indicaciones"
+                                    placeholder="Especifique las indicaciones de la vacuna" 
+                                    name="indicaciones" 
                                     ><?php echo $indicaciones;?></textarea>
                                     <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
-                        <div class="col-md-6" >
+                        <div class="col-md-6">
                             <label>Contraindicaciones</label>
                             <textarea class="form-control" rows="3"
-                                placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
+                                placeholder="Especifique las contraindicaciones de la vacuna" 
+                                 name="contraIndicaciones" "
                                 ><?php echo $contraindicaciones;?></textarea>
                                 <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
@@ -340,7 +342,7 @@
                     </div>
 
 					<div class="row" >
-                        <div class="col-md-3">
+                        <div class="col-md-3 edad" style="display:none;">
                             <div class="form-group">
 
                                 <label>Edad</label>
@@ -350,8 +352,8 @@
                             </div>
                         </div>
 
-						<div class="col-md-4">
-                            <div class="form-group">
+						<div class="col-md-4" >
+                            <div class="form-group Utiempo" style="display:none;">
                                 <label>Unidad de tiempo</label>
                                 <select class="form-control " style="width: 100%;" name="unidadTiempo" value="<?php echo $unidadTiempo;?>">
                                     <option hidden value="" >-Seleccione la unidad de tiempo-</option>

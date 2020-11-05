@@ -150,7 +150,7 @@
                             <label>Contraindicaciones</label>
                             <textarea class="form-control" rows="3"
                             readonly="readonly" placeholder="Especifique las contraindicaciones de la vacuna" name="contraIndicaciones"
-                            ><?php echo $clave['contraindicaciones']; ?></textarea>
+                                ><?php echo $clave['contradindicaciones']; ?></textarea>
                         </div>
 
                     </div>
