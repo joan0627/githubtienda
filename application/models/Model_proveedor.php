@@ -9,6 +9,8 @@ class Model_proveedor extends Ci_model
 	public $TablatipoDocumento = 'tipodocumento';
 	public $idTipodocumentoPK = 'idTipoDocumento';
 
+	public $tablaDetalleMarca= 'detalleproveedormarca';
+	
 
 	public function _construct()
 	{
@@ -149,8 +151,13 @@ class Model_proveedor extends Ci_model
 	   return $consulta->num_rows();
 	}
 
+	//insertar detalle a la tabla detalle proveedor marca
 
+	function insertarDetalleMarca($datosDetalle){
 
-
+		$this->db->insert($this->tablaDetalleMarca, $datosDetalle);
+		 return $this->db->insert_id();
+		 
+	}
 
 }
