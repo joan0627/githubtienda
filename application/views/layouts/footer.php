@@ -45,7 +45,7 @@
 <script src="<?php echo base_url(); ?>assets/js/configuracion.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/compra.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/formatos.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/js/cliente.js"></script>
 </body>
 
 </html>
