@@ -92,79 +92,76 @@ $(document).ready(function () {
 	$("#btnAnadirMascota").click(function (ev) {
 		ev.preventDefault();
 
-		Swal.fire({
-			title: "¡Atención!",
-			text: "¿Estás seguro que deseas añadir esta mascota? ",
-			type: "question",
-			showCancelButton: true,
-			confirmButtonColor: "#28a745",
-			cancelButtonColor: "#28a745",
-			confirmButtonText: "Si",
-			cancelButtonText: "No",
-		}).then((result) => {
-			if (result.value) {
-				if (validar_formulario.form()) {
-					var tipoMascota = $("#tipoMascota").val();
-					var nombreMascota = $("#nombreM").val();
-					var raza = $("#razaM").val();
-					var sexo = $("#sexoM").val();
-					var peso = $("#pesoM").val();
-					var unidad = $("#unidadM").val();
-					var cumpleanos = $("#cumpleanosM").val();
-					var edad = $("#edadM").val();
-					var tiempoM = $("#tiempoM").val();
-					var observaciones = $("#observacionesM").val();
+		if (validar_formulario.form()) {
+			var tipoMascota = $("#tipoMascota").val();
+			var nombreMascota = $("#nombreM").val();
+			var raza = $("#razaM").val();
+			var sexo = $("#sexoM").val();
+			var peso = $("#pesoM").val();
+			var unidad = $("#unidadM").val();
+			var cumpleanos = $("#cumpleanosM").val();
+			var edad = $("#edadM").val();
+			var tiempoM = $("#tiempoM").val();
+			var observaciones = $("#observacionesM").val();
 
-					var table = $("#tableDetalleMascota").DataTable();
+			var table = $("#tableDetalleMascota").DataTable();
 
-					table.row
-						.add([
-							tipoMascota,
-							nombreMascota,
-							raza,
-							sexo,
-							peso + " " + unidad,
-							cumpleanos,
-							edad + " " + tiempoM,
-							observaciones,
-							"<button data-toggle='tooltip' title='Editar'class='editarMascota btn btn-primary btn-sm'> <i class='fas fa-pencil-alt'></i></button>" +
-								" " +
-								"<button data-toggle='tooltip' title='Quitar'class='eliminarMarca btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i></button>",
-						])
+			table.row
+				.add([
+					tipoMascota,
+					nombreMascota,
+					raza,
+					sexo,
+					peso + " " + unidad,
+					cumpleanos,
+					edad + " " + tiempoM,
+					observaciones,
+					"<button id='editarMascota' data-toggle='tooltip' title='Editar'class='editarMascota btn btn-primary btn-sm'> <i class='fas fa-pencil-alt'></i></button>" +
+						" " +
+						"<button data-toggle='tooltip' title='Quitar'class='eliminarMarca btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i></button>",
+				])
 
-						.draw();
+				.draw();
 
-					$("#formMascota")[0].reset();
+			$("#formMascota")[0].reset();
 
-					$("#modalMascota").modal("toggle");
-				}
-			}
-		});
+			$("#modalMascota").modal("toggle");
+		}
+
+
 	});
 
-	var table = $("#tableDetalleMascota").DataTable();
-	$("#tableDetalleMascota tbody ").on(
-		"click",
-		"button.editarMascota",
-		function (ev) {
-			ev.preventDefault();
 
-			$("#modalMascota").modal("show");
+	
+	$("#tableDetalleMascota").on("click", "#editarMascota", function (ev) {
+		ev.preventDefault();
+		
+		var tipoMascota = $(this).parents('tr').find('td:eq(0)').text();
+		var nombreMascota = $(this).parents('tr').find('td:eq(1)').text();
+		var raza = $(this).parents('tr').find('td:eq(2)').text();
+		var sexo = $(this).parents('tr').find('td:eq(3)').text();
+		//var peso = $(this).parents('tr').find('td:eq(4)').text();
+		//var unidad = $(this).parents('tr').find('td:eq(5)').text();
+		var cumpleanos = $(this).parents('tr').find('td:eq(5)').text();
+		//var edad = $(this).parents('tr').find('td:eq(7)').text();
+	//	var tiempoM = $(this).parents('tr').find('td:eq(8)').text();
+		var observaciones = $(this).parents('tr').find('td:eq(7)').text();
 
-			var data = table.row($(this).parents("tr")).data();
-			tipoMascota = $("#tipoMascota").val(data.tipoMascota);
-			nombreMascota = $("#nombreM").val(data.nombreMascota);
-			raza = $("#razaM").val(data.raza);
-			sexo = $("#sexoM").val(data.sexo);
-			peso = $("#pesoM").val(data.sexo);
-			unidad = $("#unidadM").val(data.unidad);
-			cumpleanos = $("#cumpleanosM").val(data.cumpleanos);
-			edad = $("#edadM").val(data.edad);
-			tiempoM = $("#tiempoM").val(data.tiempoM);
-			observaciones = $("#observacionesM").val(data.observaciones);
+		$("#modalMascota").modal("show");
 
-		}
-	);
+		$("#tipoMascota").val(tipoMascota);
+		$("#nombreM").val(nombreMascota);
+		$("#razaM").val(raza);
+		$("#sexoM").val(sexo);
+		//$("#pesoM").val(peso);
+		//$("#unidadM").val(unidad);
+		$("#cumpleanosM").val(cumpleanos);
+		//$("#edadM").val(edad);
+		//$("#tiempoM").val(tiempoM);
+		$("#observacionesM").val(observaciones);
+
+	});
+
 
 	/**
 
