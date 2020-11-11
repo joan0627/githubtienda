@@ -37,7 +37,7 @@ $(document).ready(function () {
 
 	var validar_formulario = $("#formMascota").validate({
 		ignore: [],
-		rules: {			
+		rules: {
 			tipoMascota: { required: true },
 			nombreM: { required: true },
 			razaM: { required: true },
@@ -103,9 +103,7 @@ $(document).ready(function () {
 			cancelButtonText: "No",
 		}).then((result) => {
 			if (result.value) {
-
 				if (validar_formulario.form()) {
-					var id =1;
 					var tipoMascota = $("#tipoMascota").val();
 					var nombreMascota = $("#nombreM").val();
 					var raza = $("#razaM").val();
@@ -116,10 +114,9 @@ $(document).ready(function () {
 					var edad = $("#edadM").val();
 					var tiempoM = $("#tiempoM").val();
 					var observaciones = $("#observacionesM").val();
-		
+
 					var table = $("#tableDetalleMascota").DataTable();
-		
-		
+
 					table.row
 						.add([
 							tipoMascota,
@@ -130,40 +127,47 @@ $(document).ready(function () {
 							cumpleanos,
 							edad + " " + tiempoM,
 							observaciones,
-							"<button data-toggle='tooltip' title='Editar'class='editarMascota btn btn-primary btn-sm'> <i class='fas fa-pencil-alt'></i></button>"+" "+"<button data-toggle='tooltip' title='Quitar'class='eliminarMarca btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i></button>",
+							"<button data-toggle='tooltip' title='Editar'class='editarMascota btn btn-primary btn-sm'> <i class='fas fa-pencil-alt'></i></button>" +
+								" " +
+								"<button data-toggle='tooltip' title='Quitar'class='eliminarMarca btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i></button>",
 						])
-		
+
 						.draw();
-		
+
 					$("#formMascota")[0].reset();
-		
+
 					$("#modalMascota").modal("toggle");
-					
-		
-					
 				}
-				
 			}
 		});
-	
-	
-
-
 	});
 
 	var table = $("#tableDetalleMascota").DataTable();
-	$('#tableDetalleMascota tbody ').on("click","button.verMascota", function(){
-	
-		var data = table.row($(this).parents("tr")).data();
-		console.log(data);
-	});
-	
+	$("#tableDetalleMascota tbody ").on(
+		"click",
+		"button.editarMascota",
+		function (ev) {
+			ev.preventDefault();
+
+			$("#modalMascota").modal("show");
+
+			var data = table.row($(this).parents("tr")).data();
+			tipoMascota = $("#tipoMascota").val(data.tipoMascota);
+			nombreMascota = $("#nombreM").val(data.nombreMascota);
+			raza = $("#razaM").val(data.raza);
+			sexo = $("#sexoM").val(data.sexo);
+			peso = $("#pesoM").val(data.sexo);
+			unidad = $("#unidadM").val(data.unidad);
+			cumpleanos = $("#cumpleanosM").val(data.cumpleanos);
+			edad = $("#edadM").val(data.edad);
+			tiempoM = $("#tiempoM").val(data.tiempoM);
+			observaciones = $("#observacionesM").val(data.observaciones);
+
+		}
+	);
+
 	/**
-	//Modal ver detalle 
-	$("#tableDetalleMascota").on("click", ".verMascota", function (ev) {
-		ev.preventDefault();
-		$("#modalMascota").modal("show");
-	});
+
 
 	/**
 	 *
@@ -215,17 +219,14 @@ $(document).ready(function () {
 									edad: edad,
 									unidad: unidad,
 									tiempoM: tiempoM,
-									observaciones: observaciones
-								
+									observaciones: observaciones,
 								},
-				
-				
+
 								success: function () {
-										console.log('Todo bienn')
+									console.log("Todo bienn");
 								},
 								error: function () {
-				
-									console.log('Todo malll')
+									console.log("Todo malll");
 								},
 							});
 						});
