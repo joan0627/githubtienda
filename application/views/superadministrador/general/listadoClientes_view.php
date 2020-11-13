@@ -47,7 +47,7 @@
 
                 <div class="col-auto">
 
-                    <a href="crearclientesu" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear cliente</a>
+                    <a href="<?php echo base_url();?>/cliente/registro" class="btn btn-success"><i class="fas fa-plus-circle"></i> Crear cliente</a>
                 </div>
 
 
@@ -117,7 +117,7 @@
 
 
 
-								<a class="btn btn-info btn-sm" href="actualizarclientesu">
+								<a class="btn btn-info btn-sm" href="<?php echo base_url();?>/cliente/actualizar">
 						
 									<i class="fas fa-pencil-alt">
 									</i>

@@ -39,14 +39,13 @@
                             <div class="form-group">
 
                                 <label>Tipo de documento</label> <label style="color: red;"> *</label>
-                                <select id="tipoDocumentoC" name="tipoDocumento" class="form-control">
+                                <select id="tipoDocumentoC" name="tipoDocumentoC" class="form-control">
+                                    <?php foreach ($idTiposDocumentos as $clave => $valor): ?>
+                                    <option value="" selected hidden>-Seleccione un tipo de documento-</option>;
+                                    <option value=" <?php echo $valor->idTipoDocumento; ?>">
+                                        <?php echo $valor->descripcion; ?></option>
 
-                                    <option hidden selected>-Seleccione el tipo de documento-</option>
-                                    <option value="1">Cédula de ciudadanía</option>
-                                    <option value="2">Cédula de extranjería</option>
-                                    <option value="3">Pasaporte</option>
-                                    <option value="4">Tarjeta de identidad</option>
-                                    <option value="5">Registro civil</option>
+                                    <?php endforeach;?>
                                 </select>
 
                             </div>
@@ -55,7 +54,7 @@
                             <div class="form-group">
 
                                 <label>Documento</label> <label style="color: red;"> * </label>
-                                <input id="documentoC" name="documento" type="text" class="form-control "
+                                <input id="documentoC" name="documentoC" type="text" class="form-control "
                                     placeholder="Ingrese el documento ">
                             </div>
                         </div>
@@ -66,14 +65,15 @@
 
                             <div class="form-group">
                                 <label>Nombre completo</label> <label style="color: red;"> *</label>
-                                <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre">
+                                <input id="nombreC" name="nombreC" type="text" class="form-control"
+                                    placeholder="Ingrese el nombre">
                             </div>
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
                                 <label>Teléfono</label>
-                                <input name="telefono" type="text" class="form-control"
+                                <input id="telefonoC" name="telefonoC" type="text" class="form-control"
                                     placeholder="Ingrese el teléfono">
                             </div>
                         </div>
@@ -82,14 +82,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Celular</label> <label style="color: red;"> *</label>
-                                <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular">
+                                <input id="celularC" name="celularC" type="text" class="form-control"
+                                    placeholder="Ingrese el celular">
                             </div>
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Dirección</label>
-                                <input name="direccion" type="text" class="form-control"
+                                <input id="direccionC" name="direccionC" type="text" class="form-control"
                                     placeholder="Ingrese la dirección">
                             </div>
                         </div>
@@ -98,7 +99,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Correo</label>
-                                <input name="correo" type="email" class="form-control" placeholder="Ingrese el correo">
+                                <input id="correoC" name="correoC" type="email" class="form-control"
+                                    placeholder="Ingrese el correo">
                             </div>
                         </div>
 
@@ -108,37 +110,12 @@
                     <hr>
 
 
-                            <table id="tableDetalleMascota" class=" table table-striped ">
-
-                                    <thead>
-
-                                        <tr>
-                                            <th>Tipo</th>
-                                            <th>Nombre</th>
-                                            <th>Raza</th>
-                                            <th>Sexo</th>
-                                            <th style='width:15%' >Peso</th>
-                                            <th>Cumpleaños</th>
-                                            <th style='width:15% '>Edad</th>
-                                            <th>Observaciones</th>
-                                            <th>Acciones</th>
+                    <table id="tableDetalleMascota" class=" table table-striped ">
 
 
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-                                        
-  
-                                    </tbody>
-
-                                    <tfoot>
+                    </table>
 
 
-
-                                    </tfoot>
-                                </table>
-                    
 
                     <hr>
 
@@ -150,11 +127,12 @@
 
 
 
-                        <button  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" 
-                            id="btnRegistroCliente" class="btn btn-success col-2">Registrar</button>
+                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="btnRegistroCliente"
+                            action="confirmEdit" class="btn btn-success col-2">Registrar</button>
 
-                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="listaclientesu"
-                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
+                            href="<?php echo base_url();?>/cliente" id="botonAtras"
+                            class="btn btn-success col-2">Atrás</a>
 
 
                     </div>
@@ -191,19 +169,21 @@
                             <form id="formMascota">
                                 <!--Inicio del card body-->
                                 <div class="card-body ">
-                                    <div class="row">                                       
+                                    <div class="row">
 
                                         <div class="col-md-6">
                                             <div class="form-group">
 
                                                 <label>Tipo de mascota</label> <label style="color: red;"> *</label>
                                                 <select id="tipoMascota" name="tipoMascota" class="form-control">
-                                                <?php foreach ($tipomascotas as $clave => $valor) : ?>
-                                                    <option value="" selected hidden>-Seleccione el tipo de mascota-</option>;
-                                                    <option><?php echo  $valor->descripcion; ?></option>
-                                                        
+                                                    <?php foreach ($tipomascotas as $clave => $valor) : ?>
+                                                    <option value="" selected hidden>-Seleccione el tipo de mascota-
+                                                    </option>;
+                                                    <option value="<?php echo  $valor->idTipoMascota; ?>">
+                                                        <?php echo  $valor->descripcion; ?></option>
 
-                                                <?php endforeach; ?>
+
+                                                    <?php endforeach; ?>
                                                 </select>
 
                                             </div>
@@ -224,11 +204,14 @@
                                             <div class="form-group ">
 
                                                 <label>Raza</label> <label style="color: red;"> *</label>
-                                                <select id="razaM" name="razaM" class="form-control select2bs4" style="width: 100%;">
+                                                <select id="razaM" name="razaM" class="form-control select2bs4"
+                                                    style="width: 100%;">
 
-                                                <?php foreach ($razas as $clave => $valor) : ?>
-                                                    <option value="" selected hidden>-Seleccione la raza de mascota-</option>;
-                                                    <option><?php echo  $valor->descripcion; ?></option>
+                                                    <?php foreach ($razas as $clave => $valor) : ?>
+                                                    <option value="" selected hidden>-Seleccione la raza de mascota-
+                                                    </option>;
+                                                    <option value="<?php echo  $valor->idraza; ?>">
+                                                        <?php echo  $valor->descripcion; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
 
@@ -241,7 +224,8 @@
                                                 <label>Sexo</label> <label style="color: red;"> *</label>
                                                 <select id="sexoM" name="sexoM" class="form-control">
 
-                                                    <option value="" hidden selected>-Seleccione el sexo de la mascota-</option>
+                                                    <option value="" hidden selected>-Seleccione el sexo de la mascota-
+                                                    </option>
                                                     <option>Macho</option>
                                                     <option>Hembra</option>
                                                 </select>
@@ -255,26 +239,29 @@
                                         <div class="col-md-6">
 
                                             <div class="form-group">
-                                                <label>Peso</label>
-                                                <input id="pesoM" name="pesoM" type="text" class="form-control"
-                                                    placeholder="Ingrese el peso">
+                                                <label>Peso</label><label style="color: red;">*</label>
+                                                <input id="pesoM" name="pesoM" type="number" min="0"
+                                                    class="form-control" placeholder="Ingrese el peso">
                                             </div>
                                         </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Unidad de medida</label> <label style="color: red;">*</label>
-                                                    <select id="unidadM" name="unidadMascota" class="form-control " style="width: 100%;">
-                                               
-                                                        <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
-                                                        <option value="" selected hidden>-Seleccione una unidad de medida-</option>;
-                                                        <option><?php echo  $valor->descripcionUnidadmedida; ?></option>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Unidad de medida</label> <label style="color: red;">*</label>
+                                                <select id="unidadM" name="unidadMascota" class="form-control "
+                                                    style="width: 100%;">
 
-                                                        <?php endforeach; ?>
-                                                  
-                                                    </select>
-                                                </div>
+                                                    <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
+                                                    <option value="" selected hidden>-Seleccione una unidad de medida-
+                                                    </option>;
+                                                    <option value="<?php echo  $valor->idUnidadMedida; ?>">
+                                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
+
+                                                    <?php endforeach; ?>
+
+                                                </select>
                                             </div>
+                                        </div>
                                     </div>
 
                                     <div class="row">
@@ -286,7 +273,8 @@
                                                         <span class="input-group-text"><i
                                                                 class="far fa-calendar-alt"></i></span>
                                                     </div>
-                                                    <input id="cumpleanosM" name="cumpleanosM" type="date" class="form-control">
+                                                    <input id="cumpleanosM" name="cumpleanosM" type="date"
+                                                        class="form-control">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -294,8 +282,8 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Edad</label>
-                                                <input id="edadM" name="edadM" type="text" class="form-control"
+                                                <label>Edad</label><label style="color: red;">*</label>
+                                                <input id="edadM" name="edadM" type="number" class="form-control"
                                                     placeholder="Ingrese la edad">
                                             </div>
                                         </div>
@@ -309,8 +297,10 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tiempo</label> <label style="color: red;"> *</label>
-                                                <select id="tiempoM" name="tiempoM" class="form-control " style="width: 100%;">
-                                                    <option value="" selected="selected">-Seleccione el tiempo de edad-</option>
+                                                <select id="tiempoM" name="tiempoM" class="form-control "
+                                                    style="width: 100%;">
+                                                    <option value="" selected="selected">-Seleccione el tiempo de edad-
+                                                    </option>
                                                     <option>Dia(s)</option>
                                                     <option>Semana(s)</option>
                                                     <option>Mes(es)</option>
@@ -323,8 +313,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Observaciones</label>
-                                                <textarea id="observacionesM" name="observacionesM" class="form-control" rows="3"
-                                                    placeholder="Ingrese una observación..." name="obs"></textarea>
+                                                <textarea id="observacionesM" name="observacionesM" class="form-control"
+                                                    rows="3" placeholder="Ingrese una observación..."
+                                                    name="obs"></textarea>
                                             </div>
                                         </div>
 
@@ -339,11 +330,11 @@
                             <div class="text-center card-footer">
 
 
-                                <button  style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
-                                    id="btnAnadirMascota" class="btn btn-success col-2">Añadir</button>
+                                <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
+                                    id="btnAnadirMascota" action="addFila" class="btn btn-success col-2">Añadir</button>
 
                                 <button style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
-                                    data-dismiss="modal" id="botonCancelar"
+                                    data-dismiss="modal" id="botonCancelarMascota"
                                     class="btn btn-success col-2">Cancelar</button>
 
 
