@@ -42,7 +42,7 @@ class model_usuario extends Ci_model {
 			$this->db->or_like("nombre",$buscar);
 			$this->db->or_like("nombreUsuario",$buscar);
 			$this->db->or_like("idRol",$buscar);
-			$this->db->or_like("estado",$buscar);
+		//	$this->db->or_like("estado",$buscar);
 			$this->db->order_by('fechahora', 'DESC');
 			$consulta = $this->db->get();
 	
@@ -94,7 +94,19 @@ class model_usuario extends Ci_model {
 		$this->db->where($this->idUsuarioPK,$id);
 
 		$consulta= $this->db->get();
-		return $consulta->row();
+
+		if($consulta->num_rows()==0)
+		{
+
+			return false;
+		}
+
+		else
+		{
+
+			return $consulta->row();
+		}
+
 	}
 
 
@@ -108,10 +120,15 @@ class model_usuario extends Ci_model {
 		
 	}
 
+	function actualizarEstado($idUsuario, $estado){
+
+		$this->db->set('estado', $estado);	
+		$this->db->where($this->idUsuarioPK ,$idUsuario);
+		$this->db->update($this->tablaUsuario);
+	}
 
 
-
-	function borrar($documento){
+	/*function borrar($documento){
 		$this->db->select();
 		$this->db->from($this->tablaPersona);
 		$this->db->join($this->tablaTipoDocumento, 'persona.tipoDocumento = tipodocumento.idTipoDocumento');
@@ -121,7 +138,7 @@ class model_usuario extends Ci_model {
 		$this->db->delete($this->tablaPersona);
 
 
-	}
+	}*/
 
 }
 

@@ -37,6 +37,9 @@ $(document).ready(function () {
 		bInfo: false,
 	});
 
+
+
+
 	/**
 	 *
 	 * Función Añadir al detalle de la Compra
@@ -74,147 +77,77 @@ $(document).ready(function () {
 				])
 
 				.draw();
+
+	
 		}
 	});
 
 
-
-	/**
-	 *
-	 * Función para registrar el detalle de marca
-	 */
-
-	 
-
-	//Validar los campos ddl formulario
-	var validar_formulario =$("#form_proveedor").validate({
-		ignore: [],       
-		rules: {
-			tipoDocumento: { required: true },
-			documento: { required: true },
-			nombre: { required: true },
-			celular: { required: true, },
-			nombreContacto: { required: true },
-			diaVisita: { required: true },
-			correo: {email: true},
-			
-		},
-		onfocusout: false,
-		onkeyup: false,
-		onclick: false,
-	
-		messages: {
-			tipoDocumento: "El campo tipo documento es obligatorio. ",
-			documento: "El campo documento es obligatorio. ",
-			nombre: "El campo nombre es obligatorio. ",
-			celular: "El campo celular es obligatorio. ",
-			nombreContacto: "El campo nombre contacto es obligatorio. ",
-			diaVisita: "El campo dia visita es obligatorio. ",
-			correo : "Ingrese un correo valido."
-		},
-		errorElement : 'p',
 		
-		errorPlacement: function(error, element) {
-			$(element).parents('.form-group').append(error);
-		  }
 	
-	  });
+	$("#form_proveedor").on("submit",function (ev) {
+	//$("#form_proveedor").on("submit", function (ev) {
+		//ev.preventDefault();
+		
+		var datos = $(this).serialize(); 
+		$.ajax({
+			"method": "POST",
+			"url": "/tienda/Proveedor/registroProveedor/",
+			"data": datos
+		}).done(function (info){
+			console.log('se envio')
 
-	$("#registroProveedor").click(function (ev) {
-		ev.preventDefault();
-	
-		var tipoDocumento = $("#idTipodocumenroP").val();
-		var documento = $("#documentoProveedor").val();
-		var nombre = $("#nombreP").val();
-		var telefono = $("#telefonoP").val();
-		var celular = $("#celularP").val();
-		var direccion = $("#direccionP").val();
-		var correo = $("#correoP").val();
-		var nombreContacto = $("#nombreContactoP").val();
-		var diaVisita = $("#diaVisitaP").val();
-		var observaciones = $("#observacionesP").val();
+			var tabladetallecompra = $("#tableProveedor").DataTable();
 
-
-
-		var tabladetallecompra = $("#tableProveedor").DataTable();
-	
-		if (validar_formulario.form()) {
-			//asi se comprueba si el form esta validado o no
-			if (tabladetallecompra.rows().count() > 0) {					
-						$.ajax({
-							type: "POST",
-							url: "/tienda/Proveedor/registro/",
-							data: {
-								tipoDocumento: tipoDocumento,
-								documentoProveedor: documento,
-								nombre: nombre,
-								telefono: telefono,
-								celular: celular,
-								direccion: direccion,
-								correo: correo,
-								nombreContacto: nombreContacto,
-								diaVisita: diaVisita,
-								observaciones: observaciones,
+		//	if (validar_formulario.form()) {
+		//asi se comprueba si el form esta validado o no
+		if (tabladetallecompra.rows().count() > 0) {
+			//CODIGO PARA REGISTRAR EL DETALLE
+			$("#tableProveedor tbody tr").each(function () {
+				var documentoProveedor = $("#documentoProveedor").val();
+				var idMarca = $(this).children().eq(0).text();
+			
+				$.ajax({
+					type: "POST",
+					url: "/tienda/Proveedor/detalleMarca/",
+					data: {
 						
-							},
-							success: function () {
-								
-								//CODIGO PARA REGISTRAR EL DETALLE
-								$("#tableProveedor tbody tr").each(function () {
-									var documentoProveedor = $("#documentoProveedor").val();
-									var idMarca = $(this).closest("tr").find("td:eq(0)").text();
-	
-									$.ajax({
-										type: "POST",
-										url: "/tienda/Proveedor/detalleMarca/",
-										data: {
-											idMarca: idMarca,
-											documentoProveedor:documentoProveedor
-											
-										},
-	
-										success: function () {
-											Swal.fire({
-												title: "¡Proceso completado!",
-												text: "La compra se ha registrado exitosamente.",
-												type: "success",
-												confirmButtonColor: "#28a745",
-											})
-										},
-	
-										error: function () {
-											Swal.fire({
-												title: "¡Proceso no completado!",
-												text: "La compra no se pudo registrar.",
-												type: "warning",
-												confirmButtonColor: "#28a745",
-											});
-										},
-										statusCode: {
-											400: function (data) {
-												var json = JSON.parse(data.responseText);
-												Swal.fire("¡Error!", json.msg, "error");
-											},
-										},
-									});
-								});
-							},
-							error: function () {
-								
-							},
-						});
+						idMarca:idMarca,
+						documentoProveedor:documentoProveedor
+					},
+
+					success: function () {
+						console.log("se envio bien");
 						
-					
-				
-			} else {
-				Swal.fire({
-					title: "¡Proceso no completado!",
-					text: "No se puede registrar por que no hay un producto en la tabla",
-					type: "warning",
-					confirmButtonColor: "#28a745",
+					},
+
+					error: function () {
+						console.log("NOO se envio bien");
+					},
+					statusCode: {
+						400: function (data) {
+							var json = JSON.parse(data.responseText);
+							Swal.fire("¡Error!", json.msg, "error");
+						},
+					},
 				});
-			}
+			});
+		} 
+		
+		else 
+		{
+			Swal.fire({
+				title: "¡Proceso no completado!",
+				text: "No se puede registrar por que no hay un producto en la tabla",
+				type: "warning",
+				confirmButtonColor: "#28a745",
+			});
 		}
+		});
+
+
+		
+
 	});
 
 
@@ -222,16 +155,8 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
+	//}
+   
 	/**
 	 *
 	 * Función quitar detalle de la compra

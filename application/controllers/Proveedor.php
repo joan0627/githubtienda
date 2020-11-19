@@ -51,18 +51,107 @@ class Proveedor extends CI_controller
 	   
 	}
 
-	
+
 
 	public function registro()
 	{
 
-			$datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
+			
+
+		    $datosCarga["idTipoDocumento"] = $datosCarga["documento"] = $datosCarga["nombre"] = $datosCarga["telefono"] =
 			$datosCarga["celular"] = $datosCarga["direccion"] = $datosCarga["correo"] = $datosCarga["nombreContacto"] =
 			$datosCarga["diaVisita"] = $datosCarga["observaciones"] = "";
+	
+			
 
 			$datosCarga['idTiposDocumentos'] = $this->Model_proveedor->BuscarTiposDocumentos();
 			$datosCarga['marcas'] = $this->Model_producto->buscarTodasMarcas();
 
+		//Campos del formulario
+		/*if ($this->form_validation->run()) {
+
+			
+
+			/*Arreglos para guardar informacion en las dos tablas: Persona y Proveedor
+			Aqui se necesitan dos arreglos diferentes ya que los datos van 
+			para dos tablas diferentes
+			*/
+		/*	$datosProveedor["idTipoDocumento"] = $_POST["tipoDocumento"];
+			$datosProveedor["documento"] = $_POST["documento"];
+			$datosProveedor["nombre"] = $_POST["nombre"];
+			$datosProveedor["telefono"] = $_POST["telefono"];
+			$datosProveedor["celular"] = $_POST["celular"];
+			$datosProveedor["direccion"] = $_POST["direccion"];
+			$datosProveedor["correo"] = $_POST["correo"];
+			$datosProveedor["nombreContacto"] = $_POST["nombreContacto"];
+			$datosProveedor["diaVisita"] = $_POST["diaVisita"];
+			$datosProveedor["observaciones"] = $_POST["observaciones"];*/
+
+			/*$datosMarca["idDetalleProveedorMarca"]='';
+			$datosMarca["documentoProveedor"]=	$datosProveedor["documento"];
+			$datosMarca["idMarca"] = $_POST["idMarca"];*/
+
+			//Se mantienen los datos al hacer una validación//
+			$datosCarga["idTipoDocumento"] = $this->input->post("tipoDocumento");
+			$datosCarga["documento"] = $this->input->post("documento");
+			$datosCarga["nombre"] = $this->input->post("nombre");
+			$datosCarga["telefono"] = $this->input->post("telefono");
+			$datosCarga["celular"] = $this->input->post("celular");
+			$datosCarga["direccion"] = $this->input->post("direccion");
+			$datosCarga["correo"] = $this->input->post("correo");
+			$datosCarga["nombreContacto"] = $this->input->post("nombreContacto");
+			$datosCarga["diaVisita"] = $this->input->post("diaVisita");
+			$datosCarga["observaciones"] = $this->input->post("observaciones");
+	
+		
+		/*	echo $datosMarca["idMarca"];*/
+	
+			
+		/*	$datosMarca["idDetalleProveedorMarca"]='';
+			$datosMarca["documentoProveedor"]= 	$datosProveedor["documento"];
+			$datosMarca["idMarca"]= $this->input->post("idMarca");*/
+		//	echo $datosMarca["documentoProveedor"];
+
+			//$datosMarca["idMarca"] = $this->session->userdata($marca);
+		
+	
+			
+
+
+
+
+			/*************************************************************/
+			// **			Validacion de los campos				  // **
+			/**************************************************************/
+		
+
+				//$this->Model_proveedor->insertarProveedor($datosProveedor);
+				
+				//$this->Model_proveedor->insertarDetalleMarca($datosMarca);
+			
+
+				
+
+				/*$datosMarca = array(
+					'idDetalleProveedorMarca' => '',
+					'documentoProveedor' => $datosProveedor["documento"],
+					'idMarca' => $idMarca
+				);*/
+		
+				
+
+				/*$this->Model_proveedor->insertarDetalleMarca($datosMarca);
+				$this->output->set_status_header(200);*/
+
+
+
+			//	$this->session->set_flashdata('message', 'El proveedor ' .$datosCarga["nombre"].' se ha registrado correctamente.');
+
+				//redirect("proveedor");
+			
+			
+			
+		//}
 
 
 
@@ -72,69 +161,69 @@ class Proveedor extends CI_controller
 		$this->load->view('layouts/footer');
 	}
 
+	public function registroProveedor()
+	{
+		$this->form_validation->set_rules('documento', 'documento', 'required|is_unique[proveedor.documento]');
 
 
-	function registroCompra(){
 
-		$tipoDocumento = $this->input->post('tipoDocumento');
-		$documentoProveedor = $this->input->post('documentoProveedor');
-		$nombre = $this->input->post('nombre');
-		$telefono = $this->input->post('telefono');
-		$celular = $this->input->post('celular');
-		$direccion = $this->input->post('direccion');
-		$correo = $this->input->post('correo');
-		$nombreContacto = $this->input->post('nombreContacto');
-		$diaVisita = $this->input->post('diaVisita');
-		$observaciones = $this->input->post('observaciones');
+		if ($this->form_validation->run()) {
 
-		$_proveedor = $this->input->post('documentoProveedor');
-
-		$datosRegistroCompra = array(
-			'idTipoDocumento' =>$tipoDocumento,
-			'documento' => $documentoProveedor,
-			'nombre' => $nombre,
-			'telefono' => $telefono,
-			'celular' => $celular,
-			'direccion' => $direccion,
-			'correo' => $correo,
-			'nombreContacto' => $nombreContacto,
-			'diaVisita' => $diaVisita,
-			'observaciones' => $observaciones,
-		);
+		$datosRegistroCompra["idTipoDocumento"] =$_POST["tipoDocumento"];
+		$datosRegistroCompra["documento"] =$_POST["documento"];
+		$datosRegistroCompra["nombre"] =$_POST["nombre"];
+		$datosRegistroCompra["telefono"] =$_POST["telefono"];
+		$datosRegistroCompra["celular"] =$_POST["celular"];
+		$datosRegistroCompra["direccion"] =$_POST["direccion"];
+		$datosRegistroCompra["correo"] =$_POST["correo"];
+		$datosRegistroCompra["nombreContacto"] =$_POST["nombreContacto"];
+		$datosRegistroCompra["diaVisita"] =$_POST["diaVisita"];
+		$datosRegistroCompra["observaciones"] =$_POST["observaciones"];
 
 		$this->Model_proveedor->insertarProveedor($datosRegistroCompra);
-		$this->output->set_status_header(200);
+				
+		}
 
-	}
-
-
-	function detalleMarca(){
-		$documentoProveedor = $this->input->post('documentoProveedor');
-		$_marca = $this->input->post('idMarca');
-		$_proveedor = $documentoProveedor ;
-
-		$datosMarca = array(
-			'idDetalleProveedorMarca' => '',
-			'documentoProveedor' => $_proveedor,
-			'idMarca' => $_marca
-		);
-
-		$this->Model_proveedor->insertarDetalleMarca($datosMarca);
-		$this->output->set_status_header(200);
+		$datosCarga["idTipoDocumento"] = $this->input->post("tipoDocumento");
+			$datosCarga["documento"] = $this->input->post("documento");
+			$datosCarga["nombre"] = $this->input->post("nombre");
+			$datosCarga["telefono"] = $this->input->post("telefono");
+			$datosCarga["celular"] = $this->input->post("celular");
+			$datosCarga["direccion"] = $this->input->post("direccion");
+			$datosCarga["correo"] = $this->input->post("correo");
+			$datosCarga["nombreContacto"] = $this->input->post("nombreContacto");
+			$datosCarga["diaVisita"] = $this->input->post("diaVisita");
+			$datosCarga["observaciones"] = $this->input->post("observaciones");
+	
+		$this->load->view('layouts/superadministrador/header');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/formularios/registroProveedor_view', $datosCarga);
+		$this->load->view('layouts/footer');
+		
+	
 
 		
+			//$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado correctamente.');
+		//	redirect("compra");
+	
 	}
+		
+	
+	public function detalleMarca()
 
+	{	
 
+		$datosMarca["idMarca"] = $_POST["idMarca"];
+		$datosMarca["documentoProveedor"] = $_POST["documentoProveedor"];
+	
+		//$this->output->set_status_header(200);
 
-
-
-
-
-
-
-
-
+		//$this->load->view('superadministrador/formularios/registroProveedor_view', $datosMarca);
+	
+		$this->Model_proveedor->insertarDetalleMarca($datosMarca);
+	}
+	
+	
 
 
 	public function actualizar($documento = "")

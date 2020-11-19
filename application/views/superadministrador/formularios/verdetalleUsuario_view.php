@@ -95,8 +95,8 @@
                             <div class="form-group">
                                 <label>Rol</label>
                                 <input readonly="readonly" name="rol" type="text" class="form-control "
-									placeholder="Ninguno" value=" <?php echo $clave['descripcion']; ?> ">
-							
+                                    placeholder="Ninguno" value=" <?php echo $clave['descripcion']; ?> ">
+
                             </div>
 
                         </div>
@@ -106,22 +106,23 @@
                             <div class="form-group">
                                 <label>Estado</label>
                                 <input readonly="readonly" name="estado" type="text" class="form-control "
-                                    placeholder="Ninguno" value="<?php if ($clave['estado']==1) echo "Activo"; else echo "Inactivo" ?>">																										
+                                    placeholder="Ninguno"
+                                    value="<?php if ($clave['estado']==1) echo "Habilitado"; else echo "Deshabilitado" ?>">
                             </div>
                         </div>
                     </div>
 
 
                     <!--Fin del card body-->
-
                     <!--Inicio del footer del contenido-->
-                    <div class="card-footer">
+                    <div class="text-center card-footer">
 
-                        <a href="../listausuariosu" class="btn btn-success col-2">Atrás</a>
-
+                      
+                        <a style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
+                            href="<?php echo base_url(); ?>usuario" class="btn btn-success col-2"><i
+                                class="fas fa-arrow-left"></i> Atrás</a>
                     </div>
                     <!--Fin del footer del contenido-->
-
 
 
             </form>

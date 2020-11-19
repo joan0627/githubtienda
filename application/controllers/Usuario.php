@@ -21,19 +21,21 @@ class Usuario extends CI_controller
 
 
 		//Validaciones para los campos de la tabla Usuario
+	//	$this->form_validation->set_rules('username', 'nombre de usuario', 'required|is_unique[usuario.nombreUsuario]');
 		$this->form_validation->set_rules('nombre', 'nombre completo', 'required');
 		$this->form_validation->set_rules('celular', 'celular', 'required');
-		$this->form_validation->set_rules('rol', 'rol', 'required');
+	
 	}
 
 	public function index()
-
-
 	{
 
-	
-
 		$buscar = $this->input->get("buscar");
+
+		if($buscar == 'Habilitado' || $buscar == 'habilitado')
+		{
+			$buscar=1;
+		}
 
 		$datosUsuario['resultado'] = $this->Model_usuario->BuscarDatos($buscar);
 
@@ -53,7 +55,7 @@ class Usuario extends CI_controller
 		$this->form_validation->set_rules('username', 'nombre de usuario', 'required|is_unique[usuario.nombreUsuario]');
 		$this->form_validation->set_rules('contrasena', 'contraseña', 'required|min_length[8]');
 		$this->form_validation->set_rules('confirmarcontrasena', 'confirmar contraseña', 'required|min_length[8]|matches[contrasena]');
-
+		$this->form_validation->set_rules('rol', 'rol', 'required');
 
 		$datosCarga['idRoles'] = $this->Model_usuario->BuscarRoles();
 		
@@ -66,7 +68,7 @@ class Usuario extends CI_controller
 			
 			$datosUsuario["nombre"] =ucwords(strtolower($this->input->post("nombre")));
 			$datosUsuario["celular"] = $this->input->post("celular");
-			$datosUsuario["nombreUsuario"] = $this->input->post("username");
+			$datosUsuario["nombreUsuario"] = strtolower($this->input->post("username"));
 			$datosUsuario["contrasena"] = md5($this->input->post("contrasena"));
 			$datosUsuario["idRol"] = $this->input->post("rol");
 			$datosUsuario["estado"] = true;
@@ -101,34 +103,67 @@ class Usuario extends CI_controller
 
 	public function actualizar($idUsuario = "")
 	{
-		if($this->form_validation->run())
+
+
+		$comprobacion= $this->Model_usuario->BuscarUsuario($idUsuario);
+
+		if($comprobacion)
 		{
-			$datosUsuario["nombre"] =ucwords(strtolower($this->input->post("nombre")));	
-			$datosUsuario["celular"] = $this->input->post("celular");
-			$datosUsuario["nombreUsuario"] = $this->input->post("username");
-			//$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
-			$datosUsuario["idRol"] = $this->input->post("rol");
-			$datosUsuario["estado"] = $this->input->post("estado");
 
-			$this->Model_usuario->actualizarUsuario( $idUsuario,$datosUsuario);
-
-			$this->session->set_flashdata('actualizar', 'El usuario ' .$datosUsuario["nombreUsuario"].' se ha actualizado correctamente.');
-
+			if($this->form_validation->run())
+			{
+				$datosUsuario["nombre"] =ucwords(strtolower($this->input->post("nombre")));	
+				$datosUsuario["celular"] = $this->input->post("celular");
+				$NombreCompleto = $this->input->post("username");
+				//$datosUsuario["contrasena"] = password_hash($this->input->post("contrasena"),PASSWORD_DEFAULT);
+				$datosUsuario["idRol"] = $this->input->post("rol");
+				
+	
+				$this->Model_usuario->actualizarUsuario( $idUsuario,$datosUsuario);
+	
+				$this->session->set_flashdata('actualizar', 'El usuario ' .$NombreCompleto.' se ha actualizado correctamente.');
+	
+				
+				redirect("usuario");
+			}
+			else
+			{
+				
+				if($idUsuario == 67)
+				{
+					
+					$this->session->set_flashdata('deny', 'No tiene permisos para editar este usuario.');
+					redirect("usuario");
+				}
+				else
+				{
+					$datosUsuario1 = $this->Model_usuario->buscarDatosUsuario($idUsuario);
+					//Esta es la vista que carga los datos de los input
+					$data['clave']= $datosUsuario1;
+	   
+					$this->load->view('layouts/superadministrador/header');
+					$this->load->view('layouts/superadministrador/aside');
+					$this->load->view('superadministrador/formularios/actualizarUsuario_view',$data);
+					$this->load->view('layouts/footer');
+	
+				}
 			
-			redirect("usuario");
+			}
+			
+	
+
 		}
 		else
 		{
-			$datosUsuario1 = $this->Model_usuario->buscarDatosUsuario($idUsuario);
-			 //Esta es la vista que carga los datos de los input
-			 $data['clave']= $datosUsuario1;
 
-			 $this->load->view('layouts/superadministrador/header');
-			 $this->load->view('layouts/superadministrador/aside');
-			 $this->load->view('superadministrador/formularios/actualizarUsuario_view',$data);
-			 $this->load->view('layouts/footer');
-		}
+			$this->load->view('layouts/superadministrador/header');
+			$this->load->view('layouts/superadministrador/aside');
+			$this->load->view('errors/pagina404_view');
+			$this->load->view('layouts/footer');
+	
 		
+		}
+
 
 	}
 
@@ -154,12 +189,6 @@ class Usuario extends CI_controller
 		}
 	}
 
-	public function borrar($documento = null)
-	{
-		$this->model_usuario->borrar($documento);
-		redirect("usuario/listado");
-	}
-
 
 	public function perfilusuariosu()
 	{
@@ -169,6 +198,29 @@ class Usuario extends CI_controller
 		$this->load->view('layouts/footer');
 	}
 
+
+
+	public function estadoUsuario(){
+
+		$idUsuario =$this->input->post("idUsuario");
+		$estado =$this->input->post("estado");
+
+		if($this->session->userdata("idUsuario")==$idUsuario or	 $idUsuario==67) 
+		{
+			$data['deny']=false;
+			echo json_encode($data);
+
+		}
+		else
+		{
+			$data['deny']=true;
+			echo json_encode($data);
+			$this->Model_usuario->actualizarEstado( $idUsuario, $estado);
+		}
+
+		
+
+	}
 	/* Fin de métodos del rol de Super Administrador */
 
 

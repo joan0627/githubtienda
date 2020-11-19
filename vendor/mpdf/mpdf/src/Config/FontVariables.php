@@ -109,6 +109,11 @@ class FontVariables
 					'useOTL' => 0xFF,
 					'useKashida' => 75,
 				],
+				"pasion" => [
+					'R' => "PassionOne-Regular.ttf",
+					
+		
+				],
 				"dejavuserif" => [
 					'R' => "DejaVuSerif.ttf",
 					'B' => "DejaVuSerif-Bold.ttf",

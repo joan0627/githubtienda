@@ -73,13 +73,24 @@ class Compra extends CI_controller
 	}
 
 
-	public function busqueda(){
-		
-	}
+	public function proveedormarca()
+	{
+	
+		$proveedor= $this->input->post("proveedor");
+		$buscar = '';
+		$datosCarga["data"] = [];
+		//$datosCarga['data'] = $this->Model_producto->buscarproductosmarca($proveedor);
+		$datosCarga['data'] = $this->Model_producto->buscarproductosmarca($proveedor);
+
+		echo json_encode($datosCarga);
+	
+	
+	}	
 
 	public function registro()
 	{
 
+	
 
 			$resultado = $this->Model_compra->obtenerId();
 			$resultado1 = $this->Model_proveedor->BuscarTodosProveedor();
@@ -93,7 +104,7 @@ class Compra extends CI_controller
 			$datosCarga['Productos']= $resultado2;
 
 			$datosCarga['Proveedores'] = $this->Model_proveedor->BuscarTodosProveedor();
-			$datosCarga['Productos'] = $this->Model_producto->BuscarDatos($buscar);
+			
 
 
 			$datosCarga["idCompras"] = $datosCarga["documentoProveedor"] = $datosCarga["facturaProveedor"] = $datosCarga["fechaRegistroCompra"] = "";
@@ -168,7 +179,7 @@ class Compra extends CI_controller
 	$datosCompra["idCompras"] = $this->input->post("codigoCompra");
 	//Guardar el detalle
 	$_idCompra=$datosCompra["idCompras"];
-	$_codigo=$this->input->post('codigo');;
+	$_codigo=$this->input->post('codigo');
 	$_cantidad= $this->input->post('cantidad');
 	$_costo= $this->input->post('costo');
 	$_iva= $this->input->post('iva');
@@ -198,6 +209,37 @@ class Compra extends CI_controller
 	}
 
 
+	public function Informe($idCompra)
+	{
+	
+		$consulta['encabezado']=$this->Model_compra->buscarDatosEncabezado($idCompra);
+        $consulta['detalle']=$this->Model_compra->buscarCompraDetalle($idCompra);
+	
+    
+        $stylesheet = file_get_contents('assets/plugins/bootstrap/css/bootstrap.min.css');
+        $stylesheet .= file_get_contents('assets/css/invoice.css');
+      //  $stylesheet .= file_get_contents('assets/css/compra.css');
+    
+
+		$mpdf = new \Mpdf\Mpdf();
+		
+		// $mpdf->SetProtection(array('print'));
+			//$mpdf->SetTitle("Acme Trading Co. - Invoice");
+		// $mpdf->SetAuthor("Acme Trading Co.");
+		/*$mpdf->SetWatermarkText("Paid");
+		$mpdf->showWatermarkText = true;
+		$mpdf->watermark_font = 'DejaVuSansCondensed';
+		$mpdf->watermarkTextAlpha = 0.1;*/
+		$mpdf->SetDisplayMode('fullpage');
+		$html=$this->load->view('superadministrador/informes/compra_view',$consulta,TRUE);
+		$mpdf->WriteHTML($stylesheet,1);
+		
+		$mpdf->WriteHTML($html,2);
+		
+		$mpdf->Output();
+
+	}
+
 	
 	public function anular(){
 
@@ -208,6 +250,8 @@ class Compra extends CI_controller
 
 		
 	}	
+
+
 
 	
 

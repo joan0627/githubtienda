@@ -31,7 +31,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form id="form_proveedor" role="form" method="POST" >
+            <form id="form_proveedor" >
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -60,7 +60,7 @@
                                     <?php endif;?>
                                     <?php endforeach;?>
                                     <?php else:
-    foreach ($idTiposDocumentos as $clave => $valor): ?>
+                                     foreach ($idTiposDocumentos as $clave => $valor): ?>
                                     <option value="" selected hidden>-Seleccione un tipo de documento-</option>;
                                     <option value=" <?php echo $valor->idTipoDocumento; ?>">
                                         <?php echo $valor->descripcion; ?></option>
@@ -78,7 +78,7 @@
 
                                 <label>Documento</label> <label style="color: red;"> * </label>
                                 <input id="documentoProveedor" name="documento" type="text" class="form-control "
-                                    placeholder="Ingrese el documento " value="<?php echo $documento; ?>">
+                                    placeholder="Ingrese el documento " value="<?php if (isset($documento)){echo $documento;  } else echo $documento; ?>">
                                 <?php echo form_error('documento', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -91,6 +91,8 @@
                                 <label>Nombre</label> <label style="color: red;"> *</label>
                                 <input id="nombreP" name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
                                     value="<?php echo $nombre; ?>">
+                              
+
                                 <?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -206,7 +208,7 @@
 
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
-                            id="registroProveedor" class="btn btn-success col-2">Registrar</button>
+                            id="registroProveedor" class="btn btn-success col-2">Registrar </button>
                             
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
                             href="<?php echo base_url(); ?>proveedor" id="botonAtras"

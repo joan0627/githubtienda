@@ -44,6 +44,7 @@
 <script src="<?php echo base_url(); ?>assets/js/servicio.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/configuracion.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/compra.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/usuario.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/formatos.js"></script>
 
 </body>

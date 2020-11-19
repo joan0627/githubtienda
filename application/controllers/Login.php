@@ -85,9 +85,9 @@ public function __construct()
 						'idRol'=>$res->idRol,
 						'login'=>TRUE);
 			
-						if($data["estado"]==2)
+						if($data["estado"]==0)
 						{
-							$this->session->set_flashdata('authiniciosesioninv','Usuario inactivo. Por favor póngase en contacto con el administrador.');
+							$this->session->set_flashdata('authiniciosesioninv','Usuario deshabilitado. Por favor póngase en contacto con el administrador.');
 							redirect(base_url()."login");
 						}
 						else

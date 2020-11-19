@@ -1,0 +1,184 @@
+
+table.invoicedetail {
+	font-family: Arial, Helvetica, sans-serif;
+	border: 1px solid #000000;
+	background-color: #EEEEEE;
+	width: 100%;
+	/*text-align: center;*/
+	border-collapse: collapse;
+  }
+  table.invoicedetail td, table.invoicedetail th {
+	border: 1px solid #6caf7bef;
+	padding: 10px 10px;
+  }
+  table.invoicedetail tbody td {
+	font-size: 14px;
+	color: #000000;
+  }
+  table.invoicedetail tr:nth-child(even) {
+	background: #CBCBCB;
+  }
+ 
+  table.invoicedetail thead tr  {
+	background: #28a746ef;
+	border-bottom: 0px solid #1D1D1D;
+  }
+  table.invoicedetail thead th {
+	font-size: 14px;
+	font-weight: bold;
+	color:#d4d7dbab;
+	text-align: center;
+  }
+ 
+  table.invoicedetail tfoot {
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	background: #B2B2B2;
+	border-top: 0px solid #444444;
+  }
+  table.invoicedetail tfoot td {
+	font-size: 14px;
+	background: #ffffff;
+	
+  }
+
+  #notices .notice {
+	color: #5D6975;
+	font-size: 1.2em;
+	border: 1px solid #6caf7bef;
+	
+  }
+
+  .secciontitulo
+  {
+	text-align: center;
+	margin: 1rem;
+	padding: 1rem;
+	
+
+  }
+  
+  .titulo
+  {
+	font-size: 30px;
+	color:  #28a746ef;
+	font-family: 'pasion';
+	
+  }
+
+  .fecha
+  {
+	  color: #5D6975;
+	  font-size: 12px;
+  }
+  
+  .decorado{
+	border-top: 1px solid  #5D6975;
+	border-bottom: 1px solid  #5D6975;
+	width: 300px;
+	line-height: 1.4em;
+	text-align: center;
+	margin: 0 0 20px 0;
+	background: url(assets/img/dimension.png);
+  }
+.invoice-box {
+	max-width: 100%;
+	width: 100%;
+	font-size: 16px;
+	line-height: 24px;
+	font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+	color: #555;
+
+}
+
+
+.invoice-box  .encabezado {
+	
+	font-size: 10px;
+	color:  #28a746ef;
+
+	/* IMPORTANTE */
+	text-align: center !;
+
+}
+
+.invoice-box table {
+	width: 100%;
+	line-height: inherit;
+	text-align: left;
+}
+
+.invoice-box table td {
+	padding: 5px;
+	vertical-align: top;
+}
+
+.invoice-box table tr td:nth-child(2) {
+	text-align: right;
+}
+
+.invoice-box table tr.top table td {
+	padding-bottom: 20px;
+}
+
+.invoice-box table tr.top table td.title {
+	font-size: 45px;
+	line-height: 45px;
+	color: #28a746ef;
+}
+
+.invoice-box table tr.information table td {
+	padding-bottom: 40px;
+	color: #5D6975;
+	font-size: 12px;
+	
+	
+}
+
+.invoice-footer{
+    padding:15px;
+	font-size: 12px;
+    text-align:center;
+    color:#999;
+  }
+
+.invoice-box table tr.heading td {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	font-weight: bold;
+}
+
+.invoice-box table tr.details td {
+	padding-bottom: 20px;
+}
+
+.invoice-box table tr.item td{
+	border-bottom: 1px solid #eee;
+}
+
+.invoice-box table tr.item.last td {
+	border-bottom: none;
+}
+
+.invoice-box table tr.total td:nth-child(2) {
+	border-top: 2px solid #eee;
+	font-weight: bold;
+}
+
+
+
+/** RTL **/
+.rtl {
+	direction: rtl;
+	font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
+
+.rtl table {
+	text-align: right;
+}
+
+.rtl table tr td:nth-child(2) {
+	text-align: left;
+}
+
