@@ -29,7 +29,10 @@
 		       Lo sentimos, pero esta página no está disponible.
           </p>
           <br>
-           <img style="width:100%; max-width:350px;" src="<?php echo base_url();?>assets/img/iconos/404.png">
+          <div style="text-align:center;">
+          <img style="width:100%; max-width:350px; " src="<?php echo base_url();?>assets/img/iconos/404.png">
+
+          </div>
 
      
         </div>
