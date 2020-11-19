@@ -116,7 +116,6 @@
                     </table>
 
 
-
                     <hr>
 
                     <!--Fin del card body-->
@@ -131,7 +130,7 @@
                             action="confirmEdit" class="btn btn-success col-2">Registrar</button>
 
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
-                            href="<?php echo base_url();?>/cliente" id="botonAtras"
+                            href="<?php echo base_url();?>cliente" id="botonAtras"
                             class="btn btn-success col-2">Atrás</a>
 
 
@@ -211,7 +210,7 @@
                                                     <option value="" selected hidden>-Seleccione la raza de mascota-
                                                     </option>;
                                                     <option value="<?php echo  $valor->idraza; ?>">
-                                                        <?php echo  $valor->descripcion; ?></option>
+                                                        <?php echo  $valor->descripcionRaza; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
 
@@ -315,7 +314,8 @@
                                                 <label>Observaciones</label>
                                                 <textarea id="observacionesM" name="observacionesM" class="form-control"
                                                     rows="3" placeholder="Ingrese una observación..."
-                                                    name="obs"></textarea>
+                                                    name="obs" maxlength="150"></textarea>
+                                                    <div style="color: gray;" class="contadorR text-right"><span  id="contadorR"></span><span>/150</span></div>
                                             </div>
                                         </div>
 

@@ -27,11 +27,34 @@ class Cliente extends CI_controller
 
 	public function index()
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/listadoClientes_view');
-		$this->load->view('layouts/footer');
+
+
+		  	$buscar = $this->input->get("buscar");
+
+			$datosCliente['resultado'] = $this->Model_cliente->ListarDatosCliente($buscar);
+
+			
 		
+		
+			
+			
+
+			$this->load->view('layouts/superadministrador/header');
+			$this->load->view('layouts/superadministrador/aside');
+			$this->load->view('superadministrador/general/listadoClientes_view',$datosCliente);
+			$this->load->view('layouts/footer');
+		
+	}
+
+	function numEstadoMascotas(){
+
+		$documento = $this->input->post("documento");
+
+		$data = $this->Model_cliente->Estadomascotas($documento);
+
+		echo json_encode($data);
+
+
 	}
 
 	
@@ -42,8 +65,6 @@ class Cliente extends CI_controller
 		$datosCarga['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
 		$datosCarga['idTiposDocumentos'] = $this->Model_proveedor->BuscarTiposDocumentos();
 
-		$resultado = $this->Model_cliente->obtenerId();
-		$datosCarga['clave']= $resultado;
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
@@ -61,6 +82,7 @@ class Cliente extends CI_controller
 		$celular  = $this->input->post("celular");
 		$direccion  = $this->input->post("direccion");
 		$correo = $this->input->post("correo");
+		$numMascotas = $this->input->post("numMascotas");
 		
 
 
@@ -72,6 +94,7 @@ class Cliente extends CI_controller
 			 'celular' => $celular,
 			 'direccion' => $direccion,
 			 'correo' => $correo,
+			 'numMascotas' => $numMascotas,
 
 		);
 
@@ -101,19 +124,18 @@ class Cliente extends CI_controller
 
 
 		$datosMascota= array(
-			'idMascota' => '',
-			'idTipoMascota' => $tipoMascota,
+			 'idMascota' => '',
+			 'idTipoMascota' => $tipoMascota,
 			 'nombreMascota' => $nombreM,
 			 'idraza' => $raza,
 			 'sexo' => $sexo,
 			 'fechaCumpleanos' => $cumpleanos,
 			 'observaciones' => $observaciones,
-			// 'unidad' => $unidadMedida,
+			 
 			 'peso' => $peso,
 			 'edad' => $edad,
-			 'estado' => $estado,
-			 
-			// 'tiempoM' => $tiempo,
+			 'idUnidadMedida' => $unidadMedida,
+			 'tiempo' => $tiempo,
 
 										
 		);
@@ -145,24 +167,174 @@ class Cliente extends CI_controller
 
 
 
-	public function actualizar()
+	public function actualizar($id = "")
 	{
+
+		$data['cliente'] = $this->Model_cliente->buscarDatosCliente($id);
+		$data['idTiposDocumentos'] = $this->Model_proveedor->BuscarTiposDocumentos();
+
+		$data['tipomascotas'] = $this->Model_cliente->TipoMascota();
+		$data['razas'] = $this->Model_cliente->raza();
+		$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
+
+		
+		
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/actualizarCliente_view');
+		$this->load->view('superadministrador/formularios/actualizarCliente_view',$data);
+		$this->load->view('layouts/footer');
+		
+		
+	}
+	
+	public function detalleCliente($id = "")
+	{
+
+		$data['cliente'] = $this->Model_cliente->buscarDatosCliente($id);
+		$data['idTiposDocumentos'] = $this->Model_proveedor->BuscarTiposDocumentos();
+
+		$data['tipomascotas'] = $this->Model_cliente->TipoMascota();
+		$data['razas'] = $this->Model_cliente->raza();
+		$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
+
+		$this->load->view('layouts/superadministrador/header');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/formularios/verdetalleCliente_view',$data);
 		$this->load->view('layouts/footer');
 		
 		
 	}
 
-	public function verdetalleclientesu()
+	public function llenarVerdetalle()
 	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/verdetalleCliente_view');
-		$this->load->view('layouts/footer');
-		
+		$documento = $this->input->post("documento");
+
+		$data['data'] = $this->Model_cliente->buscarTabladetalle($documento);
+	
+		echo json_encode($data);
 	}
+
+
+
+
+	public function llenardetalle()
+	{
+		$documento = $this->input->post("documento");
+
+		$data['data'] = $this->Model_cliente->buscarTabladetalle($documento);
+	
+		echo json_encode($data);
+	}
+
+
+	public function actualizar_mascota(){
+		$idMascota = $this->input->post("idMascota");
+		$tipoMascota = $this->input->post("tipomascota");
+		$nombreM = $this->input->post("nombreM");
+		$raza  = $this->input->post("raza");
+		$sexo  = $this->input->post("sexo");
+		$cumpleanos = $this->input->post("cumpleanos");
+		$observaciones = $this->input->post("observaciones");
+		$unidadMedida  = $this->input->post("unidadMedida");
+		$peso  = $this->input->post("peso");
+		$edad = $this->input->post("edad");
+		$tiempo = $this->input->post("tiempo");
+	
+
+		$datosActualizarMascota= array(
+			//'idMascota' => '',
+			'idTipoMascota' => $tipoMascota,
+			'nombreMascota' => $nombreM,
+			'idraza' => $raza,
+			'sexo' => $sexo,
+			'fechaCumpleanos' => $cumpleanos,
+			'observaciones' => $observaciones,
+			'peso' => $peso,
+			'edad' => $edad,
+			'idUnidadMedida' => $unidadMedida,
+			'tiempo' => $tiempo,
+
+									   
+	   );
+
+
+	   $this->Model_cliente->ActualizarMascota( $idMascota, $datosActualizarMascota);
+
+	}
+
+
+	public function Actualizar_cliente (){
+		$documento =$this->input->post("documentoC");
+		$nombre = $this->input->post("nombreClienteA");
+		$telefono = $this->input->post("telefonoClienteA");
+		$celular = $this->input->post("celularClienteA");
+		$direccion  = $this->input->post("direccionClienteA");
+		$correo  = $this->input->post("correoclienteA");
+
+
+		$consultaM=$this->Model_cliente->consultaNumMascotas($documento);
+
+		$consultaM = $consultaM["numMascotas"];
+
+	
+
+		$datosActualizarCliente= array(
+		
+			'nombre' => $nombre,
+			'telefono' => $telefono,
+			'celular' => $celular,
+			'direccion' => $direccion,
+			'correo' => $correo,
+			'numMascotas' => $consultaM,
+									   
+		);
+
+		   
+		$this->Model_cliente->ActualizarCliente( $documento, $datosActualizarCliente);
+
+	}
+
+	public function actualizar_numMascotas(){
+		
+		$numMascotas = $this->input->post("numMascotas");
+		$documentoC = $this->input->post("documentoC");
+
+		$consultaM=$this->Model_cliente->consultaNumMascotas($documentoC);
+
+		$consultaM = $consultaM["numMascotas"] + $numMascotas;
+
+
+		$this->Model_cliente->actualizarNumMascotas($documentoC,$consultaM);
+
+
+		
+
+	}
+
+	public function actualizar_estado(){
+
+		$idMascota =$this->input->post("idMascota");
+		$estado =$this->input->post("estado");
+
+		 echo $idMascota;
+		 echo $estado;
+
+		$this->Model_cliente->ActualizaEstado( $idMascota, $estado);
+
+	}
+
+	public function estado_cliente(){
+
+		$documentoC =$this->input->post("documento");
+		$estadoC =$this->input->post("estado");
+
+		$this->Model_cliente->ActualizaEstadoCliente( $documentoC, $estadoC);
+
+	}
+
+
+
+
 
 	public function historialcliente()
 	{

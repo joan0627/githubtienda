@@ -22,3 +22,12 @@ p.error {
    } 
 
 
+   .isDisabled {
+    pointer-events: none !important;
+    cursor: default !important;
+    background-color:#8a8a8a !important; 
+    border-color:#8a8a8a !important;
+
+  }
+
+

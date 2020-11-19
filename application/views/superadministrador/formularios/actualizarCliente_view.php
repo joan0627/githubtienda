@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Clientes</a></li>
+                        <li class="breadcrumb-item"><a href="#">Cliente</a></li>
                         <li class="breadcrumb-item active">Actualizar</li>
                     </ol>
                 </div>
@@ -31,7 +31,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form" method="POST">
+            <form role="form" id="FormActualizarCliente" method="POST">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -39,14 +39,14 @@
                             <div class="form-group">
 
                                 <label>Tipo de documento</label> <label style="color: red;"> *</label>
-                                <select name="tipoDocumento" class="form-control">
+                                <select readonly="readonly" name="tipoDocumento" class="form-control">
 
-                                    <option hidden selected>Cédula de ciudadanía</option>
-                                    <option value="1">Cédula de ciudadanía</option>
-                                    <option value="2">Cédula de extranjería</option>
-                                    <option value="3">Pasaporte</option>
-                                    <option value="4">Tarjeta de identidad</option>
-                                    <option value="5">Registro civil</option>
+                                    <?php foreach ($idTiposDocumentos as $clave => $valor): ?>
+                                    <option value="" selected hidden><?php  echo $cliente['descripcion']; ?></option>;
+                                    <option value=" <?php echo $valor->idTipoDocumento; ?>">
+                                        <?php echo $valor->descripcion; ?></option>
+
+                                    <?php endforeach;?>
                                 </select>
 
                             </div>
@@ -55,8 +55,10 @@
                             <div class="form-group">
 
                                 <label>Documento</label> <label style="color: red;"> * </label>
-                                <input name="documento" type="text" class="form-control "
-                                    placeholder="Ingrese el documento " value="">
+                                <input readonly="readonly" id="documentoClienteA" name="documento" type="text"
+                                    class="form-control " placeholder="Ingrese el documento "
+                                    value="<?php  echo $cliente['documento']; ?>">
+
                             </div>
                         </div>
                     </div>
@@ -66,16 +68,16 @@
 
                             <div class="form-group">
                                 <label>Nombre completo</label> <label style="color: red;"> *</label>
-                                <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
-                                    value="">
+                                <input id="nombreClienteA" name="nombreClienteA" type="text" class="form-control" placeholder="Ingrese el nombre"
+                                    value="<?php  echo $cliente['nombre']; ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
                                 <label>Teléfono</label>
-                                <input name="telefono" type="text" class="form-control"
-                                    placeholder="Ingrese el teléfono" value="">
+                                <input id="telefonoClienteA" name="telefonoClienteA" type="text" class="form-control"
+                                    placeholder="Ingrese el teléfono" value="<?php  echo $cliente['telefono']; ?>">
                             </div>
                         </div>
                     </div>
@@ -83,16 +85,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Celular</label> <label style="color: red;"> *</label>
-                                <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular"
-                                    value="">
+                                <input id="celularClienteA" name="celularClienteA" type="text" class="form-control" placeholder="Ingrese el celular"
+                                    value="<?php  echo $cliente['celular']; ?>">
                             </div>
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Dirección</label>
-                                <input name="direccion" type="text" class="form-control"
-                                    placeholder="Ingrese la dirección" value="">
+                                <input id="direccionClienteA" name="direccionClienteA" type="text" class="form-control"
+                                    placeholder="Ingrese la dirección" value="<?php  echo $cliente['direccion']; ?>">
                             </div>
                         </div>
                     </div>
@@ -100,8 +102,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Correo</label>
-                                <input name="correo" type="email" class="form-control" placeholder="Ingrese el correo"
-                                    value="">
+                                <input id="correoClienteA" name="correoClienteA" type="email" class="form-control" placeholder="Ingrese el correo"
+                                    value="<?php  echo $cliente['correo']; ?>">
                             </div>
 
                         </div>
@@ -111,9 +113,33 @@
                     <hr>
 
 
-                    <table id="ActualizarTablaDetalleMascota" class=" table table-striped ">
+                    <table id="ActualizarTablaDetalleMascota" class=" table table-striped " style="width:100%">
+
+                        <thead>
+                            <tr>
+
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                <th>Raza</th>
+                                <th>Sexo</th>
+                                <th style='width:15% !important ;'>Peso</th>
+                                <th>Cumpleaños</th>
+                                <th style='width:15% !important ;'>Edad</th>
+                                <th style='width:30% !important ;'>Observación</th> 
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                                <th>idMascota</th>
 
 
+
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tfoot>
+                        </tfoot>
                     </table>
 
 
@@ -126,13 +152,21 @@
                     <!--Inicio del footer del contenido-->
 
 
-                    <div class="card-footer">
+                    <div class="text-center card-footer">
 
 
-                        <button id="botonActualizarCliente" class="btn btn-success col-2">Actualizar</button>
-                        <a href="listaclientesu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
+
+                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
+                            id="botonActualizarCliente" action="confirmEdit"
+                            class="btn btn-success col-2">Actualizar</button>
+
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
+                            href="<?php echo base_url();?>cliente" id="botonAtras"
+                            class="btn btn-success col-2">Atrás</a>
+
 
                     </div>
+
 
 
 
@@ -156,7 +190,7 @@
                         <div class="card  card-success">
                             <!-- Incio Caja superior -->
                             <div class="card-header">
-                                <h3 class="card-title">Registro de mascotas </h3>
+                                <h3 id="nameEtiqueta" class="card-title">Registro de mascotas </h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -164,19 +198,27 @@
                             </div> <!-- Fin Caja superior -->
 
                             <!-- Inicio form -->
-                            <form id="formMascota">
+                            <form id="FormActualizarMascota">
                                 <!--Inicio del card body-->
                                 <div class="card-body ">
                                     <div class="row">
 
 
+                                        <div hidden class="col-md-2">
+                                            <div class="form-group">
 
+                                                <label>id</label> <label style="color: red;"> * </label>
+                                                <input id="idActualizar" name="idAcualizarM" type="text"
+                                                    class="form-control " placeholder="Ingrese el nombre ">
+                                            </div>
+                                        </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
 
                                                 <label>Tipo de mascota</label> <label style="color: red;"> *</label>
-                                                <select id="tipoMascota" name="tipoMascota" class="form-control">
+                                                <select id="tipoMascotaActualizar" name="tipoMascotaActualizar"
+                                                    class="form-control">
                                                     <?php foreach ($tipomascotas as $clave => $valor) : ?>
                                                     <option value="" selected hidden>-Seleccione el tipo de mascota-
                                                     </option>;
@@ -193,8 +235,8 @@
                                             <div class="form-group">
 
                                                 <label>Nombre</label> <label style="color: red;"> * </label>
-                                                <input id="nombreM" name="nombreM" type="text" class="form-control "
-                                                    placeholder="Ingrese el nombre ">
+                                                <input id="nombreActualizar" name="nombreActualizar" type="text"
+                                                    class="form-control " placeholder="Ingrese el nombre ">
                                             </div>
                                         </div>
                                     </div>
@@ -205,14 +247,14 @@
                                             <div class="form-group ">
 
                                                 <label>Raza</label> <label style="color: red;"> *</label>
-                                                <select id="razaM" name="razaM" class="form-control select2bs4"
-                                                    style="width: 100%;">
+                                                <select id="razaActualizar" name="razaActualizar"
+                                                    class="form-control select2bs4" style="width: 100%;">
 
                                                     <?php foreach ($razas as $clave => $valor) : ?>
                                                     <option value="" selected hidden>-Seleccione la raza de mascota-
                                                     </option>;
                                                     <option value="<?php echo  $valor->idraza; ?>">
-                                                        <?php echo  $valor->descripcion; ?></option>
+                                                        <?php echo  $valor->descripcionRaza; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
 
@@ -223,7 +265,7 @@
                                             <div class="form-group">
 
                                                 <label>Sexo</label> <label style="color: red;"> *</label>
-                                                <select id="sexoM" name="sexoM" class="form-control">
+                                                <select id="sexoActualizar" name="sexoActualizar" class="form-control">
 
                                                     <option value="" hidden selected>-Seleccione el sexo de la mascota-
                                                     </option>
@@ -241,7 +283,7 @@
 
                                             <div class="form-group">
                                                 <label>Peso</label><label style="color: red;">*</label>
-                                                <input id="pesoM" name="pesoM" type="number" min="0"
+                                                <input id="pesoActualizar" name="pesoActualizar" type="number" min="0"
                                                     class="form-control" placeholder="Ingrese el peso">
                                             </div>
                                         </div>
@@ -249,8 +291,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Unidad de medida</label> <label style="color: red;">*</label>
-                                                <select id="unidadM" name="unidadMascota" class="form-control "
-                                                    style="width: 100%;">
+                                                <select id="unidadActualizar" name="unidadActualizar"
+                                                    class="form-control " style="width: 100%;">
 
                                                     <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
                                                     <option value="" selected hidden>-Seleccione una unidad de medida-
@@ -274,8 +316,8 @@
                                                         <span class="input-group-text"><i
                                                                 class="far fa-calendar-alt"></i></span>
                                                     </div>
-                                                    <input id="cumpleanosM" name="cumpleanosM" type="date"
-                                                        class="form-control">
+                                                    <input id="cumpleanosActualizar" name="cumpleanosActualizar"
+                                                        type="date" class="form-control">
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -284,8 +326,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Edad</label><label style="color: red;">*</label>
-                                                <input id="edadM" name="edadM" type="number" class="form-control"
-                                                    placeholder="Ingrese la edad">
+                                                <input id="edadActualizar" name="edadActualizar" type="number"
+                                                    class="form-control" placeholder="Ingrese la edad">
                                             </div>
                                         </div>
 
@@ -298,8 +340,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tiempo</label> <label style="color: red;"> *</label>
-                                                <select id="tiempoM" name="tiempoM" class="form-control "
-                                                    style="width: 100%;">
+                                                <select id="tiempoActualizar" name="tiempoActualizar"
+                                                    class="form-control " style="width: 100%;">
                                                     <option value="" selected="selected">-Seleccione el tiempo de edad-
                                                     </option>
                                                     <option>Dia(s)</option>
@@ -314,9 +356,10 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Observaciones</label>
-                                                <textarea id="observacionesM" name="observacionesM" class="form-control"
-                                                    rows="3" placeholder="Ingrese una observación..."
-                                                    name="obs"></textarea>
+                                                <textarea id="observacionesActualizar" name="observacionesActualizar"
+                                                    class="form-control" rows="3"
+                                                    placeholder="Ingrese una observación..."  maxlength="150" ></textarea>
+                                                    <div style="color: gray;" class="contador text-right"><span  id="contador"></span><span>/150</span></div>
                                             </div>
                                         </div>
 
@@ -332,10 +375,11 @@
 
 
                                 <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
-                                    id="btnAnadirMascota" action="addFila" class="btn btn-success col-2">Añadir</button>
+                                    id="btnActualizarAnadirMascota" action="confirmEdit"
+                                    class="btn btn-success col-2">Añadir</button>
 
                                 <button style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
-                                    data-dismiss="modal" id="botonCancelarMascota"
+                                    data-dismiss="modal" id="botonCancelarMascotaA"
                                     class="btn btn-success col-2">Cancelar</button>
 
 
