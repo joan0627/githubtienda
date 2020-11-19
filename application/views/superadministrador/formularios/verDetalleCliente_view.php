@@ -25,31 +25,40 @@
         <div class="card  card-success">
             <!-- Incio Caja superior -->
             <div class="card-header">
-                <h3 class="card-title">Ver detalle del cliente</h3>
+                <h3 class="card-title">Detalle del cliente</h3>
 
 
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form" method="POST">
+            <form role="form" id="FormActualizarCliente" method="POST">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Tipo de documento</label>
-                                <input name="documento" type="text" class="form-control "
-                                    placeholder="Ingrese el documento " value="Cédula de ciudadania"
-                                    readonly="readonly">
+                                <label>Tipo de documento</label> <label style="color: red;"> *</label>
+                                <select disabled name="tipoDocumento" class="form-control">
+
+                                    <?php foreach ($idTiposDocumentos as $clave => $valor): ?>
+                                    <option value="" selected hidden><?php  echo $cliente['descripcion']; ?></option>;
+                                    <option value=" <?php echo $valor->idTipoDocumento; ?>">
+                                        <?php echo $valor->descripcion; ?></option>
+
+                                    <?php endforeach;?>
+                                </select>
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Documento</label>
-                                <input name="documento" type="text" class="form-control "
-                                    placeholder="Ingrese el documento " value="1001661421" readonly="readonly">
+                                <label>Documento</label> <label style="color: red;"> * </label>
+                                <input disabled id="documentoCDetalle" name="documentoCDetalle" type="text"
+                                    class="form-control " placeholder="Ingrese el documento "
+                                    value="<?php  echo $cliente['documento']; ?>">
+
                             </div>
                         </div>
                     </div>
@@ -58,34 +67,34 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Nombre completo</label>
-                                <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
-                                    value="Carlos Sánchez" readonly="readonly">
+                                <label>Nombre completo</label> <label style="color: red;"> *</label>
+                                <input disabled  type="text" class="form-control"
+                                placeholder="Campo vacío" value="<?php  echo $cliente['nombre']; ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
                                 <label>Teléfono</label>
-                                <input name="telefono" type="text" class="form-control"
-                                    placeholder="Ingrese el teléfono" value="454512512" readonly="readonly">
+                                <input disabled  type="text" class="form-control"
+                                placeholder="Campo vacío" value="<?php  echo $cliente['telefono']; ?>">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Celular</label>
-                                <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular"
-                                    value="3017474883" readonly="readonly">
+                                <label>Celular</label> <label style="color: red;"> *</label>
+                                <input  disabled  type="text" class="form-control"
+                                placeholder="Campo vacío" value="<?php  echo $cliente['celular']; ?>">
                             </div>
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Dirección</label>
-                                <input name="direccion" type="text" class="form-control"
-                                    placeholder="Ingrese la dirección" value="carrera #80" readonly="readonly">
+                                <input disabled  type="text" class="form-control"
+                                placeholder="Campo vacío" value="<?php  echo $cliente['direccion']; ?>">
                             </div>
                         </div>
                     </div>
@@ -93,63 +102,44 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Correo</label>
-                                <input name="correo" type="email" class="form-control" placeholder="Ingrese el correo"
-                                    value="Carlos124@gmail.com" readonly="readonly">
+                                <input disabled  type="email" class="form-control"
+                                    placeholder="Campo vacío" value="<?php  echo $cliente['correo']; ?>">
                             </div>
 
                         </div>
 
                     </div>
 
-                    <table class="table table-bordered">
+                
+                    <br>
+
+                    <table id="tableDetalle" class=" table table-striped " style="width:100%">
+
                         <thead>
                             <tr>
-                                <th style="width: 150px">Tipo de mascota</th>
-                                <th>Nombre de la mascota</th>
-								<th>Raza</th>
-								<th style="width: 40px">Sexo</th>
-                                <th style="width: 40px">Peso</th>
-								<th>Cumpleaños</th>
-								<th >Edad</th>
-								<th>Observaciones</th>
-								<th class="text-center">Estado</th>
-                            </tr>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Perro</td>
-                                <td>Bruno</td>
-                                <td>
-                                    <div class="">Pitbull
-                                        
-                                    </div>
-								</td>
-								<td><span class="">Macho</span></td>
-                                <td><span class="">30KG</span></td>
-								<td><span class="">01/22/2015</span></td>
-								<td><span class="">5 años</span></td>
-								<td><span class="">Ninguna</span></td>
-								<td class="text-center"><span class=" badge badge-success ">Activo</span></td>
-                            </tr>
-                            <tr>
-                                <td>Gato</td>
-                                <td>Muñeca</td>
-                                <td>
-                                    <div class="">Angora
-                                       
-                                    </div>
-								</td>
-									<td><span class="">Hembra</span></td>
-                                <td><span class="">5KG</span></td>
-								<td><span class="">31/10/2017</span></td>
-								<td><span class="">3 años</span></td>
-								<td><span class="">Ninguna</span></td>
-								<td class="text-center"><span class="badge badge-danger ">Eliminado</span></td>
+
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                <th>Raza</th>
+                                <th>Sexo</th>
+                                <th style='width:15% !important ;'>Peso</th>
+                                <th>Cumpleaños</th>
+                                <th style='width:15% !important ;'>Edad</th>
+                                <th style='width:15% !important ;'>Observación</th>
+                                <th style="text-align:center;">Estado</th>
+                           
+            
                             </tr>
 
-                        </tbody>
+                        </thead>
+
+
+                        <tfoot>
+                        </tfoot>
                     </table>
+
+
+
 
 
                     <!--Fin del card body-->
@@ -157,18 +147,19 @@
                     <!--Inicio del footer del contenido-->
 
 
+                    <div class="text-center card-footer">
 
-                    <div class="card-footer">
 
-
-					<a href="listaclientesu" id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
+                            href="<?php echo base_url();?>cliente" id="botonAtras"
+                            class="btn btn-success col-2">Atrás</a>
 
 
                     </div>
 
 
 
-                  
+
 
                     <!--Fin del footer del contenido-->
 
