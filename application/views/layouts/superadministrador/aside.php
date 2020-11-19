@@ -62,7 +62,7 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?php echo base_url();?>cliente/listaclientesu" class="nav-link">
+                              <a href="<?php echo base_url();?>cliente" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-list-50.png"
                                       class="nav-icon">
                                   <p>Lista de clientes</p>
@@ -72,7 +72,7 @@
                               <a href="<?php echo base_url();?>cliente/historialcliente" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-order-history-50.png"
                                       class="nav-icon">
-                                  <p>Historial de clientes </p>
+                                  <p>Lista de mascotas </p>
                               </a>
                           </li>
 
