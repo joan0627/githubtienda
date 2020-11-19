@@ -34,7 +34,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="box box-info">
                         <h5>
-                            Detalles de la factura
+                            Detalle de la factura
 
 
                             <a href="<?php echo base_url(); ?>proveedor/registro" class="float-right btn btn-success"><i
@@ -58,7 +58,7 @@
 
                             <div class="form-group">
                                 <label>Fecha</label>
-                                <input id="fechaCompra" type="text" readOnly="readonly" class="form-control"
+                                <input id="fechaCompra" type="date"  class="form-control"
                                     value="<?php echo date("Y-m-d"); ?>">
 
                             </div>
@@ -79,20 +79,21 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label style="width:120px">Factura N°</label>
-                                <input id="facturaProveedor" name="facturaProveedor" placeholder="N°" type="text" class="form-control"
-                                    value="<?php echo $facturaProveedor; ?>">
+                                <label style="width:120px">N° de compra</label>
+                                <input id="facturaProveedor" name="facturaProveedor" placeholder="N°" type="text"
+                                    class="form-control" value="<?php echo $facturaProveedor; ?>">
                             </div>
 
                         </div>
 
-                        <div class="col-md-4" >
-                            <div  class="form-group">
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label>Proveedor</label>
-                                <select  id="proveedor" name="proveedor" class="js-example-placeholder-single form-control" >
-                                <option></option>
+                                <select id="proveedor" name="proveedor"
+                                    class="js-example-placeholder-single form-control">
+                                    <option></option>
                                     <?php foreach ($proveedores as $valor) : ?>
-                                     
+
                                     <option value="<?php  echo  $valor->documento; ?>">
                                         <?php echo  $valor->nombre; ?></option>
 
@@ -107,8 +108,8 @@
                             <div class="form-group box box-info">
 
                                 <label>Agregar productos</label>
-                                <button style="width:100%" type="button" class=" btn btn-block btn-info float-right"
-                                    data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i>
+                                <button disabled style="width:100%" id="addproductocompra" type="button"
+                                    class=" btn btn-block btn-info float-right" data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i>
                                     Buscar
                                     productos</button>
 
@@ -117,6 +118,7 @@
                         </div>
 
                     </div>
+                    
                     <hr>
 
                     <!-- Table row -->
@@ -130,31 +132,32 @@
 
                                         <th>Código</th>
                                         <th>Descripción</th>
-                                        <th>Cantidad</th>
+                                        <th style="text-align:center;">Cantidad</th>
                                         <th>Costo Unit.</th>
-                                        <th>Costo Total</th>
-                                        <th style="text-align:center;">Iva</th>
-                                        <th>Acción</th>
+                                        <th>Costo Bruto</th>
+                                        <th>Costo Neto</th>
+                                        <th style="text-align:center;">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <input type="hidden" name="table_required">
+                        
+                                  
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th colspan="4" style="text-align:right">Subtotal:</th>
+                                        <th colspan="3"></th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="4" style="text-align:right">Iva:</th>
+                                        <th colspan="3"></th>
+
+                                    </tr>
+
+                                    <tr>
                                         <th colspan="4" style="text-align:right">Total:</th>
-                                        <th colspan="3"></th>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th colspan="4" style="text-align:right">Total Iva:</th>
-                                        <th colspan="3"></th>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th colspan="4" style="text-align:right">Total Global:</th>
                                         <th colspan="3"></th>
 
                                     </tr>
@@ -219,10 +222,6 @@
         </div>
 
 
-
-
-
-
         <!--Modal de productos-->
         <div class="modal fade " id="modal-default">
             <div class="modal-dialog modal-lg" role="document">
@@ -248,7 +247,7 @@
                             </div>
 
                             <div class="card-body">
-                          
+
                                 <table id="example1" class=" table table-striped ">
 
                                     <thead>
@@ -263,36 +262,33 @@
                                             <th style="text-align:left;">Acción</th>
 
 
+
                                         </tr>
 
                                     </thead>
+
                                     <tbody>
-                                        <?php foreach ($Productos as $valor) : ?>
-                                        <tr>
 
-                                            <td><?php echo  $valor->idProducto; ?></td>
-                                            <td hidden><?php echo  $valor->descripcion; ?></td>
-                                            <td><?php echo $valor->descripcionPresentacion . " X " . $valor->valorMedida . " " . $valor->descripcionUnidadmedida . " " . $valor->nombreProducto; ?>
-                                            </td>
-                                            <td></td>
-                                            <td style='width:20% !important ;'></td>
-                                            <td></td>
-                                            <td></td>
-
-                                        </tr>
-
-
-
-                                        <?php endforeach; ?>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        
+                                    </tr>
+                                    
                                     </tbody>
+                                  
+                             
 
                                     <tfoot>
 
-
-
                                     </tfoot>
                                 </table>
-                       
+
                             </div>
 
 
@@ -305,9 +301,6 @@
 
             </div>
         </div>
-
-
-
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->

@@ -14,9 +14,11 @@ class Model_producto extends Ci_model
 	public $tablaUnidadMedida= 'unidadmedida';
 	public $tablaPresentacion= 'presentacion';
 
+	
+
 	//Nombre de la llave primaria
 	public $ProductoPK = 'idProducto';
-
+	public $documento = 'documento';
 
 	public function _construct()
 	{
@@ -185,6 +187,20 @@ public function actualizarExistencia($idProducto, $cantidad){
 	$this->db->where('idProducto', $idProducto);
 	$this->db->update('producto'); 	
 
+}
+
+public function buscarproductosmarca($documento)
+{
+	$this->db->select();
+	$this->db->from($this->tablaProducto);
+	$this->db->join($this->tablaCategoria, 'producto.idCategoria = categoria.idCategoria');
+	$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
+	$this->db->join('detalleproveedormarca', 'marca.idMarca = detalleproveedormarca.idMarca');
+	$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
+	$this->db->join($this->tablaUnidadmedida, 'producto.idUnidadMedida = unidadmedida.idUnidadMedida');
+	$this->db->where('detalleproveedormarca.documentoProveedor', $documento);
+	$resultado = $this->db->get();	
+	return $resultado->result_array();
 }
 
 

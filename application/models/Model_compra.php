@@ -6,8 +6,6 @@ class Model_compra extends Ci_model
 	public $tablaCompra = 'compras';
 	public $idCompraPK = 'idCompras';
 
-
-
 	public $tablaPrueba = 'prueba';
 
 	public $tablaUsuario = 'usuario';
@@ -22,6 +20,12 @@ class Model_compra extends Ci_model
 
 	public $tablaDetallecompra = 'detallecompra';
 	public $idDetallecompra = 'idDetalleCompra';
+
+	public $tablaProducto = 'producto';
+	public $tablaCategoria= 'categoria';
+	public $tablaMarca= 'marca'; 
+	public $tablaUnidadmedida = 'unidadmedida';
+	public $tablaPresentacion= 'presentacion';
 
 	public function _construct()
 	{
@@ -76,9 +80,6 @@ class Model_compra extends Ci_model
 
 
 
- 
-
-
 	//Función para buscar todos los proveedores: Select * from proveedor
 	 function BuscarTodasCompras()
 	 {
@@ -97,8 +98,8 @@ class Model_compra extends Ci_model
 		$this->db->from('compras c');
 		$this->db->join('proveedor p', ' p.documento = c.documentoProveedor');		
 		$this->db->join('usuario u', ' u.idUsuario = c.idUsuario');
-		//$this->db->or_like("idCompras",$buscar);
-		$this->db->or_like("fechaRegistroCompra",$buscar);
+		$this->db->or_like("c.idCompras",$buscar);
+		//$this->db->or_like("fechaRegistroCompra",$buscar);
 		$this->db->or_like("p.nombre",$buscar);
 		$this->db->or_like("u.nombre",$buscar);
 		//$this->db->or_like("valor",$buscar);
@@ -185,6 +186,44 @@ function actualizarEstado($idCompra, $estado){
 }
 
 
+
+function buscarDatosEncabezado($idCompra) {
+
+	$this->db->select('c.*,p.*,p.nombre as nombreProveedor,u.nombre,c.observaciones as observacionesCompra');
+	$this->db->from('compras c');
+	$this->db->join('proveedor p', ' p.documento = c.documentoProveedor');
+	$this->db->join('usuario u', ' u.idUsuario = c.idUsuario');
+	$this->db->where($this->idCompraPK,$idCompra);		
+	$consulta = $this->db->get();
+	
+
+	return $consulta->result();
+
+	
+}
+
+
+function buscarCompraDetalle($idCompra)
+{
+
+
+	$this->db->select();
+	$this->db->from('compras c');
+	$this->db->join('detallecompra dc', 'c.idCompras=dc.idCompra');		
+	$this->db->join('producto p', 'p.idProducto = dc.idProducto');
+	$this->db->join('categoria ca', 'p.idCategoria = ca.idCategoria');
+	$this->db->join('marca m', 'p.marca = m.idMarca');
+	$this->db->join('presentacion pr', 'p.idPresentacion = pr.idPresentacion');
+	$this->db->join('unidadmedida u', 'p.idUnidadMedida = u.idUnidadMedida');
+	//$this->db->join($this->tablaEspecieproducto, 'producto.idEspecieProducto = especieproducto.idEspecieProducto');		
+	$this->db->where($this->idCompraPK ,$idCompra);
+	$consulta = $this->db->get();
+
+	return $consulta->result();
+	
+
+
+}
 
 
 

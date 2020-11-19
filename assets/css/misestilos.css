@@ -1,13 +1,13 @@
 .badge-administrador {
 	color: #ffffff;
     background-color: #fd8c00b8;
-    font-size: 85%;
+    font-size: 75%;
 }
 
 .badge-empleado {
     color: #ffffff;
     background-color: #d0d015;
-    font-size: 85%;
+    font-size: 75%;
 }
 
 p.error {
@@ -16,18 +16,12 @@ p.error {
     
 }
 
-
-.hide_column { 
-    display : none; 
-   } 
-
-
-   .isDisabled {
+.isDisabled {
     pointer-events: none !important;
     cursor: default !important;
     background-color:#8a8a8a !important; 
     border-color:#8a8a8a !important;
 
-  }
 
+  }
 

@@ -74,11 +74,11 @@
 
             <!--Inicio del card body-->
             <div class="card-body p-0">
-                <table class="table table-striped projects">
+                <table id="tablacompras"class="table table-striped projects">
                     <thead>
                         <tr>
                             <th>
-                                Codigo
+                                Código
                             </th>
                             <th>
                                 Proveedor
@@ -89,10 +89,10 @@
                             <th>
                                 Valor
                             </th>
-                            <th>
+                            <th style="text-align:center; ">
                                 Fecha de registro
                             </th>
-                            <th>
+                            <th style="text-align:center; ">
                                 Estado
                             </th>
                             <th style="text-align:center; ">
@@ -109,46 +109,42 @@
 
 
                         <?php foreach ($resultado as $key => $d) : ?>
+                        
                             <td><?php echo  $d->idCompras;?></td>
                             <td><?php echo  $d->nombreP;?></td>
                             <td><?php echo  $d->nombreU;?></td>
                             <td class="listadoCompramoney"><?php echo  $d->totalGlobal;?></td>
-                            <td><?php echo  $d->fechaRegistroCompra;?></td>
+                            <td style="text-align:center; "><?php echo  $d->fechaRegistroCompra;?></td>
 
-                            <?php                            
-							
-							if ($d->estado ==1) {
-								echo' <td id="estadoCompra"> <span  class="badge badge-success">Registrada</span></td>';
-                            }
-                            else
+                            <?php if ($d->estado ==1) {?>
+								  <td style="text-align:center; "> <span id="estadoCompra<?php echo  $d->idCompras ?>"  class="badge badge-success">Registrada</span></td>
+                           <?php  }
+                           
+                           else
                             {
-                                if ($d->estado ==0) {
-                                    echo' <td id="estadoCompra"> <span  class="badge badge-danger">Anulada</span></td>';
-                                }  
-                            }
+                                if ($d->estado ==0) { ?>
+                                     <td style="text-align:center; "> <span id="estadoCompra<?php echo  $d->idCompras ?>" class="badge badge-danger">Anulada</span></td>
+                             <?php   }  
+                                } ?>
                       
-                      
-                             ?>
-                          
-
-
+               
 
                             <td class="project-actions text-center ">
-                                <a class="btn btn-primary btn-sm" href="#">
+                                <a class="btn btn-primary btn-sm" href="<?php echo base_url();?>Compra/Informe/<?= $d->idCompras;?>">
                                     <i class="fas fa-file-alt"></i>
-                                    Generar
+                                    Ver
                                 </a>
                                                     
                                 <?php if($d->estado ==0): ?>
 							    
                                     <button disabled type="submit" class="btn btn-danger btn-sm" data-idCompras="<?=$d->idCompras?>"
-                                        id="anular"><i class="fas fa-window-close"></i> Anular</button>
+                                        id="anularCompra<?php echo  $d->idCompras ?>"><i class="fas fa-window-close"></i> Anular</button>
 
                                 <?php endif?>
 
                                 <?php if($d->estado ==1): ?>
-                                    <button type="submit" class="btn btn-danger btn-sm" data-idCompras="<?=$d->idCompras?>"
-                                            id="anular"><i class="fas fa-window-close"></i> Anular</button>
+                                    <button type="submit" class=" anularcompra btn btn-danger btn-sm" data-idCompras="<?=$d->idCompras?>"
+                                            id="anularCompra<?php echo  $d->idCompras ?>"><i class="fas fa-window-close"></i> Anular</button>
 
                                 <?php endif?>
                             </td>
