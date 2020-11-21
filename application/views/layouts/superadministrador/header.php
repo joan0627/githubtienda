@@ -158,8 +158,8 @@
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <a href="<?php echo base_url();?>usuario/perfilusuariosu"><img src="<?php echo base_url();?>assets/img/iconos/icons8-usuario-16.png"
-                              class="nav-icon"> Mi perfil</a>
+                                    <a href="<?php echo base_url();?>configuracion/seguridad"><img src="<?php echo base_url();?>assets/img/iconos/icons8-bloquear-30.png"
+                              class="nav-icon"> Seguridad</a>
 
                                 </div>
 
@@ -167,7 +167,7 @@
 
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                <a id='cerrarsesion' href=""><img src="<?php echo base_url();?>assets/img/iconos/icons8-salida-16.png"  class=""> Cerrar sesión</a>
+                                <a id='cerrarsesion' href=""><img src="<?php echo base_url();?>assets/img/iconos/icons8-apagar-26.png"  class=""> Cerrar sesión</a>
 
                                 </div>
                             </div>

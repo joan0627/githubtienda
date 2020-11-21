@@ -158,7 +158,7 @@ $.toaster({
     title: 'Bienvenido',
     priority: 'success',
 
-});;
+});
 </script>
 
 <?php } ?>
@@ -179,7 +179,51 @@ $.toaster({
     title: 'Proceso completado',
     priority: 'success',
 
-});;
+});
 </script>
 
 <?php } ?>
+
+<?php if ($this->session->flashdata('preguntaupdate')) { ?>
+            <script>
+            $.toaster({
+                settings: {
+                    'timeout': 5500,
+
+
+                }
+            });
+            $.toaster({
+                message: '<?php echo $this->session->flashdata('preguntaupdate') ?>',
+                title: 'Proceso completado',
+                priority: 'success',
+
+            });
+            </script>
+  <?php } ?>
+
+  <?php if ($this->session->flashdata('contrasenanew')) { ?>
+            <script>
+            $.toaster({
+                settings: {
+                    'timeout': 5500,
+
+
+                }
+            });
+            $.toaster({
+                message: '<?php echo $this->session->flashdata('contrasenanew') ?>',
+                title: 'Proceso completado',
+                priority: 'success',
+
+            });
+            </script>
+  <?php } ?>
+
+
+
+
+
+
+
+  
