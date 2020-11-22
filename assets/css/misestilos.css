@@ -1,12 +1,12 @@
 .badge-administrador {
 	color: #ffffff;
-    background-color: #fd8c00b8;
+    background-color: #e69c2cfa;
     font-size: 75%;
 }
 
 .badge-empleado {
     color: #ffffff;
-    background-color: #d0d015;
+    background-color: #15d094;
     font-size: 75%;
 }
 
@@ -24,7 +24,15 @@ p.error {
 
 
   }
-
   .hide_column { 
     display : none; 
    } 
+
+
+
+   .nav-pills .nav-link.active,
+   .show>.nav-pills .nav-link{
+       background-color: #17A2B8;
+     
+   }
+

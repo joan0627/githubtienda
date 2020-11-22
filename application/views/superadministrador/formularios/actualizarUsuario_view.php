@@ -1,5 +1,5 @@
 <!-- Inicio Content Wrapper. Contains page content -->
-<?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -49,14 +49,15 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Nombre completo</label>
+                                <label>Nombre completo</label> <label style="color: red;"> *</label>
 
                               
                                 <?php if($clave['idUsuario'] == 67 || $clave['idUsuario']==$this->session->userdata("idUsuario")) {?>
                                 
                                 <input hidden name="nombre" type="text" class="form-control"value="<?php echo $clave['nombre']; ?>">
-                                <input disabled name="nombre2" type="text" class="form-control"value="<?php echo $clave['nombre']; ?>">
-							
+                                <input readOnly="readOnly" name="nombre2" type="text" class="form-control"value="<?php echo $clave['nombre']; ?>">
+                                <?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
+
 
                                 <?php }
                                 else
@@ -64,7 +65,7 @@
 
                                 <input name="nombre" type="text" class="form-control" placeholder="Ingrese el nombre"
                                     value="<?php echo $clave['nombre']; ?>">
-
+                                    <?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
                                 <?php }?>
                             </div>
 
@@ -79,9 +80,11 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Celular</label>
+                                <label>Celular</label> <label style="color: red;"> *</label>
                                 <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular"
                                     value="<?php echo $clave['celular']; ?>">
+                                    <?php echo form_error('celular', '<p class="text-danger">', '</p>'); ?>
+
                             </div>
 
                         </div>

@@ -22,20 +22,29 @@ class Usuario extends CI_controller
 
 		//Validaciones para los campos de la tabla Usuario
 	//	$this->form_validation->set_rules('username', 'nombre de usuario', 'required|is_unique[usuario.nombreUsuario]');
-		$this->form_validation->set_rules('nombre', 'nombre completo', 'required');
+		$this->form_validation->set_rules('nombre', 'nombre completo', 'required|myAlpha');
 		$this->form_validation->set_rules('celular', 'celular', 'required');
 	
+
+
+		
 	}
+
+
 
 	public function index()
 	{
 
 		$buscar = $this->input->get("buscar");
 
-		if($buscar == 'Habilitado' || $buscar == 'habilitado')
+		if($buscar == 'Habilitado' || $buscar == 'habilitado' || $buscar == 'HABILITADO')
 		{
 			$buscar=1;
 		}
+		elseif($buscar == 'Deshabilitado' || $buscar == 'deshabilitado' || $buscar == 'DESHABILITADO')
+			{
+				$buscar=0;
+			}
 
 		$datosUsuario['resultado'] = $this->Model_usuario->BuscarDatos($buscar);
 
@@ -44,6 +53,7 @@ class Usuario extends CI_controller
 		$this->load->view('superadministrador/general/listadoUsuarios_view', $datosUsuario);
 		$this->load->view('layouts/footer');
 	}
+
 
 
 
@@ -158,9 +168,10 @@ class Usuario extends CI_controller
 
 			$this->load->view('layouts/superadministrador/header');
 			$this->load->view('layouts/superadministrador/aside');
-			$this->load->view('errors/pagina404_view');
+			$this->load->view('errors//cli/pagina404_view');
 			$this->load->view('layouts/footer');
-	
+		
+
 		
 		}
 
@@ -190,15 +201,7 @@ class Usuario extends CI_controller
 	}
 
 
-	public function perfilusuariosu()
-	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/perfil_view');
-		$this->load->view('layouts/footer');
-	}
-
-
+	
 
 	public function estadoUsuario(){
 

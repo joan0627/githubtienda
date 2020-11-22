@@ -44,7 +44,7 @@
                     <?php endforeach; ?>
                     <?php else :
 					foreach ($informacion as $clave => $valor) : ?>
-                    <option value="" selected hidden>--Seleccione una pregunta de seguridad--</option>;
+                    <option value="" selected hidden>-Seleccione una pregunta de seguridad-</option>;
                     <option value=" <?php echo  $valor->idPreguntaSeguridad; ?>">
                         <?php echo  $valor->pregunta; ?></option>
 

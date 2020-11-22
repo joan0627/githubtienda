@@ -183,10 +183,10 @@
                       <ul class="nav nav-treeview">
 
                           <li class="nav-item">
-                              <a href="<?php echo base_url();?>usuario/perfilusuariosu" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-resume-website-50.png"
+                              <a href="<?php echo base_url();?>configuracion/seguridad" class="nav-link">
+                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-bloquear-50.png"
                                       class="nav-icon">
-                                  <p>Mi perfil</p>
+                                  <p>Seguridad</p>
                               </a>
                           </li>
 

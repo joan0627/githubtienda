@@ -182,6 +182,12 @@ class Model_login extends CI_Model {
 		return $consulta->result();
 	}
 
+	public function actualizarPreguntaRespuesta($idUsuario,$data){
+	
+		$this->db->where('idUsuario', $idUsuario);
+		$this->db->update('respuesta', $data);
+		
+}
 
 
 

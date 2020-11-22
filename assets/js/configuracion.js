@@ -218,4 +218,243 @@ $("#tablaMaestra").on("click", "#editartd", function (ev) {
 
 
 
+	/**
+	 * 
+	 * Función para capturar los datos de seguridad y realizar 
+	 * el proceso de cambio de pregunta de seguridad.
+	 * 
+	 */
+/*
+	jQuery.validator.addMethod("noSpace", function(value, element) { //Code used for blank space Validation 
+		return value.indexOf(" ") < 0 && value != ""; 
+	}, "No space please and don't leave it empty"); */
+
+	var validar_formulario1 = $("#form-pregunta").validate({
+
+	
+        ignore: [],
+        rules: {
+			contrasenaactualpre: { required: true},
+            preguntaSeguridad: { required: true},
+            respuesta: { required:true}
+        },
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+
+        messages: {
+			contrasenaactualpre: "El campo contraseña actual es obligatorio.",
+            preguntaSeguridad: "El campo pregunta de seguridad es obligatorio. ",
+            respuesta: "El campo respuesta es obligatorio. "
+        },
+        errorElement: 'p',
+
+        errorPlacement: function(error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+
+    });
+
+
+
+
+
+	$("#botonactualizarPregunta").click(function (ev) {
+		ev.preventDefault();
+
+		var contrasenaactualpre = $('#contrasenaactualpre').val();
+		var preguntaSeguridad = $('#preguntaSeguridad').val();
+		var respuesta = $('#respuesta').val();
+
+		if (validar_formulario1.form()) {
+
+			$.ajax({
+				type: "POST",
+				url: "/tienda/Configuracion/pregunta",
+				data:
+				 {
+					contrasenaactualpre:contrasenaactualpre,
+					 preguntaSeguridad: preguntaSeguridad,
+					 respuesta : respuesta
+				 },
+				 dataType: 'json',
+				 success: function (data) {
+					
+					if(data.return)					
+					{
+
+						
+						window.location.href="http://localhost:8888/tienda/inicio";
+				
+					}
+					else {
+							$.toaster({
+								settings: {
+									'timeout': 5500,
+				
+				
+								}
+							});
+							$.toaster({
+								message: 'La contraseña actual ingresada es errónea.',
+								title: 'Error',
+								priority: 'danger',
+				
+							});
+						
+					
+	
+						}
+
+					
+				},
+				error: function () {
+
+					Swal.fire({
+						title: "¡Proceso no completado!",
+						text: "Los datos no pudieron ser actualizados.",
+						type: "error",
+						confirmButtonColor: "#28a745",
+					});
+				
+				},
+				statusCode: {
+					400: function (data) {
+						var json = JSON.parse(data.responseText);
+						Swal.fire("¡Error!", json.msg, "error");
+					},
+				},
+			});
+
+			
+		}
+
+	
+
+
+	});
+
+
+
+
+	/**
+	 * 
+	 * Función para capturar los datos de seguridad y realizar 
+	 * el proceso de cambio de contraseña.
+	 * 
+	 */
+
+
+	var validar_formulario2 = $("#form-contrasena").validate({
+		
+	
+        ignore: [],
+        rules: {
+            contrasenaactual: { required: true},
+			nuevacontrasena: { required:true,   minlength: 8},
+			confirmcontrasena: {required:true, equalTo : "#nuevacontrasena"}
+        },
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+
+        messages: {
+			contrasenaactual: "El campo contraseña actual es obligatorio. ",
+			nuevacontrasena: {
+				required: "El campo nueva contraseña es obligatorio.",
+				minlength: "El campo nueva contraseña debe ser de al menos 8 caracteres de longitud.",
+				
+			},
+			confirmcontrasena:{
+				equalTo :"Las contraseñas no coinciden.",
+				required: "El campo confirmar nueva contraseña es obligatorio.",
+			} 
+        },
+        errorElement: 'p',
+
+        errorPlacement: function(error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+
+    });
+
+
+	$("#botonactualizarContrasena").click(function (ev) {
+		ev.preventDefault();
+
+	
+		var contrasenaactual = $('#contrasenaactual').val();
+		var nuevacontrasena = $('#nuevacontrasena').val();
+
+		if (validar_formulario2.form()) {
+
+			$.ajax({
+				type: "POST",
+				url: "/tienda/Configuracion/cambiarcontrasena",
+				data:
+				 {
+					contrasenaactual: contrasenaactual,
+					nuevacontrasena : nuevacontrasena
+				 },
+				 dataType: 'json',
+				success: function (data) {
+					
+					if(data.return)					
+					{
+
+						
+						window.location.href="http://localhost:8888/tienda/inicio";
+				
+					}
+					else {
+							$.toaster({
+								settings: {
+									'timeout': 5500,
+				
+				
+								}
+							});
+							$.toaster({
+								message: 'La contraseña actual ingresada es errónea.',
+								title: 'Error',
+								priority: 'danger',
+				
+							});
+						
+					
+	
+						}
+
+					
+				},
+				error: function () {
+
+					Swal.fire({
+						title: "¡Proceso no completado!",
+						text: "Los datos no pudieron ser actualizados.",
+						type: "error",
+						confirmButtonColor: "#28a745",
+					});
+				
+				},
+				statusCode: {
+					400: function (data) {
+						var json = JSON.parse(data.responseText);
+						Swal.fire("¡Error!", json.msg, "error");
+					},
+				},
+			});
+
+			
+		}
+
+	
+
+
+	});
+	
+	
+
+
+
 });

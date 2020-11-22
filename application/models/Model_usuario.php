@@ -31,6 +31,14 @@ class model_usuario extends Ci_model {
 		return $this->db->insert_id();
 	}
 
+
+	/*function cargarAll()
+	{
+			$this->db->select();
+			$this->db->from($this->tablaUsuario);
+			$consulta = $this->db->get();
+			return $consulta->result();
+	}*/
 	
 
 		//Función para buscar registros en el campo de busqueda
@@ -38,11 +46,12 @@ class model_usuario extends Ci_model {
 
 			$this->db->select();
 			$this->db->from($this->tablaUsuario);
-			$this->db->or_like("idUsuario",$buscar);
-			$this->db->or_like("nombre",$buscar);
-			$this->db->or_like("nombreUsuario",$buscar);
-			$this->db->or_like("idRol",$buscar);
-		//	$this->db->or_like("estado",$buscar);
+			$this->db->or_like("idUsuario",$buscar, 'none'); 
+			$this->db->or_like("nombre",$buscar,);
+			$this->db->or_like("nombreUsuario",$buscar, 'none');
+			//$this->db->or_like("idRol",$buscar);
+			$this->db->or_like("estado",$buscar, 'none');
+			//$this->db->or_where('estado', $buscar);
 			$this->db->order_by('fechahora', 'DESC');
 			$consulta = $this->db->get();
 	
@@ -139,6 +148,10 @@ class model_usuario extends Ci_model {
 
 
 	}*/
+
+
+
+
 
 }
 
