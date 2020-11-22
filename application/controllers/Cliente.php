@@ -29,14 +29,25 @@ class Cliente extends CI_controller
 	{
 
 
-		  	$buscar = $this->input->get("buscar");
+
+
+			$buscar = $this->input->get("buscar");
+
+			if($buscar == 'Habilitado' || $buscar == 'habilitado' || $buscar == 'HABILITADO')
+			{
+				$buscar=1;
+			}
+			elseif($buscar == 'Deshabilitado' || $buscar == 'deshabilitado' || $buscar == 'DESHABILITADO')
+			{
+				$buscar=0;
+			}
+
+
+
+
+		  
 
 			$datosCliente['resultado'] = $this->Model_cliente->ListarDatosCliente($buscar);
-
-			
-		
-		
-			
 			
 
 			$this->load->view('layouts/superadministrador/header');
@@ -178,7 +189,6 @@ class Cliente extends CI_controller
 		$data['unidadesmedidas'] = $this->Model_producto->buscarUnidadesMedidas();
 
 		
-		
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/formularios/actualizarCliente_view',$data);
@@ -316,8 +326,6 @@ class Cliente extends CI_controller
 		$idMascota =$this->input->post("idMascota");
 		$estado =$this->input->post("estado");
 
-		 echo $idMascota;
-		 echo $estado;
 
 		$this->Model_cliente->ActualizaEstado( $idMascota, $estado);
 
@@ -336,15 +344,88 @@ class Cliente extends CI_controller
 
 
 
-	public function historialcliente()
+	public function documento_exist(){
+		$documentoC =$this->input->post("documentoC");
+
+		//echo $documentoC;
+		$data_exist = $this->Model_cliente->consulta_documento($documentoC);
+
+		//echo $data_exist;
+
+		if($data_exist == "false"){
+		
+			echo 'false';
+			exit;
+
+		
+		}else{
+
+			echo 'true';
+			exit;
+
+		}
+
+
+
+		
+	}
+
+
+
+	public function listadoMascota()
 	{
+
+
+		
+		$buscar = $this->input->get("buscar");
+
+		if($buscar == 'Habilitado' || $buscar == 'habilitado' || $buscar == 'HABILITADO')
+		{
+			$buscar=1;
+		}
+		elseif($buscar == 'Deshabilitado' || $buscar == 'deshabilitado' || $buscar == 'DESHABILITADO')
+		{
+			$buscar=0;
+		}
+
+
+		$datosMascota['resultado'] = $this->Model_cliente->buscarTodasMascota($buscar);
+
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/historialclientes_view');
+		$this->load->view('superadministrador/general/listadoMascotas_view',$datosMascota);
 		$this->load->view('layouts/footer');
 		
 	}
 
+
+	public function historialMascota($id)
+	{
+
+
+		$data['mascota'] = $this->Model_cliente->buscarDatosMascota($id);
+
+
+		$this->load->view('layouts/superadministrador/header');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/general/historialMascota_view',$data);
+		$this->load->view('layouts/footer');
+		
+	}
+
+
+
+	public function llenar_historial(){
+
+
+		$idMascotaH = $this->input->post("idMascotaH");
+
+		$data['data'] = $this->Model_cliente->historial_mascota($idMascotaH);
+	
+		echo json_encode($data);
+
+	
+	}
 
 
 

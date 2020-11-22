@@ -69,10 +69,10 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php echo base_url();?>cliente/historialcliente" class="nav-link">
+                              <a href="<?php echo base_url();?>cliente/listadoMascota" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-order-history-50.png"
                                       class="nav-icon">
-                                  <p>Lista de mascotas </p>
+                                  <p>Historial de mascotas </p>
                               </a>
                           </li>
 

@@ -29,8 +29,10 @@ p.error {
    } 
 
 
+
    .nav-pills .nav-link.active,
    .show>.nav-pills .nav-link{
        background-color: #17A2B8;
      
    }
+
