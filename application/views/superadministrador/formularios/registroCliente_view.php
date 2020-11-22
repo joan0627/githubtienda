@@ -109,12 +109,12 @@
 
                     <hr>
 
+                    <div class="col-12 table-responsive">
+                     <table id="tableDetalleMascota" class=" table table-striped " style="width:100%">
+                   
 
-                    <table id="tableDetalleMascota" class=" table table-striped ">
-
-
-                    </table>
-
+                        </table>
+                    </div>
 
                     <hr>
 
@@ -173,10 +173,10 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
 
-                                                <label>Tipo de mascota</label> <label style="color: red;"> *</label>
+                                                <label>Especie</label> <label style="color: red;"> *</label>
                                                 <select id="tipoMascota" name="tipoMascota" class="form-control">
                                                     <?php foreach ($tipomascotas as $clave => $valor) : ?>
-                                                    <option value="" selected hidden>-Seleccione el tipo de mascota-
+                                                    <option value="" selected hidden>-Seleccione el tipo de especie-
                                                     </option>;
                                                     <option value="<?php echo  $valor->idTipoMascota; ?>">
                                                         <?php echo  $valor->descripcion; ?></option>
@@ -195,6 +195,7 @@
                                                     placeholder="Ingrese el nombre ">
                                             </div>
                                         </div>
+                                        
                                     </div>
                                     <div class="row">
 
@@ -238,7 +239,7 @@
                                         <div class="col-md-6">
 
                                             <div class="form-group">
-                                                <label>Peso</label><label style="color: red;">*</label>
+                                                <label>Peso</label> <label style="color: red;"> *</label>
                                                 <input id="pesoM" name="pesoM" type="number" min="0"
                                                     class="form-control" placeholder="Ingrese el peso">
                                             </div>
@@ -246,7 +247,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Unidad de medida</label> <label style="color: red;">*</label>
+                                                <label>Unidad de medida</label> <label style="color: red;"> *</label>
                                                 <select id="unidadM" name="unidadMascota" class="form-control "
                                                     style="width: 100%;">
 
@@ -281,7 +282,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Edad</label><label style="color: red;">*</label>
+                                                <label>Edad</label> <label style="color: red;"> *</label>
                                                 <input id="edadM" name="edadM" type="number" class="form-control"
                                                     placeholder="Ingrese la edad">
                                             </div>
@@ -321,7 +322,7 @@
 
 
                                     </div>
-
+                                </div>
                             </form>
 
                             <!--Fin del card body-->
