@@ -28,9 +28,6 @@ class Cliente extends CI_controller
 	public function index()
 	{
 
-
-
-
 			$buscar = $this->input->get("buscar");
 
 			if($buscar == 'Habilitado' || $buscar == 'habilitado' || $buscar == 'HABILITADO')
@@ -41,9 +38,6 @@ class Cliente extends CI_controller
 			{
 				$buscar=0;
 			}
-
-
-
 
 		  
 

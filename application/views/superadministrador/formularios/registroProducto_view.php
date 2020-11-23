@@ -62,8 +62,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <textarea class="form-control" rows="2"
-                                    placeholder="Escribe una descripción del producto ..." name="descripcion"><?php echo $descripcionProducto;?></textarea>
+                                <textarea maxlength="150" class="form-control" rows="2"
+                                    placeholder="Escribe una descripción del producto ..." 
+                                    id="descrpcionRegistroProducto" name="descripcion"><?php echo $descripcionProducto;?></textarea>
+                                    <div style=" display: none; color: gray;" class="contadorRegistroProducto text-right"><span
+                                     id="contadorRegistroProducto"></span><span>/150</span></div>
                             </div>
                         </div>
 
@@ -319,35 +322,43 @@
                             <div class="form-group" >
 
                                 <label>Indicaciones</label>
-                                <textarea class="form-control" rows="3"
+                                <textarea maxlength="150" class="form-control" rows="3"
                                     placeholder="Especifique las indicaciones de la vacuna" 
-                                    name="indicaciones" 
+                                    id="indicacionesRegistroProducto" name="indicaciones" 
                                     ><?php echo $indicaciones;?></textarea>
+                                    <div style=" display: none; color: gray;" class="contadorIndicacionesProducto text-right"><span
+                                     id="contadorIndicacionesProducto"></span><span>/150</span></div>
                                     <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <label>Contraindicaciones</label>
-                            <textarea class="form-control" rows="3"
+                            <textarea  maxlength="150" class="form-control" rows="3"
                                 placeholder="Especifique las contraindicaciones de la vacuna" 
-                                 name="contraIndicaciones" "
+                                id="ContraindicacionesRegistroProducto" name="contraIndicaciones"
                                 ><?php echo $contraindicaciones;?></textarea>
+
+                                <div style=" display: none; color: gray;" class="contadorContraindicacionesProducto text-right"><span
+                                     id="contadorContraindicacionesProducto"></span><span>/150</span></div>
                                 <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
 
-
-
                     </div>
 
+
+
 					<div class="row" >
-                        <div class="col-md-3 edad" style="display:none;">
+
+
+
+                        <div class="col-md-4 edad" style="display:none;">
                             <div class="form-group">
 
                                 <label>Edad</label>
                                 <input class="form-control" rows="3"
-                                    placeholder="Ingrese el tiempo recomendado" name="edad" value="<?php echo $edad;?>"></input>
+                                    placeholder="Ingrese la edad recomendada" name="edad" value="<?php echo $edad;?>"></input>
                                     <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
@@ -367,7 +378,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -375,7 +386,8 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna" name="precioVenta"
+                                <input type="text" class="precioProducto form-control" placeholder="Ingrese el precio de venta" 
+                                name="precioVenta"
                                 value="<?php echo $precio;?>">
                             </div>
                             <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>

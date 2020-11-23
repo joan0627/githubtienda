@@ -44,26 +44,27 @@ class Producto extends CI_controller
 
 	}
 
-	public function index($page=1)
+	public function index()
 	{
 		
-		$page_size=2;
-		$offset=0* $page_size;
 
 
-		  $buscar = $this->input->get("buscar");
-		  //$resultado = $this->Model_producto->buscarDatosProducto($idProducto);
+	
+			$buscar = $this->input->get("buscar");
 
-		 
+			if($buscar == 'Habilitado' || $buscar == 'habilitado' || $buscar == 'HABILITADO')
+			{
+				$buscar=1;
+			}
+			elseif($buscar == 'Deshabilitado' || $buscar == 'deshabilitado' || $buscar == 'DESHABILITADO')
+			{
+				$buscar=0;
+			}
 
-
-		  //$datosProveedor['resultado'] = $this->Model_proveedor->BuscarTodosProveedor();
 	   
 		   $datosProducto['resultado'] = $this->Model_producto->BuscarDatos($buscar);
 		   
-		   //$paginacion = $this->Model_proveedor->paginacion($page_size,$offset);
-		  // $datosProveedor['resultado']=  $paginacion;
-
+		
 	   
 		  $this->load->view('layouts/superadministrador/header');
 		  $this->load->view('layouts/superadministrador/aside');
@@ -136,7 +137,7 @@ class Producto extends CI_controller
 
 
 				$this->Model_producto->insertarProducto($datosProducto);
-				$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado correctamente.');
+				$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado exitosamente.');
 				redirect("Producto");
 
 			}else{
@@ -204,9 +205,8 @@ class Producto extends CI_controller
 
 		 //Arreglo para recorrer y buscar los select "Tablas fuertes"
 		 
-		 $data['clave']  = $this->Model_producto->buscarDatosProducto($idProducto);
+		 	$data['productos']  = $this->Model_producto->buscarDatosProducto($idProducto);
 
-	/*
 		   
 			$data['categorias'] = $this->Model_producto->buscarTodasCategorias();
 			$data['marcas'] = $this->Model_producto->buscarTodasMarcas();
@@ -216,7 +216,7 @@ class Producto extends CI_controller
 			$data['presentaciones'] = $this->Model_producto->buscarPresentaciones();
 			$data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
 			
-	*/
+	
 		if($this->form_validation->run())
 		{
 			
@@ -240,7 +240,7 @@ class Producto extends CI_controller
 
 			$this->Model_producto->actualizarProducto($idProducto, $datosProducto);
 
-			$this->session->set_flashdata('actualizar', 'El producto ' .$datosProducto["nombreProducto"].' se ha actualizado correctamente.');
+			$this->session->set_flashdata('actualizar', 'El producto ' .$datosProducto["nombreProducto"].' se ha actualizado exitosamente.');
 
 			redirect("producto");
 		}
@@ -298,6 +298,18 @@ class Producto extends CI_controller
 		}
 	}	
 
+
+
+
+	
+	public function estado_producto(){
+
+		$idProducto =$this->input->post("idProducto");
+		$estadoP =$this->input->post("estado");
+
+		$this->Model_producto->ActualizaEstadoProducto($idProducto, $estadoP);
+
+	}
 }
 
 ?>

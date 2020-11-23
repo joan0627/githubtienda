@@ -121,7 +121,7 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" value="<?php echo $clave['precio']?>" readOnly="readonly">
+                                <input type="text" class="detalleServicioMoney  form-control" value="<?php echo $clave['precio']?>" readOnly="readonly">
                                 
                             </div>
                         </div>

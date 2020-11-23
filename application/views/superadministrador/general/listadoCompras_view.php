@@ -112,8 +112,8 @@
                         
                             <td><?php echo  $d->idCompras;?></td>
                             <td><?php echo  $d->nombreP;?></td>
-                            <td><?php echo  $d->nombreU;?></td>
-                            <td class="listadoCompramoney"><?php echo  $d->totalGlobal;?></td>
+                            <td ><?php echo  $d->nombreU;?></td>
+                            <td style="color:green; " class="listadoCompramoney"><?php echo  $d->totalGlobal;?></td>
                             <td style="text-align:center; "><?php echo  $d->fechaRegistroCompra;?></td>
 
                             <?php if ($d->estado ==1) {?>
@@ -130,7 +130,7 @@
                
 
                             <td class="project-actions text-center ">
-                                <a class="btn btn-primary btn-sm" href="<?php echo base_url();?>Compra/Informe/<?= $d->idCompras;?>">
+                                <a class="btn btn-primary btn-sm" target="_blank" href="<?php echo base_url();?>Compra/Informe/<?= $d->idCompras;?>">
                                     <i class="fas fa-file-alt"></i>
                                     Ver
                                 </a>

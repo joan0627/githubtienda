@@ -162,7 +162,7 @@ $(document).ready(function () {
 					required: true,					
 					noSpace: true,
 					noCharacters: true,
-					min: 2,
+					
 					
 					remote: {
 						url:"/tienda/cliente/documento_exist",
@@ -187,16 +187,17 @@ $(document).ready(function () {
 
 			documentoC: {
 				//checkExists: "igual",
-				min: "El campo documento debe ser minimo de 2 caracteres.",
+				
             	required: "El campo documento es obligatorio.",
 				noSpace: "El campo documento sólo puede contener caracteres alfanuméricos",
 				noCharacters: "El campo documento sólo puede contener caracteres alfanuméricos.",
-				remote: function() { return $.validator.format("El documento ya se encuentra registrado.")}
+				remote: function() { return $.validator.format("El documento ya se encuentra registrado.")},
+		
             },
 
 			nombreC:{
 				required: "El campo nombre es obligatorio.",
-				onlyChar :"El campo nombre soló puede contener alfabéticos y espacios.",
+				onlyChar :"El campo nombre soló puede contener caracteres alfabéticos y espacios.",
 			}, 
 			celularC: "El campo celular es obligatorio.",
 			correoC: "Ingrese un correo valido.",
@@ -590,7 +591,7 @@ $(document).ready(function () {
 					if (row.estado == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
-						return "<span  class='badge badge-danger'>Deshabilitada</span>";
+						return "<span  class='badge badge-danger'>Deshabilita</span>";
 					}
 				},
 			},
@@ -867,8 +868,7 @@ $(document).ready(function () {
 								});
 								
 
-								
-
+							
 								
 							},
 
@@ -1342,7 +1342,7 @@ $(document).ready(function () {
 	 */
 
 	var idMascotaH = $("#idMascotaHistorial").val();
-	console.log(idMascotaH);
+	
 
 	$("#tableHistorialMascota").DataTable({
 

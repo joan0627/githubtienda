@@ -76,7 +76,7 @@
 
             <!--Inicio del card body-->
             <div class="card-body p-0 ">
-                <table class="table table-striped projects">
+                <table id="tablaProducto" class="table table-striped projects">
                     <thead>
                         <tr>
 
@@ -85,26 +85,27 @@
                             </th>
 
 
-                            <th>
+                            <th style="text-align:center; ">
                                 Nombre
                             </th>
 
-                            <th>
+                            <th style="text-align:center; ">
                                 Categoria
                             </th>
 
-                            <th>
+                            <th style="text-align:center; ">
                                 Marca
                             </th>
 
-                            <th>
+                            <th style="text-align:center; ">
                                 Existencia
                             </th>
+                          
 
-                            <th>
+                            <th style="text-align:center; ">
                                 Precio
                             </th>
-
+                            <th style="text-align:center; ">Estado</th>
                             <th style="text-align:center; ">
                                 Acciones
                             </th>
@@ -116,11 +117,11 @@
                         <tr>
 
                             <td><?php echo  $d->idProducto;?></td>
-                            <td><?php echo  $d->nombreProducto;?></td>
-                            <td><?php echo  $d->descripcion;?></td>
-                            <td><?php echo  $d->descripcionMarca;?></td>
+                            <td style="text-align:center; "><?php echo  $d->nombreProducto;?></td>
+                            <td style="text-align:center; "><?php echo  $d->descripcion;?></td>
+                            <td style="text-align:center; "><?php echo  $d->descripcionMarca;?></td>
 
-                            <td> <?php  
+                            <td style="text-align:center; "> <?php  
                             if ($d->existencia ==0) {
                                    echo "<span  style = 'font-size: 16.5px ;color:red; font-weight: bold;'> $d->existencia</span>";
                             } 
@@ -134,10 +135,21 @@
                                 
                              }?></td>
 
-                            <td><?php echo "<label style='color:green; '>$$d->precio</label>"?></td>
+                            <td class="listadoProductos" style="text-align:center; color:green;"><?php echo$d->precio?></td>
+                            <?php if ($d->estado ==1) {?>
+                            <td class="text-center"> <span id="estadoProducto<?php echo  $d->idProducto ?>"
+                                    class="badge badge-success">Habilitado</span></td>
+                            <?php  }
+                           
+                           else
+                            {
+                                if ($d->estado ==0) { ?>
+                            <td class="text-center"> <span id="estadoProducto<?php echo  $d->idProducto ?>"
+                                    class="badge badge-danger">Deshabilitado</span></td>
+                            <?php   }  
+                            } ?>
 
-
-                            <td class="text-right" style="text-align:center;   width: 238px;     ">
+                            <td class="text-right" style="text-align:center;">
                                 <a class="btn btn-primary btn-sm"
                                     href="<?php echo base_url(); ?>producto/detalle/<?php echo $d->idProducto; ?><?php  ?>">
                                     <i class="fas fa-eye"></i>
@@ -147,21 +159,39 @@
 
 
 
+                                <?php if($d->estado ==1): ?>
+
                                 <a class="btn btn-info btn-sm"
-                                    href="<?php echo base_url(); ?>producto/actualizar/<?php echo $d->idProducto; ?>">
+                                    href="<?php echo base_url();?>producto/actualizar/<?php echo $d->idProducto; ?>"
+                                    id="editarProducto<?php echo  $d->idProducto ?>">
+                                    <i class="fas fa-pencil-alt"></i> Editar</a>
 
-                                    <i class="fas fa-pencil-alt">
-                                    </i>
-                                    Editar
-                                </a>
+                                <?php endif?>
+
+                                <?php if($d->estado ==0): ?>
+                                <a class="isDisabled btn btn-info btn-sm"
+                                    href="<?php echo base_url();?>producto/actualizar/<?php echo $d->idProducto; ?>"
+                                    id="editarProducto<?php echo  $d->idProducto ?>">
+                                    <i class="fas fa-pencil-alt"></i> Editar</a>
+                                <?php endif?>
 
 
-                                <button type="submit" class="btn btn-danger btn-sm" data-documento="<?=$d->idProducto?>"
-                                    id="deleteProducto" href="borrar/<?php echo $d->idProducto; ?>">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    Borrar
-                                    </a>
+                                <?php if($d->estado ==1): ?>
+
+                                <button style='width:41%' class="deshabilitarProducto btn btn-danger btn-sm"
+                                    data-Producto="<?=$d->idProducto?>"
+                                    id="deshabilitarProducto<?php echo  $d->idProducto ?>">
+                                    <i class="fas fa-ban"></i> Deshabilitar</button>
+
+                                <?php endif?>
+
+                                <?php if($d->estado ==0): ?>
+                                <button style='width:41%' class="habilitarProducto  btn btn-success btn-sm"
+                                    data-Producto="<?=$d->idProducto?>"
+                                    id="habilitarProducto<?php echo  $d->idProducto ?>">
+                                    <i class="fas fa-check-circle"></i> Habilitar</button>
+
+                                <?php endif?>
                             </td>
 
 
@@ -179,7 +209,7 @@
                 <?php if($this->session->flashdata('busqueda')): ?>
 
                 <div class="alert alert-warning text-center">
-                    <?= $this->session->flashdata('busqueda'); $this->session->sess_destroy();?> </div>
+                    <?= $this->session->flashdata('busqueda');?> </div>
 
 
                 <?php endif?>
@@ -200,31 +230,27 @@
 </div><!-- Fin content-wrapper -->
 
 <?php if ($this->session->flashdata('message')) { ?>
-			<script> 
-		
-        Swal.fire({        
-		type: 'success',
-		title: '¡Proceso completado!',
-		text: '<?= $this->session->flashdata('message'); ?>', 
-		
-	}); 
-		
-		
-		</script>
-          
-     <?php } ?>
+<script>
+Swal.fire({
+    type: 'success',
+    title: '¡Proceso completado!',
+    confirmButtonColor: "#28a745",
+    text: '<?= $this->session->flashdata('message'); ?>',
 
-     <?php if ($this->session->flashdata('actualizar')) { ?>
-			<script> 
-		
-        Swal.fire({        
-		type: 'success',
-		title: '¡Proceso completado!',
-		text: '<?= $this->session->flashdata('actualizar'); ?>', 
-		
-	}); 
-		
-		
-		</script>
-          
-     <?php } ?>
+});
+</script>
+
+<?php } ?>
+
+<?php if ($this->session->flashdata('actualizar')) { ?>
+<script>
+Swal.fire({
+    type: 'success',
+    title: '¡Proceso completado!',
+    confirmButtonColor: "#28a745",
+    text: '<?= $this->session->flashdata('actualizar'); ?>',
+
+});
+</script>
+
+<?php } ?>
