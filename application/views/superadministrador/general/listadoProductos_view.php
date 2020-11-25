@@ -80,12 +80,12 @@
                     <thead>
                         <tr>
 
-                            <th>
+                            <th style='width: 5%'>
                                 Código
                             </th>
 
 
-                            <th style="text-align:center; ">
+                            <th style='width: 15%'>
                                 Nombre
                             </th>
 
@@ -117,7 +117,7 @@
                         <tr>
 
                             <td><?php echo  $d->idProducto;?></td>
-                            <td style="text-align:center; "><?php echo  $d->nombreProducto;?></td>
+                            <td><?php echo  $d->nombreProducto;?></td>
                             <td style="text-align:center; "><?php echo  $d->descripcion;?></td>
                             <td style="text-align:center; "><?php echo  $d->descripcionMarca;?></td>
 
@@ -178,7 +178,7 @@
 
                                 <?php if($d->estado ==1): ?>
 
-                                <button style='width:41%' class="deshabilitarProducto btn btn-danger btn-sm"
+                                <button style='width:44%' class="deshabilitarProducto btn btn-danger btn-sm"
                                     data-Producto="<?=$d->idProducto?>"
                                     id="deshabilitarProducto<?php echo  $d->idProducto ?>">
                                     <i class="fas fa-ban"></i> Deshabilitar</button>
@@ -186,7 +186,7 @@
                                 <?php endif?>
 
                                 <?php if($d->estado ==0): ?>
-                                <button style='width:41%' class="habilitarProducto  btn btn-success btn-sm"
+                                <button style='width:44%' class="habilitarProducto  btn btn-success btn-sm"
                                     data-Producto="<?=$d->idProducto?>"
                                     id="habilitarProducto<?php echo  $d->idProducto ?>">
                                     <i class="fas fa-check-circle"></i> Habilitar</button>

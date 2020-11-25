@@ -1,6 +1,6 @@
 <?php
 
-class Model_producto extends Ci_model
+class Model_producto extends Ci_model 
 {
 
 	//Nombre de la tabla
@@ -28,7 +28,7 @@ class Model_producto extends Ci_model
 
 	
 	/*********************/
-	// *			Funciones de producto		  				// *
+	// *Funciones de producto// *
 	/**********************/
 
 

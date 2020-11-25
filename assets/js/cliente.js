@@ -1246,8 +1246,8 @@ $(document).ready(function () {
 							} else {
 								Swal.fire({
 									title: "¡Proceso no completado!",
-									text:
-										"No se puede deshabilitar el cliente por que tiene mascotas habilitadas",
+									html:
+										"No se puede deshabilitar este cliente ya que tiene mascotas habilitadas.<br> Deshabilite todas las mascotas para completar este proceso.",
 									type: "warning",
 									confirmButtonColor: "#28a745",
 								});

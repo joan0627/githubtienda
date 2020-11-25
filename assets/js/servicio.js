@@ -228,9 +228,5 @@ $(document).ready(function () {
 	});
 
 
-	//Select 2 del campo Tipo servicio
-
-	$("#tipoServicio").on("select2:selecting", function (e) {});
-
-	$(".tipoServicioActualizar").on("select2:selecting", function (e) {});
+	
 });

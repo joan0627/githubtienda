@@ -142,6 +142,7 @@ class Servicio extends CI_controller
 				$datosServicio["recomendacionesPosteriores"] = $this->input->post("recomendacionesPosteriores");
 				$datosServicio["precio"] = $this->input->post("precio");
 
+
 			$this->Model_servicio->actualizarServicio($idServicio, $datosServicio);
 
 			$this->session->set_flashdata('actualizar', 'El servicio ' .$datosServicio["nombreServicio"]. ' se ha actualizado exitosamente.');

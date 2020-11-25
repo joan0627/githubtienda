@@ -1,36 +1,94 @@
 $(document).ready(function () {
+	/**
+	 *
+	 * Función para ocultar o mosrar campos según la categoria del producto
+	 */
+	$("#categoria").on("change", function () {
+		var selectCategoria = $(this).val();
 
-/**
- * 
- * Función para ocultar o mosrar campos según la categoria del producto
- */
-    $('#categoria').on('change',function(){
-        var selectCategoria = $(this).val();
-        
-        if (selectCategoria == 1) {
-            $('.indicaciones_Contra').show();
-            $('.edad').show();
-            $('.Utiempo').show();
-		}
-		
-		else if(selectCategoria == 10){
-			$('.indicaciones_Contra').show();
-			$('.edad').hide();
-			$('.Utiempo').hide();
 
+		/*var prueba = sessionStorage.categoria = selectCategoria;
+		console.log({prueba})*/
+
+		if (selectCategoria == 1 || selectCategoria == 2) {
+			$(".indicaciones_Contra").show();
+			$(".edad_Utiempo").show();
+		} else {
+			$(".indicaciones_Contra").hide();
+			$(".edad_Utiempo").hide();
 		}
-		
-		else{
-          $('.indicaciones_Contra').hide();
-          $('.edad').hide();
-          $('.Utiempo').hide();
-        }
-	})
+	});
+
+
+
+		var  categoria = $("#categoria").val()
+
+
+		if (categoria == 1 || categoria == 2) {
+			$(".indicaciones_Contra").show();
+			$(".edad_Utiempo").show();
+		} else {
+			$(".indicaciones_Contra").hide();
+			$(".edad_Utiempo").hide();
+		}
+	
 	
 
+	//ckeck
 
 
 
+
+	$("#check_edad_tiempo").change(function () {
+		if (this.checked) {
+		$("#edad_tiempo").prop("disabled", true);
+		$("#tiempo").prop("disabled", true);
+
+		$("#Todos_edad").val("999");
+		$('#todos_tiempo').val("Años(s)");
+		
+		$("#edad_tiempo").val("");
+		$('#tiempo').val("");
+		} 
+		else 
+		{
+		$("#edad_tiempo").prop("disabled", false);
+		$("#tiempo").prop("disabled", false);
+
+		
+		$("#Todos_edad").val("");
+		$('#todos_tiempo').val("");
+		
+		
+		}
+	});
+
+
+	$("#check_edad_tiempo_actualizar").change(function () {
+		if (this.checked) {
+		$("#edad_actualizar").prop("disabled", true);
+		$("#tiempo_actualizar").prop("disabled", true);
+
+		$("#Todos_edad_actualizar").val("999");
+		$('#todos_tiempo_actualizar').val("Años(s)");
+		
+		$("#edad_actualizar").val("");
+		$('#tiempo_actualizar').val("");
+		} 
+		else 
+		{
+		$("#edad_actualizar").prop("disabled", false);
+		$("#tiempo_actualizar").prop("disabled", false);
+
+		
+		$("#Todos_edad_actualizar").val("");
+		$('#todos_tiempo_actualizar').val("");
+		
+		
+		}
+	});
+	
+	
 
 	/**
 	 *
@@ -71,13 +129,13 @@ $(document).ready(function () {
 
 						$("#estadoProducto" + idProducto).replaceWith(
 							"<span class='badge badge-danger' id='estadoProducto" +
-							idProducto +
+								idProducto +
 								"'>Deshabilitado</span>"
 						);
 
 						$("#deshabilitarProducto" + idProducto).replaceWith(
-							" <button style='width:41%'  class='habilitarProducto btn btn-success btn-sm'  data-Producto='" +
-							idProducto +
+							" <button style='width:44%'  class='habilitarProducto btn btn-success btn-sm'  data-Producto='" +
+								idProducto +
 								"' id='habilitarProducto" +
 								idProducto +
 								"'><i class='fas fa-check-circle'></i> Habilitar</button>"
@@ -143,12 +201,12 @@ $(document).ready(function () {
 						});
 						$("#estadoProducto" + idProducto).replaceWith(
 							"<span class='badge badge-success' id='estadoProducto" +
-							idProducto +
+								idProducto +
 								"'>Habilitado</span>"
 						);
 						$("#habilitarProducto" + idProducto).replaceWith(
-							" <button style='width:41%'  class='deshabilitarProducto btn btn-danger btn-sm'   data-Producto='" +
-							idProducto +
+							" <button style='width:44%'  class='deshabilitarProducto btn btn-danger btn-sm'   data-Producto='" +
+								idProducto +
 								"' id='deshabilitarProducto" +
 								idProducto +
 								"'><i class='fas fa-ban'></i> Deshabilitar</button>"
@@ -178,89 +236,85 @@ $(document).ready(function () {
 
 	/////
 
-
-
 	/**
 	 *
 	 * Función para contar los caracteres del registrar producto
-	 * 
+	 *
 	 */
 
+	//contador de caracteres del campo descripcion.
 
-	 	//contador de caracteres del campo descripcion.
+	var max_chars = 0;
 
-		 var max_chars = 0;
+	$("#descrpcionRegistroProducto").keyup(function () {
+		$(".contadorRegistroProducto").show();
+		var chars = $(this).val().length;
+		var diff = max_chars + chars;
+		$("#contadorRegistroProducto").html(diff);
+	});
 
-		 $("#descrpcionRegistroProducto").keyup(function () {
-			 $(".contadorRegistroProducto").show();
-			 var chars = $(this).val().length;
-			 var diff = max_chars + chars;
-			 $("#contadorRegistroProducto").html(diff);
-		 });
-	 
-		 //contador de caracteres de campo recomendaciones previas
-	 
-		 var max_chars = 0;
-	 
-		 $("#indicacionesRegistroProducto").keyup(function () {
-			 $(".contadorIndicacionesProducto").show();
-			 var chars = $(this).val().length;
-			 var diff = max_chars + chars;
-			 $("#contadorIndicacionesProducto").html(diff);
-		 });
-	 
-		 
-		 //contador de caracteres de campo recomendaciones posteriores
-		 var max_chars = 0;
-	 
-		 $("#ContraindicacionesRegistroProducto").keyup(function () {
-			 $(".contadorContraindicacionesProducto").show();
-			 var chars = $(this).val().length;
-			 var diff = max_chars + chars;
-			 $("#contadorContraindicacionesProducto").html(diff);
-		 });
-	 
-	 
-	 
-		 /**
-		  *
-		  * Función para contar los caracteres del actualizar producto
-		  * 
-		  */
-	 
-	 
-		 //contador de caracteres del campo descripcion.
-	 
-		 var max_chars = 0;
-	 
-		 $("#descripcionServicioA").keyup(function () {
-			 $(".contadorS").show();
-			 var chars = $(this).val().length;
-			 var diff = max_chars + chars;
-			 $("#contadorS").html(diff);
-		 });
-	 
-		 //contador de caracteres de campo recomendaciones previas
-	 
-		 var max_chars = 0;
-	 
-		 $("#recomendacionesPrevias").keyup(function () {
-			 $(".contadorRecomen").show();
-			 var chars = $(this).val().length;
-			 var diff = max_chars + chars;
-			 $("#contadorRecomen").html(diff);
-		 });
-	 
-		 
-		 //contador de caracteres de campo recomendaciones posteriores
-		 var max_chars = 0;
-	 
-		 $("#recomendacionesPosteriores").keyup(function () {
-			 $(".contadorRepost").show();
-			 var chars = $(this).val().length;
-			 var diff = max_chars + chars;
-			 $("#contadorRepost").html(diff);
-		 });
+	//contador de caracteres de campo indicaciones
+
+	var max_chars = 0;
+
+	$("#indicacionesRegistroProducto").keyup(function () {
+		$(".contadorIndicacionesProducto").show();
+		var chars = $(this).val().length;
+		var diff = max_chars + chars;
+		$("#contadorIndicacionesProducto").html(diff);
+	});
+
+	//contador de caracteres de campo contraindicaciones
+	var max_chars = 0;
+
+	$("#ContraindicacionesRegistroProducto").keyup(function () {
+		$(".contadorContraindicacionesProducto").show();
+		var chars = $(this).val().length;
+		var diff = max_chars + chars;
+		$("#contadorContraindicacionesProducto").html(diff);
+	});
+
+	/**
+	 *
+	 * Función para contar los caracteres del actualizar producto
+	 *
+	 */
+
+	//contador de caracteres de campo descripcion
+	var max_chars = 0;
+
+	$("#descripcionA").keyup(function () {
+		$(".contdescripcion").show();
+		var chars = $(this).val().length;
+		var diff = max_chars + chars;
+		$("#contdescripcion").html(diff);
+	});
+
+	//contador de caracteres de campo indicaciones
+
+	var max_chars = 0;
+
+	$("#indicacionesA").keyup(function () {
+		$(".contIndicacionesProducto").show();
+		var chars = $(this).val().length;
+		var diff = max_chars + chars;
+		$("#contIndicacionesProducto").html(diff);
+	});
+
+	//contador de caracteres del campo contraindicaciones.
+
+	var max_chars = 0;
+
+	$("#contraIndicacionesA").keyup(function () {
+		$(".conContraindicacionesProducto").show();
+		var chars = $(this).val().length;
+		var diff = max_chars + chars;
+		$("#conContraindicacionesProducto").html(diff);
+	});
+
+	//Select 2 del campo producto
 
 
+
+	//$(".tipoServicioActualizar").on("select2:selecting", function (e) {});
 });

@@ -40,9 +40,9 @@
                             <div class="form-group">
 
                                 <label>Codigo</label> <label style="color: red;"> * </label>
-                                <input name="codigo" type="text" class="form-control " placeholder="Ingrese el codigo"
-                                    readonly="readonly"
-                                    value="<?php if(isset($_POST['codigo'])){ echo $_POST['codigo']; }else{ echo $productos['idProducto']; } ?>">
+                                <input readOnly="readOnly" name="codigoA" type="text" class="form-control "
+                                    placeholder="Ingrese el codigo"
+                                    value="<?php if(isset($_POST['codigoA'])){ echo $_POST['codigoA']; }else{ echo $productos['idProducto']; } ?>">
                             </div>
                         </div>
 
@@ -63,48 +63,18 @@
                             <div class="form-group">
                                 <label>Descripción</label>
                                 <textarea class="form-control" rows="2"
-                                    placeholder="Escribe una descripción del producto ..."
+                                    placeholder="Escribe una descripción del producto ..." id="descripcionA"
                                     name="descripcion"><?php if(isset($_POST['descripcion'])){ echo $_POST['descripcion']; }else{ echo $productos['descripcionProducto']; } ?></textarea>
+                                <div style=" display: none; color: gray;" class="contdescripcion text-right"><span
+                                        id="contdescripcion"></span><span>/150</span></div>
                             </div>
                         </div>
 
-
                         <div class="col-md-6">
                             <div class="form-group">
-
-                                <label>Categoría</label> <label style="color: red;"> *</label>
-                                <select name="categoria" id="categoria" class="form-control">
-
-                                    <?php if ($categoria != "") : ?>
-                                    <?php foreach ($categorias as $clave => $valor) : ?>
-                                    <?php if ($categoria == $valor->idCategoria) : ?>
-
-                                    <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected>
-                                        <?php
-
-
-													echo  $valor->descripcion; ?></option>
-                                    <?php
-												foreach ($categorias as $clave => $valor) : ?>
-
-
-                                    <option value=" <?php echo  $valor->idCategoria; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
-                                    <?php endforeach; ?>
-
-                                    <?php endif;  ?>
-                                    <?php endforeach; ?>
-                                    <?php else :
-										foreach ($categorias as $clave => $valor) : ?>
-                                    <option value="<?php  echo $productos['idCategoria']; ?>" selected hidden><?php  echo $productos['descripcion']; ?></option>;
-                                    <option value=" <?php echo  $valor->idCategoria; ?>">
-                                        <?php echo  $valor->descripcion; ?></option>
-
-                                    <?php endforeach; ?>
-                                    <?php endif ?>
-                                </select>
-                                <?php echo form_error('categoria', '<p class="text-danger">', '</p>'); ?>
-
+                                <label>Categoría</label>
+                                <input readOnly="readOnly" name="categoria" type="text" class="form-control"
+                                    placeholder="" value="<?php echo $productos['descripcion'];?>">
                             </div>
                         </div>
 
@@ -120,38 +90,31 @@
                             <div class="form-group">
 
                                 <label>Marca</label> <label style="color: red;"> *</label>
-                                <select name="marca" class="form-control">
-                                <?php if ($marca != "") : ?>
+                                <select name="marca"
+                                    class="js-example-placeholder-marca-actualizar-single form-control">
+                                    <option value="<?php echo $productos['idMarca'];?>" selected>
+                                        <?php echo $productos['descripcionMarca'];?></option>
+                                    <?php if ($marca != "") : ?>
                                     <?php foreach ($marcas as $clave => $valor) : ?>
-                                    <?php if ($marca== $valor->idMarca) : ?>
-
-                                    <option hidden value=" <?php echo  $valor->idMarca; ?>" selected >
-                                        <?php
-
-
-													echo  $valor->descripcionMarca; ?></option>
-                                    <?php
-												foreach ($marcas as $clave => $valor) : ?>
-
-
-                                    <option value=" <?php echo  $valor->idMarca; ?>">
+                                    <?php if ($marca == $valor->idMarca) : ?>
+                                    <option value="<?php echo $valor->idMarca;?>">
                                         <?php echo  $valor->descripcionMarca; ?></option>
-
+                                    <?php foreach ($marcas as $clave => $valor) : ?>
+                                    <option value="<?php echo $valor->idMarca; ?>">
+                                        <?php echo  $valor->descripcionMarca;?></option>
                                     <?php endforeach; ?>
-
                                     <?php endif;  ?>
                                     <?php endforeach; ?>
                                     <?php else :
-										foreach ($marcas as $clave => $valor) : ?>
-                                    <option value="<?php  echo $productos['idMarca']; ?>" selected hidden><?php  echo $productos['descripcionMarca']; ?></option>;
+                                            foreach ($marcas as $clave => $valor) : ?>
+
                                     <option value=" <?php echo  $valor->idMarca; ?>">
                                         <?php echo  $valor->descripcionMarca; ?></option>
-
                                     <?php endforeach; ?>
                                     <?php endif ?>
 
                                 </select>
-                                
+
                                 <?php echo form_error('marca', '<p class="text-danger">', '</p>'); ?>
 
                             </div>
@@ -159,12 +122,11 @@
                         </div>
 
 
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Presentación</label> <label style="color: red;"> * </label>
                                 <select name="presentacion" class="form-control">
-                                <?php if ($presentacion != "") : ?>
+                                    <?php if ($presentacion != "") : ?>
                                     <?php foreach ($presentaciones as $clave => $valor) : ?>
                                     <?php if ($presentacion == $valor->idPresentacion) : ?>
 
@@ -186,7 +148,8 @@
                                     <?php endforeach; ?>
                                     <?php else :
 										foreach ($presentaciones as $clave => $valor) : ?>
-                                    <option value="<?php  echo $productos['idPresentacion']; ?>" selected hidden><?php  echo $productos['descripcionPresentacion']; ?></option>;
+                                    <option value="<?php  echo $productos['idPresentacion']; ?>" selected hidden>
+                                        <?php  echo $productos['descripcionPresentacion']; ?></option>;
                                     <option value=" <?php echo  $valor->idPresentacion; ?>">
                                         <?php echo  $valor->descripcionPresentacion; ?></option>
 
@@ -248,7 +211,8 @@
                                     <?php endforeach; ?>
                                     <?php else :
 										foreach ($unidadesmedidas as $clave1 => $valor) : ?>
-                                    <option value="<?php  echo $productos['idUnidadMedida']; ?>" selected hidden><?php  echo $productos['descripcionUnidadmedida']; ?></option>;
+                                    <option value="<?php  echo $productos['idUnidadMedida']; ?>" selected hidden>
+                                        <?php  echo $productos['descripcionUnidadmedida']; ?></option>;
                                     <option value=" <?php echo  $valor->idUnidadMedida; ?>">
                                         <?php echo  $valor->descripcionUnidadmedida; ?></option>
 
@@ -275,10 +239,7 @@
                         </div>
 
 
-
                         <div class="col-md-6">
-
-
 
                             <div class="form-group">
                                 <label>Tipo de especie</label> <label style="color: red;"> *</label>
@@ -301,7 +262,8 @@
                                     <?php endforeach; ?>
                                     <?php else :
 										foreach ($especieproductos as $clave => $valor) : ?>
-                                     <option value="<?php  echo $productos['idEspecieProducto']; ?>" selected hidden><?php  echo $productos['descripcionEspecie']; ?></option>;
+                                    <option value="<?php  echo $productos['idEspecieProducto']; ?>" selected hidden>
+                                        <?php  echo $productos['descripcionEspecie']; ?></option>;
                                     <option value=" <?php echo  $valor->idEspecieProducto; ?>">
                                         <?php echo  $valor->descripcionEspecie; ?></option>
 
@@ -320,45 +282,143 @@
 
                     </div>
 
+                    <?php if($productos['idCategoria'] ==1 || $productos['idCategoria'] ==2): ?>
+
+
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Indicaciones</label> <label style="color: red;"> * </label>
-                                <textarea class="form-control" rows="3"
+                                <label>Indicaciones</label>
+                                <textarea maxlength="150" class="form-control" rows="3" id="indicacionesA"
                                     placeholder="Especifique las indicaciones de la vacuna"
                                     name="indicaciones"><?php if(isset($_POST['indicaciones'])){ echo $_POST['indicaciones']; }else{ echo $productos['indicaciones']; } ?></textarea>
+                                <div style=" display: none; color: gray;" class="contIndicacionesProducto text-right">
+                                    <span id="contIndicacionesProducto"></span><span>/150</span>
+                                </div>
                             </div>
-                            <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
+
                         </div>
 
                         <div class="col-md-6">
-                            <label>Contraindicaciones</label> <label style="color: red;"> * </label>
-                            <textarea class="form-control" rows="3"
-                                placeholder="Especifique las contraindicaciones de la vacuna"
+                            <label>Contraindicaciones</label>
+                            <textarea maxlength="150" class="form-control" rows="3"
+                                placeholder="Especifique las contraindicaciones de la vacuna" id="contraIndicacionesA"
                                 name="contraIndicaciones"><?php if(isset($_POST['contraIndicaciones'])){ echo $_POST['contraIndicaciones']; }else{ echo $productos['contraindicaciones']; } ?></textarea>
-                            <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
+                            <div style=" display: none; color: gray;" class="conContraindicacionesProducto text-right">
+                                <span id="conContraindicacionesProducto"></span><span>/150</span>
+                            </div>
                         </div>
-
-
 
 
                     </div>
 
+                    <?php endif;  ?>
+
                     <div class="row">
-                        <div class="col-md-6">
+                        <?php if($productos['idCategoria'] ==1 || $productos['idCategoria'] ==2): ?>
+                        <?php if($productos['edad'] ==999): ?>
+
+                        <div class="col-md-2 ">
+
                             <div class="form-group">
 
-                                <label>Edad</label> <label style="color: red;"> * </label>
-                                <input class="form-control" rows="3" placeholder="Ingrese el tiempo recomendado"
-                                    name="edad"
-                                    value="<?php if(isset($_POST['edad'])){ echo $_POST['edad']; }else{ echo $productos['edadAplicacion']; } ?>"></input>
+                                <div class="icheck-primary d-inline">
+                                    <input checked type="checkbox" id="check_edad_tiempo_actualizar">
+                                    <label for="check_edad_tiempo_actualizar">Todas las edades</label>
+                                </div>
+
                             </div>
-                            <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
+
+
+                        </div>
+                        <?php endif;  ?>
+
+                        <?php if($productos['edad'] !=999): ?>
+                        <div class="col-md-2 ">
+
+                            <div class="form-group">
+
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="check_edad_tiempo_actualizar">
+                                    <label for="check_edad_tiempo_actualizar">Todas las edades</label>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <?php endif;  ?>
+
+                        <?php if($productos['edad'] !=999): ?>
+                        <div class="col-md-2">
+
+                            <div class="form-group">
+
+                                <label>Edad</label>
+                                <input id="edad_actualizar" class="form-control" rows="3"
+                                    placeholder="Ingrese el tiempo recomendado" name="edad"
+                                    value="<?php if(isset($_POST['edad'])){ echo $_POST['edad']; }else{ echo $productos['edad']; } ?>"></input>
+                            </div>
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
+                            <div class="form-group Utiempo">
+                                <label>Unidad de tiempo diferente</label>
+                                <select id="tiempo_actualizar" class="form-control " style="width: 100%;"
+                                    name="unidadTiempo">                
+                                    <option hidden value=""><?php echo $productos['unidadTiempo'];?></option>
+                                  
+                                    <option>Dia(s)</option>
+                                    <option>Semana(s)</option>
+                                    <option>Mes(es)</option>
+                                    <option>Año(s)</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <?php endif;  ?>
+
+                        <?php if($productos['edad'] ==999): ?>
+                        <div class="col-md-2">
+
+                            <div class="form-group">
+
+                                <label>Edad</label>
+                                <input disabled id="edad_actualizar" class="form-control" rows="3"
+                                    placeholder="Ingrese el tiempo recomendado" name="edad"
+                                    value=""></input>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-5">
+                            <div class="form-group Utiempo">
+                                <label>Unidad de tiempo igual</label>
+                                <select disabled id="tiempo_actualizar" class="form-control " style="width: 100%;"
+                                    name="unidadTiempo">
+                                    <option hidden value="">-Seleccione la unidad de tiempo-</option>
+                                    <option>Dia(s)</option>
+                                    <option>Semana(s)</option>
+                                    <option>Mes(es)</option>
+                                    <option>Año(s)</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <?php endif;  ?>
+
+
+
+                        
+
+                        <?php endif;  ?>
+
+
+                        <div class="col-md-3">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -367,16 +427,41 @@
                                     </span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
-                                    name="precioVenta"
+                                    id="precioVentaProductoA" name="precioVenta"
                                     value="<?php if(isset($_POST['precioVenta'])){ echo $_POST['precioVenta']; }else{ echo $productos['precio']; } ?>">
-                                <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
+
                             </div>
+                            <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
                         <input id="Valor" type="text" class="form-control "
                             value="<?php echo $this->session->set_userdata('valorSesion', 'perra');?>" hidden>
 
 
+                    </div>
+
+
+                    <div class="row" style="display:none;">
+
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+
+                                <label>TodosEdad</label>
+                                <input id="Todos_edad_actualizar" class="form-control" rows="3" value="999"
+                                    name="Todos_edad_actualizar"></input>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>TodosTiempo</label>
+                                <input id="todos_tiempo_actualizar" class="form-control" rows="3" value="Años(s)"
+                                    name="todos_tiempo_actualizar"></input>
+
+                            </div>
+                        </div>
                     </div>
                     <!--Fin del card body-->
 

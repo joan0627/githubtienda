@@ -32,7 +32,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form"  name="producto" method="POST" enctype="multipart/form-data">
+            <form role="form" id="registroProducto" name="producto" method="POST" enctype="multipart/form-data">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -63,10 +63,12 @@
                             <div class="form-group">
                                 <label>Descripción</label>
                                 <textarea maxlength="150" class="form-control" rows="2"
-                                    placeholder="Escribe una descripción del producto ..." 
-                                    id="descrpcionRegistroProducto" name="descripcion"><?php echo $descripcionProducto;?></textarea>
-                                    <div style=" display: none; color: gray;" class="contadorRegistroProducto text-right"><span
-                                     id="contadorRegistroProducto"></span><span>/150</span></div>
+                                    placeholder="Escribe una descripción del producto ..."
+                                    id="descrpcionRegistroProducto"
+                                    name="descripcion"><?php echo $descripcionProducto;?></textarea>
+                                <div style=" display: none; color: gray;" class="contadorRegistroProducto text-right">
+                                    <span id="contadorRegistroProducto"></span><span>/150</span>
+                                </div>
                             </div>
                         </div>
 
@@ -81,7 +83,7 @@
                                     <?php foreach ($categorias as $clave => $valor) : ?>
                                     <?php if ($categoria== $valor->idCategoria) : ?>
 
-                                    <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected >
+                                    <option hidden value=" <?php echo  $valor->idCategoria; ?>" selected>
                                         <?php
 
 
@@ -119,43 +121,35 @@
 
                         <div class="col-md-6">
 
+
+
+
                             <div class="form-group">
 
                                 <label>Marca</label> <label style="color: red;"> *</label>
-                                <select name="marca" class="form-control">
-                                <?php if ($marca != "") : ?>
+                                <select id="marcaRegistro" name="marca"
+                                    class="js-example-placeholder-marca-single form-control">
+                                    <?php if ($marca != "") : ?>
                                     <?php foreach ($marcas as $clave => $valor) : ?>
-                                    <?php if ($marca== $valor->idMarca) : ?>
-
-                                    <option hidden value=" <?php echo  $valor->idMarca; ?>" selected >
-                                        <?php
-
-
-													echo  $valor->descripcionMarca; ?></option>
-                                    <?php
-												foreach ($marcas as $clave => $valor) : ?>
-
-
-                                    <option value=" <?php echo  $valor->idMarca; ?>">
+                                    <?php if ($marca == $valor->idMarca) : ?>
+                                    <option value="<?php echo $valor->idMarca;?>">
                                         <?php echo  $valor->descripcionMarca; ?></option>
-
+                                    <?php foreach ($marcas as $clave => $valor) : ?>
+                                    <option value="<?php echo $valor->idMarca; ?>">
+                                        <?php echo  $valor->descripcionMarca;?></option>
                                     <?php endforeach; ?>
-
                                     <?php endif;  ?>
                                     <?php endforeach; ?>
                                     <?php else :
-										foreach ($marcas as $clave => $valor) : ?>
-                                    <option value="" selected hidden>-Seleccione una marca-</option>;
+                                            foreach ($marcas as $clave => $valor) : ?>
+                                    <option></option>
                                     <option value=" <?php echo  $valor->idMarca; ?>">
                                         <?php echo  $valor->descripcionMarca; ?></option>
-
                                     <?php endforeach; ?>
                                     <?php endif ?>
                                 </select>
                                 <?php echo form_error('marca', '<p class="text-danger">', '</p>'); ?>
-
                             </div>
-
                         </div>
 
 
@@ -280,12 +274,12 @@
                             <div class="form-group">
                                 <label>Tipo de especie</label> <label style="color: red;"> *</label>
                                 <select class="form-control " style="width: 100%;" name="tipoespecie">
-                                <?php if ($especieproducto != "") : ?>
+                                    <?php if ($especieproducto != "") : ?>
                                     <?php foreach ($especieproductos as $clave => $valor) : ?>
                                     <?php if ($especieproducto == $valor->idEspecieProducto) : ?>
 
                                     <option hidden value=" <?php echo  $valor->idEspecieProducto; ?>" selected>
-                                    <?php echo  $valor->descripcionEspecie; ?></option>
+                                        <?php echo  $valor->descripcionEspecie; ?></option>
 
                                     <?php foreach ($especieproductos as $clave => $valor) : ?>
 
@@ -316,32 +310,34 @@
 
 
                     </div>
-
+                   
                     <div class="row indicaciones_Contra" style="display:none;">
                         <div class="col-md-6">
-                            <div class="form-group" >
+                            <div class="form-group">
 
                                 <label>Indicaciones</label>
                                 <textarea maxlength="150" class="form-control" rows="3"
-                                    placeholder="Especifique las indicaciones de la vacuna" 
-                                    id="indicacionesRegistroProducto" name="indicaciones" 
-                                    ><?php echo $indicaciones;?></textarea>
-                                    <div style=" display: none; color: gray;" class="contadorIndicacionesProducto text-right"><span
-                                     id="contadorIndicacionesProducto"></span><span>/150</span></div>
-                                    <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
+                                    placeholder="Especifique las indicaciones de la vacuna"
+                                    id="indicacionesRegistroProducto"
+                                    name="indicaciones"><?php echo $indicaciones;?></textarea>
+                                <div style=" display: none; color: gray;"
+                                    class="contadorIndicacionesProducto text-right"><span
+                                        id="contadorIndicacionesProducto"></span><span>/150</span></div>
+                                <?php echo form_error('indicaciones', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <label>Contraindicaciones</label>
-                            <textarea  maxlength="150" class="form-control" rows="3"
-                                placeholder="Especifique las contraindicaciones de la vacuna" 
-                                id="ContraindicacionesRegistroProducto" name="contraIndicaciones"
-                                ><?php echo $contraindicaciones;?></textarea>
+                            <textarea maxlength="150" class="form-control" rows="3"
+                                placeholder="Especifique las contraindicaciones de la vacuna"
+                                id="ContraindicacionesRegistroProducto"
+                                name="contraIndicaciones"><?php echo $contraindicaciones;?></textarea>
 
-                                <div style=" display: none; color: gray;" class="contadorContraindicacionesProducto text-right"><span
-                                     id="contadorContraindicacionesProducto"></span><span>/150</span></div>
-                                <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
+                            <div style=" display: none; color: gray;"
+                                class="contadorContraindicacionesProducto text-right"><span
+                                    id="contadorContraindicacionesProducto"></span><span>/150</span></div>
+                            <?php echo form_error('contraIndicaciones', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
 
@@ -349,36 +345,47 @@
 
 
 
-					<div class="row" >
+                    <div class="row">
+
+                        <div class="col-md-2 edad_Utiempo" style="display:none;">
+
+                            <div class="form-group">
+
+                                <div class="icheck-primary d-inline">
+                                    <input checked type="checkbox" id="check_edad_tiempo">
+                                    <label for="check_edad_tiempo">Todas las edades</label>
+                                </div>
+
+                            </div>
 
 
-
-                        <div class="col-md-4 edad" style="display:none;">
+                        </div>
+                        <div class="col-md-2 edad_Utiempo" style="display:none;">
                             <div class="form-group">
 
                                 <label>Edad</label>
-                                <input class="form-control" rows="3"
-                                    placeholder="Ingrese la edad recomendada" name="edad" value="<?php echo $edad;?>"></input>
-                                    <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
+                                <input disabled id="edad_tiempo" class="form-control" rows="3"
+                                    placeholder="Ingrese la edad" name="edad" value="<?php echo $edad;?>"></input>
+                                <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
-						<div class="col-md-4" >
-                            <div class="form-group Utiempo" style="display:none;">
+                        <div class="col-md-5 edad_Utiempo" style="display:none;">
+                            <div class="form-group">
                                 <label>Unidad de tiempo</label>
-                                <select class="form-control " style="width: 100%;" name="unidadTiempo" value="<?php echo $unidadTiempo;?>">
-                                    <option hidden value="" >-Seleccione la unidad de tiempo-</option>
+                                <select disabled id="tiempo" class="form-control " style="width: 100%;"
+                                    name="unidadTiempo" value="<?php echo $unidadTiempo;?>">
+                                    <option hidden value="">-Seleccione la unidad de tiempo-</option>
                                     <option>Dia(s)</option>
                                     <option>Semana(s)</option>
                                     <option>Mes(es)</option>
                                     <option>Año(s)</option>
 
                                 </select>
-                                <?php echo form_error('unidadTiempo', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
-
-                        <div class="col-md-4">
+                      
+                        <div class="col-md-3">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -386,11 +393,36 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="precioProducto form-control" placeholder="Ingrese el precio de venta" 
-                                name="precioVenta"
-                                value="<?php echo $precio;?>">
+                                <input type="text" class="precioProducto form-control"
+                                    placeholder="Ingrese el precio de venta" name="precioVenta"
+                                    value="<?php echo $precio;?>">
                             </div>
                             <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row"  style="display:none;" >
+
+                        <div class="col-md-6 " >
+                            <div class="form-group">
+
+                                <label>TodosEdad</label>
+                                <input id="Todos_edad" class="form-control" rows="3"
+                                   value="999"  name="Todos_edad" ></input>
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>TodosTiempo</label>
+                                <input id="todos_tiempo" class="form-control" rows="3"
+                                    value="Años(s)" name="todos_tiempo" ></input>
+                               
+                            </div>
                         </div>
                     </div>
 
@@ -406,13 +438,15 @@
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
                             id="registroProducto" class="btn btn-success col-2">Registrar</button>
-                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="<?php echo base_url(); ?>producto"
-                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                        <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
+                            href="<?php echo base_url(); ?>producto" id="botonAtras"
+                            class="btn btn-success col-2">Atrás</a>
 
                     </div>
 
 
-                </div> <!--Fin del footer del contenido-->
+                </div>
+                <!--Fin del footer del contenido-->
 
 
 

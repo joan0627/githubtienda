@@ -66,6 +66,24 @@ $(document).ready(function() {
 
     });
 
+         
+    //Select2 para el campo marca en productos
+
+    //Registro producto
+    $(".js-example-placeholder-marca-single").select2({
+        placeholder: "-Seleccione una marca-",
+        theme: "bootstrap4",
+
+    });
+
+    //Actualizar producto
+    $(".js-example-placeholder-marca-actualizar-single").select2({
+        placeholder: "-Seleccione una marca-",
+        theme: "bootstrap4",
+
+    });
+
+
 
     OSREC.CurrencyFormatter.formatAll({
         selector: ".listadoCompramoney",
@@ -155,5 +173,39 @@ $(document).ready(function() {
         allowMinus: false,
         placeholder: "0",
     });
+
+
+
+    $("#precioVentaProductoA").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+    $("#precioVentaProductoD").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+    
 
 });
