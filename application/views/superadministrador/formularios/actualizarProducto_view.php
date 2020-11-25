@@ -365,7 +365,7 @@
 
 
                         <div class="col-md-5">
-                            <div class="form-group Utiempo">
+                            <div class="form-group">
                                 <label>Unidad de tiempo diferente</label>
                                 <select id="tiempo_actualizar" class="form-control " style="width: 100%;"
                                     name="unidadTiempo">                
@@ -396,7 +396,7 @@
                         <div class="col-md-5">
                             <div class="form-group Utiempo">
                                 <label>Unidad de tiempo igual</label>
-                                <select disabled id="tiempo_actualizar" class="form-control " style="width: 100%;"
+                                <select disabled id="tiempo_actualizar" class=" form-control " style="width: 100%;"
                                     name="unidadTiempo">
                                     <option hidden value="">-Seleccione la unidad de tiempo-</option>
                                     <option>Dia(s)</option>
