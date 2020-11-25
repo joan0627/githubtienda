@@ -73,7 +73,7 @@ $(document).ready(function () {
 		$('#todos_tiempo_actualizar').val("Años(s)");
 		
 		$("#edad_actualizar").val("");
-		$('#tiempo_actualizar').val("");
+		$('#tiempo_actualizar').val("-Seleccione la unidad de tiempo-");
 		} 
 		else 
 		{
@@ -82,8 +82,7 @@ $(document).ready(function () {
 
 		
 		$("#Todos_edad_actualizar").val("");
-		$('#todos_tiempo_actualizar').val("");
-		
+		$('#todos_tiempo_actualizar').val("-Seleccione la unidad de tiempo-");
 		
 		}
 	});

@@ -110,9 +110,8 @@ class Producto extends CI_controller
 			$datosCarga["unidadTiempo"] = $this->input->post("unidadTiempo");
 
 		
-
 			/*********************/
-			// *			Validaciónn de los campos					*// 
+			// *Validaciónn de los campos*// 
 			/*********************/
 
 			if ($this->form_validation->run()) {
@@ -262,11 +261,26 @@ class Producto extends CI_controller
 			$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
 			$datosProducto["indicaciones"] = $this->input->post("indicaciones");
 			$datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
-			$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
-			$datosProducto["edad"] = $this->input->post("edad");
+			//$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
+			//$datosProducto["edad"] = $this->input->post("edad");
 			$datosProducto["precio"] = $this->input->post("precioVenta");
 
-			var_dump("este es".$datosProducto["idCategoria"]);
+			
+
+
+			$dato["edad"] = $this->input->post("Todos_edad_actualizar"); 
+	
+
+			if($dato["edad"] == 999){
+				$datosProducto["unidadTiempo"] = $this->input->post("todos_tiempo_actualizar");
+				$datosProducto["edad"] = $this->input->post("Todos_edad_actualizar"); 
+
+			}else{
+
+				$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
+				$datosProducto["edad"] = $this->input->post("edad"); 
+			}
+		
 
 			$this->Model_producto->actualizarProducto($idProducto, $datosProducto);
 

@@ -351,14 +351,14 @@
                         </div>
                         <?php endif;  ?>
 
-                        <?php if($productos['edad'] !=999): ?>
+                        <?php if($productos['edad'] !=999 && $productos['edad'] !=""): ?>
                         <div class="col-md-2">
 
                             <div class="form-group">
 
                                 <label>Edad</label>
                                 <input id="edad_actualizar" class="form-control" rows="3"
-                                    placeholder="Ingrese el tiempo recomendado" name="edad"
+                                    placeholder="Ingrese la edad" name="edad"
                                     value="<?php if(isset($_POST['edad'])){ echo $_POST['edad']; }else{ echo $productos['edad']; } ?>"></input>
                             </div>
                         </div>
@@ -369,8 +369,7 @@
                                 <label>Unidad de tiempo diferente</label>
                                 <select id="tiempo_actualizar" class="form-control " style="width: 100%;"
                                     name="unidadTiempo">                
-                                    <option hidden value=""><?php echo $productos['unidadTiempo'];?></option>
-                                  
+                                    <option hidden  ><?php echo $productos['unidadTiempo'];?></option>
                                     <option>Dia(s)</option>
                                     <option>Semana(s)</option>
                                     <option>Mes(es)</option>
@@ -382,11 +381,10 @@
 
                         <?php endif;  ?>
 
-                        <?php if($productos['edad'] ==999): ?>
+                        <?php if($productos['edad'] ==999 && $productos['edad'] !=""): ?>
                         <div class="col-md-2">
 
                             <div class="form-group">
-
                                 <label>Edad</label>
                                 <input disabled id="edad_actualizar" class="form-control" rows="3"
                                     placeholder="Ingrese el tiempo recomendado" name="edad"
@@ -411,6 +409,34 @@
                         </div>
                         <?php endif;  ?>
 
+                        <?php if($productos['edad'] ==""): ?>
+                        <div class="col-md-2">
+
+                            <div class="form-group">
+
+                                <label>Edad</label>
+                                <input id="edad_actualizar" class="form-control" rows="3"
+                                    placeholder="Ingrese el tiempo recomendado" name="edad"
+                                    value=""></input>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-5">
+                            <div class="form-group Utiempo">
+                                <label>Unidad de tiempo vacio</label>
+                                <select  id="tiempo_actualizar" class="form-control " style="width: 100%;"
+                                    name="unidadTiempo">
+                                    <option hidden value="">-Seleccione la unidad de tiempo-</option>
+                                    <option>Dia(s)</option>
+                                    <option>Semana(s)</option>
+                                    <option>Mes(es)</option>
+                                    <option>Año(s)</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <?php endif;  ?>
 
 
                         
