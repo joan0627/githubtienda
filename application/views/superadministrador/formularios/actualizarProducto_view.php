@@ -32,7 +32,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form" method="POST">
+            <form id="formActualizarP" role="form" method="POST">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -318,46 +318,31 @@
 
                     <div class="row">
                         <?php if($productos['idCategoria'] ==1 || $productos['idCategoria'] ==2): ?>
-                        <?php if($productos['edad'] ==999): ?>
+                            
 
-                        <div class="col-md-2 ">
+                                <div class="col-md-2 ">
 
-                            <div class="form-group">
+                                    <div class="form-group">
 
-                                <div class="icheck-primary d-inline">
-                                    <input checked type="checkbox" id="check_edad_tiempo_actualizar">
-                                    <label for="check_edad_tiempo_actualizar">Todas las edades</label>
+                                        <div class="icheck-primary d-inline">
+                                            <input  type="checkbox" name="check_actualizar"
+                                            value="1" id="check_actualizar">
+                                            <label for="check_actualizar">Todas las edades</label>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
 
-                            </div>
 
-
-                        </div>
-                        <?php endif;  ?>
-
-                        <?php if($productos['edad'] !=999): ?>
-                        <div class="col-md-2 ">
-
-                            <div class="form-group">
-
-                                <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="check_edad_tiempo_actualizar">
-                                    <label for="check_edad_tiempo_actualizar">Todas las edades</label>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                        <?php endif;  ?>
-
-                        <?php if($productos['edad'] !=999 && $productos['edad'] !=""): ?>
+                     
                         <div class="col-md-2">
 
                             <div class="form-group">
 
                                 <label>Edad</label>
-                                <input id="edad_actualizar" class="form-control" rows="3"
+                                <input  id="edad_actualizar" class="form-control" rows="3"
                                     placeholder="Ingrese la edad" name="edad"
                                     value="<?php if(isset($_POST['edad'])){ echo $_POST['edad']; }else{ echo $productos['edad']; } ?>"></input>
                             </div>
@@ -366,68 +351,13 @@
 
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label>Unidad de tiempo diferente</label>
-                                <select id="tiempo_actualizar" class="form-control " style="width: 100%;"
-                                    name="unidadTiempo">                
-                                    <option hidden  ><?php echo $productos['unidadTiempo'];?></option>
-                                    <option>Dia(s)</option>
-                                    <option>Semana(s)</option>
-                                    <option>Mes(es)</option>
-                                    <option>Año(s)</option>
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <?php endif;  ?>
-
-                        <?php if($productos['edad'] ==999 && $productos['edad'] !=""): ?>
-                        <div class="col-md-2">
-
-                            <div class="form-group">
-                                <label>Edad</label>
-                                <input disabled id="edad_actualizar" class="form-control" rows="3"
-                                    placeholder="Ingrese el tiempo recomendado" name="edad"
-                                    value=""></input>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-5">
-                            <div class="form-group Utiempo">
-                                <label>Unidad de tiempo igual</label>
-                                <select disabled id="tiempo_actualizar" class=" form-control " style="width: 100%;"
-                                    name="unidadTiempo">
-                                    <option hidden value="">-Seleccione la unidad de tiempo-</option>
-                                    <option>Dia(s)</option>
-                                    <option>Semana(s)</option>
-                                    <option>Mes(es)</option>
-                                    <option>Año(s)</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <?php endif;  ?>
-
-                        <?php if($productos['edad'] ==""): ?>
-                        <div class="col-md-2">
-
-                            <div class="form-group">
-
-                                <label>Edad</label>
-                                <input id="edad_actualizar" class="form-control" rows="3"
-                                    placeholder="Ingrese el tiempo recomendado" name="edad"
-                                    value=""></input>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-5">
-                            <div class="form-group Utiempo">
-                                <label>Unidad de tiempo vacio</label>
+                                <label>Unidad de tiempo</label>
                                 <select  id="tiempo_actualizar" class="form-control " style="width: 100%;"
                                     name="unidadTiempo">
-                                    <option hidden value="">-Seleccione la unidad de tiempo-</option>
+
+                                    <option hidden ><?php  echo $productos['unidadTiempo'];  ?></option>
+                                    <option hidden value=""><?php if(isset($_POST['unidadTiempo'])){ echo $_POST['unidadTiempo']; }?></option> 
+                                    <option hidden id="placeholder" value="">-Seleccione la unidad de tiempo-</option>
                                     <option>Dia(s)</option>
                                     <option>Semana(s)</option>
                                     <option>Mes(es)</option>
@@ -436,8 +366,6 @@
                                 </select>
                             </div>
                         </div>
-                        <?php endif;  ?>
-
 
                         
 
@@ -466,29 +394,7 @@
 
                     </div>
 
-
-                    <div class="row" style="display:none;">
-
-                        <div class="col-md-6 ">
-                            <div class="form-group">
-
-                                <label>TodosEdad</label>
-                                <input id="Todos_edad_actualizar" class="form-control" rows="3" value="999"
-                                    name="Todos_edad_actualizar"></input>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-
-                                <label>TodosTiempo</label>
-                                <input id="todos_tiempo_actualizar" class="form-control" rows="3" value="Años(s)"
-                                    name="todos_tiempo_actualizar"></input>
-
-                            </div>
-                        </div>
-                    </div>
+               
                     <!--Fin del card body-->
 
                     <!--Inicio del footer del contenido-->

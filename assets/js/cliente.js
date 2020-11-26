@@ -103,7 +103,7 @@ $(document).ready(function () {
 			unidadMascota: { required: true },
 			tiempoM: { required: true },
 			pesoM: { required: true, min: 0, number: true },
-			edadM: { required: true },
+			edadM: {  required: true, min: 0, number: true  },
 		},
 
 		messages: {
@@ -591,7 +591,7 @@ $(document).ready(function () {
 					if (row.estado == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
-						return "<span  class='badge badge-danger'>Deshabilita</span>";
+						return "<span  class='badge badge-danger'>Deshabilitada</span>";
 					}
 				},
 			},
@@ -629,7 +629,7 @@ $(document).ready(function () {
 			unidadActualizar: { required: true },
 			tiempoActualizar: { required: true },
 			pesoActualizar: { required: true, min: 0, number: true },
-			edadActualizar: { required: true },
+			edadActualizar: {required: true, min: 0, number: true },
 			//observacionesActualizar: {  maxlength: 100 },
 		},
 

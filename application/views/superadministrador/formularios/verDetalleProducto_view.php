@@ -162,9 +162,54 @@
                     <?php endif;  ?>
               
                     <?php if($clave['idCategoria'] ==1 || $clave['idCategoria'] ==2): ?>
+
+
+              
                         <div class="row">
+
+
+
+                          <?php if($clave['checking'] ==1):?>
+
+                            <div class="col-md-2 ">
+
+                                <div class="form-group">
+
+                                    <div class="icheck-primary d-inline">
+                                        <input disabled checked type="checkbox" name="check_actualizar"
+                                        value="1" id="check_actualizar">
+                                        <label for="check_actualizar">Todas las edades</label>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <?php endif;  ?>
+
+
+
+                            <?php if($clave['checking'] ==0):?>
+
+                            <div class="col-md-2 ">
+
+                                <div class="form-group">
+
+                                    <div class="icheck-primary d-inline">
+                                        <input disabled type="checkbox" name="check_actualizar"
+                                        value="1" id="check_actualizar">
+                                        <label for="check_actualizar">Todas las edades</label>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <?php endif;?>
                         
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
 
                                         <label>Edad</label>
@@ -175,7 +220,7 @@
                                 </div>
                             
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group Utiempo">
                                     <label>Unidad de tiempo</label>
                                     <input class="form-control" readonly="readonly"
@@ -183,11 +228,9 @@
                                         value="<?php echo $clave['unidadTiempo'];?>"></input>
                                 </div>
                             </div>
-                        </div>
-                    <?php endif;  ?>
 
-                    <div class="row">
-                        <div class="col-md-6">
+
+                            <div class="col-md-2">
                             <label>Precio de venta</label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -199,8 +242,9 @@
                                    id="precioVentaProductoD"  name="precioVenta" readonly="readonly" value="<?php echo $clave['precio']; ?>">
                             </div>
                         </div>
+                        </div>
+                    <?php endif;  ?>
 
-                    </div>
 
 
                 </div>

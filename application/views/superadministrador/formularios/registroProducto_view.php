@@ -32,7 +32,7 @@
             </div> <!-- Fin Caja superior -->
 
             <!-- Inicio form -->
-            <form role="form" id="registroProducto" name="producto" method="POST" enctype="multipart/form-data">
+            <form role="form" id="FormregistroProducto" name="producto" method="POST" enctype="multipart/form-data">
                 <!--Inicio del card body-->
                 <div class="card-body ">
                     <div class="row">
@@ -352,8 +352,8 @@
                             <div class="form-group">
 
                                 <div class="icheck-primary d-inline">
-                                    <input checked type="checkbox" id="check_edad_tiempo">
-                                    <label for="check_edad_tiempo">Todas las edades</label>
+                                    <input checked type="checkbox" value="1" name="check" id="check">
+                                    <label for="check">Todas las edades</label>
                                 </div>
 
                             </div>
@@ -403,28 +403,7 @@
 
                     </div>
 
-                    <div class="row"  style="display:none;" >
-
-                        <div class="col-md-6 " >
-                            <div class="form-group">
-
-                                <label>TodosEdad</label>
-                                <input id="Todos_edad" class="form-control" rows="3"
-                                   value="999"  name="Todos_edad" ></input>
-                               
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-
-                                <label>TodosTiempo</label>
-                                <input id="todos_tiempo" class="form-control" rows="3"
-                                    value="Años(s)" name="todos_tiempo" ></input>
-                               
-                            </div>
-                        </div>
-                    </div>
+                    
 
 
 

@@ -121,7 +121,7 @@ $(document).ready(function () {
 								"'><i class='fas fa-ban'></i> Deshabilitar</button>"
 						);
 
-						$("#editarCliente" + idServicio).removeClass("isDisabled");
+						$("#editarServicio" + idServicio).removeClass("isDisabled");
 					},
 
 					error: function () {

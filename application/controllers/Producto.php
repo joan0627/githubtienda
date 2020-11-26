@@ -128,29 +128,27 @@ class Producto extends CI_controller
 				$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
 				$datosProducto["indicaciones"] = $this->input->post("indicaciones");
 				$datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
-				//Se concatena edad con unidad de tiempo
 
+				$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
+				$datosProducto["edad"] = $this->input->post("edad"); 
 
-				$dato["edad"] = $this->input->post("Todos_edad"); 
-	
-
-				if($dato["edad"] == 999){
-					$datosProducto["unidadTiempo"] = $this->input->post("todos_tiempo");
-					$datosProducto["edad"] = $this->input->post("Todos_edad"); 
-
-				}else{
-
-					$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
-					$datosProducto["edad"] = $this->input->post("edad"); 
-				}
-			
+				$check = $this->input->post("check"); 
 				
-				//Campos invisibles
-				$datosProducto["indicaciones"] = $this->input->post("indicaciones");
-				$datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
+				if($check){
+
+					$datosProducto['checking'] = $check;
+
+				}
+				else{
+					$datosProducto['checking'] = 0;
+
+				}
 
 				$datosProducto["precio"] = $this->input->post("precioVenta");
 
+
+
+				 var_dump(	$datosProducto["checking"]);
 				$this->Model_producto->insertarProducto($datosProducto);
 				$this->session->set_flashdata('message', 'El producto ' .$datosCarga["nombreProducto"].' se ha registrado exitosamente.');
 				redirect("Producto");
@@ -235,6 +233,8 @@ class Producto extends CI_controller
 			$data["presentacion"] = $this->input->post("presentacion");
 			$data["especieproducto"] = $this->input->post("tipoespecie");
 			$data["marca"] = $this->input->post("marca");
+
+			$data["edad"] = $this->input->post("edad");
 			$data["unidadTiempo"] = $this->input->post("unidadTiempo");
 	
 		 
@@ -248,7 +248,7 @@ class Producto extends CI_controller
 
 
 			
-			var_dump("este es ".$datosProducto["idProducto"]);
+		
 
 			$datosProducto["nombreProducto"] = $this->input->post("nombre");
 			$datosProducto["descripcionProducto"] = $this->input->post("descripcion");
@@ -261,26 +261,26 @@ class Producto extends CI_controller
 			$datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
 			$datosProducto["indicaciones"] = $this->input->post("indicaciones");
 			$datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
-			//$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
-			//$datosProducto["edad"] = $this->input->post("edad");
+			$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
+			$datosProducto["edad"] = $this->input->post("edad");
 			$datosProducto["precio"] = $this->input->post("precioVenta");
-
 			
 
 
-			$dato["edad"] = $this->input->post("Todos_edad_actualizar"); 
-	
 
-			if($dato["edad"] == 999){
-				$datosProducto["unidadTiempo"] = $this->input->post("todos_tiempo_actualizar");
-				$datosProducto["edad"] = $this->input->post("Todos_edad_actualizar"); 
 
-			}else{
+			$check = $this->input->post("check_actualizar"); 
+				
+			if($check){
 
-				$datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
-				$datosProducto["edad"] = $this->input->post("edad"); 
+				$datosProducto['checking'] = $check;
+
 			}
-		
+			else{
+				$datosProducto['checking'] = 0;
+
+			}
+
 
 			$this->Model_producto->actualizarProducto($idProducto, $datosProducto);
 
