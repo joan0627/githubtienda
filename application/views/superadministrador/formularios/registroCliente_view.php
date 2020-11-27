@@ -34,6 +34,16 @@
             <form id="form_registroCliente" role="form" method="POST">
                 <!--Inicio del card body-->
                 <div class="card-body ">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="text-align:left">
+                                <i><small> Todos los campos marcados con <label style="color: red;">asterisco
+                                            (*)</label>
+                                        son obligatorios.</small></i>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -110,8 +120,8 @@
                     <hr>
 
                     <div class="col-12 table-responsive">
-                     <table id="tableDetalleMascota" class=" table table-striped " style="width:100%">
-                   
+                        <table id="tableDetalleMascota" class=" table table-striped " style="width:100%">
+
 
                         </table>
                     </div>
@@ -168,6 +178,18 @@
                             <form id="formMascota">
                                 <!--Inicio del card body-->
                                 <div class="card-body ">
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div style="text-align:left">
+                                                <i><small> Todos los campos marcados con <label
+                                                            style="color: red;">asterisco
+                                                            (*)</label>
+                                                        son obligatorios.</small></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
 
                                         <div class="col-md-6">
@@ -195,7 +217,7 @@
                                                     placeholder="Ingrese el nombre ">
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="row">
 
@@ -228,6 +250,7 @@
                                                     </option>
                                                     <option>Macho</option>
                                                     <option>Hembra</option>
+                                                    <option>Desconocido</option>
                                                 </select>
 
                                             </div>
@@ -314,9 +337,10 @@
                                             <div class="form-group">
                                                 <label>Observaciones</label>
                                                 <textarea id="observacionesM" name="observacionesM" class="form-control"
-                                                    rows="3" placeholder="Ingrese una observación..."
-                                                    name="obs" maxlength="150"></textarea>
-                                                    <div style="color: gray;" class="contadorR text-right"><span  id="contadorR"></span><span>/150</span></div>
+                                                    rows="3" placeholder="Ingrese una observación..." name="obs"
+                                                    maxlength="150"></textarea>
+                                                <div style="color: gray;" class="contadorR text-right"><span
+                                                        id="contadorR"></span><span>/150</span></div>
                                             </div>
                                         </div>
 

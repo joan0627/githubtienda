@@ -17,22 +17,39 @@ class Servicio extends CI_controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 
+						/*Protección URL*/
+						if(!$this->session->userdata('login'))
+						{
+							redirect(base_url().'login');
+							
+						
+						}
+
 
 		$this->form_validation->set_rules('nombre', 'nombre', 'required');
-		$this->form_validation->set_rules('tipoServicio', 'tipoServicio', 'required');
+		$this->form_validation->set_rules('tipoServicio', 'tipo servicio', 'required');
 		$this->form_validation->set_rules('descripcion', 'descripción', 'required');
 		$this->form_validation->set_rules('precio', 'precio', 'required');
 
 	}
 
-	public function index($page=1)
+	public function index()
 	{
 		
-		$page_size=2;
-		$offset=0* $page_size;
+	
+
+		$buscar = $this->input->get("buscar");
+
+		if($buscar == 'Habilitado' || $buscar == 'habilitado' || $buscar == 'HABILITADO')
+		{
+			$buscar=1;
+		}
+		elseif($buscar == 'Deshabilitado' || $buscar == 'deshabilitado' || $buscar == 'DESHABILITADO')
+		{
+			$buscar=0;
+		}
 
 
-		  $buscar = $this->input->get("buscar");
 		  
 	   
 		   $datosServicio['resultado'] = $this->Model_servicio->BuscarDatos($buscar);
@@ -60,7 +77,7 @@ class Servicio extends CI_controller
 			//Datos carga en general
 			$datosCarga["idServicio"] = $this->input->post("codigo");
 			$datosCarga["nombreServicio"] = $this->input->post("nombre");
-			$datosCarga["idTipoServicio"] = $this->input->post("tipoServicio");
+			$datosCarga["tiposervicio"] = $this->input->post("tipoServicio");
 			$datosCarga["descripcion"] = $this->input->post("descripcion");
 			$datosCarga["recomendacionesPrevias"] = $this->input->post("recomendacionesPrevias");
 			$datosCarga["recomendacionesPosteriores"] = $this->input->post("recomendacionesPosteriores");
@@ -69,9 +86,7 @@ class Servicio extends CI_controller
 			
 			
 
-			/*********************/
-			// *			Validaciónn de los campos					*// 
-			/*********************/
+		//Validaciónn de los campos
 
 			if ($this->form_validation->run()) {
 
@@ -83,10 +98,9 @@ class Servicio extends CI_controller
 				$datosServicio["recomendacionesPosteriores"] = $this->input->post("recomendacionesPosteriores");
 				$datosServicio["precio"] = $this->input->post("precio");
 				$datosServicio["estado"] = true;
-				var_dump($datosServicio);
-
+		
 				$this->Model_servicio->insertarServicio($datosServicio);
-				$this->session->set_flashdata('message', 'El servicio ' .$datosCarga["nombreServicio"].' se ha registrado correctamente.');
+				$this->session->set_flashdata('message', 'El servicio ' .$datosCarga["nombreServicio"].' se ha registrado exitosamente.');
 				redirect("Servicio");
 
 			}else{
@@ -123,6 +137,9 @@ class Servicio extends CI_controller
 
 	public function actualizar($idServicio = "")
 	{
+
+		$data["tiposervicio"] = $this->input->post("tipoServicio");
+
 		if($this->form_validation->run())
 		{
 				$datosServicio["idServicio"] = $this->input->post("codigo");
@@ -133,9 +150,10 @@ class Servicio extends CI_controller
 				$datosServicio["recomendacionesPosteriores"] = $this->input->post("recomendacionesPosteriores");
 				$datosServicio["precio"] = $this->input->post("precio");
 
+
 			$this->Model_servicio->actualizarServicio($idServicio, $datosServicio);
 
-			$this->session->set_flashdata('actualizar', 'El servicio' .$datosCarga["nombreServicio"].' se ha actualizado correctamente.');
+			$this->session->set_flashdata('actualizar', 'El servicio ' .$datosServicio["nombreServicio"]. ' se ha actualizado exitosamente.');
 			
 			redirect("servicio");
 
@@ -144,14 +162,13 @@ class Servicio extends CI_controller
 		{
 
 			
-			$datos = $this->Model_servicio->buscarDatosServicio($idServicio);
+			$data['servicios'] = $this->Model_servicio->buscarDatosServicio($idServicio);
 			
 			//Esta es la vista que carga los datos de los input
 
-			$data['clave']= $datos;
 			$data['tipoServicios'] = $this->Model_servicio->buscarTipoServicio();
-			
-             var_dump($data);
+
+
 			 $this->load->view('layouts/superadministrador/header');
 			 $this->load->view('layouts/superadministrador/aside');
 			 $this->load->view('superadministrador/formularios/actualizarServicio_view',$data);
@@ -177,6 +194,19 @@ class Servicio extends CI_controller
 			
 		}
 	}	
+
+
+	public function estado_servicio(){
+
+		$idServicio =$this->input->post("idServicio");
+		$estadoS =$this->input->post("estado");
+
+		$this->Model_servicio->ActualizaEstadoServicio( $idServicio, $estadoS);
+
+	}
+
+	
+
 
 	
 }

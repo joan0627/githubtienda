@@ -103,7 +103,7 @@ $(document).ready(function () {
 			unidadMascota: { required: true },
 			tiempoM: { required: true },
 			pesoM: { required: true, min: 0, number: true },
-			edadM: { required: true },
+			edadM: {  required: true, min: 0, number: true  },
 		},
 
 		messages: {
@@ -162,7 +162,7 @@ $(document).ready(function () {
 					required: true,					
 					noSpace: true,
 					noCharacters: true,
-					min: 2,
+					
 					
 					remote: {
 						url:"/tienda/cliente/documento_exist",
@@ -187,16 +187,17 @@ $(document).ready(function () {
 
 			documentoC: {
 				//checkExists: "igual",
-				min: "El campo documento debe ser minimo de 2 caracteres.",
+				
             	required: "El campo documento es obligatorio.",
 				noSpace: "El campo documento sólo puede contener caracteres alfanuméricos",
 				noCharacters: "El campo documento sólo puede contener caracteres alfanuméricos.",
-				remote: function() { return $.validator.format("El documento ya se encuentra registrado.")}
+				remote: function() { return $.validator.format("El documento ya se encuentra registrado.")},
+		
             },
 
 			nombreC:{
 				required: "El campo nombre es obligatorio.",
-				onlyChar :"El campo nombre soló puede contener alfabéticos y espacios.",
+				onlyChar :"El campo nombre soló puede contener caracteres alfabéticos y espacios.",
 			}, 
 			celularC: "El campo celular es obligatorio.",
 			correoC: "Ingrese un correo valido.",
@@ -587,7 +588,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
 						return "<span  class='badge badge-danger'>Deshabilitada</span>";
@@ -597,7 +598,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return (
 							"<button action='editar' data-toggle='tooltip' title='Editar'class='btneditar btn btn-primary btn-sm'> <i class='fas fa-pencil-alt'></i></button>" +
 							" " +
@@ -628,7 +629,7 @@ $(document).ready(function () {
 			unidadActualizar: { required: true },
 			tiempoActualizar: { required: true },
 			pesoActualizar: { required: true, min: 0, number: true },
-			edadActualizar: { required: true },
+			edadActualizar: {required: true, min: 0, number: true },
 			//observacionesActualizar: {  maxlength: 100 },
 		},
 
@@ -867,8 +868,7 @@ $(document).ready(function () {
 								});
 								
 
-								
-
+							
 								
 							},
 
@@ -1147,7 +1147,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
 						return "<span  class='badge badge-danger'>Deshabilitada</span>";
@@ -1246,8 +1246,8 @@ $(document).ready(function () {
 							} else {
 								Swal.fire({
 									title: "¡Proceso no completado!",
-									text:
-										"No se puede deshabilitar el cliente por que tiene mascotas habilitadas",
+									html:
+										"No se puede deshabilitar este cliente ya que tiene mascotas habilitadas.<br> Deshabilite todas las mascotas para completar este proceso.",
 									type: "warning",
 									confirmButtonColor: "#28a745",
 								});
@@ -1342,7 +1342,7 @@ $(document).ready(function () {
 	 */
 
 	var idMascotaH = $("#idMascotaHistorial").val();
-	console.log(idMascotaH);
+	
 
 	$("#tableHistorialMascota").DataTable({
 

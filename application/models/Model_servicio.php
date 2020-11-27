@@ -45,19 +45,21 @@ class Model_servicio extends Ci_model
 		$this->db->select();
 		$this->db->from($this->tablaServicio);
 		$this->db->join($this->tablaTiposervicio, 'servicio.idTipoServicio = tiposervicio.idTipoServicio');
-		$this->db->or_like("idServicio",$buscar);
+		$this->db->or_like("idServicio",$buscar,'none');
 		$this->db->or_like("nombreServicio",$buscar);
-		$this->db->or_like("descripcion",$buscar);
-		$this->db->or_like("tiposervicio.descripcionTipoServicio",$buscar);
-		$this->db->or_like("precio",$buscar);
-		$this->db->or_like("estado",$buscar);
-		//$this->db->order_by('fechaRegistro', 'DESC');
+		$this->db->or_like("tiposervicio.descripcionTipoServicio",$buscar,'none');
+		$this->db->or_like("precio",$buscar,'none');
+		$this->db->or_like("estado",$buscar,'none');
+		$this->db->order_by('fechaRegistro', 'DESC');
 		$consulta = $this->db->get();
 
 		if($consulta->num_rows()==0)
 		{
 
 			$this->session->set_flashdata('busqueda', 'No hay resultados');
+
+		}else{
+			$this->session->set_flashdata('busqueda', '');
 
 		}
 		return $consulta->result();
@@ -66,9 +68,11 @@ class Model_servicio extends Ci_model
 
 	function buscarDatosServicio($idServicio){ 
 		$this->db->select();
+		$this->db->from($this->tablaServicio);
 		$this->db->join($this->tablaTiposervicio, 'servicio.idTipoServicio = tiposervicio.idTipoServicio');
-		$resultado = $this->db->get_where('servicio', array('servicio.idServicio' => $idServicio), 1);
+		$this->db->where($this->ServicioPK,$idServicio);
 
+		$resultado = $this->db->get();	
 		return $resultado->row_array();
 
 	}
@@ -82,13 +86,14 @@ class Model_servicio extends Ci_model
 		$this->db->update($this->tablaServicio, $datosServicio);
 	}
 
-	function borrar($idServicio){
-		$this->db->select();
-		$this->db->from($this->tablaServicio);
-		$this->db->where($this->ServicioPK,$idServicio);
-		$this->db->delete($this->tablaServicio);
-	}
 
+
+	function ActualizaEstadoServicio($idServicio, $estadoS){
+
+		$this->db->set('estado', $estadoS);	
+		$this->db->where($this->ServicioPK ,$idServicio);
+		$this->db->update($this->tablaServicio);
+	}
 
 
 }

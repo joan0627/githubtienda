@@ -36,25 +36,28 @@
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-md-6">
+                            <div style="text-align:left">
+                                <i><small> Todos los campos marcados con <label style="color: red;">asterisco
+                                            (*)</label>
+                                        son obligatorios.</small></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Tipo de documento</label> <label style="color: red;"> *</label>
-                                <select readonly="readonly" name="tipoDocumento" class="form-control">
+                                <label>Tipo de documento</label>
 
-                                    <?php foreach ($idTiposDocumentos as $clave => $valor): ?>
-                                    <option value="" selected hidden><?php  echo $cliente['descripcion']; ?></option>;
-                                    <option value=" <?php echo $valor->idTipoDocumento; ?>">
-                                        <?php echo $valor->descripcion; ?></option>
-
-                                    <?php endforeach;?>
-                                </select>
+                                <input readonly="readonly" name="tipoDocumento" type="text" class="form-control "
+                                    placeholder="Campo vacío" value="<?php  echo $cliente['descripcion']; ?>">
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Documento</label> <label style="color: red;"> * </label>
+                                <label>Documento</label>
                                 <input readonly="readonly" id="documentoClienteA" name="documento" type="text"
                                     class="form-control " placeholder="Ingrese el documento "
                                     value="<?php  echo $cliente['documento']; ?>">
@@ -122,10 +125,10 @@
                                     <th>Nombre</th>
                                     <th>Raza</th>
                                     <th>Sexo</th>
-                                    <th style='width:15% !important ;'>Peso</th>
+                                    <th style='width:10% !important ;'>Peso</th>
                                     <th>Cumpleaños</th>
-                                    <th style='width:15% !important ;'>Edad</th>
-                                    <th style='width:30% !important ;'>Observaciones</th>
+                                    <th style='width:10% !important ;'>Edad</th>
+                                    <th>Observaciones</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                     <th>idMascota</th>
@@ -201,6 +204,17 @@
                             <form id="FormActualizarMascota">
                                 <!--Inicio del card body-->
                                 <div class="card-body ">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div style="text-align:left">
+                                                <i><small> Todos los campos marcados con <label
+                                                            style="color: red;">asterisco
+                                                            (*)</label>
+                                                        son obligatorios.</small></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
 
 
@@ -270,6 +284,7 @@
                                                     </option>
                                                     <option>Macho</option>
                                                     <option>Hembra</option>
+                                                    <option>Desconocido</option>
                                                 </select>
 
                                             </div>
@@ -281,7 +296,7 @@
                                         <div class="col-md-6">
 
                                             <div class="form-group">
-                                                <label>Peso</label><label style="color: red;">*</label>
+                                                <label>Peso</label> <label style="color: red;">*</label>
                                                 <input id="pesoActualizar" name="pesoActualizar" type="number" min="0"
                                                     class="form-control" placeholder="Ingrese el peso">
                                             </div>
@@ -324,7 +339,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Edad</label><label style="color: red;">*</label>
+                                                <label>Edad</label> <label style="color: red;">*</label>
                                                 <input id="edadActualizar" name="edadActualizar" type="number"
                                                     class="form-control" placeholder="Ingrese la edad">
                                             </div>
@@ -347,7 +362,7 @@
                                                     <option>Semana(s)</option>
                                                     <option>Mes(es)</option>
                                                     <option>Año(s)</option>
-
+                                                   
                                                 </select>
                                             </div>
                                         </div>

@@ -35,6 +35,16 @@
                 <!--Inicio del card body-->
 
                 <div class="card-body ">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="text-align:left">
+                                <i><small> Todos los campos marcados con <label style="color: red;">asterisco
+                                            (*)</label>
+                                        son obligatorios.</small></i>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
 
                         <div class="col-md-6">
@@ -53,7 +63,7 @@
 
                             <div class="form-group">
                                 <label>Nombre</label> <label style="color: red;"> * </label>
-                                <input name="nombre" type="text" class="form-control"
+                                <input name="nombre" id="nombreSe"type="text" class="form-control"
                                     placeholder="Ingrese el nombre del servicio" value="<?php echo $nombreServicio;?>">
                                 <?php echo form_error('nombre', '<p class="text-danger">', '</p>'); ?>
 
@@ -71,7 +81,8 @@
 
                                 <div class="form-group">
                                     <label>Tipo de servicio</label> <label style="color: red;"> *</label>
-                                    <select class="form-control " style="width: 100%;" name="tipoServicio">
+                                    <select id="tipoServicio" name="tipoServicio" class="form-control">
+
                                         <?php if ($tiposervicio != "") : ?>
                                         <?php foreach ($tipoServicios as $clave => $valor) : ?>
                                         <?php if ($tiposervicio == $valor->idTipoServicio) : ?>
@@ -90,7 +101,8 @@
                                         <?php endforeach; ?>
                                         <?php else :
 										foreach ($tipoServicios as $clave => $valor) : ?>
-                                        <option value="" selected hidden>-Seleccione un tipo de servicio-</option>;
+                                       
+                                         <option value="" selected hidden>-Seleccione un tipo de servicio-</option>;
                                         <option value=" <?php echo  $valor->idTipoServicio; ?>">
                                             <?php echo  $valor->descripcionTipoServicio; ?></option>
 
@@ -108,8 +120,12 @@
                             <div class="form-group">
 
                                 <label>Descripción</label> <label style="color: red;"> * </label>
-                                <textarea class="form-control" rows="3" placeholder="Describa el detalle del servicio"
+                                <textarea maxlength="150" class="form-control" rows="3"
+                                    placeholder="Describa el detalle del servicio" id="descripcionRegistroS"
                                     name="descripcion"><?php echo $descripcion;?></textarea>
+
+                                <div style=" display: none; color: gray;" class="descripcionRS text-right"><span
+                                        id="descripcionRS"></span><span>/150</span></div>
                                 <?php echo form_error('descripcion', '<p class="text-danger">', '</p>'); ?>
 
                             </div>
@@ -124,18 +140,23 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Recomendaciones previas</label>
-                                <textarea class="form-control" rows="3"
-                                    placeholder="Tener en cuenta antes de la cita..."
+                                <textarea maxlength="150" class="form-control" rows="3"
+                                    placeholder="Tener en cuenta antes de la cita..." id="recomendacionesPreviasR"
                                     name="recomendacionesPrevias"><?php echo $recomendacionesPrevias;?></textarea>
+
+                                <div style=" display: none; color: gray;" class="contadorRS text-right"><span
+                                        id="contadorRS"></span><span>/150</span></div>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Recomendaciones posteriores</label>
-                                <textarea class="form-control" rows="3"
-                                    placeholder="Tener en cuenta después de la cita..."
+                                <textarea maxlength="150" class="form-control" rows="3"
+                                    placeholder="Tener en cuenta después de la cita..." id="recomendacionesPosterioresR"
                                     name="recomendacionesPosteriores"><?php echo $recomendacionesPosteriores;?></textarea>
+                                <div style=" display: none; color: gray;" class="contadorReS text-right"><span
+                                        id="contadorReS"></span><span>/150</span></div>
                             </div>
 
                         </div>
@@ -152,8 +173,9 @@
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio del servicio"
-                                    name="precio" value="<?php echo $precio;?>">
+                                <input type="text" class=" precioServicio form-control"
+                                    placeholder="Ingrese el precio del servicio" name="precio"
+                                    value="<?php echo $precio;?>">
 
                             </div>
                             <?php echo form_error('precio', '<p class="text-danger">', '</p>'); ?>

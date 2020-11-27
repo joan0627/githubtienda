@@ -28,9 +28,6 @@ class Cliente extends CI_controller
 	public function index()
 	{
 
-
-
-
 			$buscar = $this->input->get("buscar");
 
 			if($buscar == 'Habilitado' || $buscar == 'habilitado' || $buscar == 'HABILITADO')
@@ -41,9 +38,6 @@ class Cliente extends CI_controller
 			{
 				$buscar=0;
 			}
-
-
-
 
 		  
 
@@ -137,12 +131,12 @@ class Cliente extends CI_controller
 		$datosMascota= array(
 			 'idMascota' => '',
 			 'idTipoMascota' => $tipoMascota,
+			 'documentoCliente' => $documento,
 			 'nombreMascota' => $nombreM,
 			 'idraza' => $raza,
 			 'sexo' => $sexo,
 			 'fechaCumpleanos' => $cumpleanos,
 			 'observaciones' => $observaciones,
-			 
 			 'peso' => $peso,
 			 'edad' => $edad,
 			 'idUnidadMedida' => $unidadMedida,
@@ -153,17 +147,7 @@ class Cliente extends CI_controller
 
 		$this->Model_cliente->insertarMascota($datosMascota);
 		$limite = $this->Model_cliente->consultarRows($numRows);
-  	
-	
-		
-		$datosDetalleMascota= array(
-			'idDetalleMascotaCliente'=>'',
-			'idMascota' => $limite["idMascota"],
-			'documentoCliente' => $documento,					
-		);
 
-	
-		$this->Model_cliente->insertarDetalleMascota($datosDetalleMascota);
 		
 
 	}
