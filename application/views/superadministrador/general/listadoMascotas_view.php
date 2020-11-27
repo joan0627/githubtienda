@@ -106,14 +106,14 @@
                             <td><?php echo $d->nombre?></td>
                             
 
-                            <?php if ($d->estado ==1) {?>
-                            <td class="text-center"> <span class="badge badge-success">Habilitado</span></td>
+                            <?php if ($d->estadoMascota ==1) {?>
+                            <td class="text-center"> <span class="badge badge-success">Habilitada</span></td>
                             <?php  }
                            
                            else
                             {
-                                if ($d->estado ==0) { ?>
-                            <td class="text-center"> <span class="badge badge-danger">Deshabilitado</span></td>
+                                if ($d->estadoMascota ==0) { ?>
+                            <td class="text-center"> <span class="badge badge-danger">Deshabilitada</span></td>
                             <?php   }  
                                 } ?>
 

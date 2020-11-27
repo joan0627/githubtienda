@@ -588,7 +588,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
 						return "<span  class='badge badge-danger'>Deshabilitada</span>";
@@ -598,7 +598,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return (
 							"<button action='editar' data-toggle='tooltip' title='Editar'class='btneditar btn btn-primary btn-sm'> <i class='fas fa-pencil-alt'></i></button>" +
 							" " +
@@ -1147,7 +1147,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
 						return "<span  class='badge badge-danger'>Deshabilitada</span>";
