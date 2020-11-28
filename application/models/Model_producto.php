@@ -210,6 +210,25 @@ function ActualizaEstadoProducto($idProducto, $estadoP){
 	$this->db->where($this->ProductoPK ,$idProducto);
 	$this->db->update($this->tablaProducto);
 }
+
+
+//Consultas para ventas
+
+function ProductoVenta(){
+	$this->db->select();
+	$this->db->from($this->tablaProducto);
+	$this->db->join($this->tablaCategoria, 'producto.idCategoria = categoria.idCategoria');
+	$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
+	$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
+	$this->db->join($this->tablaUnidadMedida, 'producto.idUnidadMedida = unidadmedida.idUnidadMedida');
+	$this->db->join($this->tablaEspecieproducto, 'producto.idEspecieProducto = especieproducto.idEspecieProducto');
+	
+	$resultado = $this->db->get();	
+	return $resultado->result_array();
+
+
+}
+
 	
 
 

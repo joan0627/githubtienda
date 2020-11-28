@@ -158,7 +158,7 @@
 
                                     <tr>
                                         <th colspan="4" style="text-align:right">Total:</th>
-                                        <th colspan="3"></th>
+                                        <th colspan="4"></th>
 
                                     </tr>
 
