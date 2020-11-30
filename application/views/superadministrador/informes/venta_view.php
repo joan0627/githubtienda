@@ -21,6 +21,11 @@
                                     <?php  foreach ($encabezadoVenta as $key) {echo $key->fecha;} ?></div>
                                 <div class="fecha">
                                     Vendedor:<?php  foreach ($encabezadoVenta as $key) {echo $key->nombre;} ?></div>
+                                <div class="fecha">Forma de pago:
+                                    <?php  foreach ($encabezadoVenta as $key) {echo $key->descripcion;} ?></div>
+                                <div class="fecha">Comprobante:
+                                    <?php  foreach ($encabezadoVenta as $key) {echo ($key->descripcion=='Transferencia') ?  $key->nComprobante :'Sin datos'; }?>
+                                </div>
                                 <div class="fecha">Estado:
                                     <?php  foreach ($encabezadoVenta as $key) {echo ($key->estado==1) ? 'Registrada' :'Anulada'; } ?>
                                 </div>

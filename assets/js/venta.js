@@ -621,35 +621,58 @@ $(document).ready(function () {
 					type: "POST",
 					url: "/tienda/venta/anular_venta",
 					data: { idFactura: idFactura },
-					success: function () {
-						Swal.fire({
-							title: "¡Proceso completado!",
-							text: "La venta" + " ha sido anulada exitosamente.",
-							type: "success",
-							confirmButtonColor: "#28a745",
-						});
-						$("#estadoventa" + idFactura).replaceWith(
-							'<span class="badge badge-danger">Anulada</span>'
-						);
-						$("#anularVenta" + idFactura).prop("disabled", true);
-					},
+					dataType: "JSON",
+					success: function (data) {
 
-					error: function () {
-						Swal.fire({
-							title: "¡Proceso no completado!",
-							text:
-								"La venta " +
-								" no se puede anular, ya que esta asociado a otro proceso.",
-							type: "warning",
-							confirmButtonColor: "#28a745",
-						});
+						$.each(data, function (i, item) {
+	
+							var cantidad = item.cantidad;
+							var idProducto = item.producto;
+
+							console.log(cantidad+"  " + idProducto);
+  
+							$.ajax({
+								type: "POST",
+								url: "/tienda/venta/anular_cantidad",
+								data: {
+									cantidad: cantidad,
+									idProducto: idProducto,
+								},
+
+								success: function () {
+									Swal.fire({
+										title: "¡Proceso completado!",
+										text: "La venta" + " ha sido anulada exitosamente.",
+										type: "success",
+										confirmButtonColor: "#28a745",
+									});
+									$("#estadoventa" + idFactura).replaceWith(
+										'<span class="badge badge-danger">Anulada</span>'
+									);
+									$("#anularVenta" + idFactura).prop("disabled", true);
+								},
+
+								error: function () {
+									Swal.fire({
+										title: "¡Proceso no completado!",
+										text:
+											"La venta " +
+											" no se puede anular, ya que esta asociado a otro proceso.",
+										type: "warning",
+										confirmButtonColor: "#28a745",
+									});
+								},
+								statusCode: {
+									400: function (data) {
+										var json = JSON.parse(data.responseText);
+										Swal.fire("¡Error!", json.msg, "error");
+									},
+								},
+							});
+						})
+
 					},
-					statusCode: {
-						400: function (data) {
-							var json = JSON.parse(data.responseText);
-							Swal.fire("¡Error!", json.msg, "error");
-						},
-					},
+					
 				});
 			}
 		});

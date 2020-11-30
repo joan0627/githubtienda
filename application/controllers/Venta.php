@@ -54,7 +54,7 @@ class Venta extends CI_controller
 		$resultado = $this->Model_venta->obtenerIdVenta();
 		$data['clave']= $resultado;
 
-		$data['usuarios'] = $this->Model_usuario->BuscarTodosUsuarios();
+		$data['usuarios'] = $this->Model_venta->BuscarTodosUsuariosSelect();
 		$data['formaPago'] = $this->Model_venta->BuscarFormapago();
 		
 		$this->load->view('layouts/superadministrador/header');
@@ -125,7 +125,7 @@ class Venta extends CI_controller
 	
 		);
 
-		var_dump($datosDetalleVenta);
+
 	
 
 		$this->Model_venta->insertarDetalleVenta($datosDetalleVenta);
@@ -160,8 +160,33 @@ class Venta extends CI_controller
 
 			$this->Model_venta->anularVenta($idFactura, $estado);
 
+			// Anular la existencia 
 		
+			$data = $this->Model_venta->cantidad_codigo($idFactura);
+	
+			echo json_encode($data);
+		
+	
+
 	}	
+
+
+		public function anular_cantidad(){
+
+
+			$idProducto= $this->input->post('idProducto');
+			$cantidad= $this->input->post('cantidad');
+
+			//Se actualiza la existencia
+			$existenciaActual=$this->Model_producto->consultaExistencia($idProducto);
+			$cantidad = $existenciaActual["existencia"]+$cantidad;
+			
+			
+			$this->Model_venta->actualizarExistencia($idProducto, $cantidad);
+
+
+			
+		}
 
 
 

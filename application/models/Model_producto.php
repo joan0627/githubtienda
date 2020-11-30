@@ -222,6 +222,8 @@ function ProductoVenta(){
 	$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
 	$this->db->join($this->tablaUnidadMedida, 'producto.idUnidadMedida = unidadmedida.idUnidadMedida');
 	$this->db->join($this->tablaEspecieproducto, 'producto.idEspecieProducto = especieproducto.idEspecieProducto');
+	$this->db->where('estado', 1);
+	$this->db->where('existencia >',0);
 	
 	$resultado = $this->db->get();	
 	return $resultado->result_array();

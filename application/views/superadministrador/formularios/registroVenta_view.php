@@ -41,16 +41,24 @@
                     <!-- /.col -->
                 </div>
 
-                <br>
+               
                 <!-- info row -->
                 <form class="form_venta" id="form_venta" role="form" method="POST">
                     <!--Inicio del card body-->
-
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="text-align:left">
+                                <i><small> Todos los campos marcados con <label style="color: red;">asterisco
+                                            (*)</label>
+                                        son obligatorios.</small></i>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Fecha</label>
+                                <label>Fecha</label> <label style="color: red;"> * </label>
                                 <input id="fechaVenta" name="fechaVenta" type="date" class="form-control"
                                     value="<?php echo date("Y-m-d"); ?>">
                             </div>

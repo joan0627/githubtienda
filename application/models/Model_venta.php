@@ -134,13 +134,24 @@ class Model_venta extends Ci_model
 
 	//Informe venta
 
+	function BuscarTodosUsuariosSelect() {
 
+		$this->db->select();
+		$this->db->from('usuario');
+		$this->db->where('estado', 1); 
+
+
+		$consulta = $this->db->get();
+		return $consulta->result();
+		
+	}
 	
 function buscarDatosEncabezadoVenta($idventa) {
 
-	$this->db->select('v.*,u.nombre,v.observaciones as observacionesCompra');
+	$this->db->select('v.*,u.nombre,v.observaciones as observacionesCompra, fp.descripcion');
 	$this->db->from('venta v');
 	$this->db->join('usuario u', ' u.idUsuario = v.vendedor');
+	$this->db->join('formapago fp', ' fp.idFormaPago = v.formaPago');
 	$this->db->where($this->ventaPk,$idventa);		
 	$consulta = $this->db->get();
 	
@@ -149,6 +160,7 @@ function buscarDatosEncabezadoVenta($idventa) {
 
 	
 }
+
 
 
 function buscarVentaDetalle($idventa)
@@ -170,6 +182,25 @@ function buscarVentaDetalle($idventa)
 	return $consulta->result();
 
 
+}
+
+
+
+function cantidad_codigo($idfactura){
+	$this->db->select('cantidad, producto');
+	$this->db->from('detalleventaproducto');    
+	$this->db->where('factura', $idfactura); 
+
+	$consulta = $this->db->get();
+	return $consulta->result();
+}
+
+
+function actualizarExistencia($idProducto, $cantidad){
+
+	$this->db->set('existencia', $cantidad);	
+	$this->db->where('idProducto' ,$idProducto);
+	$this->db->update('producto');
 }
 
 
