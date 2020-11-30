@@ -58,14 +58,14 @@ $(document).ready(function () {
 						autoUnmask: true,
 						clearMaskOnLostFocus: false,
 					});
-
-					return "<div class='input-group' style='width: 80%;'><input  type='text' value='1' class=' form-control cantidad_ventaL'></div>";
+				
+					return "<div class='input-group' style='width: 80%;'><input  type='text' value='1' class='cantidad_ventaL form-control '></div>";
 				},
 			},
 
 			{
 				//adds td row for button
-				data: null,
+				//data: ,
 				render: function (data, type, row) {
 					$(".costo_ventaL").inputmask({
 						alias: "currency",
@@ -81,8 +81,8 @@ $(document).ready(function () {
 						placeholder: "0",
 						clearMaskOnLostFocus: false,
 					});
-
-					return " <div class='input-group '><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input name='costo_ventaL' type='text' class='costo_ventaL form-control 'style='text-align:right' ></div>";
+					
+					return " <div class='input-group '><div class='input-group-addon' style='color:green; font-weight: bold; font-size:20px'>$</div><input value='"+row.precio +"' name='costo_ventaL' type='text' class='costo_ventaL form-control 'style='text-align:right' ></div>";
 				},
 			},
 
@@ -101,39 +101,79 @@ $(document).ready(function () {
 	 * Función Añadir al detalle de la Compra
 	 */
 
-	$("#tableProductos tbody").on("click", ".btncarrito_venta", function (e) {
-		e.preventDefault();
+	$("#tableProductos tbody").on("click",".btncarrito_venta",function (e) {
+			e.preventDefault();
+			var el = $(this);
+			var codigoV = $(this).closest("tr").find("td:eq(0)").text();
+			var cantidadV = $(this).closest("tr").find("td:eq(3)").find("input").val();
 
-		var codigoV = $(this).closest("tr").find("td:eq(0)").text();
-		var descripcionV = $(this).closest("tr").find("td:eq(2)").text();
-		var cantidadV = $(this).closest("tr").find("td:eq(3)").find("input").val();
-		var costoV = $(this).closest("tr").find("td:eq(4)").find("input").val();
-		costoV = OSREC.CurrencyFormatter.parse(costoV, {
-			currency: "COP",
-			locale: "es_CO",
-		});
-		var costototalV = costoV * cantidadV;
+			var descripcionV = $(this).closest("tr").find("td:eq(2)").text();
+			var costoV = $(this).closest("tr").find("td:eq(4)").find("input").val();
 
-		//	var cantidadT2 = 0;
-		//	var v = true;
-		var tableventa = $("#tableVenta").DataTable();
-		//var data = tableventa.rows().data();
-		$(this).closest("tr").addClass("selected");
+			costoV = OSREC.CurrencyFormatter.parse(costoV, {
+				currency: "COP",
+				locale: "es_CO",
+			});
 
-		tableventa.row
-			.add([
-				codigoV,
-				descripcionV,
-				cantidadV,
-				OSREC.CurrencyFormatter.format(costoV, { currency: "COP" }),
-				OSREC.CurrencyFormatter.format(costototalV, { currency: "COP" }),
-				"<button class='quitar_producto btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i> Quitar </button>",
-			])
+			var costototalV = costoV * cantidadV;
 
-			.draw();
+	 
+			
+			
+			
+			$.ajax({
+				type: "POST",
+				url: "/tienda/venta/consulta_cantidad/",
+				data: {
+					codigoV: codigoV,
+				},
+				dataType: "json",
+				success: function (data) {
+					if (Number(cantidadV) <= data[0].existencia) {
+						el.closest("tr").addClass("selected");
+						$(el, ".btncarrito_venta").prop("disabled", true).css("color", "#8a8a8a");
 
-		$(this, ".btncarrito_venta").prop("disabled", true).css("color", "#8a8a8a");
-	});
+						var tableventa = $("#tableVenta").DataTable();
+
+						tableventa.row
+							.add([
+								codigoV,
+								descripcionV,
+								cantidadV,
+								OSREC.CurrencyFormatter.format(costoV, { currency: "COP" }),
+								OSREC.CurrencyFormatter.format(costototalV, {
+									currency: "COP",
+								}),
+								"<button class='quitar_producto btn btn-danger btn-sm'><i class='fas fa-minus-circle'></i> Quitar </button>",
+							])
+
+							.draw();
+					} else {
+
+						$('#tableProductos tbody').closest("tr").removeClass("selected");
+						$(this)
+							.find(".btncarrito_venta")
+							.removeAttr("disabled")
+							.css("color", "#5CB85C");
+
+						Swal.fire({
+							title: "Información",
+							text:
+								"La cantidad solicitada de este producto no está disponible.",
+							type: "info",
+							confirmButtonColor: "#28a745",
+						});
+					}
+
+
+				},
+			});
+			
+
+
+		
+		}
+	);
 
 	/**
 	 *
@@ -169,7 +209,21 @@ $(document).ready(function () {
 							cancelButtonText: "No",
 						}).then((result) => {
 							if (result.value) {
+						
+
+								$("#tableProductos tbody tr").each(function () {
+									var el = $(this);
+						
+										el.closest("tr").removeClass("selected");
+										el.find(".btncarrito_venta").removeAttr("disabled").css("color", "#5CB85C");
+									
+								});
+
 								tablaVenta.clear().draw();
+
+
+								$('.costo_ventaL').val("");
+								$('.cantidad_ventaL').val("");
 							}
 						});
 					} else {
@@ -219,37 +273,113 @@ $(document).ready(function () {
 				})
 			);
 
+			// CALCULO DEL DESCUENTO Y VALIDACIONES DEL MISMO
+
+			$("#descuentoVenta").inputmask({
+				//Quita el enmaskaramiento al enviar el dato
+				//autoUnmask: INVESTIGAR
+
+				rightAlign: true,
+				removeMaskOnSubmit: true,
+				prefix: "",
+				alias: "numeric",
+				groupSeparator: "",
+				autoGroup: true,
+				digits: 0,
+				digitsOptional: false,
+				min: 0,
+				max: 100,
+				allowMinus: false,
+				autoUnmask: true,
+				placeholder: "%",
+				clearMaskOnLostFocus: false,
+			});
+
+			var descuento = $("#descuentoVenta").val();
+
+			if (descuento == "" || totalV == 0) {
+				$("tr:eq(2) th:eq(1)", api.table().footer()).html(
+					OSREC.CurrencyFormatter.format(totalV, {
+						currency: "COP",
+						locale: "es_CO",
+					})
+				);
+
+				if (totalV == 0) {
+					$("#descuentoVenta").prop("disabled", true);
+				} else {
+					$("#descuentoVenta").prop("disabled", false);
+					$("#descuentoVenta").keyup(function () {
+						var descuento = $("#descuentoVenta").val();
+
+						var resultado = api.data().reduce(function (a, b) {
+							return (descuento * intVal(totalV)) / 100;
+						}, 0);
+
+						var resultado = api.data().reduce(function (a, b) {
+							return intVal(totalV) - resultado;
+						}, 0);
+
+						$("tr:eq(2) th:eq(1)", api.table().footer()).html(
+							OSREC.CurrencyFormatter.format(resultado, {
+								currency: "COP",
+								locale: "es_CO",
+							})
+						);
+
+						var total = OSREC.CurrencyFormatter.format(resultado, {
+							currency: "COP",
+						});
+
+						$("#total_venta").val(total);
+					});
+
+					if (descuento != "" && totalV != "") {
+						resultado = "";
+
+						$("tr:eq(2) th:eq(1)", api.table().footer()).html(
+							OSREC.CurrencyFormatter.format(resultado, {
+								currency: "COP",
+								locale: "es_CO",
+							})
+						);
+					}
+				}
+			}
+
+			var totalV = OSREC.CurrencyFormatter.format(totalV, {
+				currency: "COP",
+			});
+
 			$("#total_venta").val(totalV);
 		},
 	});
 
-    /**
-     * 
-     * Función quitar detalle de la venta
-     * 
-     */
+	/**
+	 *
+	 * Función quitar detalle de la venta
+	 *
+	 */
 
-    $("#tableVenta").on("click", ".quitar_producto", function() {
-        var table = $("#tableVenta").DataTable();
-        let $tr = $(this).closest("tr");
-        var codigoT2 = $($tr).children().eq(0).text();
+	$("#tableVenta").on("click", ".quitar_producto", function () {
+		var table = $("#tableVenta").DataTable();
+		let $tr = $(this).closest("tr");
+		var codigoT2 = $($tr).children().eq(0).text();
 
+		$("#tableProductos tbody tr").each(function () {
+			var codigoT1 = $(this).children().eq(0).text();
 
-        $("#tableProductos tbody tr").each(function() {
-            var codigoT1 = $(this).children().eq(0).text();
-            //cantidadT2 = $(this).closest("tr").find("td:eq(2)").text();
+			if (codigoT1 == codigoT2) {
+				$(this).closest("tr").removeClass("selected");
+				$(this)
+					.find(".btncarrito_venta")
+					.removeAttr("disabled")
+					.css("color", "#5CB85C");
+			}
+		});
 
-            if (codigoT1 == codigoT2) {
-                $(this).closest("tr").removeClass("selected");
-                ///$(this).closest("tr").css('background-color', 'red');
-                // $(this, ".btncarrito").prop('disabled', true);
-                $(this).find('.btncarrito_venta').removeAttr('disabled').css('color', '#5CB85C');
-               
-            }
-        });
-
-        table.row($tr).remove().draw(false);
-    });
+		table.row($tr).remove().draw(false);
+	});
 
 	/**
 	 *
@@ -310,71 +440,218 @@ $(document).ready(function () {
 		}
 	});
 
-	
-
-
-
-
 	/**
 	 *
 	 * Funcion para registrar una venta, el detalle yforma de pago.
 	 *
 	 **/
 
-
-
+	//Validaciones
 	var validar_Form_Venta = $("#form_venta").validate({
 		ignore: [],
-		
 
 		onfocusout: false,
-        onkeyup: false,
+		onkeyup: false,
 		onclick: false,
-		
 
-        rules: {
-            Nventa: { required: true },
-            vendedor: { required: true }
-        },
-      
+		rules: {
+			vendedor: { required: true },
+		},
 
-        messages: {
-            Nventa: "El campo N° de venta es obligatorio. ",
-            vendedor: "El campo vendedor es obligatorio. "
-        },
-		errorElement: 'p',
-		
+		messages: {
+			vendedor: "El campo vendedor es obligatorio. ",
+		},
+		errorElement: "p",
 
-		
-        errorPlacement: function(error, element) {
-            $(element).parents('.form-group').append(error);
-        }
+		errorPlacement: function (error, element) {
+			$(element).parents(".form-group").append(error);
+		},
+	});
+
+	$("#pagarVenta").click(function () {
+		if (validar_Form_Venta.form()) {
+			tablaVenta = $("#tableVenta").DataTable();
+			if (tablaVenta.rows().count() > 0) {
+				$("#entregado").val("");
+				$("#cambioI").html("");
+				$("#modal-pagar").modal("show");
+			} else {
+				Swal.fire({
+					title: "¡Atención!",
+					text: "No se puede cobrar por que no hay un producto en la tabla.",
+					type: "warning",
+					confirmButtonColor: "#28a745",
+				});
+			}
+		}
+	});
+
+	//Registro venta
+	$("#registroVenta").click(function (ev) {
+		ev.preventDefault();
+
+		var NumVenta = $("#Nventa").val();
+		var fecha = $("#fechaVenta").val();
+		var vendedor = $("#vendedor").val();
+		var formaPago = $("#forma_pago").val();
+		var comprobante = $("#Ncomprobante").val();
+		var costoTotal = $("#total_venta").val();
+		var observaciones = $("#observacionesVenta").val();
+		var descuento = $("#descuentoVenta").val();
 
 
-    });
 
-
-	
-
-		$("#pagarVenta").click(function () {
-
-
-			if (validar_Form_Venta.form()) {
-				tablaVenta = $("#tableVenta").DataTable();
-				if (tablaVenta.rows().count() > 0) {
-					$("#modal-pagar").modal("show");
-				} else {
-					Swal.fire({
-						title: "¡Atención!",
-						text: "No se puede cobrar por que no hay un producto en la tabla.",
-						type: "warning",
-						confirmButtonColor: "#28a745",
-					});
-				}
-			}	
+		costoTotal = OSREC.CurrencyFormatter.parse(costoTotal, {
+			currency: "COP",
+			locale: "es_CO",
 		});
 
-	
+		Swal.fire({
+			title: "¡Atención!",
+			text: "¿Está seguro que desea registrar esta venta?",
+			type: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#28a745",
+			cancelButtonColor: "#28a745",
+			confirmButtonText: "Si",
+			cancelButtonText: "No",
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "/tienda/venta/registro_venta/",
+					data: {
+						NumVenta: NumVenta,
+						fecha: fecha,
+						vendedor: vendedor,
+						formaPago: formaPago,
+						comprobante: comprobante,
+						costoTotal: costoTotal,
+						observaciones: observaciones,
+				
+					},
+					success: function () {
+						//CODIGO PARA REGISTRAR EL DETALLE
+						$("#tableVenta tbody tr").each(function () {
+							var codProducto = $(this).children().eq(0).text();
 
+							var cantidad = $(this).closest("tr").find("td:eq(2)").text();
+							var costo = $(this).closest("tr").find("td:eq(3)").text();
+							costo = OSREC.CurrencyFormatter.parse(costo, {
+								currency: "COP",
+								locale: "es_CO",
+							});
 
+							$.ajax({
+								type: "POST",
+								url: "/tienda/venta/registro_detalleventa/",
+								data: {
+									NumVenta: NumVenta,
+									codProducto: codProducto,
+									cantidad: cantidad,
+									costo: costo,
+									descuento: descuento,
+								},
+
+								success: function () {
+									Swal.fire({
+										title: "¡Proceso completado!",
+										text: "La venta se ha registrado exitosamente.",
+										type: "success",
+										confirmButtonColor: "#28a745",
+									}).then(function () {
+										window.location = "http://localhost:8888/tienda/venta/";
+									});
+								},
+
+								error: function () {
+									Swal.fire({
+										title: "¡Proceso no completado!",
+										text: "La  venta no se pudo registrar.",
+										type: "warning",
+										confirmButtonColor: "#28a745",
+									});
+								},
+								statusCode: {
+									400: function (data) {
+										var json = JSON.parse(data.responseText);
+										Swal.fire("¡Error!", json.msg, "error");
+									},
+								},
+							});
+						});
+					},
+					error: function () {
+						Swal.fire({
+							title: "¡Proceso no completado!",
+							text: "No se guardo la vebnta erroe",
+							type: "warning",
+							confirmButtonColor: "#28a745",
+						});
+					},
+				});
+			}
+		});
+	});
+
+	/**
+	 *
+	 * Función para anular la compra
+	 */
+
+	$("#tablaVentas").on("click", ".anularVenta", function (ev) {
+		ev.preventDefault();
+
+		var idFactura = $(this).attr("data-idventas");
+		var self = this;
+
+		Swal.fire({
+			title: "¡Atención!",
+			html:
+				"¿Está seguro que desea anular esta venta? <br> Este proceso es irreversible.",
+			type: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#28a745",
+			cancelButtonColor: "#28a745",
+			confirmButtonText: "Si",
+			cancelButtonText: "No",
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "POST",
+					url: "/tienda/venta/anular_venta",
+					data: { idFactura: idFactura },
+					success: function () {
+						Swal.fire({
+							title: "¡Proceso completado!",
+							text: "La venta" + " ha sido anulada exitosamente.",
+							type: "success",
+							confirmButtonColor: "#28a745",
+						});
+						$("#estadoventa" + idFactura).replaceWith(
+							'<span class="badge badge-danger">Anulada</span>'
+						);
+						$("#anularVenta" + idFactura).prop("disabled", true);
+					},
+
+					error: function () {
+						Swal.fire({
+							title: "¡Proceso no completado!",
+							text:
+								"La venta " +
+								" no se puede anular, ya que esta asociado a otro proceso.",
+							type: "warning",
+							confirmButtonColor: "#28a745",
+						});
+					},
+					statusCode: {
+						400: function (data) {
+							var json = JSON.parse(data.responseText);
+							Swal.fire("¡Error!", json.msg, "error");
+						},
+					},
+				});
+			}
+		});
+	});
 });

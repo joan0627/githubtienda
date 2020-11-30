@@ -234,7 +234,6 @@ $(document).ready(function() {
     });
 
     $("#total_venta").inputmask({
- 
         rightAlign: false,
         alias: "currency",
         prefix: "",
@@ -250,7 +249,13 @@ $(document).ready(function() {
     });
 
 
-  
+    OSREC.CurrencyFormatter.formatAll({
+        selector: ".totalVentas",
+        currency: "COP",
+    });
+
+
+ 
 
 
   
