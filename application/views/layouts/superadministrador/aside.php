@@ -155,7 +155,7 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="<?php echo base_url();?>venta/historialventasu" class="nav-link">
+                      <a href="<?php echo base_url();?>venta" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-shop-30.png" class="nav-icon">
                           <p>
                               Ventas

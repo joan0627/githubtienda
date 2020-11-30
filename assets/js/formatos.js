@@ -206,6 +206,57 @@ $(document).ready(function() {
         allowMinus: false,
         placeholder: "0",
     });
-    
 
+
+    //Formatos Venta
+
+    $(".js-example-venta-single").select2({
+        placeholder: "-Seleccione un vendedor-",
+        theme: "bootstrap4",
+
+    });
+
+
+    $("#entregado").inputmask({
+  
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+    $("#total_venta").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+    OSREC.CurrencyFormatter.formatAll({
+        selector: ".totalVentas",
+        currency: "COP",
+    });
+
+
+ 
+
+
+  
 });
