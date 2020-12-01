@@ -224,10 +224,10 @@ $("#tablaMaestra").on("click", "#editartd", function (ev) {
 	 * el proceso de cambio de pregunta de seguridad.
 	 * 
 	 */
-/*
+
 	jQuery.validator.addMethod("noSpace", function(value, element) { //Code used for blank space Validation 
-		return value.indexOf(" ") < 0 && value != ""; 
-	}, "No space please and don't leave it empty"); */
+		return value.indexOf(" ") < 0 && value != ""   ; 
+	}, "No space please and don't leave it empty"); 
 
 	var validar_formulario1 = $("#form-pregunta").validate({
 
@@ -236,16 +236,20 @@ $("#tablaMaestra").on("click", "#editartd", function (ev) {
         rules: {
 			contrasenaactualpre: { required: true},
             preguntaSeguridad: { required: true},
-            respuesta: { required:true}
+            respuesta: { required:true,noSpace:true}
         },
         onfocusout: false,
         onkeyup: false,
         onclick: false,
 
         messages: {
-			contrasenaactualpre: "El campo contraseña actual es obligatorio.",
+			contrasenaactualpre: "El campo contraseña es obligatorio.",
             preguntaSeguridad: "El campo pregunta de seguridad es obligatorio. ",
-            respuesta: "El campo respuesta es obligatorio. "
+			respuesta:
+			{
+				required:"El campo nueva respuesta es obligatorio. ",
+				noSpace:"espacio"
+			} 
         },
         errorElement: 'p',
 

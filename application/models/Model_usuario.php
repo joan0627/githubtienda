@@ -47,9 +47,9 @@ class model_usuario extends Ci_model {
 			$this->db->select();
 			$this->db->from($this->tablaUsuario);
 			$this->db->or_like("idUsuario",$buscar, 'none'); 
-			$this->db->or_like("nombre",$buscar,);
+			$this->db->or_like("nombre",$buscar);
 			$this->db->or_like("nombreUsuario",$buscar, 'none');
-			//$this->db->or_like("idRol",$buscar);
+			$this->db->or_like("idRol",$buscar);
 			$this->db->or_like("estado",$buscar, 'none');
 			//$this->db->or_where('estado', $buscar);
 			$this->db->order_by('fechahora', 'DESC');

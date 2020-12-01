@@ -8,6 +8,7 @@ class Configuracion extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Model_usuario');
 		$this->load->model('Model_login');
+		$this->load->model('Model_agenda');
 		$this->load->database();
 		$this->load->helper("url");
 		$this->load->library('form_validation');
@@ -66,10 +67,13 @@ class Configuracion extends CI_Controller {
 */
 			//$datos=$this->Model_login->traerPregunta($this->session->userdata("nombreUsuario"));
 			$datosCarga['preguntas']=$this->Model_login->buscarPreguntasSeguridad();
+			$datosCarga['preguntaactual']=$this->Model_login->traerPregunta2($this->session->userdata("nombreUsuario"));
+
+			
 
 			$this->load->view('layouts/superadministrador/header');
 			$this->load->view('layouts/superadministrador/aside');
-			$this->load->view('superadministrador/formularios/perfil_view',$datosCarga);
+			$this->load->view('superadministrador/formularios/seguridad_view',$datosCarga);
 			$this->load->view('layouts/footer');
 		//}
 
@@ -145,10 +149,43 @@ class Configuracion extends CI_Controller {
 		die(json_encode(array('return' => $return)));
 		
 
-
 	}
 
 
+	public function cargardisponibilidad()
+	{
+		$data = $this->Model_agenda->BuscarDisponibilidad();
+
+		echo json_encode($data);
+	
+	}
+
+	public function disponibilidad()
+	{
+		$this->load->view('layouts/superadministrador/header');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/formularios/disponibilidadAgenda_view.php');
+		$this->load->view('layouts/footer');
+		
+	}
+
+
+	
+	public function registrardisponibilidad()
+	{
+		$datosDisponibilidad["idDisponibilidad"] ="";
+		$datosDisponibilidad["title"] = $this->input->post("title");
+		$datosDisponibilidad["start"] = $this->input->post("start");
+		$datosDisponibilidad["end"] = $this->input->post("end");
+		$datosDisponibilidad["rendering"] = $this->input->post("rendering");
+
+	
+		$res= $this->Model_agenda->insertardisponibilidad($datosDisponibilidad);
+
+		echo json_encode($res);
+
+		
+	}
 
 
 	public function home()

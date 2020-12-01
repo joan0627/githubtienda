@@ -105,18 +105,18 @@
 
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
-                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-bookmark-50.png" class="nav-icon">
+                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-schedule-50.png" class="nav-icon">
                           <p>
-                              Agenda
+                              Citas
                               <i class="fas fa-angle-left right"></i>
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="<?php echo base_url();?>agenda/calendario" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-calendar-50.png"
+                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-bookmark-50.png"
                                       class="nav-icon">
-                                  <p>Calendario</p>
+                                  <p>Agenda</p>
                               </a>
                           </li>
                           <li class="nav-item">
@@ -206,7 +206,7 @@
 						  </li>
 						  
 						  <li class="nav-item">
-                              <a href="<?php echo base_url();?>agenda/disponibilidad" class="nav-link">
+                              <a href="<?php echo base_url();?>configuracion/disponibilidad" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-planner-50.png"
                                       class="nav-icon">
                                   <p>Disponibilidad</p>

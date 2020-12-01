@@ -32,7 +32,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/daterangepicker/daterangepicker.css">
-    
+    <link rel="stylesheet"  href="<?php echo base_url();?>assets/plugins/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -43,13 +44,13 @@
       <link rel="stylesheet" href="<?php echo base_url();?>assets\plugins\plugins\select2\css\select2.min.css">
    
      <link rel="stylesheet" href="<?php echo base_url();?>assets\plugins\plugins\select2-bootstrap4-theme/select2-bootstrap4.css">
-    
+     
+     <!-- Clock Picker -->
+     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/clockpicker-gh-pages/src/clockpicker.css">
+     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/plugins/Easy-Clock-Time-Picker/css/clockface.css">
+
 
     <link href="<?php echo base_url();?>assets/css/misestilos.css" rel="stylesheet">
-
-      
-    <!--FullCalendar-->
-      <link href="<?php echo base_url();?>assets/plugins/plugins/fullcalendar/main.css" rel="stylesheet">
 
       
        <!-- Tema diferente de bootrap
