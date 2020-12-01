@@ -101,7 +101,9 @@ $(document).ready(function() {
     });
 
 
-
+   /* $(".js-example-placeholder-single").select2({
+        placeholder: "-Seleccione un proveedor-",
+    });*/
     
     OSREC.CurrencyFormatter.formatAll({
         selector: ".listadoProductos",
