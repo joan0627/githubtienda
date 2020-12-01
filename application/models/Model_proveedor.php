@@ -78,10 +78,11 @@ class Model_proveedor extends Ci_model
 
 		$this->db->select();
 		$this->db->from($this->tablaProveedor);
-		$this->db->or_like("documento",$buscar);
+		$this->db->or_like("documento",$buscar,'none');
 		$this->db->or_like("nombre",$buscar);
 		$this->db->or_like("nombreContacto",$buscar);
-		$this->db->or_like("diaVisita",$buscar);
+		$this->db->or_like("diaVisita",$buscar,'none');
+		$this->db->or_like("estado",$buscar,'none');
 		$this->db->order_by('fechaRegistro', 'DESC');
 		$consulta = $this->db->get();
 
@@ -159,5 +160,62 @@ class Model_proveedor extends Ci_model
 		 return $this->db->insert_id();
 		 
 	}
+
+
+	function ActualizaEstadoProveedor($documentoP, $estadoP){
+
+		$this->db->set('estado', $estadoP);	
+		$this->db->where($this->idProveedorPK ,$documentoP);
+		$this->db->update($this->tablaProveedor);
+	}
+
+
+	
+	function ActualizaEstadoMarca($idMarca, $estado){
+
+		$this->db->set('estado', $estado);	
+		$this->db->where('idMarca' ,$idMarca);
+		$this->db->update('marca');
+	}
+	
+
+	function consulta_documento($documento){
+		$this->db->select('documento');
+		$this->db->from('proveedor'); 
+		$this->db->where('documento', $documento); 
+
+		$consulta = $this->db->get();
+
+			if($consulta->num_rows()==0)  
+			{
+
+				return "true";
+	
+	
+			}else{
+
+				return "false";
+
+			}
+	
+
+	}
+
+
+	
+    function tabladetalleMarcas($id) {
+
+        $this->db->select();
+		$this->db->from('detalleproveedormarca');
+		$this->db->join('marca', 'detalleproveedormarca.idMarca = marca.idMarca');
+		$this->db->where('documentoProveedor',$id);
+    
+        $consulta = $this->db->get();
+		return $consulta->result();
+		
+	}
+
+	
+		
 
 }
