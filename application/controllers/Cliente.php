@@ -148,7 +148,6 @@ class Cliente extends CI_controller
 		$this->Model_cliente->insertarMascota($datosMascota);
 		$limite = $this->Model_cliente->consultarRows($numRows);
 
-		
 
 	}
 

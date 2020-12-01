@@ -38,9 +38,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-							<label>Tipo de documento</label>
-								<input readonly="readonly" name="tipoDocumento" type="text" class="form-control"
-									placeholder="" value="<?php 
+                                <label>Tipo de documento</label>
+                                <input readonly="readonly" name="tipoDocumento" type="text" class="form-control"
+                                    placeholder="" value="<?php 
 
                                             echo $clave['descripcion']; 
 									?>">
@@ -49,8 +49,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Documento</label> 
-                                <input name="documento" type="text" class="form-control "
+                                <label>Documento</label>
+                                <input id="documentoProveedorD" name="documento" type="text" class="form-control "
                                     placeholder="" value="<?php echo $clave['documento']; ?>" Readonly="Readonly">
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Nombre</label> 
+                                <label>Nombre</label>
                                 <input name="nombre" type="text" class="form-control" placeholder=""
                                     value="<?php echo $clave['nombre']; ?>" Readonly="Readonly">
                             </div>
@@ -69,15 +69,15 @@
 
                             <div class="form-group">
                                 <label>Teléfono</label>
-                                <input name="telefono" type="text" class="form-control"
-                                    placeholder="" value="<?php echo $clave['telefono']; ?>" Readonly="Readonly">
+                                <input name="telefono" type="text" class="form-control" placeholder=""
+                                    value="<?php echo $clave['telefono']; ?>" Readonly="Readonly">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Celular</label> 
+                                <label>Celular</label>
                                 <input name="celular" type="text" class="form-control" placeholder="Ingrese el celular"
                                     value="<?php echo $clave['celular']; ?>" Readonly="Readonly">
                             </div>
@@ -86,8 +86,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Dirección</label>
-                                <input name="direccion" type="text" class="form-control"
-                                    placeholder="" value="<?php echo $clave['direccion']; ?>" Readonly="Readonly">
+                                <input name="direccion" type="text" class="form-control" placeholder=""
+                                    value="<?php echo $clave['direccion']; ?>" Readonly="Readonly">
                             </div>
                         </div>
                     </div>
@@ -101,9 +101,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nombre contacto</label> 
-                                <input name="nombreContacto" type="text" class="form-control"
-                                    placeholder="" value="<?php echo $clave['nombreContacto']; ?>" Readonly="Readonly">
+                                <label>Nombre contacto</label>
+                                <input name="nombreContacto" type="text" class="form-control" placeholder=""
+                                    value="<?php echo $clave['nombreContacto']; ?>" Readonly="Readonly">
                             </div>
                         </div>
 
@@ -114,8 +114,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Dia visita</label>
-                                <input name="diaVisita" type="text" class="form-control"
-                                    placeholder="" value="<?php echo $clave['diaVisita']; ?>" Readonly="Readonly">
+                                <input name="diaVisita" type="text" class="form-control" placeholder=""
+                                    value="<?php echo $clave['diaVisita']; ?>" Readonly="Readonly">
                             </div>
                         </div>
 
@@ -130,11 +130,28 @@
 
                         <!--Fin del card body-->
 
-                        <!--Inicio del footer del contenido-->
+
                         <br>
+                        <div class="col-12 table-responsive">
+                            <table id="tableDetalleMarca" class=" table table-striped " style="width:100%">
+
+                                <thead>
+                                    <tr>
+
+                                        <th>id Marca</th>
+                                        <th>Descripción</th>
+                                        <th>Estado</th>
+                                    </tr>
+
+                                </thead>
 
 
-						
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+
+
                         <!--Fin del footer del contenido-->
 
 
@@ -144,11 +161,10 @@
 
 
         </div> <!-- Fin Contenido Total -->
-        
+
         <div class="text-center card-footer">
 
-            <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
-            href="<?php echo base_url(); ?>proveedor"
+            <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " href="<?php echo base_url(); ?>proveedor"
                 id="botonAtras" class="btn btn-success col-2">Atrás</a>
 
         </div>
