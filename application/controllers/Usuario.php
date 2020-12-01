@@ -43,9 +43,21 @@ class Usuario extends CI_controller
 		}
 		elseif($buscar == 'Deshabilitado' || $buscar == 'deshabilitado' || $buscar == 'DESHABILITADO')
 			{
-				$buscar=0;
+				$buscar=100;
+			}
+		
+		if($buscar == 'Administrador' || $buscar == 'administrador' || $buscar == 'ADMINISTRADOR')
+		{
+			$buscar=100;
+		}
+		elseif($buscar == 'Empleado' || $buscar == 'empleado' || $buscar == 'EMPLEADO')
+			{
+				$buscar=200;
 			}
 
+			
+
+			
 		$datosUsuario['resultado'] = $this->Model_usuario->BuscarDatos($buscar);
 
 		$this->load->view('layouts/superadministrador/header');
@@ -139,7 +151,7 @@ class Usuario extends CI_controller
 			else
 			{
 				
-				if($idUsuario == 67)
+				if($idUsuario == 1)
 				{
 					
 					$this->session->set_flashdata('deny', 'No tiene permisos para editar este usuario.');
@@ -208,7 +220,7 @@ class Usuario extends CI_controller
 		$idUsuario =$this->input->post("idUsuario");
 		$estado =$this->input->post("estado");
 
-		if($this->session->userdata("idUsuario")==$idUsuario or	 $idUsuario==67) 
+		if($this->session->userdata("idUsuario")==$idUsuario or	 $idUsuario==1) 
 		{
 			$data['deny']=false;
 			echo json_encode($data);

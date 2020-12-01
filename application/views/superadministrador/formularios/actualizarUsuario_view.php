@@ -34,6 +34,12 @@
             <form role="form" method="POST">
                 <!--Inicio del card body-->
                 <div class="card-body ">
+                <div class="row">
+                        <div style="text-align:left">
+                            <i><small> Todos los campos marcados con <label style="color: red;">asterisco (*)</label>
+                                    son obligatorios.</small></i>
+                        </div>
+                    </div>
                     <div class="row">
 
                         <div class="col-md-6">

@@ -124,11 +124,11 @@
                             <td  style ="width:7%;"><?php echo  $d->nombreUsuario; ?></td>
                             <td style ="width:2% !important; text-align:center;">
                                 <?php 
-								if($d->idRol==1)
+								if($d->idRol==100)
 								{
 								echo'<span class="badge badge-administrador">Administrador</span>';
 								}
-								elseif($d->idRol==2)  echo'<span class="badge badge-empleado">Empleado</span>';
+								elseif($d->idRol==200)  echo'<span class="badge badge-empleado">Empleado</span>';
 
 							?>
                             </td>

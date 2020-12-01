@@ -6,11 +6,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-planner-50.png"> Disponibilidad</h1>
+                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-schedule-50.png"> Disponibilidad</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Agenda</a></li>
+                        <li class="breadcrumb-item"><a href="#">Configuración</a></li>
                         <li class="breadcrumb-item active">Disponibilidad</li>
                     </ol>
                 </div>
@@ -25,182 +25,162 @@
         <div class="card  card-success">
             <!-- Incio Caja superior -->
             <div class="card-header">
-                <h3 class="card-title">Calendario</h3>
-
-
+                <h3 class="card-title">Disponibilidad</h3>
             </div> <!-- Fin Caja superior -->
 
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                
-                      
-	
-                     
-                            <div class="card card-primary">
-                                <div class="card-body p-0">
-                                    <!-- THE CALENDAR -->
-                                    <div id="calendar">
+            <div class="card-body">
 
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                      
-                       
-                    
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </section>
+                <!-- THE CALENDAR -->
+                <div id="calendardisponibilidad">
+
+                </div>
+
+
+            </div>
+
+            <div class="card-footer">
+
+
+            </div>
+
 
         </div><!-- Fin content-wrapper -->
 
 
+        <!--Modal formulario de citas-->
+        <div class="modal fade " id="modal-disponibilidad">
+            <div class="modal-dialog modal-auto" role="document">
+                <div class="modal-content">
 
-        <!-- jQuery -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/jquery/jquery.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/jquery-ui/jquery-ui.min.js"></script>
+                    <div class="modal-body">
 
+                        <div class="card  card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Registro de disponibilidad</h3>
 
-        <!-- Bootstrap 4 -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- ChartJS -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/chart.js/Chart.min.js"></script>
-        <!-- Sparkline -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/sparklines/sparkline.js"></script>
-        <!-- JQVMap -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/jqvmap/jquery.vmap.min.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/jquery-knob/jquery.knob.min.js"></script>
-        <!-- daterangepicker -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/moment/moment.min.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- Tempusdominus Bootstrap 4 -->
-        <script
-            src="<?php echo base_url();?>assets/plugins/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js">
-        </script>
-        <!-- Summernote -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/summernote/summernote-bs4.min.js"></script>
-        <!-- overlayScrollbars -->
-        <script
-            src="<?php echo base_url();?>assets/plugins/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js">
-        </script>
-        <!-- AdminLTE App -->
-        <script src="<?php echo base_url();?>assets/js/adminlte.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="<?php echo base_url();?>assets/js/pages/dashboard.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="<?php echo base_url();?>assets/js/demo.js"></script>
+                                <div class="float-right">
 
 
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
 
-        <!-- fullCalendar 2.2.5 -->
-        <script src="<?php echo base_url();?>assets/plugins/plugins/moment/moment.min.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/plugins/fullcalendar/main.min.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/plugins/fullcalendar-daygrid/main.min.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/plugins/fullcalendar-timegrid/main.min.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/plugins/fullcalendar-interaction/main.min.js"></script>
-        <script src="<?php echo base_url();?>assets/plugins/plugins/fullcalendar-bootstrap/main.min.js"></script>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <input name="idDisponibilidad" id="idDisponibilidad" type="hidden"
+                                        class="form-control " value="">
+                                        <input hidden name="titulo" id="titulo" type="text" class="form-control"
+                                        value="No disponible">
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="icheck-primary d-inline">
+                                                <input type="checkbox" id="checkboxdiall">
+                                                <label for="checkboxdiall"></label>
+                                            </div>
+                                            <label>Todo el día</label>
+
+                                        </div>
+
+                                    </div>
+                                        
+
+                                </div>
 
 
-        <!-- Page specific script -->
-        <script>
-        $(function() {
+                            <div class="row">
 
-
-
-
-
-            /* initialize the calendar
-             -----------------------------------------------------------------*/
-            //Date for the calendar events (dummy data)
-            var date = new Date()
-            var d = date.getDate(),
-                m = date.getMonth(),
-                y = date.getFullYear()
-
-            var Calendar = FullCalendar.Calendar;
-            var Draggable = FullCalendarInteraction.Draggable;
-
-            //var containerEl = document.getElementById('external-events');
-            var checkbox = document.getElementById('drop-remove');
-            var calendarEl = document.getElementById('calendar');
-
-            // initialize the external events
-            // -----------------------------------------------------------------
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Fecha</label> <label style="color: red;"> * </label>
+                                        <div class="input-group date" id="datepickerdis" data-target-input="nearest">
+                                            <div class="input-group-prepend" data-target="#datepickerdis"
+                                                data-toggle="datetimepicker">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control datetimepicker-input"
+                                                data-target="#datepickerdis" id="fechadisponibilidad">
+                                        </div>
+                                    </div>
 
 
 
-            var calendar = new Calendar(calendarEl, {
-                plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid'],
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                'themeSystem': 'bootstrap',
-                //Random default events
-                events: [
-                    //AQUI VAN LOS EVENTOS DENTRO DEL CALENDARIO SACAR LA ESTRUCTURA DESDE LA PLANTILLA
-                ],
-                editable: true,
-                droppable: true, // this allows things to be dropped onto the calendar !!!
-                drop: function(info) {
-                    // is the "remove after drop" checkbox checked?
-                    if (checkbox.checked) {
-                        // if so, remove the element from the "Draggable Events" list
-                        info.draggedEl.parentNode.removeChild(info.draggedEl);
-                    }
-                }
-            });
+                                </div>
 
-            calendar.render();
-            // $('#calendar').fullCalendar()
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Hora de inicio</label>
+                                        <div class="input-group date" id="timeinicio" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input"
+                                                data-target="#timeinicio" id="horaInicio">
+                                            <div class="input-group-append" data-target="#timeinicio"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-            /* ADDING EVENTS */
-            var currColor = '#3c8dbc' //Red by default
-            //Color chooser button
-            var colorChooser = $('#color-chooser-btn')
-            $('#color-chooser > li > a').click(function(e) {
-                e.preventDefault()
-                //Save color
-                currColor = $(this).css('color')
-                //Add color effect to button
-                $('#add-new-event').css({
-                    'background-color': currColor,
-                    'border-color': currColor
-                })
-            })
-            $('#add-new-event').click(function(e) {
-                e.preventDefault()
-                //Get value and make sure it is not null
-                var val = $('#new-event').val()
-                if (val.length == 0) {
-                    return
-                }
 
-                //Create events
-                var event = $('<div />')
-                event.css({
-                    'background-color': currColor,
-                    'border-color': currColor,
-                    'color': '#fff'
-                }).addClass('external-event')
-                event.html(val)
-                $('#external-events').prepend(event)
 
-                //Add draggable funtionality
-                ini_events(event)
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Hora de fin</label>
+                                        <div class="input-group date" id="timefin" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input"
+                                                data-target="#timefin" id="horaFin">
+                                            <div class="input-group-append" data-target="#timefin"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                //Remove event from text input
-                $('#new-event').val('')
-            })
-        })
-        </script>
-        </body>
 
-        </html>
+
+
+
+
+                            </div>
+
+
+                            <div class="text-center card-footer">
+
+                                <button style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto;" id="botonRegistroDisponibilidad"
+                                    class="btn btn-success col-md-4"><i class="fas fa-save"></i> Registrar</button>
+                                <!-- <button style="" id="" class="btn btn-info "><i class="fas fa-save"></i> Editar</button>-->
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+</div>
+
+
+
+
+
+</section><!-- Fin seccion contenido -->
+</div><!-- Fin content-wrapper -->

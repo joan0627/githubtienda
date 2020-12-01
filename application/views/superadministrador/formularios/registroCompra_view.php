@@ -29,7 +29,12 @@
             </div>
 
             <div class="card-body">
-
+                <div class="row">
+                    <div style="text-align:left">
+                        <i><small> Todos los campos marcados con <label style="color: red;">asterisco (*)</label>
+                                son obligatorios.</small></i>
+                    </div>
+                </div>
 
                 <div class="col-md-12 col-sm-12">
                     <div class="box box-info">
@@ -57,12 +62,18 @@
                         <div class="col-md-2">
 
                             <div class="form-group">
-                                <label>Fecha</label>
-                                <input id="fechaCompra" type="date"  class="form-control"
-                                    value="<?php echo date("Y-m-d"); ?>">
-
+                                <label>Fecha</label> <label style="color: red;"> * </label>
+                                <div class="input-group date" id="datepickercompra" data-target-input="nearest">
+                                    <div class="input-group-prepend" data-target="#datepickercompra"
+                                        data-toggle="datetimepicker">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control datetimepicker-input"
+                                        data-target="#datepickercompra" id="fechaCompra" value="<?php echo date("Y-m-d"); ?>">
+                                </div>
                             </div>
-
                         </div>
 
 
@@ -79,7 +90,7 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label style="width:120px">N° de compra</label>
+                                <label>N° de compra</label> <label style="color: red;"> *</label>
                                 <input id="facturaProveedor" name="facturaProveedor" placeholder="N°" type="text"
                                     class="form-control" value="<?php echo $facturaProveedor; ?>">
                             </div>
@@ -88,7 +99,7 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Proveedor</label>
+                                <label>Proveedor</label> <label style="color: red;"> *</label>
                                 <select id="proveedor" name="proveedor"
                                     class="js-example-placeholder-single form-control">
                                     <option></option>
@@ -109,7 +120,8 @@
 
                                 <label>Agregar productos</label>
                                 <button disabled style="width:100%" id="addproductocompra" type="button"
-                                    class=" btn btn-block btn-info float-right" data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i>
+                                    class=" btn btn-block btn-info float-right" data-toggle="modal"
+                                    data-target="#modal-default"><i class="fa fa-search"></i>
                                     Buscar
                                     productos</button>
 
@@ -118,7 +130,7 @@
                         </div>
 
                     </div>
-                    
+
                     <hr>
 
                     <!-- Table row -->
@@ -140,8 +152,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                        
-                                  
+
+
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -269,20 +281,20 @@
 
                                     <tbody>
 
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
-                                    </tr>
-                                    
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                        </tr>
+
                                     </tbody>
-                                  
-                             
+
+
 
                                     <tfoot>
 
@@ -304,3 +316,4 @@
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
+

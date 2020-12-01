@@ -100,7 +100,6 @@ class Model_login extends CI_Model {
 	public function traerPregunta($nombreUsuario)
 	{
 		
-		
 		$this->db->select();
 		$this->db->from($this->tablaUsuario);
 		$this->db->join($this->tablaRespuesta, 'respuesta.idUsuario = usuario.idUsuario');
@@ -111,6 +110,25 @@ class Model_login extends CI_Model {
 		$resultado= $this->db->get();
 
 		return $resultado->row_array();
+
+		
+
+	}
+
+
+	public function traerPregunta2($nombreUsuario)
+	{
+		
+		$this->db->select();
+		$this->db->from($this->tablaUsuario);
+		$this->db->join($this->tablaRespuesta, 'respuesta.idUsuario = usuario.idUsuario');
+		$this->db->join($this->tablaPreguntaSeguridad, 'respuesta.idPreguntaSeguridad = preguntaseguridad.idPreguntaSeguridad');
+		$this->db->where($this->nombreUsuario,$nombreUsuario);
+	
+
+		$resultado= $this->db->get();
+
+		return $resultado->result();
 
 		
 
