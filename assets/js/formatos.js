@@ -56,18 +56,167 @@ $(document).ready(function() {
         placeholder: "0",
         clearMaskOnLostFocus: false,
     });
+
      */
+
+
+     
+    //Select2 para el campo Proveedor de la sección Compras
+
+    var $select = $(".js-example-placeholder-single").select2({
+        placeholder: "-Seleccione un proveedor-",
+        theme: "bootstrap4",
+
+    });
+
+         
+    //Select2 para el campo marca en productos
+
+    //Registro producto
+    $(".js-example-placeholder-marca-single").select2({
+        placeholder: "-Seleccione una marca-",
+        theme: "bootstrap4",
+
+    });
+
+    //Actualizar producto
+    $(".js-example-placeholder-marca-actualizar-single").select2({
+        placeholder: "-Seleccione una marca-",
+        theme: "bootstrap4",
+
+    });
+
+
+
     OSREC.CurrencyFormatter.formatAll({
         selector: ".listadoCompramoney",
         currency: "COP",
-    })
+    });
+
+
+    //Formatos Servicios
+    OSREC.CurrencyFormatter.formatAll({
+        selector: ".listadoServicioMoney",
+        currency: "COP",
+    });
 
 
 
-    //Select2 para el campo Proveedor de la sección Compras
+    
+    OSREC.CurrencyFormatter.formatAll({
+        selector: ".listadoProductos",
+        currency: "COP",
+    });
 
-    $(".js-example-placeholder-single").select2({
-        placeholder: "-Seleccione un proveedor-",
+
+
+
+    $(".precioServicio").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+    $(".precioActualizarServcio").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+
+    $(".detalleServicioMoney").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+
+    //Formatos Productos
+
+    $(".precioProducto").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+
+    $("#precioVentaProductoA").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+    $("#precioVentaProductoD").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+    //Formatos Venta
+
+    $(".js-example-venta-single").select2({
+        placeholder: "-Seleccione un vendedor-",
+
         theme: "bootstrap4",
 
     });
@@ -169,5 +318,46 @@ $(document).ready(function() {
 
 
 
+    $("#entregado").inputmask({
+  
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
 
+    $("#total_venta").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
+
+
+    OSREC.CurrencyFormatter.formatAll({
+        selector: ".totalVentas",
+        currency: "COP",
+    });
+
+
+ 
+
+
+  
 });

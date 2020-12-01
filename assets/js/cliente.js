@@ -52,14 +52,14 @@ $(document).ready(function () {
 		],
 
 		columns: [
-			{ title: "Tipo" },
+			{ title: "Especie" },
 			{ title: "Nombre" },
 			{ title: "Raza" },
 			{ title: "sexo" },
 			{ title: "Peso", width: 110 },
 			{ title: "Cumpleaños" },
-			{ title: "Edad", width: 110 },
-			{ title: "Observación" },
+			{ title: "Edad"},
+			{ title: "Observaciones" },
 			{ title: "Unidad" },
 			{ title: "peso" },
 			{ title: "edad" },
@@ -97,19 +97,23 @@ $(document).ready(function () {
 
 		rules: {			
 			tipoMascota: { required: true },
-			nombreM: { required: true },
+			nombreM: { required: true, onlyChar:true },
 			razaM: { required: true },
 			sexoM: { required: true },
 			unidadMascota: { required: true },
 			tiempoM: { required: true },
 			pesoM: { required: true, min: 0, number: true },
-			edadM: { required: true },
+			edadM: {  required: true, min: 0, number: true  },
 		},
 
 		messages: {
 
 			tipoMascota: "El campo tipo de mascota es obligatorio.",
-			nombreM: "El campo nombre es obligatorio.",
+			nombreM: {
+
+				required: "El campo nombre es obligatorio."	,
+				onlyChar :"El campo nombre soló puede contener alfabéticos y espacios."
+			},
 			razaM: "El campo raza es obligatorio.",
 			sexoM: "El campo sexo es obligatorio.",
 			tiempoM: "El campo tiempo es obligatorio.",
@@ -127,6 +131,7 @@ $(document).ready(function () {
 		},
 		errorElement: "p",
 	});
+
 	//Add reglas manuales
 	jQuery.validator.addMethod("noSpace", function (value, element) {
 		return value.indexOf(" ") < 0 && value != "";
@@ -138,10 +143,10 @@ $(document).ready(function () {
 		return this.optional(element) || /^[a-z, 0-9 ]+$/i.test(value); 
 	}); 
 
- 	/*var prueba = 12;
-	jQuery.validator.addMethod("existeRegistros", function (value, element) {
-		return this.optional(element) || prueba.test(value); 
-	});*/
+
+	jQuery.validator.addMethod("onlyChar", function(value, element) { 
+		return this.optional(element) || /^[a-z, " "]+$/i.test(value); 
+	}); 
 
 
 	//reglas de validación del form de cliente
@@ -153,10 +158,26 @@ $(document).ready(function () {
 		onclick: false,
 		rules: {
 
-			
+				documentoC: {
+					required: true,					
+					noSpace: true,
+					noCharacters: true,
+					
+					
+					remote: {
+						url:"/tienda/cliente/documento_exist",
+						type: "post",
+		 
+					
+					},
+
+				},
+		
 			tipoDocumentoC: { required: true },
-			documentoC: { required: true, noSpace: true, noCharacters:true, existeRegistros:true},
-			nombreC: { required: true },
+
+
+
+			nombreC: { required: true, onlyChar :true,},
 			celularC: { required: true },
 			correoC: { email: true },
 		},
@@ -165,13 +186,19 @@ $(document).ready(function () {
 			tipoDocumentoC: "El campo tipo de documento es obligatorio.",
 
 			documentoC: {
-				existeRegistros: "documento regitsrado",
+				//checkExists: "igual",
+				
             	required: "El campo documento es obligatorio.",
-				noSpace: "Ingresa un valor valido, verifique que no tenga espacios en blanco o caracteres especiales.",
-				noCharacters: "Ingresa un valor valido, verifique que no tenga espacios en blanco o caracteres especiales",
+				noSpace: "El campo documento sólo puede contener caracteres alfanuméricos",
+				noCharacters: "El campo documento sólo puede contener caracteres alfanuméricos.",
+				remote: function() { return $.validator.format("El documento ya se encuentra registrado.")},
+		
             },
 
-			nombreC: "El campo nombre es obligatorio.",
+			nombreC:{
+				required: "El campo nombre es obligatorio.",
+				onlyChar :"El campo nombre soló puede contener caracteres alfabéticos y espacios.",
+			}, 
 			celularC: "El campo celular es obligatorio.",
 			correoC: "Ingrese un correo valido.",
 		},
@@ -561,7 +588,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
 						return "<span  class='badge badge-danger'>Deshabilitada</span>";
@@ -571,7 +598,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return (
 							"<button action='editar' data-toggle='tooltip' title='Editar'class='btneditar btn btn-primary btn-sm'> <i class='fas fa-pencil-alt'></i></button>" +
 							" " +
@@ -602,7 +629,7 @@ $(document).ready(function () {
 			unidadActualizar: { required: true },
 			tiempoActualizar: { required: true },
 			pesoActualizar: { required: true, min: 0, number: true },
-			edadActualizar: { required: true },
+			edadActualizar: {required: true, min: 0, number: true },
 			//observacionesActualizar: {  maxlength: 100 },
 		},
 
@@ -765,11 +792,12 @@ $(document).ready(function () {
 												" se ha registrado exitosamente.",
 											type: "success",
 											confirmButtonColor: "#28a745",
-										});
-										$("#ActualizarTablaDetalleMascota")
-											.DataTable()
-											.ajax.reload();
-										$("#modalActualizarMascota").modal("toggle");
+										}).then(function () {
+											$("#modalActualizarMascota").modal("toggle");
+		
+											$("#ActualizarTablaDetalleMascota").DataTable().ajax.reload();
+										});	
+
 									},
 
 									error: function () {
@@ -830,17 +858,21 @@ $(document).ready(function () {
 							success: function () {
 								Swal.fire({
 									title: "¡Proceso completado!",
-									text:
-										"La mascota " +
-										nombreA +
-										" se ha actualizado exitosamente.",
+									text:"La mascota " +nombreA +" se ha actualizado exitosamente.",
 									type: "success",
 									confirmButtonColor: "#28a745",
-								});
+								}).then(function () {
+									$("#modalActualizarMascota").modal("toggle");
 
-								$("#modalActualizarMascota").modal("toggle");
-								$("#ActualizarTablaDetalleMascota").DataTable().ajax.reload();
+									$("#ActualizarTablaDetalleMascota").DataTable().ajax.reload();
+								});
+								
+
+							
+								
 							},
+
+							
 
 							error: function () {
 								Swal.fire({
@@ -851,6 +883,9 @@ $(document).ready(function () {
 								});
 							},
 						});
+
+
+					
 					}
 				});
 			}
@@ -1070,6 +1105,11 @@ $(document).ready(function () {
 	var documentoC = $("#documentoCDetalle").val();
 
 	$("#tableDetalle").DataTable({
+
+		language: {
+			url: "../../assets/plugins/datatables/Spanish.lang",
+		},
+	
 		bInfo: false,
 		bFilter: false,
 		bPaginate: false,
@@ -1107,7 +1147,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMascota == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
 						return "<span  class='badge badge-danger'>Deshabilitada</span>";
@@ -1137,7 +1177,7 @@ $(document).ready(function () {
 		}).then((result) => {
 			if (result.value) {
 				var documento = $(this).attr("data-documentoC");
-					console.log(documento);
+				
 				$.ajax({
 					type: "POST",
 					url: "/tienda/cliente/numEstadoMascotas",
@@ -1151,7 +1191,7 @@ $(document).ready(function () {
 
 							if (item.numMascotas == item.deshabilitados) {
 													
-								console.log(documento);
+						
 								var estado = 0;
 								$.ajax({
 									type: "POST",
@@ -1206,8 +1246,8 @@ $(document).ready(function () {
 							} else {
 								Swal.fire({
 									title: "¡Proceso no completado!",
-									text:
-										"No se puede deshabilitar el cliente por que tiene mascotas habilitadas",
+									html:
+										"No se puede deshabilitar este cliente ya que tiene mascotas habilitadas.<br> Deshabilite todas las mascotas para completar este proceso.",
 									type: "warning",
 									confirmButtonColor: "#28a745",
 								});
@@ -1293,4 +1333,57 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+
+
+	/**
+	 *
+	 * Cargar el detalle clinico de mascotas
+	 */
+
+	var idMascotaH = $("#idMascotaHistorial").val();
+	
+
+	$("#tableHistorialMascota").DataTable({
+
+		language: {
+			url: "../../assets/plugins/datatables/Spanish.lang",
+		},
+	
+		bInfo: false,
+		bFilter: false,
+		bPaginate: false,
+		dom: "frtip",
+
+		ajax: {
+			type: "POST",
+			url: "/tienda/Cliente/llenar_historial/",
+			data: {
+				idMascotaH: idMascotaH,
+			},
+		},
+
+		columns: [
+			{ data: "nombreServicio"},
+			{ data: "nombreProducto",  className: "text-center"  },
+
+			{
+				render: function (data, type, row) {
+					return row.dosis + " " + row.descripcionUnidadmedida;
+				},
+			},
+		
+			{ data: "fechaAplicacion",  className: "text-center"  },
+
+			
+
+			{ data: "fechaProxima",  className: "text-center"  },
+
+			{ data: "observaciones",  className: "text-center" },
+
+		],
+	});
+	
+
+
 });

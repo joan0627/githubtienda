@@ -29,14 +29,14 @@ p.error {
    } 
 
 
+
    .nav-pills .nav-link.active,
    .show>.nav-pills .nav-link{
        background-color: #17A2B8;
      
    }
 
-  /* .fc-past {
-    background-color: #d8d8d8 !important;
-}*/
-
+   .select2-results__option[aria-selected=true] {
+    display: none !important;
+}
 

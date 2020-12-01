@@ -206,7 +206,7 @@
      <?php if ($this->session->flashdata('actualizar')) { ?>
 			<script> 
 		
-        Swal.fire({        
+        Swal.fire({
 		type: 'success',
 		title: '¡Proceso completado!',
 		text: '<?= $this->session->flashdata('actualizar'); ?>', 

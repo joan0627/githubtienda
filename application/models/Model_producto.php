@@ -1,6 +1,6 @@
 <?php
 
-class Model_producto extends Ci_model
+class Model_producto extends Ci_model 
 {
 
 	//Nombre de la tabla
@@ -28,7 +28,7 @@ class Model_producto extends Ci_model
 
 	
 	/*********************/
-	// *			Funciones de producto		  				// *
+	// *Funciones de producto// *
 	/**********************/
 
 
@@ -49,14 +49,12 @@ class Model_producto extends Ci_model
 		$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
 		$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
 		$this->db->join($this->tablaUnidadmedida, 'producto.idUnidadMedida = unidadmedida.idUnidadMedida');
-		$this->db->or_like("idProducto",$buscar);
+		$this->db->or_like("idProducto",$buscar,'none');
 		$this->db->or_like("nombreProducto",$buscar);
-		$this->db->or_like("categoria.descripcion",$buscar);
-		$this->db->or_like("existencia",$buscar);
-		$this->db->or_like("marca.descripcionMarca",$buscar);
-		$this->db->or_like("presentacion.descripcionPresentacion",$buscar);
-		$this->db->or_like("unidadmedida.descripcionUnidadmedida",$buscar);
-		$this->db->or_like("precio",$buscar);
+		$this->db->or_like("categoria.descripcion",$buscar,'none');
+		$this->db->or_like("marca.descripcionMarca",$buscar,'none');
+		$this->db->or_like("precio",$buscar,'none');
+		$this->db->or_like("estado",$buscar,'none');
 		$this->db->order_by('fechaRegistro', 'DESC');
 		$consulta = $this->db->get();
 
@@ -65,6 +63,9 @@ class Model_producto extends Ci_model
 
 			$this->session->set_flashdata('busqueda', 'No hay resultados');
 
+		}else{
+
+			$this->session->set_flashdata('busqueda', '');
 		}
 		return $consulta->result();
 
@@ -203,6 +204,32 @@ public function buscarproductosmarca($documento)
 	return $resultado->result_array();
 }
 
+function ActualizaEstadoProducto($idProducto, $estadoP){
+
+	$this->db->set('estado', $estadoP);	
+	$this->db->where($this->ProductoPK ,$idProducto);
+	$this->db->update($this->tablaProducto);
+}
+
+
+//Consultas para ventas
+
+function ProductoVenta(){
+	$this->db->select();
+	$this->db->from($this->tablaProducto);
+	$this->db->join($this->tablaCategoria, 'producto.idCategoria = categoria.idCategoria');
+	$this->db->join($this->tablaMarca, 'producto.marca = marca.idMarca');
+	$this->db->join($this->tablaPresentacion, 'producto.idPresentacion = presentacion.idPresentacion');
+	$this->db->join($this->tablaUnidadMedida, 'producto.idUnidadMedida = unidadmedida.idUnidadMedida');
+	$this->db->join($this->tablaEspecieproducto, 'producto.idEspecieProducto = especieproducto.idEspecieProducto');
+	$this->db->where('estado', 1);
+	$this->db->where('existencia >',0);
+	
+	$resultado = $this->db->get();	
+	return $resultado->result_array();
+
+
+}
 
 	
 

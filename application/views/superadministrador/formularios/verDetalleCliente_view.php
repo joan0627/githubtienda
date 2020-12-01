@@ -112,32 +112,32 @@
 
                 
                     <br>
+                    <div class="col-12 table-responsive">
+                        <table id="tableDetalle" class=" table table-striped " style="width:100%">
 
-                    <table id="tableDetalle" class=" table table-striped " style="width:100%">
+                            <thead>
+                                <tr>
 
-                        <thead>
-                            <tr>
+                                    <th>Especie</th>
+                                    <th>Nombre</th>
+                                    <th>Raza</th>
+                                    <th>Sexo</th>
+                                    <th style='width:15% !important ;'>Peso</th>
+                                    <th>Cumpleaños</th>
+                                    <th style='width:15% !important ;'>Edad</th>
+                                    <th style='width:15% !important ;'>Observación</th>
+                                    <th style="text-align:center;">Estado</th>
+                            
+                
+                                </tr>
 
-                                <th>Tipo</th>
-                                <th>Nombre</th>
-                                <th>Raza</th>
-                                <th>Sexo</th>
-                                <th style='width:15% !important ;'>Peso</th>
-                                <th>Cumpleaños</th>
-                                <th style='width:15% !important ;'>Edad</th>
-                                <th style='width:15% !important ;'>Observación</th>
-                                <th style="text-align:center;">Estado</th>
-                           
-            
-                            </tr>
-
-                        </thead>
+                            </thead>
 
 
-                        <tfoot>
-                        </tfoot>
-                    </table>
-
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
 
 
 

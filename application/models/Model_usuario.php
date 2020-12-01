@@ -55,9 +55,9 @@ class model_usuario extends Ci_model {
 			$this->db->order_by('fechahora', 'DESC');
 			$consulta = $this->db->get();
 	
+
 			if($consulta->num_rows()==0)
 			{
-	
 				$this->session->set_flashdata('busqueda', 'No hay resultados ');
 	
 			}

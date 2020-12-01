@@ -34,6 +34,16 @@
             <form id="form_registroCliente" role="form" method="POST">
                 <!--Inicio del card body-->
                 <div class="card-body ">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div style="text-align:left">
+                                <i><small> Todos los campos marcados con <label style="color: red;">asterisco
+                                            (*)</label>
+                                        son obligatorios.</small></i>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -109,12 +119,12 @@
 
                     <hr>
 
+                    <div class="col-12 table-responsive">
+                        <table id="tableDetalleMascota" class=" table table-striped " style="width:100%">
 
-                    <table id="tableDetalleMascota" class=" table table-striped ">
 
-
-                    </table>
-
+                        </table>
+                    </div>
 
                     <hr>
 
@@ -168,15 +178,27 @@
                             <form id="formMascota">
                                 <!--Inicio del card body-->
                                 <div class="card-body ">
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div style="text-align:left">
+                                                <i><small> Todos los campos marcados con <label
+                                                            style="color: red;">asterisco
+                                                            (*)</label>
+                                                        son obligatorios.</small></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
 
                                         <div class="col-md-6">
                                             <div class="form-group">
 
-                                                <label>Tipo de mascota</label> <label style="color: red;"> *</label>
+                                                <label>Especie</label> <label style="color: red;"> *</label>
                                                 <select id="tipoMascota" name="tipoMascota" class="form-control">
                                                     <?php foreach ($tipomascotas as $clave => $valor) : ?>
-                                                    <option value="" selected hidden>-Seleccione el tipo de mascota-
+                                                    <option value="" selected hidden>-Seleccione el tipo de especie-
                                                     </option>;
                                                     <option value="<?php echo  $valor->idTipoMascota; ?>">
                                                         <?php echo  $valor->descripcion; ?></option>
@@ -195,6 +217,7 @@
                                                     placeholder="Ingrese el nombre ">
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="row">
 
@@ -227,6 +250,7 @@
                                                     </option>
                                                     <option>Macho</option>
                                                     <option>Hembra</option>
+                                                    <option>Desconocido</option>
                                                 </select>
 
                                             </div>
@@ -238,7 +262,7 @@
                                         <div class="col-md-6">
 
                                             <div class="form-group">
-                                                <label>Peso</label><label style="color: red;">*</label>
+                                                <label>Peso</label> <label style="color: red;"> *</label>
                                                 <input id="pesoM" name="pesoM" type="number" min="0"
                                                     class="form-control" placeholder="Ingrese el peso">
                                             </div>
@@ -246,7 +270,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Unidad de medida</label> <label style="color: red;">*</label>
+                                                <label>Unidad de medida</label> <label style="color: red;"> *</label>
                                                 <select id="unidadM" name="unidadMascota" class="form-control "
                                                     style="width: 100%;">
 
@@ -281,7 +305,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Edad</label><label style="color: red;">*</label>
+                                                <label>Edad</label> <label style="color: red;"> *</label>
                                                 <input id="edadM" name="edadM" type="number" class="form-control"
                                                     placeholder="Ingrese la edad">
                                             </div>
@@ -313,15 +337,16 @@
                                             <div class="form-group">
                                                 <label>Observaciones</label>
                                                 <textarea id="observacionesM" name="observacionesM" class="form-control"
-                                                    rows="3" placeholder="Ingrese una observación..."
-                                                    name="obs" maxlength="150"></textarea>
-                                                    <div style="color: gray;" class="contadorR text-right"><span  id="contadorR"></span><span>/150</span></div>
+                                                    rows="3" placeholder="Ingrese una observación..." name="obs"
+                                                    maxlength="150"></textarea>
+                                                <div style="color: gray;" class="contadorR text-right"><span
+                                                        id="contadorR"></span><span>/150</span></div>
                                             </div>
                                         </div>
 
 
                                     </div>
-
+                                </div>
                             </form>
 
                             <!--Fin del card body-->
