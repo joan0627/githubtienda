@@ -546,7 +546,7 @@ $(document).ready(function () {
 		
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMarca == 1) {
 						return "<span  class='badge badge-success'>Habilitada</span>";
 					} else {
 						return "<span  class='badge badge-danger'>Deshabilitada</span>";
@@ -556,7 +556,7 @@ $(document).ready(function () {
 
 			{
 				render: function (data, type, row) {
-					if (row.estado == 1) {
+					if (row.estadoMarca == 1) {
 						return (
 
 							"<button data-toggle='tooltip'  title='Deshabilitar' class='DeshabilitarMarca btn btn-danger btn-sm'><i class='fas fa-ban'></i></button>"
@@ -643,10 +643,10 @@ $(document).ready(function () {
 	
 	/**
 	 *
-	 * Función para habilitar una mascota
+	 * Función para habilitar una marca
 	 */
 
-	//Deshabilitar una mascota
+	//Deshabilitar una marca
 	$("#Tabla_actualizar_marca").on(
 		"click",
 		".HabilitarMarca",
@@ -733,7 +733,7 @@ $(document).ready(function () {
 		var el = $(this);
 		
 			
-		   $("#Tabla_actualizar_marca tbody tr").each(function() {
+		   /*$("#Tabla_actualizar_marca tbody tr").each(function() {
 
             var idMarca2 = $(this).closest("tr").find("td:eq(0)").text();
          
@@ -744,10 +744,10 @@ $(document).ready(function () {
             } else {
                 v = true;
             }
-        });
+        	});*/
 
 	
-		if(!v){
+		//if(!v){
 
 			
 			//var el = $(this);
@@ -793,7 +793,7 @@ $(document).ready(function () {
 			})
 
 
-		}else{
+		/*}else{
 
 			Swal.fire({
                 title: "¡Atención!",
@@ -801,7 +801,7 @@ $(document).ready(function () {
                 type: "warning",
                 confirmButtonColor: "#28a745",
             });
-		}
+		}*/
 
 
 

@@ -119,7 +119,7 @@
             <ul class="navbar-nav ml-auto">
                 
                
-                <!-- Notifications Dropdown Menu -->
+                <!-- Notifications Dropdown Menu 
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
 						<i class=""><img src="<?php echo base_url();?>assets/img/iconos/icons8-notification-26.png"></i>
@@ -147,7 +147,7 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
                     </div>
-                </li>
+                </li>-->
 
 
                 <li class=" dropdown user user-menu">

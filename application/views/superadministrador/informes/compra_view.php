@@ -12,7 +12,7 @@
 
                             <td>
                                 <div class="titulo">
-                                    Factura de compra N°<?php  foreach ($encabezado as $key) {echo $key->idCompras;} ?>
+                                    Comprobante de compra N°<?php  foreach ($encabezado as $key) {echo $key->idCompras;} ?>
                                 </div>
                                 <div></div>
 

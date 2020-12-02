@@ -173,7 +173,7 @@ class Model_proveedor extends Ci_model
 	
 	function ActualizaEstadoMarca($idMarca, $estado){
 
-		$this->db->set('estado', $estado);	
+		$this->db->set('estadoMarca', $estado);	
 		$this->db->where('idMarca' ,$idMarca);
 		$this->db->update('marca');
 	}

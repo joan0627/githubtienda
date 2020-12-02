@@ -192,7 +192,7 @@ class Cliente extends CI_controller
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/verdetalleCliente_view',$data);
+		$this->load->view('superadministrador/formularios/verDetalleCliente_view',$data);
 		$this->load->view('layouts/footer');
 		
 		

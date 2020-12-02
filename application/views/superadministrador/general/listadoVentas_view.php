@@ -33,7 +33,7 @@
                             </span>
 
                             <span class="col-auto input-group-btn">
-                                <a type="button" role="link" class="btn bg-success" onclick="location.href='venta';"><i
+                                <a type="button" role="link" class="btn bg-success" onclick="location.href='<?php echo base_url(); ?>venta/'";><i
                                         class="fas fa-sync-alt"></i></a>
 
                             </span>

@@ -4,7 +4,7 @@
       <a href="#" class="brand-link">
           <img src="<?php echo base_url();?>assets/img/logo5.png" alt="AdminLTE Logo"
               class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span  class="brand-text font-weight-light">IntraRuk Gestión</span>
+          <span  class="brand-text font-weight-light">IntraRuk</span>
       </a>
 
 

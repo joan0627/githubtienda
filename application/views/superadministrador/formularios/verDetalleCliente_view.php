@@ -38,7 +38,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Tipo de documento</label> <label style="color: red;"> *</label>
+                                <label>Tipo de documento</label> 
                                 <select disabled name="tipoDocumento" class="form-control">
 
                                     <?php foreach ($idTiposDocumentos as $clave => $valor): ?>
@@ -54,7 +54,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
 
-                                <label>Documento</label> <label style="color: red;"> * </label>
+                                <label>Documento</label> 
                                 <input disabled id="documentoCDetalle" name="documentoCDetalle" type="text"
                                     class="form-control " placeholder="Ingrese el documento "
                                     value="<?php  echo $cliente['documento']; ?>">
@@ -67,7 +67,7 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Nombre completo</label> <label style="color: red;"> *</label>
+                                <label>Nombre completo</label>
                                 <input disabled  type="text" class="form-control"
                                 placeholder="Campo vacío" value="<?php  echo $cliente['nombre']; ?>">
                             </div>
@@ -84,7 +84,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Celular</label> <label style="color: red;"> *</label>
+                                <label>Celular</label>
                                 <input  disabled  type="text" class="form-control"
                                 placeholder="Campo vacío" value="<?php  echo $cliente['celular']; ?>">
                             </div>

@@ -54,7 +54,7 @@ class Model_producto extends Ci_model
 		$this->db->or_like("categoria.descripcion",$buscar,'none');
 		$this->db->or_like("marca.descripcionMarca",$buscar,'none');
 		$this->db->or_like("precio",$buscar,'none');
-		$this->db->or_like("estado",$buscar,'none');
+		//$this->db->or_like("estado",$buscar,'none');
 		$this->db->order_by('fechaRegistro', 'DESC');
 		$consulta = $this->db->get();
 
