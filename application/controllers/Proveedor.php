@@ -25,6 +25,13 @@ class Proveedor extends CI_controller
 			redirect(base_url().'login');
 						
 		}
+
+		/*Protección Módulo si el usuario es Empleado*/
+		if($this->session->userdata("idRol") == 200)
+		{
+			redirect(base_url().'errors/error_404');
+						
+		}
 		
 		
 	}

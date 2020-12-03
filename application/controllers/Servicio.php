@@ -17,13 +17,15 @@ class Servicio extends CI_controller
 		$this->load->library('form_validation');
 		$this->load->library('session');
 
-						/*Protección URL*/
-						if(!$this->session->userdata('login'))
-						{
-							redirect(base_url().'login');
+		/*Protección URL*/
+		if(!$this->session->userdata('login'))
+		{
+			redirect(base_url().'login');
 							
 						
-						}
+		}
+
+	
 
 
 		$this->form_validation->set_rules('nombre', 'nombre', 'required');
@@ -65,6 +67,13 @@ class Servicio extends CI_controller
 
 	public function registro()
 	{
+			/*Protección Módulo si el usuario es Empleado*/
+			if($this->session->userdata("idRol") == 200)
+			{
+				redirect(base_url().'errors/error_404');
+						
+			}
+			
 			$this->form_validation->set_rules('codigo', 'código', 'required|is_unique[servicio.idServicio]|alpha_dash');
 
 		    $datosCarga["idServicio"] = $datosCarga["nombreServicio"] = $datosCarga["idTipoServicio"] = $datosCarga["descripcion"] =
@@ -117,6 +126,12 @@ class Servicio extends CI_controller
 
 	public function detalle($idServicio = "")
 	{
+			/*Protección Módulo si el usuario es Empleado*/
+			if($this->session->userdata("idRol") == 200)
+			{
+				redirect(base_url().'errors/error_404');
+						
+			}
 
 		if (isset($idServicio)) {
 
@@ -137,6 +152,12 @@ class Servicio extends CI_controller
 
 	public function actualizar($idServicio = "")
 	{
+			/*Protección Módulo si el usuario es Empleado*/
+			if($this->session->userdata("idRol") == 200)
+			{
+				redirect(base_url().'errors/error_404');
+						
+			}
 
 		$data["tiposervicio"] = $this->input->post("tipoServicio");
 
@@ -179,6 +200,13 @@ class Servicio extends CI_controller
 	}
 
 	public function delete(){
+		
+	/*Protección Módulo si el usuario es Empleado*/
+		if($this->session->userdata("idRol") == 200)
+		{
+			redirect(base_url().'errors/error_404');
+						
+		}
 
 		$_idServicio= $this->input->post('idServicio',true);
 		if(empty($_idServicio)){

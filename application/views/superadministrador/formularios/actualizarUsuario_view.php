@@ -115,7 +115,7 @@
                                 <label>Rol</label>
 
 
-                                <?php if($clave['idUsuario'] == 67 || $clave['idUsuario']==$this->session->userdata("idUsuario")) {?>
+                                <?php if($clave['idUsuario'] == 1 || $clave['idUsuario']==$this->session->userdata("idUsuario")) {?>
                                 
                                 <input hidden name="rol" type="text" class="form-control"value="<?php echo $clave['idRol']; ?>">
                                 <input disabled name="rol2" type="text" class="form-control"value="<?php echo $clave['descripcion']; ?>">
@@ -128,16 +128,16 @@
                                     <option value="<?php echo ($clave['idRol']) ?>">
                                         <?php
                                         switch ($clave['idRol']) {
-                                            case 1:
+                                            case 100:
                                                 echo "Administrador";
 
-                                                echo '<option value="2">Empleado</option>';
+                                                echo '<option value="200">Empleado</option>';
 
                                                 break;
-                                            case 2:
+                                            case 200:
                                                 echo "Empleado";
 
-                                                echo '<option value="1">Administrador</option>';
+                                                echo '<option value="100">Administrador</option>';
                                         }
 
                                         ?>

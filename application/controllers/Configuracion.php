@@ -154,6 +154,13 @@ class Configuracion extends CI_Controller {
 
 	public function cargardisponibilidad()
 	{
+	/*Protección Módulo si el usuario es Empleado*/
+	if($this->session->userdata("idRol") == 200)
+	{
+		redirect(base_url().'errors/error_404');
+					
+	}
+		
 		$data = $this->Model_agenda->BuscarDisponibilidad();
 
 		echo json_encode($data);
@@ -162,6 +169,13 @@ class Configuracion extends CI_Controller {
 
 	public function disponibilidad()
 	{
+		/*Protección Módulo si el usuario es Empleado*/
+		if($this->session->userdata("idRol") == 200)
+		{
+			redirect(base_url().'errors/error_404');
+						
+		}
+	
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/formularios/disponibilidadAgenda_view.php');
@@ -188,15 +202,16 @@ class Configuracion extends CI_Controller {
 	}
 
 
-	public function home()
-	{
-		$this->load->view('layouts/superadministrador/header');
-		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/formularios/actualizarHome_view.php');
-		$this->load->view('layouts/footer');
-	}
 	public function informacion()
 	{
+		/*Protección Módulo si el usuario es Empleado*/
+		if($this->session->userdata("idRol") == 200)
+		{
+			redirect(base_url().'errors/error_404');
+						
+		}
+	
+
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/formularios/datoseinfo_view');

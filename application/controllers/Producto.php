@@ -58,6 +58,13 @@ class Producto extends CI_controller
 
     public function registro()
     {
+
+    /*Protección Módulo si el usuario es Empleado*/
+	if($this->session->userdata("idRol") == 200)
+	{
+		redirect(base_url().'errors/error_404');
+						
+	}
         $this->form_validation->set_rules('codigo', 'código', 'required|is_unique[producto.idProducto]|alpha_dash');
         $this->form_validation->set_rules('categoria', 'categoría', 'required');
         $datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcionProducto"] = $datosCarga["idCategoria"] =
@@ -188,6 +195,13 @@ class Producto extends CI_controller
     public function actualizar($idProducto = "")
     {
 
+	/*Protección Módulo si el usuario es Empleado*/
+    if($this->session->userdata("idRol") == 200)
+    {
+        redirect(base_url().'errors/error_404');
+                
+    }
+
         //Arreglo para recorrer y buscar los select "Tablas fuertes"
 
         $data['productos'] = $this->Model_producto->buscarDatosProducto($idProducto);
@@ -257,6 +271,13 @@ class Producto extends CI_controller
     public function detalle($idProducto = "")
     {
 
+	/*Protección Módulo si el usuario es Empleado*/
+    if($this->session->userdata("idRol") == 200)
+    {
+        redirect(base_url().'errors/error_404');
+                
+    }
+
         if (isset($idProducto)) {
 
             $resultado = $this->Model_producto->buscarDatosProducto($idProducto);
@@ -275,7 +296,12 @@ class Producto extends CI_controller
 
     public function delete()
     {
-
+	/*Protección Módulo si el usuario es Empleado*/
+    if($this->session->userdata("idRol") == 200)
+    {
+        redirect(base_url().'errors/error_404');
+                
+    }
         $_idProducto = $this->input->post('idProducto', true);
         if (empty($_idProducto)) {
             $this->output

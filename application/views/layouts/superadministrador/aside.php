@@ -16,12 +16,12 @@
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
               <div class="image">
 
-                  <img src="<?php echo base_url();?>assets/img/avatarjoan.jpg" class="img-circle elevation-2"
+                  <img src="<?php echo base_url();?>assets/img/avatar5.png" class="img-circle elevation-2"
                       alt="User Image">
               </div>
               <div class="info">
 				  <a href="#" class="d-block text-center" ><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?></a>
-				  <p class="text-muted text-center"><?php if ($rol= $this->session->userdata("idRol")){ if($rol==1){ echo 'Administrador';} else{echo 'Empleado';} }   ?></p>
+				  <p class="text-muted text-center"><?php if ($rol= $this->session->userdata("idRol")){ if($rol==100){ echo 'Administrador';} else{echo 'Empleado';} }   ?></p>
               </div>
           </div>
 
@@ -40,7 +40,9 @@
                           </p>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <?php 
+                  if($this->session->userdata("idRol") == 100){ ?>
+                    <li class="nav-item">
                       <a href="<?php echo base_url();?>usuario" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-management-30.png"
                               class="nav-icon">
@@ -51,7 +53,9 @@
                       </a>
                   </li>
 
-
+                 <?php }
+                 else if($this->session->userdata("idRol") == 200){}?>
+                  
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-people-30.png" class="nav-icon">
@@ -80,10 +84,6 @@
                   </li>
 
 
-
-
-
-
                   <li class="nav-item">
                       <a href="<?php echo base_url();?>producto" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-price-tag-50.png" class="nav-icon">
@@ -101,7 +101,7 @@
                           </p>
                       </a>
                   </li>
-
+    
 
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
@@ -126,18 +126,10 @@
                                   <p>Historial de citas</p>
                               </a>
 						  </li>
-						  
-						 
-
                       </ul>
                   </li>
 
-
-
-
-
-
-
+                  <?php if($this->session->userdata("idRol") == 100) { ?>
                   <li class="nav-item">
                       <a href="<?php echo base_url();?>compra" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-delivery-30.png" class="nav-icon">
@@ -146,6 +138,11 @@
                           </p>
                       </a>
                   </li>
+                  <?php }
+                    else if($this->session->userdata("idRol") == 200){}?>
+
+                    
+                <?php  if($this->session->userdata("idRol") == 100){ ?>
                   <li class="nav-item">
                       <a href="<?php echo base_url();?>proveedor" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-supplier-30.png" class="nav-icon">
@@ -154,6 +151,8 @@
                           </p>
                       </a>
                   </li>
+                  <?php }
+                    else if($this->session->userdata("idRol") == 200){}?>
                   <li class="nav-item">
                       <a href="<?php echo base_url();?>venta" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-shop-30.png" class="nav-icon">
@@ -162,6 +161,7 @@
                           </p>
                       </a>
                   </li>
+                  <?php  if($this->session->userdata("idRol") == 100){ ?>
                   <li class="nav-item">
                       <a href="<?php echo base_url();?>informe/generarinformesu" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-business-report-30.png"
@@ -171,6 +171,8 @@
                           </p>
                       </a>
                   </li>
+                  <?php }
+                    else if($this->session->userdata("idRol") == 200){}?>
 
                   <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
@@ -189,7 +191,7 @@
                                   <p>Seguridad</p>
                               </a>
                           </li>
-
+                          <?php  if($this->session->userdata("idRol") == 100){ ?>
                           <li class="nav-item">
                               <a href="<?php echo base_url();?>configuracion/informacion" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-edit-property-50.png"
@@ -197,14 +199,7 @@
                                   <p>Datos e Información</p>
                               </a>
                           </li>
-                          <li class="nav-item">
-                              <a href="<?php echo base_url();?>configuracion/home" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-home-office-50.png"
-                                      class="nav-icon">
-                                  <p>Home</p>
-                              </a>
-						  </li>
-						  
+                       
 						  <li class="nav-item">
                               <a href="<?php echo base_url();?>configuracion/disponibilidad" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-planner-50.png"
@@ -212,7 +207,8 @@
                                   <p>Disponibilidad</p>
                               </a>
                           </li>
-
+                          <?php }
+                    else if($this->session->userdata("idRol") == 200){}?>
 
 
                       </ul>

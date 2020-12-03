@@ -40,6 +40,8 @@
 
                     </div>
 
+                    <?php  if($this->session->userdata("idRol") == 100){ ?>
+
                     <div class="col-auto">
 
                         <a href="<?php echo base_url(); ?>producto/registro" class="btn btn-success"><i
@@ -47,7 +49,8 @@
                             producto</a>
                     </div>
 
-
+                    <?php } 
+                            else  if($this->session->userdata("idRol") == 200){ }?>
 
 
                 </div>
@@ -106,9 +109,11 @@
                                 Precio
                             </th>
                             <th style="text-align:center; ">Estado</th>
-                            <th style="text-align:center; ">
-                                Acciones
-                            </th>
+
+                          <?php  if($this->session->userdata("idRol") == 100){ ?>
+                            <th style="text-align:center; ">Acciones</th>
+                            <?php } 
+                            else  if($this->session->userdata("idRol") == 200){ }?>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,7 +140,7 @@
                                 
                              }?></td>
 
-                            <td class="listadoProductos" style="text-align:center; color:green;"><?php echo$d->precio?></td>
+                            <td class="listadoProductos"  style="text-align:center; font-size: 16.5px ;color:green; font-weight: bold;"><?php echo$d->precio?></td>
                             <?php if ($d->estado ==1) {?>
                             <td class="text-center"> <span id="estadoProducto<?php echo  $d->idProducto ?>"
                                     class="badge badge-success">Habilitado</span></td>
@@ -149,6 +154,8 @@
                             <?php   }  
                             } ?>
 
+
+                        <?php  if($this->session->userdata("idRol") == 100){ ?>
                             <td class="text-right" style="text-align:center;">
                                 <a class="btn btn-primary btn-sm"
                                     href="<?php echo base_url(); ?>producto/detalle/<?php echo $d->idProducto; ?><?php  ?>">
@@ -156,8 +163,6 @@
                                     </i>
                                     Ver
                                 </a>
-
-
 
                                 <?php if($d->estado ==1): ?>
 
@@ -194,7 +199,8 @@
                                 <?php endif?>
                             </td>
 
-
+                        <?php } 
+                            else  if($this->session->userdata("idRol") == 200){ }?>
                         </tr>
 
                         <?php endforeach; ?>

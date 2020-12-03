@@ -13,11 +13,19 @@ class Usuario extends CI_controller
 		$this->load->library('session');
 
 		/*Protección URL*/
-		if(!$this->session->userdata('login'))
+		if(!$this->session->userdata('login') )
 		{
 			redirect(base_url().'login');
 			
 		}
+
+		/*Protección Módulo si el usuario es Empleado*/
+		if($this->session->userdata("idRol") == 200)
+		{
+			redirect(base_url().'errors/error_404');
+				
+		}
+	
 
 
 		//Validaciones para los campos de la tabla Usuario

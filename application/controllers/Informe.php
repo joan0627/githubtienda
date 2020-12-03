@@ -16,6 +16,12 @@ class Informe extends CI_controller
 			
 		}
 
+	/*Protección Módulo si el usuario es Empleado*/
+	if($this->session->userdata("idRol") == 200)
+	{	
+	redirect(base_url().'errors/error_404');
+				
+	}
 
 	}
 	

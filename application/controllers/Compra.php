@@ -20,13 +20,20 @@ class Compra extends CI_controller
 		$this->load->library('session');
 		$this->load->library('form_validation');
 
-				/*Protección URL*/
-				if(!$this->session->userdata('login'))
-				{
-					redirect(base_url().'login');
+		/*Protección URL*/
+		if(!$this->session->userdata('login'))
+		{
+			redirect(base_url().'login');
 					
 				
-				}
+		}
+
+		/*Protección Módulo si el usuario es Empleado*/
+		if($this->session->userdata("idRol") == 200)
+		{
+			redirect(base_url().'errors/error_404');
+						
+		}
 	
 
 		/*$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
