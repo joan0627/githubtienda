@@ -226,12 +226,11 @@
                                             <div class="form-group ">
 
                                                 <label>Raza</label> <label style="color: red;"> *</label>
-                                                <select id="razaM" name="razaM" class="form-control select2bs4"
+                                                <select id="razaM" name="razaM" class="js-example-placeholder-Raza-actualizar-single form-control"
                                                     style="width: 100%;">
 
-                                                    <?php foreach ($razas as $clave => $valor) : ?>
-                                                    <option value="" selected hidden>-Seleccione la raza de mascota-
-                                                    </option>;
+                                                    <?php foreach ($razas as $clave => $valor) : ?>                              
+                                                    <option></option>
                                                     <option value="<?php echo  $valor->idraza; ?>">
                                                         <?php echo  $valor->descripcionRaza; ?></option>
                                                     <?php endforeach; ?>

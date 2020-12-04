@@ -261,11 +261,10 @@
 
                                                 <label>Raza</label> <label style="color: red;"> *</label>
                                                 <select id="razaActualizar" name="razaActualizar"
-                                                    class="form-control select2bs4" style="width: 100%;">
-
+                                                    class="js-example-placeholder-Raza-actualizar-single form-control" style="width: 100%;">
+                                                    <option value=""></option>
                                                     <?php foreach ($razas as $clave => $valor) : ?>
-                                                    <option value="" selected hidden>-Seleccione la raza de mascota-
-                                                    </option>;
+                                                   
                                                     <option value="<?php echo  $valor->idraza; ?>">
                                                         <?php echo  $valor->descripcionRaza; ?></option>
                                                     <?php endforeach; ?>

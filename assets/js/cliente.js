@@ -688,6 +688,10 @@ $(document).ready(function () {
 	$("#ActualizarTablaDetalleMascota tbody").on("click", ".btneditar", function (
 		ev
 	) {
+
+
+
+	
 		ev.preventDefault();
 
 		$(".contador").hide();
@@ -826,7 +830,7 @@ $(document).ready(function () {
 				var edadA = $("#edadActualizar").val();
 				var tiempoA = $("#tiempoActualizar").val();
 				var observacionesA = $("#observacionesActualizar").val();
-
+ 				console.log(tiempoA);
 				Swal.fire({
 					title: "¡Atención!",
 					text: "¿Está seguro que desea actualizar esta mascota?",
