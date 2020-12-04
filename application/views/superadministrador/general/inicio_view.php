@@ -31,6 +31,7 @@
                             <h3>4</h3>
 
                             <p>Usuarios</p>
+                            <span>Nuevos usuarios: 2</span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -45,6 +46,7 @@
                             <h3>150</h3>
 
                             <p>Productos</p>
+                            <span>Nuevos productos: 20</span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pricetags"></i>
