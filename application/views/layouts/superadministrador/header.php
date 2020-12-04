@@ -152,7 +152,15 @@
 
                 <li class=" dropdown user user-menu">
                     <a href="#" class="  nav-link" data-toggle="dropdown">
-                        <img src="<?php echo base_url()?>assets/img/admin2.jpeg" class="user-image " alt="User Image">
+                    <?php if($this->session->userdata("idRol") == 100 && $this->session->userdata("idUsuario") ==2 ) { ?>
+                        <img src="<?php echo base_url()?>assets/img/admin2.png" class="user-image " alt="User Image">
+                        <?php }
+                            else if($this->session->userdata("idRol") == 100){ ?>
+                                 <img src="<?php echo base_url()?>assets/img/admin.png" class="user-image " alt="User Image">
+                                 <?php }
+                                     else if($this->session->userdata("idRol") == 200){ ?>
+                                     <img src="<?php echo base_url()?>assets/img/empleado.png" class="user-image " alt="User Image">
+                                     <?php } ?>
                         <span class="hidden-xs"><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?> <i class="fas fa-angle-down right"></i> </span>
                     </a>
                     <ul class="dropdown-menu  dropdown-menu-right">

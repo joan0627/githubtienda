@@ -16,19 +16,19 @@
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
          <?php if($this->session->userdata("idRol") == 100 && $this->session->userdata("idUsuario") ==2 ) { ?>
               <div class="image">
-                  <img src="<?php echo base_url();?>assets/img/user2-160x160.jpg" class="img-circle elevation-2"
+                  <img src="<?php echo base_url();?>assets/img/admin2.png" class="img-circle elevation-2"
                       alt="User Image">
               </div>
               <?php }
                  else if($this->session->userdata("idRol") == 100){ ?>
                  <div class="image">
-                    <img src="<?php echo base_url();?>assets/img/avatar5.png" class="img-circle elevation-2"
+                    <img src="<?php echo base_url();?>assets/img/admin.png" class="img-circle elevation-2"
                         alt="User Image">
                 </div>
                 <?php }
                  else if($this->session->userdata("idRol") == 200){ ?>
                   <div class="image">
-                    <img src="<?php echo base_url();?>assets/img/avatar3.png" class="img-circle elevation-2"
+                    <img src="<?php echo base_url();?>assets/img/empleado.png" class="img-circle elevation-2"
                         alt="User Image">
                 </div>
                 <?php } ?>
