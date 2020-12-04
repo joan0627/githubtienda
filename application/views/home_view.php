@@ -81,7 +81,7 @@
                                 <li><a href="#contact-section" class="nav-link">Contáctenos</a></li>
 
 
-                                <a href="login" class="btn btn-outline-success">Iniciar sesión</a>
+                                <a href="login" class="btn btn-success">Iniciar sesión</a>
 
                             </ul>
                         </nav>
@@ -111,15 +111,15 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item carrusel active">
-                <img style="height: 700px !important;" class="d-block w-100" src="<?php echo base_url();?>assets/assetshome/images/carrusel9.jpg"
+                <img style="height: 700px !important;" class="d-block w-100" src="<?php echo base_url();?>assets/assetshome/images/carrusel1.jpeg"
                     alt="First slide">
          </div>
             <div class="carousel-item">
-                <img style="height: 700px !important;" class="d-block w-100" src="<?php echo base_url();?>assets/assetshome/images/carrusel11.jpg"
+                <img style="height: 700px !important;" class="d-block w-100" src="<?php echo base_url();?>assets/assetshome/images/carrusel12.jpg"
                     alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img style="height: 700px !important;" class="d-block w-100" src="<?php echo base_url();?>assets/assetshome/images/carrusel4.jpg"
+                <img style="height: 700px !important;" class="d-block w-100" src="<?php echo base_url();?>assets/assetshome/images/carrusel9.jpg"
                     alt="Third slide">
             </div>
         </div>
@@ -615,8 +615,8 @@
                             Copyright &copy;
                             <script>
                             document.write(new Date().getFullYear());
-                            </script> Todos los derechos reservados | Hecho con
-                            <i class="icon-heart-o" aria-hidden="true"></i> por CreativeCode</a>
+                            </script> Todos los derechos reservados <br> Hecho con
+                            <i class="icon-heart" aria-hidden="true"></i> y mucho <i class="icon-coffee" aria-hidden="true"></i> por estudiantes SENA.</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
 

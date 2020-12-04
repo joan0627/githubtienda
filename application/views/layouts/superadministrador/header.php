@@ -152,7 +152,7 @@
 
                 <li class=" dropdown user user-menu">
                     <a href="#" class="  nav-link" data-toggle="dropdown">
-                        <img src="<?php echo base_url()?>assets/img/adminheader.jpeg" class="user-image " alt="User Image">
+                        <img src="<?php echo base_url()?>assets/img/admin2.jpeg" class="user-image " alt="User Image">
                         <span class="hidden-xs"><?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}   ?> <i class="fas fa-angle-down right"></i> </span>
                     </a>
                     <ul class="dropdown-menu  dropdown-menu-right">
