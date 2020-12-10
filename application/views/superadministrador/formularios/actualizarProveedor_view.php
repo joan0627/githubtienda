@@ -159,7 +159,6 @@
                                     <tr>
                                         <th>Id marca</th>
                                         <th>Descripción</th>
-                                        <th>Estado</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>

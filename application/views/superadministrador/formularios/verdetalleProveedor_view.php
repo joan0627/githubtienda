@@ -140,7 +140,7 @@
 
                                         <th>id Marca</th>
                                         <th>Descripción</th>
-                                        <th>Estado</th>
+                                  
                                     </tr>
 
                                 </thead>

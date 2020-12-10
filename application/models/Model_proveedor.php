@@ -171,12 +171,14 @@ class Model_proveedor extends Ci_model
 
 
 	
-	function ActualizaEstadoMarca($idMarca, $estado){
-
-		$this->db->set('estadoMarca', $estado);	
-		$this->db->where('idMarca' ,$idMarca);
-		$this->db->update('marca');
+	function borrarDetalleMarca($id,$idProveedor){
+		$this->db->select();
+		$this->db->from('detallproveedormarca');
+		$this->db->where('documentoProveedor',$idProveedor);
+		$this->db->where('idMarca',$id);
+		$this->db->delete('detalleproveedormarca');
 	}
+
 	
 
 	function consulta_documento($documento){
