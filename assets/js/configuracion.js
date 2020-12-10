@@ -18,11 +18,14 @@ $(document).ready(function () {
 		},
 
 		bInfo: false,
+		bPaginate: true,
 
-		lengthChange: false,
-		bPaginate: false,
-		dom: '<"pull-left"f>B',
+		dom: '<"pull-left"f>Brtp',
 
+		lengthMenu: [
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"],
+		],
 
 		columnDefs: [
 			//Hidden de una columna en el dataTable.
@@ -255,6 +258,8 @@ $(document).ready(function () {
 							type: "success",
 							confirmButtonColor: "#28a745",
 						});
+
+						$("#tablaMaestra").DataTable().ajax.reload();
 					},
 					error: function () {
 						Swal.fire({
@@ -295,10 +300,14 @@ $(document).ready(function () {
 		},
 
 		bInfo: false,
+		bPaginate: true,
 
-		lengthChange: false,
-		bPaginate: false,
-		dom: '<"pull-left"f>B',
+		dom: '<"pull-left"f>Brtp',
+
+		lengthMenu: [
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"],
+		],
 
 
 		columnDefs: [
@@ -343,12 +352,19 @@ $(document).ready(function () {
 			url: "/tienda/Configuracion/listadoCategoria",
 			dataSrc: "",
 		},
+
+		
 		columns: [
 			{ data: "idCategoria" },
 			{ data: "descripcion" },
 			{
-				defaultContent:
-					"<div style='text-align: center;'><button class='btn btn-info btn-sm' id='editartCategoria'><i class='fas fa-pencil-alt'></i> Editar </button> <button id='eliminarCategoria' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </button></div>",
+				render: function (data, type, row) {
+					if (row.idCategoria == 1 || row.idCategoria == 2) {
+						return "<div style='text-align: center;'><button disabled class='btn btn-info btn-sm' id='editartCategoria'><i class='fas fa-pencil-alt'></i> Editar </button> <button disabled id='eliminarCategoria' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </button></div>"
+					} else {
+						return "<div style='text-align: center;' ><button class='btn btn-info btn-sm' id='editartCategoria'><i class='fas fa-pencil-alt'></i> Editar </button> <button id='eliminarCategoria' class='btn btn-danger btn-sm' href=''><i class='fas fa-trash'></i> Eliminar </button></div>"
+					}
+				},
 			},
 		],
 	});
@@ -390,99 +406,110 @@ $(document).ready(function () {
 		controlCategoria = 2;
 	});
 
-
+	
 	$("#btnRegistroCategoria").on("click", function (ev) {
+		var categoriaValidation = $("#descripcionCategoria").val();
 
-		if (validar_Categoria.form()) {
-			if (controlCategoria == 1) {
+		if (
+			categoriaValidation == "Vacuna" ||
+			categoriaValidation == "VACUNA" ||
+			categoriaValidation == "vacuna" ||
+			categoriaValidation == "vACUNA" ||
+			categoriaValidation == "Medicamento" ||
+			categoriaValidation == "MEDICAMENTO" ||
+			categoriaValidation == "medicamento" ||
+			categoriaValidation == "mEDICAMENTO"
+		) {
+			Swal.fire({
+				title: "¡Proceso no completado!",
+				text: "La categoria " + categoriaValidation + " ya esta registrada",
+				type: "warning",
+				confirmButtonColor: "#28a745",
+			});
+		} else {
+			if (validar_Categoria.form()) {
+				if (controlCategoria == 1) {
+					/**
+					 *
+					 * Función para registrar información en la tabla maestra de categoria
+					 *
+					 */
 
-				/**
-				 *
-				 * Función para registrar información en la tabla maestra de categoria
-				 *
-				 */
-			
-				var descripcionCategoria = $("#descripcionCategoria").val();
+					var descripcionCategoria = $("#descripcionCategoria").val();
 
-				$.ajax({
-					type: "POST",
-					url: "/tienda/configuracion/registrarCategoria",
-					data: {
-						descripcionCategoria: descripcionCategoria,
-					},
-
-					success: function () {
-						Swal.fire({
-							title: "¡Proceso completado!",
-							text: "La categoria se ha registrado correctamente.",
-							type: "success",
-							confirmButtonColor: "#28a745",
-						});
-
-						$("#modalRegistroCategoria").modal("toggle");
-						$("#tablaMaestra_Categoria").DataTable().ajax.reload();
-						
-
-		
-					},
-
-					error: function () {
-						Swal.fire({
-							title: "¡Proceso no completado!",
-							text: "La categoria no se ha podido registrar.",
-							type: "warning",
-							confirmButtonColor: "#28a745",
-						});
-					},
-					statusCode: {
-						400: function (data) {
-							var json = JSON.parse(data.responseText);
-							Swal.fire("¡Error!", json.msg, "error");
+					$.ajax({
+						type: "POST",
+						url: "/tienda/configuracion/registrarCategoria",
+						data: {
+							descripcionCategoria: descripcionCategoria,
 						},
-					},
-				});
-			} else {
 
+						success: function () {
+							Swal.fire({
+								title: "¡Proceso completado!",
+								text: "La categoria se ha registrado correctamente.",
+								type: "success",
+								confirmButtonColor: "#28a745",
+							});
 
-				var id = $("#idCategoria").val();
-				var descripcionCategoria = $("#descripcionCategoria").val();
-
-				$.ajax({
-					type: "POST",
-					url: "/tienda/configuracion/actualizarCategoria",
-					data: {
-						id: id,
-						descripcionCategoria: descripcionCategoria,
-					},
-
-					success: function () {
-						Swal.fire({
-							title: "¡Proceso completado!",
-							text: "La categoria se ha actualizado correctamente.",
-							type: "success",
-							confirmButtonColor: "#28a745",
-						});
-						$("#modalRegistroCategoria").modal("toggle");
-						$("#tablaMaestra_Categoria").DataTable().ajax.reload();
-						
-						
-					},
-
-					error: function () {
-						Swal.fire({
-							title: "¡Proceso no completado!",
-							text: "La categoria no se ha podido registrar.",
-							type: "warning",
-							confirmButtonColor: "#28a745",
-						});
-					},
-					statusCode: {
-						400: function (data) {
-							var json = JSON.parse(data.responseText);
-							Swal.fire("¡Error!", json.msg, "error");
+							$("#modalRegistroCategoria").modal("toggle");
+							$("#tablaMaestra_Categoria").DataTable().ajax.reload();
 						},
-					},
-				});
+
+						error: function () {
+							Swal.fire({
+								title: "¡Proceso no completado!",
+								text: "La categoria no se ha podido registrar.",
+								type: "warning",
+								confirmButtonColor: "#28a745",
+							});
+						},
+						statusCode: {
+							400: function (data) {
+								var json = JSON.parse(data.responseText);
+								Swal.fire("¡Error!", json.msg, "error");
+							},
+						},
+					});
+				} else {
+					var id = $("#idCategoria").val();
+					var descripcionCategoria = $("#descripcionCategoria").val();
+
+					$.ajax({
+						type: "POST",
+						url: "/tienda/configuracion/actualizarCategoria",
+						data: {
+							id: id,
+							descripcionCategoria: descripcionCategoria,
+						},
+
+						success: function () {
+							Swal.fire({
+								title: "¡Proceso completado!",
+								text: "La categoria se ha actualizado correctamente.",
+								type: "success",
+								confirmButtonColor: "#28a745",
+							});
+							$("#modalRegistroCategoria").modal("toggle");
+							$("#tablaMaestra_Categoria").DataTable().ajax.reload();
+						},
+
+						error: function () {
+							Swal.fire({
+								title: "¡Proceso no completado!",
+								text: "La categoria no se ha podido registrar.",
+								type: "warning",
+								confirmButtonColor: "#28a745",
+							});
+						},
+						statusCode: {
+							400: function (data) {
+								var json = JSON.parse(data.responseText);
+								Swal.fire("¡Error!", json.msg, "error");
+							},
+						},
+					});
+				}
 			}
 		}
 	});
@@ -523,6 +550,8 @@ $(document).ready(function () {
 							type: "success",
 							confirmButtonColor: "#28a745",
 						});
+
+						$("#tablaMaestra_Categoria").DataTable().ajax.reload();
 					},
 					error: function () {
 						Swal.fire({
@@ -568,11 +597,14 @@ $(document).ready(function () {
 		},
 
 		bInfo: false,
+		bPaginate: true,
 
-		lengthChange: false,
-		bPaginate: false,
-		dom: '<"pull-left"f>B',
+		dom: '<"pull-left"f>Brtp',
 
+		lengthMenu: [
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"],
+		],
 
 		columnDefs: [
 			//Hidden de una columna en el dataTable.
@@ -591,7 +623,7 @@ $(document).ready(function () {
 
 										
 						$("#btnRegistroMarca").html("Registrar");
-						$("#etiquetaMarca").html("Registro de Marca");
+						$("#etiquetaMarca").html("Registro de marca");
 
 						 controlMarca = 1;
 
@@ -802,6 +834,8 @@ $(document).ready(function () {
 								type: "success",
 								confirmButtonColor: "#28a745",
 							});
+
+							$("#tablaMaestra_Marca").DataTable().ajax.reload();
 						},
 						error: function () {
 							Swal.fire({
@@ -844,11 +878,14 @@ $(document).ready(function () {
 		},
 
 		bInfo: false,
+		bPaginate: true,
 
-		lengthChange: false,
-		bPaginate: false,
-		dom: '<"pull-left"f>B',
+		dom: '<"pull-left"f>Brtp',
 
+		lengthMenu: [
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"],
+		],
 
 		columnDefs: [
 			//Hidden de una columna en el dataTable.
@@ -1077,6 +1114,8 @@ $(document).ready(function () {
 								type: "success",
 								confirmButtonColor: "#28a745",
 							});
+
+							$("#tablaMaestra_Presentacion").DataTable().ajax.reload();
 						},
 						error: function () {
 							Swal.fire({
@@ -1118,11 +1157,14 @@ $(document).ready(function () {
 		},
 
 		bInfo: false,
+		bPaginate: true,
 
-		lengthChange: false,
-		bPaginate: false,
-		dom: '<"pull-left"f>B',
+		dom: '<"pull-left"f>Brtp',
 
+		lengthMenu: [
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"],
+		],
 
 		columnDefs: [
 			//Hidden de una columna en el dataTable.
@@ -1351,6 +1393,8 @@ $(document).ready(function () {
 								type: "success",
 								confirmButtonColor: "#28a745",
 							});
+
+							$("#tablaMaestra_Umedida").DataTable().ajax.reload();
 						},
 						error: function () {
 							Swal.fire({
@@ -1393,11 +1437,14 @@ $(document).ready(function () {
 		},
 
 		bInfo: false,
+		bPaginate: true,
 
-		lengthChange: false,
-		bPaginate: false,
-		dom: '<"pull-left"f>B',
+		dom: '<"pull-left"f>Brtp',
 
+		lengthMenu: [
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"],
+		],
 
 		columnDefs: [
 			//Hidden de una columna en el dataTable.
@@ -1626,6 +1673,8 @@ $(document).ready(function () {
 								type: "success",
 								confirmButtonColor: "#28a745",
 							});
+
+							$("#tablaMaestra_Raza").DataTable().ajax.reload();
 						},
 						error: function () {
 							Swal.fire({
@@ -1666,11 +1715,14 @@ $(document).ready(function () {
 		},
 
 		bInfo: false,
+		bPaginate: true,
 
-		lengthChange: false,
-		bPaginate: false,
-		dom: '<"pull-left"f>B',
+		dom: '<"pull-left"f>Brtp',
 
+		lengthMenu: [
+			[5, 15, 25, 50, 100, -1],
+			[5, 15, 25, 50, 100, "Todo"],
+		],
 
 		columnDefs: [
 			//Hidden de una columna en el dataTable.
@@ -1899,6 +1951,8 @@ $(document).ready(function () {
 								type: "success",
 								confirmButtonColor: "#28a745",
 							});
+
+							$("#tablaMaestra_Especie").DataTable().ajax.reload();
 						},
 						error: function () {
 							Swal.fire({
