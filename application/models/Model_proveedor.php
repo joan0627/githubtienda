@@ -167,13 +167,14 @@ class Model_proveedor extends Ci_model
 		$this->db->set('estado', $estadoP);	
 		$this->db->where($this->idProveedorPK ,$documentoP);
 		$this->db->update($this->tablaProveedor);
+		
 	}
 
 
 	
 	function borrarDetalleMarca($id,$idProveedor){
 		$this->db->select();
-		$this->db->from('detallproveedormarca');
+		$this->db->from('detalleproveedormarca');
 		$this->db->where('documentoProveedor',$idProveedor);
 		$this->db->where('idMarca',$id);
 		$this->db->delete('detalleproveedormarca');
@@ -200,6 +201,29 @@ class Model_proveedor extends Ci_model
 
 			}
 	
+
+	}
+
+	
+	public function consulta_Exis_id($idMarca,$documentoProveedor){
+		$this->db->select('dpm.idMarca');
+		$this->db->from('detalleproveedormarca dpm');
+		$this->db->where('dpm.idMarca', $idMarca);
+		$this->db->where('dpm.documentoProveedor', $documentoProveedor);
+
+		$consulta = $this->db->get();
+
+		if($consulta->num_rows() >= 1)  
+		{
+
+			return 1;
+
+
+		}else{
+
+			return 0;
+
+		}
 
 	}
 

@@ -492,6 +492,11 @@ $(document).ready(function () {
 	var documento = $("#documentoAP").val();
 	 
 	var tablaActualizar = $("#Tabla_actualizar_marca").DataTable({
+
+
+		language: {
+			url: "../../assets/plugins/datatables/Spanish.lang",
+		},
 		responsive: true,
 		bInfo: false,
 		bFilter: false,
@@ -542,8 +547,7 @@ $(document).ready(function () {
 	//DataTable del modal listado para añadir marcas
 	$("#tableMarcaActualizar").DataTable({
 		language: {
-			searchPlaceholder: "Estoy buscando...",
-			url: "../assets/plugins/datatables/Spanish.lang",
+			url: "../../assets/plugins/datatables/Spanish.lang",
 		},
 		bInfo: false,
 	});
@@ -553,90 +557,74 @@ $(document).ready(function () {
 
 
 	$("#tableMarcaActualizar tbody").on("click", ".btnActualizarMarca", function () {
-		//var idMarca = $(this).closest("tr").find("td:eq(0)").text();
+		var idMarca = $(this).closest("tr").find("td:eq(0)").text();
 		var documentoProveedor = $('#documentoAP').val();
 		var el = $(this);
 		
-			
-
-			
-			$("#tableMarcaActualizar tbody tr").each(function() {
-				idMarca = $(this).closest("tr").find("td:eq(0)").text();
+			$.ajax({
+				type: "POST",
+				url: "/tienda/proveedor/consulta_Exis_id",
+				data: {
+					idMarca: idMarca,
+					documentoProveedor:documentoProveedor
+				},
+				dataType: "JSON",
+				success: function (data) {
 				
 
-				$("#Tabla_actualizar_marca tbody tr").each(function() {
+						console.log("Devuelta "+data);
+						//console.log("solo "+idMarca);
 
-					var idMarca2 = $(this).closest("tr").find("td:eq(0)").text();
-				
+						//if (data[0].existencia) {
+						if(data == 0){
 
-					if (idMarca == idMarca2) {
-					
-						v = false;
-					} else {
-						v = true;
-					}
-				});
-			});
-	
-		if(!v){
-
-		
-
-			
-			//var el = $(this);
-			//el.closest("tr").addClass("selected");
-			//$(el, ".btnMarca").prop("disabled", true).css("color", "#8a8a8a");
-			Swal.fire({
-				title: "¡Atención!",
-				text: "¿Está seguro que desea añadir esta nueva marca?",
-				type: "question",
-				showCancelButton: true,
-				confirmButtonColor: "#28a745",
-				cancelButtonColor: "#28a745",
-				confirmButtonText: "Si",
-				cancelButtonText: "No",
-			}).then((result) => {
-				if (result.value) {
-
-					$.ajax({
-						type: "POST",
-						url: "/tienda/proveedor/detalleMarca/",
-						data: {
-			
-							idMarca: idMarca,
-							documentoProveedor,documentoProveedor
-			
-						},
-						success: function() {
 							Swal.fire({
-								title: "¡Proceso completado!",
-								text: "La marca se ha añadido exitosamente.",
-								type: "success",
+								title: "¡Atención!",
+								text: "¿Está seguro que desea añadir esta nueva marca?",
+								type: "question",
+								showCancelButton: true,
 								confirmButtonColor: "#28a745",
-							});
-							$("#Tabla_actualizar_marca").DataTable().ajax.reload();
+								cancelButtonColor: "#28a745",
+								confirmButtonText: "Si",
+								cancelButtonText: "No",
+							}).then((result) => {
+								if (result.value) {
+				
+									$.ajax({
+										type: "POST",
+										url: "/tienda/proveedor/detalleMarca/",
+										data: {
 							
-			
+											idMarca: idMarca,
+											documentoProveedor,documentoProveedor
+							
+										},
+										success: function() {
+											Swal.fire({
+												title: "¡Proceso completado!",
+												text: "La marca se ha añadido exitosamente.",
+												type: "success",
+												confirmButtonColor: "#28a745",
+											});
+				
+											$("#Tabla_actualizar_marca").DataTable().ajax.reload();
+							
+										}
+							
+									});
+				
+								}
+				
+							})
+
+
+						}else{
+
+							alert("No se puede compa");
 						}
 			
-					});
-
 				}
-
-			})
-
-
-		}else{
-
-			Swal.fire({
-                title: "¡Atención!",
-                html: "La marca ya esta añadida.",
-                type: "warning",
-                confirmButtonColor: "#28a745",
-            });
-		}
-
-
+			});			
 
 	});
 
@@ -653,56 +641,76 @@ $(document).ready(function () {
 			var idProveedor = $('#documentoAP').val();
 			var self = this;
 
-			Swal.fire({
-				title: "¡Atención!",
-				text:
-					"¿Está seguro que desea eliminar esta marca del proveedor?",
-				type: "question",
-				showCancelButton: true,
-				confirmButtonColor: "#28a745",
-				cancelButtonColor: "#28a745",
-				confirmButtonText: "Si",
-				cancelButtonText: "No",
-			}).then((result) => {
-				if (result.value) {
-					$.ajax({
-						type: "POST",
-						url: "/tienda/proveedor/deleteDetalleMarca",
-						data: { 
-							id: id,
-							idProveedor: idProveedor
-						
-						},
-						success: function () {
-							$(self).parents("tr").remove();
-							Swal.fire({
-								title: "¡Proceso completado!",
-								text:
-									"La marca del proveedor ha sido eliminada exitosamente.",
-								type: "success",
-								confirmButtonColor: "#28a745",
-							});
+			tabladetalleMarca = $("#Tabla_actualizar_marca").DataTable();
+			if (tabladetalleMarca.rows().count() ==1) {
 
-							$("#Tabla_actualizar_marca").DataTable().ajax.reload();
-						},
-						error: function () {
-							Swal.fire({
-								title: "¡Proceso no completado!",
-								text:
-									"La marca del proveedor no se puede eliminar porque está asociada a otro proceso.",
-								type: "warning",
-								confirmButtonColor: "#28a745",
-							});
-						},
-						statusCode: {
-							400: function (data) {
-								var json = JSON.parse(data.responseText);
-								Swal.fire("¡Error!", json.msg, "error");
+				Swal.fire({
+					title: "¡Proceso no completado!",
+					text:
+						"Esta marca no se puede eliminar, ya que un proveedor debe tener al menos una marca.",
+					type: "warning",
+					confirmButtonColor: "#28a745",
+				});
+
+
+			}else{
+
+				Swal.fire({
+					title: "¡Atención!",
+					text:
+						"¿Está seguro que desea eliminar esta marca del proveedor?",
+					type: "question",
+					showCancelButton: true,
+					confirmButtonColor: "#28a745",
+					cancelButtonColor: "#28a745",
+					confirmButtonText: "Si",
+					cancelButtonText: "No",
+				}).then((result) => {
+					if (result.value) {
+						$.ajax({
+							type: "POST",
+							url: "/tienda/proveedor/deleteDetalleMarca",
+							data: { 
+								id: id,
+								idProveedor: idProveedor
+							
 							},
-						},
-					});
-				}
-			});
+							success: function () {
+	
+							
+								$(self).parents("tr").remove();
+								Swal.fire({
+									title: "¡Proceso completado!",
+									text:
+										"La marca del proveedor ha sido eliminada exitosamente.",
+									type: "success",
+									confirmButtonColor: "#28a745",
+								});
+	
+								$("#Tabla_actualizar_marca").DataTable().ajax.reload();
+							},
+							error: function () {
+								Swal.fire({
+									title: "¡Proceso no completado!",
+									text:
+										"La marca del proveedor no se puede eliminar porque está asociada a otro proceso.",
+									type: "warning",
+									confirmButtonColor: "#28a745",
+								});
+							},
+							statusCode: {
+								400: function (data) {
+									var json = JSON.parse(data.responseText);
+									Swal.fire("¡Error!", json.msg, "error");
+								},
+							},
+						});
+					}
+				});
+
+				
+			}
+		
 		});
 
 

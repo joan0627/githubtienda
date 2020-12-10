@@ -187,21 +187,13 @@ class Proveedor extends CI_controller
 
 	public function deleteDetalleMarca(){
 
-		$_id= $this->input->post('id',true);
+		$_id= $this->input->post('id');
 		$idProveedor= $this->input->post('idProveedor');
 	
-	
-		if(empty($_id)){
-			$this->output
-			->set_status_header(400)
-			->set_output(json_encode(array ('msg'=>'El id de la marca no puede ser vacío.')));
-		}
-		else
-		{
-			$this->Model_proveedor->borrarDetalleMarca($_id,$idProveedor);
-			$this->output->set_status_header(200);
-			
-		}
+
+		 $this->Model_proveedor->borrarDetalleMarca($_id,$idProveedor);
+		
+		
 	}
 
 
@@ -237,6 +229,16 @@ class Proveedor extends CI_controller
 	}
 
 
+	public function consulta_Exis_id(){
+
+
+		$idMarca=$this->input->post('idMarca');
+		$documentoProveedor=$this->input->post('documentoProveedor');
+		$data=$this->Model_proveedor->consulta_Exis_id($idMarca,$documentoProveedor);
+		
+		echo json_encode($data);
+
+	}
 
 
 
