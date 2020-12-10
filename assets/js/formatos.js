@@ -203,13 +203,7 @@ $(document).ready(function () {
 		placeholder: "0",
 	});
 
-	//Formatos Venta
 
-	$(".js-example-venta-single").select2({
-		placeholder: "-Seleccione un vendedor-",
-
-		theme: "bootstrap4",
-	});
 
 	//Campo fecha en registro compra
 	$("#datepickercompra").datetimepicker({

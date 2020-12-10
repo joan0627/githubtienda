@@ -79,15 +79,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Vendedor</label> <label style="color: red;"> * </label>
-                                <select id="vendedor" class="js-example-venta-single form-control " style="width: 100%;"
+                                <select disabled   id="vendedor" class="form-control " style="width: 100%;"
                                     name="vendedor">
-                                    <option></option>
-                                    <?php foreach ($usuarios as $valor) : ?>
-
-                                    <option value="<?php  echo  $valor->idUsuario; ?>">
-                                        <?php echo  $valor->nombre; ?></option>
-
-                                    <?php endforeach; ?>
+          
+                                    <option value="<?php if ($idUsuario= $this->session->userdata("idUsuario")){ echo $idUsuario;}?>">
+                                    <?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}?></option>
 
                                 </select>
                             </div>

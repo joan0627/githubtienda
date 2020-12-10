@@ -109,7 +109,7 @@
                 <?php 
               
                         
-                foreach ($detalleVenta as $key) { 
+                foreach ($encabezadoVenta as $key) { 
 
                     $descuento=  $key->descuentoTotal;
 
@@ -133,7 +133,7 @@
                     <?php 
                         $precioneto=0;
                         
-                     foreach ($detalleVenta as $key) { 
+                     foreach ($encabezadoVenta as $key) { 
 
 
                    

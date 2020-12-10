@@ -54,7 +54,7 @@ class Venta extends CI_controller
 		$resultado = $this->Model_venta->obtenerIdVenta();
 		$data['clave']= $resultado;
 
-		$data['usuarios'] = $this->Model_venta->BuscarTodosUsuariosSelect();
+	
 		$data['formaPago'] = $this->Model_venta->BuscarFormapago();
 		
 		$this->load->view('layouts/superadministrador/header');
@@ -77,6 +77,7 @@ class Venta extends CI_controller
 		$comprobante= $this->input->post('comprobante');
 		$costoTotal= $this->input->post('costoTotal');
 		$observaciones = $this->input->post('observaciones');
+		$descuento = $this->input->post('descuento');
 	
 
 		$estado = true;
@@ -89,6 +90,7 @@ class Venta extends CI_controller
 			'nComprobante' => $comprobante,
 			'totalGlobal' => $costoTotal,
 			'observaciones' => 	$observaciones,
+			'descuentoTotal'=> $descuento,
 			'estado' => $estado,
 			
 		);
@@ -111,7 +113,7 @@ class Venta extends CI_controller
 		$codProducto=$this->input->post('codProducto');
 		$cantidad= $this->input->post('cantidad');
 		$costo= $this->input->post('costo');
-		$descuento = $this->input->post('descuento');
+		
 		//$costoTotal= $this->input->post('costoTotal');
 
 
@@ -121,7 +123,7 @@ class Venta extends CI_controller
 			'producto' => $codProducto,
 			'cantidad' => $cantidad,
 			'precioVenta' => $costo,
-			'descuentoTotal'=> $descuento
+			
 	
 		);
 
