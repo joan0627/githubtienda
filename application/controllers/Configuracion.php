@@ -9,6 +9,7 @@ class Configuracion extends CI_Controller {
 		$this->load->model('Model_usuario');
 		$this->load->model('Model_login');
 		$this->load->model('Model_agenda');
+		$this->load->model('Model_maestras');
 		$this->load->database();
 		$this->load->helper("url");
 		$this->load->library('form_validation');
@@ -202,6 +203,7 @@ class Configuracion extends CI_Controller {
 	}
 
 
+
 	public function informacion()
 	{
 		/*Protección Módulo si el usuario es Empleado*/
@@ -210,12 +212,430 @@ class Configuracion extends CI_Controller {
 			redirect(base_url().'errors/error_404');
 						
 		}
-	
+
 
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/formularios/datoseinfo_view');
 		$this->load->view('layouts/footer');
+
 		
 	}
+
+	/********************************************
+	 *******Funciones de tipo documento**********
+	 *******************************************/
+
+
+	public function listadoTipoDocumento(){
+   
+		$data= $this->Model_maestras->BuscarTiposDocumentos();
+	
+		echo($data);  
+	  
+
+	}
+
+	public  function registrarTdocumento(){
+
+		$_valorDescripcion = $this->input->post("descripcion");
+
+		$datosTipoDocumento = array(		
+		
+			'descripcion' => $_valorDescripcion
+		); 
+
+			$this->Model_maestras->insertarTipoDocumento($datosTipoDocumento);
+		
+	}
+
+	public function actualizarTdocumento(){
+
+		$_valorId= $this->input->post("id");
+		$_valorDescripcion = $this->input->post("descripcion");
+
+
+		$this->Model_maestras->actualizarTipoDocumento($_valorId, $_valorDescripcion);
+
+	}
+
+	public function delete(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id del tipo de documento no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrar($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
+
+	/********************************************
+	 **********Funciones de Categoria************
+	 *******************************************/
+
+
+	public function listadoCategoria(){
+   
+		$data= $this->Model_maestras->BuscarCategorias();
+	
+		echo($data); 
+	  
+
+	}
+
+
+	public  function registrarCategoria(){
+
+		$valorDescripcion = $this->input->post("descripcionCategoria");
+
+
+		$datosCategoria = array(		
+		
+			'descripcion' => $valorDescripcion
+		); 
+
+		$this->Model_maestras->insertarCategoria($datosCategoria);
+		
+	}
+
+	public function actualizarCategoria(){
+
+		$valorId= $this->input->post("id");
+		$valorDescripcion = $this->input->post("descripcionCategoria");
+
+
+		
+		$this->Model_maestras->actualizarCategoria($valorId, $valorDescripcion);
+
+	}
+
+	public function deleteCategoria(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id de la categoria no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrarCategoria($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
+
+	
+
+	/********************************************
+	 **********Funciones de Marca****************
+	 *******************************************/
+
+
+
+	 public function listadoMarca(){
+   
+		$data= $this->Model_maestras->BuscarMarcas();
+	
+		echo($data); 
+	  
+
+	}
+
+
+	public  function registrarMarca(){
+
+		$valorDescripcion = $this->input->post("descripcionMarca");
+
+
+		$datosMarca = array(		
+		
+			'descripcionMarca' => $valorDescripcion
+		); 
+
+		$this->Model_maestras->insertarMarca($datosMarca);
+		
+	}
+
+
+	public function actualizarMarca(){
+
+		$valorId= $this->input->post("id");
+		$valorDescripcion = $this->input->post("descripcionMarca");
+
+
+		$this->Model_maestras->actualizarMarca($valorId, $valorDescripcion);
+
+	}
+
+	public function deleteMarca(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id de la marca no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrarMarca($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
+
+	/********************************************
+	 **********Funciones de Presentación*********
+	 *******************************************/
+
+
+
+	public function listadoPresentacion(){
+   
+		$data= $this->Model_maestras->BuscarPresentacion();
+	
+		echo($data); 
+	  
+
+	}
+
+
+	public  function registrarPresentacion(){
+
+		$valorDescripcion = $this->input->post("descripcionPresentacion");
+
+
+		$datosPresentacion = array(		
+		
+			'descripcionPresentacion' => $valorDescripcion
+		); 
+
+		$this->Model_maestras->insertarPresentacion($datosPresentacion);
+		
+	}
+
+
+	public function actualizarPresentacion(){
+
+		$valorId= $this->input->post("id");
+		$valorDescripcion = $this->input->post("descripcionPresentacion");
+
+
+		$this->Model_maestras->actualizarPresentacion($valorId, $valorDescripcion);
+
+	}
+
+	public function deletePresentacion(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id de la presentacion no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrarPresentacion($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
+
+
+	
+	/********************************************
+	 **********Funciones de unidad de medida*****
+	 *******************************************/
+
+
+
+	public function listadoUnidadmedida(){
+   
+		$data= $this->Model_maestras->BuscarUmedida();
+	
+		echo($data); 
+	  
+
+	}
+
+
+	public  function registrarUmedida(){
+
+		$valorDescripcion = $this->input->post("descripcionUmedida");
+
+
+		$datosUmedida = array(		
+		
+			'descripcionUnidadMedida' => $valorDescripcion
+		); 
+
+		$this->Model_maestras->insertarUmedida($datosUmedida);
+		
+	}
+
+
+	public function actualizarUmedida(){
+
+		$valorId= $this->input->post("id");
+		$valorDescripcion = $this->input->post("descripcionUmedida");
+
+
+		$this->Model_maestras->actualizarUmedida($valorId, $valorDescripcion);
+
+	}
+
+	public function deleteUmedida(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id de la unidad de medida no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrarUmedida($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
+
+
+	/********************************************
+	 **********Funciones de unidad de raza*****
+	 *******************************************/
+
+
+
+	public function listadoRaza(){
+   
+		$data= $this->Model_maestras->BuscarRaza();
+	
+		echo($data); 
+	  
+
+	}
+
+
+	public  function registrarRaza(){
+
+		$valorDescripcion = $this->input->post("descripcionRaza");
+
+
+		$datosRaza = array(		
+		
+			'descripcionRaza' => $valorDescripcion
+		); 
+
+		$this->Model_maestras->insertarRaza($datosRaza);
+		
+	}
+
+
+	public function actualizarRaza(){
+
+		$valorId= $this->input->post("id");
+		$valorDescripcion = $this->input->post("descripcionRaza");
+
+
+		$this->Model_maestras->actualizarRaza($valorId, $valorDescripcion);
+
+	}
+
+	public function deleteRaza(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id de la raza no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrarRaza($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
+
+	
+	/********************************************
+	 **********Funciones de especie**************
+	 *******************************************/
+
+
+
+	public function listadoEspecie(){
+   
+		$data= $this->Model_maestras->BuscarEspecie();
+	
+		echo($data); 
+	  
+
+	}
+
+
+	public  function registrarEspecie(){
+
+		$valorDescripcion = $this->input->post("descripcionEspecie");
+
+
+		$datosEspecie = array(		
+		
+			'descripcionEspecie' => $valorDescripcion
+		); 
+
+		$this->Model_maestras->insertarEspecie($datosEspecie);
+		
+	}
+
+
+	public function actualizarEspecie(){
+
+		$valorId= $this->input->post("id");
+		$valorDescripcion = $this->input->post("descripcionEspecie");
+
+
+		$this->Model_maestras->actualizarEspecie($valorId, $valorDescripcion);
+
+	}
+
+	public function deleteEspecie(){
+
+		$_id= $this->input->post('id',true);
+	
+		if(empty($_id)){
+			$this->output
+			->set_status_header(400)
+			->set_output(json_encode(array ('msg'=>'El id de la especie no puede ser vacío.')));
+		}
+		else
+		{
+			$this->Model_maestras->borrarEspecie($_id);
+			$this->output->set_status_header(200);
+			
+		}
+	}
+
+
+
+
 }

@@ -30,7 +30,7 @@
 
                     <!-- Navegador -->
                     <div class="card  card-outline">
-                        <div class="card-body ">
+                        <div class="card-body">
 
                             <ul class="nav flex-column nav-pills">
 
@@ -38,7 +38,7 @@
                                     <a class="nav-link active" href="#datos" data-toggle="tab"> Datos e información</a>
                                 </li>
 
-                                <li class="nav-item "><a class="nav-link " href="#tipodocumento" data-toggle="tab">Tipo
+                                <li class="nav-item"><a class="nav-link " href="#tipodocumento" data-toggle="tab">Tipo
                                         documento</a>
                                 </li>
 
@@ -48,35 +48,23 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="#marca" data-toggle="tab">Marca</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#laboratorio"
-                                        data-toggle="tab">Laboratorio</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="#presentacion" data-toggle="tab"
+
+                                <li class="nav-item"><a class="nav-link" href="#presentacion"
                                         data-toggle="tab">Presentación</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="#unidadmedida" data-toggle="tab">Unidad
                                         de medida</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#tiposervicio" data-toggle="tab">Tipo de
-                                        servicio</a>
-                                </li>
+
                                 <li class="nav-item"><a class="nav-link" href="#raza" data-toggle="tab">Raza
                                     </a>
                                 </li>
 
-                                <li class="nav-item"><a class="nav-link" href="#tipovacuna" data-toggle="tab">Tipo de
-                                        vacuna</a>
+                                <li class="nav-item"><a class="nav-link" href="#especie" data-toggle="tab">Especies
+                                </a>
                                 </li>
 
-                                <li class="nav-item"><a class="nav-link" href="#tipomedicamento" data-toggle="tab">Tipo
-                                        de
-                                        medicamento</a>
-                                </li>
-
-                                <li class="nav-item"><a class="nav-link" href="#estado" data-toggle="tab">Estado de la
-                                        cita</a>
-                                </li>
-
+                            </ul>
 
                         </div>
                         <!-- /.card-body -->
@@ -89,2404 +77,1056 @@
                 <div class="col-md-9">
                     <div class="card">
 
-                        <div class="card-body ">
+                        <div class="card-body">
                             <div class="tab-content">
 
-                                <div class=" active tab-pane " id="datos">
+                                <div class="active tab-pane " id="datos">
 
 
                                     <!-- Inicio Contenido Total -->
 
 
 
+                                    Desde esta sección podrá gestionar los datos e información dinámica
+                                    que se agregará a los diferentes formularios que componen los módulos del sistema 
+                                    de información IntraRuk. Podrá crear, editar o eliminar esta información a medida 
+                                    de sus necesidades. Es importante recordarle que los datos que proporcione por cada 
+                                    uno de los items deben ser lo suficientemente claros y verídicos, ya que estos 
+                                    son base fundamental para que este sistema de información sea fiable y estable 
+                                    para usted y su negocio. Si tiene dudas acerca de la configuración por favor 
+                                    consulte la sección de ayuda ubicada en el menú izquierdo de la aplicación.
 
-                                    <div class="">
 
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta,
-                                        voluptatibus magni.
-                                        Minima, distinctio magni modi eius reprehenderit ullam perferendis
-                                        omnis molestias neque eligendi delectus aspernatur aliquid vitae vero
-                                        aut sint!
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta,
-                                        voluptatibus magni.
-                                        Minima, distinctio magni modi eius reprehenderit ullam perferendis
-                                        omnis molestias neque eligendi delectus aspernatur aliquid vitae vero
-                                        aut sint!
+
+
+                                </div>
+
+                                <div class="tab-pane " id="tipodocumento">
+
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de tipos de documento</h3>
+
+                                    </div>
+                                    <!-- Fin Caja superior -->
+
+                                    <br>
+
+
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra" class="table table-striped" style="width:100%">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                    <!-- Modal -->
+                                    <div id="modalRegistroTipoDocumento" class="modal fade" role="dialog">
+                                        <div class="modal-dialog  modal-md">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+
+                                                <div class="modal-body">
+
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 id="etiqueta" class="card-title">Registro de tipo de
+                                                                documento </h3>
+
+                                                        </div>
+                                                        <!-- Fin Caja superior -->
+
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form id="Formtipodocumento" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div style="text-align:left">
+                                                                                <i><small> Todos campos marcados con
+                                                                                        <label
+                                                                                            style="color: red;">asterisco
+                                                                                            (*)</label>
+                                                                                        son obligatorios.</small></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6" style="display: none;">
+                                                                            <div class="form-group">
+
+                                                                                <label>Código</label>
+                                                                                <input id="codigoTipoDocumento"
+                                                                                    type="text" class="form-control"
+                                                                                    readonly="readonly">
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-12"
+                                                                            style="align-items: center;">
+
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">*</label>
+                                                                                <input id="descripcionTipoDocumento"
+                                                                                    name="descripcionTipoDocumento"
+                                                                                    type="text" class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </form>
+
+                                                        </div>
+                                                        <!--Fin del card body-->
+
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
+
+
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
+                                                                type="submit" id="btnRegistroTipoDocumento"
+                                                                class="btn btn-success col-3">Registrar</button>
+
+                                                            <button type="button" class="btn btn-success col-3"
+                                                                data-dismiss="modal"
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+
+
+
+
+                                                        </div>
+                                                        <!--Fin del footer del contenido-->
+
+                                                    </div> <!-- Fin Contenido Total -->
+
+                                                </div>
+
+                                            </div>
+                                        </div>
 
                                     </div>
 
 
                                 </div>
 
-                                <div class=" tab-pane " id="tipodocumento">
+                                <!-- 
+                                **********************************
+                                ******** Vista  Categoria*********
+                                **********************************
+                                -->
 
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
+                                <div class="tab-pane" id="categoria">
 
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de categorias</h3>
 
-                                        <div class="row mb-1">
+                                    </div>
+                                    <!-- Fin Caja superior -->
 
-                                            <div class="col-auto mr-auto col-md-5">
+                                    <br>
 
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
 
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra_Categoria" class="table table-striped"
+                                            style="width:100%">
+                                            <thead>
 
-                                            </div>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            <div class="col-auto">
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                                <button href="#registrotipodocumento" data-toggle="tab"
-                                                    class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</button>
-                                            </div>
 
 
-                                        </div>
 
-                                    </section>
+                                    <!-- Modal -->
+                                    <div id="modalRegistroCategoria" class="modal fade" role="dialog">
+                                        <div class="modal-dialog  modal-md">
 
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
 
+                                                <div class="modal-body">
 
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de tipos de documento</h3>
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 id="etiquetaCategoria" class="card-title">Registro de
+                                                                categoria </h3>
 
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>TD001</td>
-                                                        <td>Cédula de ciudadanía</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>TD002</td>
-                                                        <td>Cédula de extranjería</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>TD003</td>
-                                                        <td>Pasaporte</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>TD004</td>
-                                                        <td>Tarjeta de identidad</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-
-
-
-
-                                </div>
-
-                                <div class=" tab-pane" id="registrotipodocumento">
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Registro de tipo de documento</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <form role="form" method="POST">
-                                                <!--Inicio del card body-->
-                                                <div class="card-body ">
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-
-                                                                <label>Código</label>
-                                                                <input name="codigo" type="text" class="form-control "
-                                                                    placeholder="001 " textOnly="textonly">
-                                                            </div>
                                                         </div>
+                                                        <!-- Fin Caja superior -->
+
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form id="FormCategoria" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div style="text-align:left">
+                                                                                <i><small> Todos campos marcados con
+                                                                                        <label
+                                                                                            style="color: red;">asterisco
+                                                                                            (*)</label>
+                                                                                        son obligatorios.</small></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6" style="display: none;">
+                                                                            <div class="form-group">
+
+                                                                                <label>id</label>
+                                                                                <input id="idCategoria" type="text"
+                                                                                    class="form-control"
+                                                                                    readonly="readonly">
+
+                                                                            </div>
+                                                                        </div>
 
 
 
-                                                        <div class="col-md-6">
+                                                                        <div class="col-md-12"
+                                                                            style="align-items: center;">
 
-                                                            <div class="form-group">
-                                                                <label>Descripción</label> <label style="color: red;">
-                                                                    *</label>
-                                                                <input name="nombre" type="text" class="form-control"
-                                                                    placeholder="Ingrese la descripción">
-                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">*</label>
+                                                                                <input id="descripcionCategoria"
+                                                                                    name="descripcionCategoria"
+                                                                                    type="text" class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </form>
+
                                                         </div>
+                                                        <!--Fin del card body-->
 
-                                                    </div>
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
 
 
-                                                    <!--Fin del card body-->
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
+                                                                type="submit" id="btnRegistroCategoria"
+                                                                class="btn btn-success col-3">Registrar</button>
 
-                                                    <!--Inicio del footer del contenido-->
-                                                    <div class="card-footer">
+                                                            <button type="button" class="btn btn-success col-3"
+                                                                data-dismiss="modal"
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
 
 
-                                                        <button type="submit" id="botonRegistroProveedor"
-                                                            class="btn btn-success col-2">Registrar</button>
-                                                        <a href="listaproveedoresu" id="botonAtras"
-                                                            class="btn btn-success col-2">Atrás</a>
 
-                                                    </div>
 
-                                                    <!--Fin del footer del contenido-->
-                                                </div>
-
-
-                                            </form>
-
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-
-                                <div class=" tab-pane " id="categoria">
-
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-
-
-                                        <div class="row mb-1">
-
-                                            <div class="col-auto mr-auto col-md-5">
-
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="col-auto">
-
-                                                <button href="#registrocategoria" id="botonregistrocategoria"
-                                                    data-toggle="tab" class="btn btn-success "><i
-                                                        class="fas fa-plus-circle"></i>
-                                                    Crear</button>
-
-
-
-                                            </div>
-
-
-                                        </div>
-
-                                    </section>
-
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de categorias</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>C001</td>
-                                                        <td>Alimentos</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>C002</td>
-                                                        <td>Accesorios</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>C003</td>
-                                                        <td>Medicamentos</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>C004</td>
-                                                        <td>Golosinas</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-                                <div class=" tab-pane" id="registrocategoria">
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Registro de categoría</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <form role="form" method="POST">
-                                                <!--Inicio del card body-->
-                                                <div class="card-body ">
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-
-                                                                <label>Código</label>
-                                                                <input name="codigo" type="text" class="form-control "
-                                                                    placeholder="001 " textOnly="textonly">
-                                                            </div>
                                                         </div>
+                                                        <!--Fin del footer del contenido-->
+
+                                                    </div> <!-- Fin Contenido Total -->
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- 
+                                **********************************
+                                ***********Marca******************
+                                **********************************
+                                -->
 
 
 
-                                                        <div class="col-md-6">
+                                <div class="tab-pane " id="marca">
 
-                                                            <div class="form-group">
-                                                                <label>Descripción</label> <label style="color: red;">
-                                                                    *</label>
-                                                                <input name="nombre" type="text" class="form-control"
-                                                                    placeholder="Ingrese la descripción">
-                                                            </div>
+
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de marcas</h3>
+
+                                    </div>
+                                    <!-- Fin Caja superior -->
+
+                                    <br>
+
+
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra_Marca" class="table table-striped" style="width:100%">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                    <!-- Modal -->
+                                    <div id="modalRegistroMarca" class="modal fade" role="dialog">
+                                        <div class="modal-dialog  modal-md">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+
+                                                <div class="modal-body">
+
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 id="etiquetaMarca" class="card-title">Registro de
+                                                                marca </h3>
+
                                                         </div>
+                                                        <!-- Fin Caja superior -->
+
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form id="FormMarca" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div style="text-align:left">
+                                                                                <i><small> Todos campos marcados con
+                                                                                        <label
+                                                                                            style="color: red;">asterisco
+                                                                                            (*)</label>
+                                                                                        son obligatorios.</small></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6" style="display: none;">
+                                                                            <div class="form-group">
+
+                                                                                <label>id</label>
+                                                                                <input id="idMarca" type="text"
+                                                                                    class="form-control"
+                                                                                    readonly="readonly">
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-12"
+                                                                            style="align-items: center;">
+
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">*</label>
+                                                                                <input id="descripcionMarca"
+                                                                                    name="descripcionMarca" type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </form>
 
-                                                    </div>
-
-
-                                                    <!--Fin del card body-->
-
-                                                    <!--Inicio del footer del contenido-->
-                                                    <div class="card-footer">
-
-
-                                                        <button type="submit" id="botonRegistroProveedor"
-                                                            class="btn btn-success col-2">Registrar</button>
-                                                        <a href="listaproveedoresu" id="botonAtras"
-                                                            class="btn btn-success col-2">Atrás</a>
-
-                                                    </div>
-
-                                                    <!--Fin del footer del contenido-->
-                                                </div>
-
-
-                                            </form>
-
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-
-
-
-                                <div class=" tab-pane " id="marca">
-
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-
-
-                                        <div class="row mb-1">
-
-                                            <div class="col-auto mr-auto col-md-5">
-
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="col-auto">
-
-                                                <button type="button" data-toggle="tab" data-target="#registromarca"
-                                                    id="botonregistromarca" class="btn btn-success"><i
-                                                        class="fas fa-plus-circle"></i>
-                                                    Crear</button>
-                                            </div>
-
-
-                                        </div>
-
-                                    </section>
-
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de marcas</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>M001</td>
-                                                        <td>Kanú</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>M002</td>
-                                                        <td>Biozoo</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>M003</td>
-                                                        <td>Purina</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>M004</td>
-                                                        <td>RicoCan</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-                                <div class="tab-pane " id="registromarca">
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Registro de marca</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <form role="form" method="POST">
-                                                <!--Inicio del card body-->
-                                                <div class="card-body ">
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-
-                                                                <label>Código</label>
-                                                                <input name="codigo" type="text" class="form-control "
-                                                                    placeholder="001 " textOnly="textonly">
-                                                            </div>
                                                         </div>
+                                                        <!--Fin del card body-->
+
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
+
+
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
+                                                                type="submit" id="btnRegistroMarca"
+                                                                class="btn btn-success col-3">Registrar</button>
+
+                                                            <button type="button" class="btn btn-success col-3"
+                                                                data-dismiss="modal"
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
 
 
 
-                                                        <div class="col-md-6">
 
-                                                            <div class="form-group">
-                                                                <label>Descripción</label> <label style="color: red;">
-                                                                    *</label>
-                                                                <input name="nombre" type="text" class="form-control"
-                                                                    placeholder="Ingrese la descripción">
-                                                            </div>
                                                         </div>
+                                                        <!--Fin del footer del contenido-->
 
-                                                    </div>
+                                                    </div> <!-- Fin Contenido Total -->
 
-
-                                                    <!--Fin del card body-->
-
-                                                    <!--Inicio del footer del contenido-->
-                                                    <div class="card-footer">
-
-
-                                                        <button type="submit" id="botonRegistroProveedor"
-                                                            class="btn btn-success col-2">Registrar</button>
-                                                        <a href="listaproveedoresu" id="botonAtras"
-                                                            class="btn btn-success col-2">Atrás</a>
-
-                                                    </div>
-
-                                                    <!--Fin del footer del contenido-->
                                                 </div>
 
-
-                                            </form>
-
+                                            </div>
                                         </div>
-                                        <!--Fin del card body-->
 
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
+                                    </div>
 
 
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
 
                                 </div>
 
-                                <div class=" tab-pane " id="laboratorio">
 
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
 
 
-                                        <div class="row mb-1">
+                                <!-- 
+                                **********************************
+                                ***********Presentación***********
+                                **********************************
+                                -->
 
-                                            <div class="col-auto mr-auto col-md-5">
 
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
 
+                                <div class="tab-pane " id="presentacion">
 
-                                            </div>
 
-                                            <div class="col-auto">
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de presentaciones</h3>
 
-                                                <a href="#registropresentacion" date-toggle="tab"
-                                                    class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
+                                    </div>
+                                    <!-- Fin Caja superior -->
 
+                                    <br>
 
-                                        </div>
 
-                                    </section>
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra_Presentacion" class="table table-striped" style="width:100%">
+                                            <thead>
 
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de laboratorios</h3>
 
 
-                                        </div>
-                                        <!-- Fin Caja superior -->
+                                    <!-- Modal -->
+                                    <div id="modalRegistroPresentacion" class="modal fade" role="dialog">
+                                        <div class="modal-dialog  modal-md">
 
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
 
+                                                <div class="modal-body">
 
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 id="etiquetaPresentacion" class="card-title">Registro de
+                                                                presentación</h3>
 
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>001</td>
-                                                        <td>Biozoo</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>002</td>
-                                                        <td>Virbac</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>003</td>
-                                                        <td>Canigen</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-                                <div class=" tab-pane " id="presentacion">
-
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-
-
-                                        <div class="row mb-1">
-
-                                            <div class="col-auto mr-auto col-md-5">
-
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="col-auto">
-
-                                                <a href="#registropresentacion" date-toggle="tab"
-                                                    class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </section>
-
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de presentaciones</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>P001</td>
-                                                        <td>Botella</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>P002</td>
-                                                        <td>Caja</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>P003</td>
-                                                        <td>Frasco</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>P004</td>
-                                                        <td>Bolsa</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-                                <div class="tab-pane " id="registropresentacion">
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Registro de presentación</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <form role="form" method="POST">
-                                                <!--Inicio del card body-->
-                                                <div class="card-body ">
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-
-                                                                <label>Código</label>
-                                                                <input name="codigo" type="text" class="form-control "
-                                                                    placeholder="001 " textOnly="textonly">
-                                                            </div>
                                                         </div>
+                                                        <!-- Fin Caja superior -->
+
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form id="FormPresentacion" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div style="text-align:left">
+                                                                                <i><small> Todos campos marcados con
+                                                                                        <label
+                                                                                            style="color: red;">asterisco
+                                                                                            (*)</label>
+                                                                                        son obligatorios.</small></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6" style="display: none;">
+                                                                            <div class="form-group">
+
+                                                                                <label>id</label>
+                                                                                <input id="idPresentacion" type="text"
+                                                                                    class="form-control"
+                                                                                    readonly="readonly">
+
+                                                                            </div>
+                                                                        </div>
 
 
 
-                                                        <div class="col-md-6">
+                                                                        <div class="col-md-12"
+                                                                            style="align-items: center;">
 
-                                                            <div class="form-group">
-                                                                <label>Descripción</label> <label style="color: red;">
-                                                                    *</label>
-                                                                <input name="nombre" type="text" class="form-control"
-                                                                    placeholder="Ingrese la descripción">
-                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">*</label>
+                                                                                <input id="descripcionPresentacion"
+                                                                                    name="descripcionPresentacion" type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </form>
+
                                                         </div>
+                                                        <!--Fin del card body-->
 
-                                                    </div>
-
-
-                                                    <!--Fin del card body-->
-
-                                                    <!--Inicio del footer del contenido-->
-                                                    <div class="card-footer">
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
 
 
-                                                        <button type="submit" id="botonRegistroProveedor"
-                                                            class="btn btn-success col-2">Registrar</button>
-                                                        <a href="listaproveedoresu" id="botonAtras"
-                                                            class="btn btn-success col-2">Atrás</a>
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
+                                                                type="submit" id="btnRegistroPresentacion"
+                                                                class="btn btn-success col-3">Registrar</button>
 
-                                                    </div>
+                                                            <button type="button" class="btn btn-success col-3"
+                                                                data-dismiss="modal"
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
 
-                                                    <!--Fin del footer del contenido-->
+
+
+
+                                                        </div>
+                                                        <!--Fin del footer del contenido-->
+
+                                                    </div> <!-- Fin Contenido Total -->
+
                                                 </div>
 
-
-                                            </form>
-
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-                                <div class=" tab-pane " id="unidadmedida">
-
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-
-
-                                        <div class="row mb-1">
-
-                                            <div class="col-auto mr-auto col-md-5">
-
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
-
-
                                             </div>
-
-                                            <div class="col-auto">
-
-                                                <a href="#registrounidadmedida" date-togggle="tab"
-                                                    class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
-
-
                                         </div>
 
-                                    </section>
+                                    </div>
 
 
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de unidades de medida</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>U001</td>
-                                                        <td>Gramos</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>U002</td>
-                                                        <td>Kilogramos</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>P003</td>
-                                                        <td>Frasco</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>P004</td>
-                                                        <td>Bolsa</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-                                <div class=" tab-pane " id="tiposervicio">
-
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-
-
-                                        <div class="row mb-1">
-
-                                            <div class="col-auto mr-auto col-md-5">
-
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="col-auto">
-
-                                                <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </section>
-
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de tipos de servicios</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>001</td>
-                                                        <td>Belleza</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>002</td>
-                                                        <td>Vacunación</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>003</td>
-                                                        <td>Desparasitación</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
-
-                                </div>
-
-                                <div class=" tab-pane " id="raza">
-
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
-
-
-                                        <div class="row mb-1">
-
-                                            <div class="col-auto mr-auto col-md-5">
-
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="col-auto">
-
-                                                <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
-
-
-                                        </div>
-
-                                    </section>
-
-
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de razas de mascotas</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>001</td>
-                                                        <td>Pitbull</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>002</td>
-                                                        <td>Beagle</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>003</td>
-                                                        <td>Angora</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
 
                                 </div>
 
 
-                                <div class=" tab-pane " id="tipovacuna">
+                                
+                                <!-- 
+                                **********************************
+                                ***********Unidad de medida*******
+                                **********************************
+                                -->
 
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
 
 
-                                        <div class="row mb-1">
+                                <div class="tab-pane " id="unidadmedida">
 
-                                            <div class="col-auto mr-auto col-md-5">
 
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de unidades de medida</h3>
+
+                                    </div>
+                                    <!-- Fin Caja superior -->
+
+                                    <br>
+
+
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra_Umedida" class="table table-striped" style="width:100%">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                    <!-- Modal -->
+                                    <div id="modalRegistroUmedida" class="modal fade" role="dialog">
+                                        <div class="modal-dialog  modal-md">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+
+                                                <div class="modal-body">
+
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 id="etiquetaUmedida" class="card-title">Registro de
+                                                                unidad de medida</h3>
+
+                                                        </div>
+                                                        <!-- Fin Caja superior -->
+
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form id="FormUmedida" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div style="text-align:left">
+                                                                                <i><small> Todos campos marcados con
+                                                                                        <label
+                                                                                            style="color: red;">asterisco
+                                                                                            (*)</label>
+                                                                                        son obligatorios.</small></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6" style="display: none;">
+                                                                            <div class="form-group">
+
+                                                                                <label>id</label>
+                                                                                <input id="idUmedida" type="text"
+                                                                                    class="form-control"
+                                                                                    readonly="readonly">
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-12"
+                                                                            style="align-items: center;">
+
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">*</label>
+                                                                                <input id="descripcionUmedida"
+                                                                                    name="descripcionUmedida" type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </form>
+
+                                                        </div>
+                                                        <!--Fin del card body-->
+
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
+
+
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
+                                                                type="submit" id="btnRegistroUmedida"
+                                                                class="btn btn-success col-3">Registrar</button>
+
+                                                            <button type="button" class="btn btn-success col-3"
+                                                                data-dismiss="modal"
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+
+
+                                                        </div>
+                                                        <!--Fin del footer del contenido-->
+
+                                                    </div> <!-- Fin Contenido Total -->
+
                                                 </div>
 
-
                                             </div>
-
-                                            <div class="col-auto">
-
-                                                <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
-
-
                                         </div>
 
-                                    </section>
+                                    </div>
 
 
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de tipos de vacunas</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>001</td>
-                                                        <td>Canina</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>002</td>
-                                                        <td>Felina</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
 
                                 </div>
 
-                                <div class=" tab-pane " id="tipomedicamento">
-
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
 
 
-                                        <div class="row mb-1">
+                                <!-- 
+                                **********************************
+                                ***********Raza*******************
+                                **********************************
+                                -->
 
-                                            <div class="col-auto mr-auto col-md-5">
 
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
+
+                                <div class="tab-pane " id="raza">
+
+
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de razas</h3>
+
+                                    </div>
+                                    <!-- Fin Caja superior -->
+
+                                    <br>
+
+
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra_Raza" class="table table-striped" style="width:100%">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                    <!-- Modal -->
+                                    <div id="modalRegistroRaza" class="modal fade" role="dialog">
+                                        <div class="modal-dialog  modal-md">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+
+                                                <div class="modal-body">
+
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 id="etiquetaRaza" class="card-title">Registro de
+                                                                raza</h3>
+
+                                                        </div>
+                                                        <!-- Fin Caja superior -->
+
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form id="FormRaza" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div style="text-align:left">
+                                                                                <i><small> Todos campos marcados con
+                                                                                        <label
+                                                                                            style="color: red;">asterisco
+                                                                                            (*)</label>
+                                                                                        son obligatorios.</small></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6" style="display: none;">
+                                                                            <div class="form-group">
+
+                                                                                <label>id</label>
+                                                                                <input id="idRaza" type="text"
+                                                                                    class="form-control"
+                                                                                    readonly="readonly">
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-12"
+                                                                            style="align-items: center;">
+
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">*</label>
+                                                                                <input id="descripcionRaza"
+                                                                                    name="descripcionRaza" type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </form>
+
+                                                        </div>
+                                                        <!--Fin del card body-->
+
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
+
+
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
+                                                                type="submit" id="btnRegistroRaza"
+                                                                class="btn btn-success col-3">Registrar</button>
+
+                                                            <button type="button" class="btn btn-success col-3"
+                                                                data-dismiss="modal"
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+
+
+                                                        </div>
+                                                        <!--Fin del footer del contenido-->
+
+                                                    </div> <!-- Fin Contenido Total -->
+
                                                 </div>
 
-
                                             </div>
-
-                                            <div class="col-auto">
-
-                                                <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
-
-
                                         </div>
 
-                                    </section>
+                                    </div>
 
 
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de tipos de medicamentos</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>001</td>
-                                                        <td>Caninos</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>002</td>
-                                                        <td>Felinos</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
 
                                 </div>
 
-                                <div class=" tab-pane " id="estado">
 
-                                    <!-- Content Header (Page header) -->
-                                    <section class="content-header">
+                                
+                                <!-- 
+                                **********************************
+                                ***********Especie*******************
+                                **********************************
+                                -->
 
 
-                                        <div class="row mb-1">
 
-                                            <div class="col-auto mr-auto col-md-5">
+                                <div class="tab-pane " id="especie">
 
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Estoy buscando...">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i
-                                                                class="fas fa-search"></i></button>
-                                                    </span>
+
+                                    <!-- Incio Caja superior -->
+                                    <div class="card-header bg-success">
+                                        <h3 class="card-title">Lista de especies</h3>
+
+                                    </div>
+                                    <!-- Fin Caja superior -->
+
+                                    <br>
+
+
+                                    <!--Inicio del card body-->
+                                    <div class="card-body p-0">
+                                        <table id="tablaMaestra_Especie" class="table table-striped" style="width:100%">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Descripción</th>
+                                                    <th style="text-align: center;">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                    <!-- Modal -->
+                                    <div id="modalRegistroEspecie" class="modal fade" role="dialog">
+                                        <div class="modal-dialog  modal-md">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+
+                                                <div class="modal-body">
+
+                                                    <div class="card card-success">
+                                                        <!-- Incio Caja superior -->
+                                                        <div class="card-header">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                            <h3 id="etiquetaEspecie" class="card-title">Registro de
+                                                                especie</h3>
+
+                                                        </div>
+                                                        <!-- Fin Caja superior -->
+
+                                                        <!--Inicio del card body-->
+                                                        <div class="card-body p-0">
+                                                            <form id="FormEspecie" method="POST">
+                                                                <!--Inicio del card body-->
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div style="text-align:left">
+                                                                                <i><small> Todos campos marcados con
+                                                                                        <label
+                                                                                            style="color: red;">asterisco
+                                                                                            (*)</label>
+                                                                                        son obligatorios.</small></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6" style="display: none;">
+                                                                            <div class="form-group">
+
+                                                                                <label>id</label>
+                                                                                <input id="idEspecie" type="text"
+                                                                                    class="form-control"
+                                                                                    readonly="readonly">
+
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-12"
+                                                                            style="align-items: center;">
+
+                                                                            <div class="form-group">
+                                                                                <label>Descripción</label>
+                                                                                <label style="color: red;">*</label>
+                                                                                <input id="descripcionEspecie"
+                                                                                    name="descripcionEspecie" type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder="Ingrese la descripción">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </form>
+
+                                                        </div>
+                                                        <!--Fin del card body-->
+
+                                                        <!--Inicio del footer del contenido-->
+                                                        <div class="text-center card-footer">
+
+
+                                                            <button
+                                                                style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
+                                                                type="submit" id="btnRegistroEspecie"
+                                                                class="btn btn-success col-3">Registrar</button>
+
+                                                            <button type="button" class="btn btn-success col-3"
+                                                                data-dismiss="modal"
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+
+
+                                                        </div>
+                                                        <!--Fin del footer del contenido-->
+
+                                                    </div> <!-- Fin Contenido Total -->
+
                                                 </div>
 
-
                                             </div>
-
-                                            <div class="col-auto">
-
-                                                <a href="#" class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                                                    Crear</a>
-                                            </div>
-
-
                                         </div>
 
-                                    </section>
+                                    </div>
 
 
-
-                                    <!-- Inicio Contenido Total -->
-                                    <div class="card card-success">
-                                        <!-- Incio Caja superior -->
-                                        <div class="card-header">
-                                            <h3 class="card-title">Lista de estados de la cita</h3>
-
-
-                                        </div>
-                                        <!-- Fin Caja superior -->
-
-
-
-                                        <!--Inicio del card body-->
-                                        <div class="card-body p-0">
-                                            <table class="table table-striped projects">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Código
-                                                        </th>
-
-                                                        <th>
-                                                            Descripción
-                                                        </th>
-
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-
-
-                                                        <td>001</td>
-                                                        <td>Programada</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-
-
-                                                        <td>002</td>
-                                                        <td>En proceso</td>
-
-
-
-                                                        <td class="project-actions text-right ">
-
-
-
-                                                            <a class="btn btn-info btn-sm" href="actualizarclientesu">
-
-                                                                <i class="fas fa-pencil-alt">
-                                                                </i>
-                                                                Editar
-                                                            </a>
-
-
-                                                            <a class="btn btn-danger btn-sm" href="#"
-                                                                onclick="return confirm('¿Estás seguro que deseas eliminar este usuario?')">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Borrar
-                                                            </a>
-                                                        </td>
-
-
-                                                    </tr>
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--Fin del card body-->
-
-                                        <!--Inicio del footer del contenido-->
-                                        <div class="card-footer">
-
-
-                                        </div>
-                                        <!--Fin del footer del contenido-->
-
-                                    </div> <!-- Fin Contenido Total -->
 
                                 </div>
 
 
 
                             </div>
+
+
+
                         </div>
 
 
-
-
-
                     </div>
-                    <!-- /.col -->
-
                 </div>
-
-
             </div>
+        </div>
 
     </section><!-- Fin seccion contenido -->
 </div><!-- Fin content-wrapper -->
