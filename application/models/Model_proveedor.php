@@ -40,17 +40,7 @@ class Model_proveedor extends Ci_model
 		return $consulta->row();
 	}
 
-	/*
- 	//Función para  buscar un todos los proveedores
-	function BuscarTodosProveedor() {
 
-		$this->db->select();
-		$this->db->from($this->tablaProveedor);
-
-		$consulta = $this->db->get();
-		return $consulta->result();
-		
-	}*/
 
 	//Función para buscar todos los tipos de documentos
 	function BuscarTiposDocumentos()
@@ -69,6 +59,17 @@ class Model_proveedor extends Ci_model
 
 		$this->db->select();
 		$this->db->from($this->tablaProveedor);
+		$consulta = $this->db->get();
+		return $consulta->result();
+	 }
+
+
+	 function BuscarTodosProveedorCompra()
+	 {
+
+		$this->db->select();
+		$this->db->from($this->tablaProveedor);
+		$this->db->where('estado',1);
 		$consulta = $this->db->get();
 		return $consulta->result();
 	 }

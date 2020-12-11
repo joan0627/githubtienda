@@ -198,20 +198,19 @@
                 <div class="row">
 
                     <div class="col-md-10">
-                        <textarea style="width:50%" class="form-control" rows="2" placeholder="Ingrese una observación"
+                        <textarea maxlength="150" style="width:50%" class="form-control" rows="2" placeholder="Ingrese una observación"
                             name="observaciones" id="observaciones"></textarea>
                     </div>
 
 
-                </div>
+                    <div class="col-md-5">
+                        <div style="color: gray;" class="contadorCompra text-right"><span
+                            id="contadorCompra"></span><span>/150</span></div>
+                    </div>
 
 
-
-                <div class="row">
-
-
+                
                     <div class="col-md-12 text-right">
-
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="registrarCompra"
                             class="btn btn-success col-2" type="submit"><i class="fas fa-save"></i> Registrar</button>

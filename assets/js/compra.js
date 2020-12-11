@@ -346,6 +346,15 @@ $(document).ready(function() {
                             cancelButtonText: "No",
                         }).then((result) => {
                             if (result.value) {
+                                $("#example1 tbody tr").each(function () {
+									var el = $(this);
+
+									el.closest("tr").removeClass("selected");
+									el.find(".btncarrito")
+										.removeAttr("disabled")
+										.css("color", "#5CB85C");
+								});
+
                                 tabladetallecompra.clear().draw();
                             }
                         });
@@ -408,10 +417,17 @@ $(document).ready(function() {
     });
 
 
+        //contador del campo observaciones de compra
 
+        var max_chars = 0;
+        $(".contadorCompra").hide();
 
-    //}
-
+        $("#observaciones").keyup(function () {
+            $(".contadorCompra").show();
+            var chars = $(this).val().length;
+            var diff = max_chars + chars;
+            $("#contadorCompra").html(diff);
+        });
 
 
 
@@ -460,37 +476,7 @@ $(document).ready(function() {
 
 
         if (validar_formulario.form()) {
-            //asi se comprueba si el form esta validado o no
-            /* $.ajax({
-                 type: "POST",
-                 url: "/tienda/Compra/registro/",
-                 data: {
-                     
-                     proveedor:proveedor
-                    
-                 },
-
-                 success: function () {
-                     console.log("se envio bien");
-                     
-                 },
-
-                 error: function () {
-                     console.log("No se envio bien");
-                 },
-                 statusCode: {
-                     400: function (data) {
-                         var json = JSON.parse(data.responseText);
-                         Swal.fire("¡Error!", json.msg, "error");
-                     },
-                 },
-             });*/
-
-
-
-
-
-
+        
             if (tabladetallecompra.rows().count() > 0) {
                 Swal.fire({
                     title: "¡Atención!",
@@ -515,20 +501,14 @@ $(document).ready(function() {
                                 totalGlobal: totalGlobal,
                             },
                             success: function() {
-                                /*Swal.fire({
-                                    title: "¡El codigo es!" ,
-                                    text: "Se guardo" ,
-                                    type: "success",
-                                    confirmButtonColor: "#28a745",
-                                });*/
+                               
 
                                 //CODIGO PARA REGISTRAR EL DETALLE
                                 $("#example2 tbody tr").each(function() {
-                                    //var tabladetallecompra = $("#example2").DataTable();
+                                   
                                     var codigoP = $(this).children().eq(0).text();
 
-                                    //var codigoP = $(this).closest("tr").find("td:eq(0)").text();
-                                    //var descripcion = $(this).closest("tr").find("td:eq(1)").text();
+                                   
                                     var cantidad = $(this).closest("tr").find("td:eq(2)").text();
                                     var costo = $(this).closest("tr").find("td:eq(3)").text();
                                     costo = OSREC.CurrencyFormatter.parse(costo, { currency: 'COP', locale: 'es_CO' })
@@ -549,18 +529,7 @@ $(document).ready(function() {
                                             iva: iva
                                         },
 
-                                        success: function() {
-                                            Swal.fire({
-                                                title: "¡Proceso completado!",
-                                                text: "La compra se ha registrado exitosamente.",
-                                                type: "success",
-                                                confirmButtonColor: "#28a745",
-                                            }).then(function() {
-                                                window.location =
-                                                    "http://localhost:8888/tienda/compra/";
-                                            });
-                                        },
-
+                                    
                                         error: function() {
                                             Swal.fire({
                                                 title: "¡Proceso no completado!",
@@ -577,18 +546,19 @@ $(document).ready(function() {
                                         },
                                     });
                                 });
-                            },
-                            error: function() {
-                                /*Swal.fire({
-                                    title: "¡Proceso no completado!",
-                                    text: "No se guardo",
-                                    type: "warning",
+                                Swal.fire({
+                                    title: "¡Proceso completado!",
+                                    text: "La compra se ha registrado exitosamente.",
+                                    type: "success",
                                     confirmButtonColor: "#28a745",
-                                })*/
+                                }).then(function() {
+                                    window.location =
+                                        "http://localhost:8888/tienda/compra/";
+                                });
                             },
+                  
                         });
-                        //	var _form = $("#basic-form").serialize();
-                        //	console.log("form:\n", _form);
+                       
                     }
                 });
             } else {
@@ -601,12 +571,6 @@ $(document).ready(function() {
             }
         }
     });
-
-
-
-
-
-
 
 
     /**
@@ -647,7 +611,7 @@ $(document).ready(function() {
      * Función para anular la compra
      */
 
-    //$("tr td #anular").click(function (ev) {
+   
     $('#tablacompras').on('click', '.anularcompra', function(ev) {
         ev.preventDefault();
 
@@ -670,32 +634,49 @@ $(document).ready(function() {
                     type: "POST",
                     url: "/tienda/compra/anular",
                     data: { idCompras: idCompras },
-                    success: function() {
+                    dataType: "JSON",
+                    success: function(data) {
+                        $.each(data, function (i, item) {
+                            var cantidad = item.cantidad;
+                            var idProducto = item.idProducto;
+                   
+
+                            $.ajax({
+								type: "POST",
+								url: "/tienda/compra/anular_cantidad_compra",
+								data: {
+									cantidad: cantidad,
+									idProducto: idProducto,
+                                },
+
+                                error: function () {
+									Swal.fire({
+										title: "¡Proceso no completado!",
+										text:
+											"La compra no se puede anular, ya que esta asociado a otro proceso.",
+										type: "warning",
+										confirmButtonColor: "#28a745",
+									});
+								},
+								statusCode: {
+									400: function (data) {
+										var json = JSON.parse(data.responseText);
+										Swal.fire("¡Error!", json.msg, "error");
+									},
+								},
+                                
+                            })
+                        }),
                         Swal.fire({
                             title: "¡Proceso completado!",
-                            text: "La compra" + " ha sido anulada exitosamente.",
+                            text: "La compra ha sido anulada exitosamente.",
                             type: "success",
                             confirmButtonColor: "#28a745",
                         });
                         $('#estadoCompra' + idCompras).replaceWith('<span class="badge badge-danger">Anulada</span>');
-                        //$('#estadoCompra').parent().replace('<td><span class="badge badge-danger">Anulada</span></td>');
-                        //$this.closest("td").find(".estadoCompra").replace('<td><span class="badge badge-danger">Anulada</span></td>');
-                        //$('#ax tr').eq(0).replace('<td><span class="badge badge-danger">Anulada</span></td>');
-                        // $('#anularCompra').attr("disabled");
+                       
                         $("#anularCompra" + idCompras).prop('disabled', true);
-                        //$(self).parents("td").remove();
-                        // $('#estadoCompra' + idCompras).addClass('badge badge-danger');
-                        // $(this).parents("tr").find("td:eq(0)").text().remove();
-                        //$(this).parents("tr").find('#estadoCompra').replaceWith('<td><span class="badge badge-danger">Anulada</span></td>');
-                        // console.log(nombreCompra);
-                        //$(this).parents("tr").find('td:eq(5)').css({'color':'red','font-size':'1.3em','background':'yellow'});
-                        //  console.log( $(this).parents('tr').css({'color':'red','font-size':'1.3em','background':'yellow'}));           
-
-                        // $('td span.badge').addClass('badge-danger');
-                        // $(this).parents("tr").find("td:eq(5)").addClass('adge badge-danger');
-                        //console.log(nombreCompra)
-                        // $(this).children("td span").addClass('badge badge-danger');
-
+                       
 
 
                     },

@@ -1380,7 +1380,7 @@ $(document).ready(function () {
 	 */
 
 	var idMascotaH = $("#idMascotaHistorial").val();
-	
+
 
 	$("#tableHistorialMascota").DataTable({
 
@@ -1410,18 +1410,30 @@ $(document).ready(function () {
 					return row.dosis + " " + row.descripcionUnidadmedida;
 				},
 			},
-		
-			{ data: "fechaAplicacion",  className: "text-center"  },
-
+	
 			
+			{
+				render: function (data, type, row) {
+					return moment(row.fechaAplicacion).format('DD-MM-YYYY');
+					
+				},
+				className: 'text-center',
+			},
 
-			{ data: "fechaProxima",  className: "text-center"  },
+					
+			{
+				render: function (data, type, row) {
+					return moment(row.fechaProxima).format('DD-MM-YYYY');
+					
+				},
+				className: 'text-center',
+			},
 
 			{ data: "observaciones",  className: "text-center" },
 
 		],
 	});
-	
 
+	
 
 });

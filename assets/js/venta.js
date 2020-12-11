@@ -622,7 +622,7 @@ $(document).ready(function () {
 							var cantidad = item.cantidad;
 							var idProducto = item.producto;
 
-							console.log(cantidad + "  " + idProducto);
+						
 
 							$.ajax({
 								type: "POST",
@@ -632,19 +632,7 @@ $(document).ready(function () {
 									idProducto: idProducto,
 								},
 
-								success: function () {
-									Swal.fire({
-										title: "¡Proceso completado!",
-										text: "La venta" + " ha sido anulada exitosamente.",
-										type: "success",
-										confirmButtonColor: "#28a745",
-									});
-									$("#estadoventa" + idFactura).replaceWith(
-										'<span class="badge badge-danger">Anulada</span>'
-									);
-									$("#anularVenta" + idFactura).prop("disabled", true);
-								},
-
+							
 								error: function () {
 									Swal.fire({
 										title: "¡Proceso no completado!",
@@ -663,6 +651,17 @@ $(document).ready(function () {
 								},
 							});
 						});
+
+						Swal.fire({
+							title: "¡Proceso completado!",
+							text: "La venta" + " ha sido anulada exitosamente.",
+							type: "success",
+							confirmButtonColor: "#28a745",
+						});
+						$("#estadoventa" + idFactura).replaceWith(
+							'<span class="badge badge-danger">Anulada</span>'
+						);
+						$("#anularVenta" + idFactura).prop("disabled", true);
 					},
 				});
 			}

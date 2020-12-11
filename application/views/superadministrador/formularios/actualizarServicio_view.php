@@ -199,10 +199,10 @@
                     <div class="text-center card-footer">
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
-                            id="botonActualizarServicio" class="btn btn-success col-2">Actualizar</button>
+                            id="botonActualizarServicio" class="btn btn-success col-2"><i class="fas fa-save"></i> Actualizar</button>
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
                             href="<?php echo base_url(); ?>servicio" id="botonAtras"
-                            class="btn btn-success col-2">Atrás</a>
+                            class="btn btn-success col-2"><i  class="fas fa-arrow-left"></i> Atrás</a>
 
                     </div>
 
