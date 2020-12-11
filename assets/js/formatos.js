@@ -81,7 +81,6 @@ $(document).ready(function () {
     $(".js-example-placeholder-Raza-registro-single").select2({
         placeholder: "-Seleccione una raza-",
         theme: "bootstrap4",
-
     });
 
 

@@ -473,6 +473,18 @@ $(document).ready(function () {
 			}
 		}
 	});
+	
+	//contador del campo observaciones de venta
+
+	var max_chars = 0;
+	$(".contadorVenta").hide();
+
+	$("#observacionesVenta").keyup(function () {
+		$(".contadorVenta").show();
+		var chars = $(this).val().length;
+		var diff = max_chars + chars;
+		$("#contadorVenta").html(diff);
+	});
 
 	//Registro venta
 	$("#registroVenta").click(function (ev) {

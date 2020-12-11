@@ -39,9 +39,8 @@
                                 </li>
 
                                 <li class="nav-item"><a class="nav-link " href="#tipodocumento" data-toggle="tab">Tipo
-                                        documento</a>
+                                        de documento</a>
                                 </li>
-
 
                                 <li class="nav-item"><a class="nav-link" href="#categoria"
                                         data-toggle="tab">Categoría</a>
@@ -56,13 +55,15 @@
                                         de medida</a>
                                 </li>
 
+                                 <li class="nav-item"><a class="nav-link" href="#especie" data-toggle="tab">Especie
+                                </a>
+                                </li>
+
                                 <li class="nav-item"><a class="nav-link" href="#raza" data-toggle="tab">Raza
                                     </a>
                                 </li>
 
-                                <li class="nav-item"><a class="nav-link" href="#especie" data-toggle="tab">Especies
-                                </a>
-                                </li>
+                               
 
                             </ul>
 
@@ -89,11 +90,11 @@
 
                                     Desde esta sección podrá gestionar los datos e información dinámica
                                     que se agregará a los diferentes formularios que componen los módulos del sistema 
-                                    de información IntraRuk. Podrá crear, editar o eliminar esta información a medida 
+                                    de información IntraRuk.<br>  Podrá crear, editar o eliminar esta información a medida 
                                     de sus necesidades. Es importante recordarle que los datos que proporcione por cada 
                                     uno de los items deben ser lo suficientemente claros y verídicos, ya que estos 
                                     son base fundamental para que este sistema de información sea fiable y estable 
-                                    para usted y su negocio. Si tiene dudas acerca de la configuración por favor 
+                                    para usted y su negocio. <br> Si tiene dudas acerca de la configuración por favor 
                                     consulte la sección de ayuda ubicada en el menú izquierdo de la aplicación.
 
 
@@ -213,11 +214,11 @@
                                                             <button
                                                                 style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
                                                                 type="submit" id="btnRegistroTipoDocumento"
-                                                                class="btn btn-success col-3">Registrar</button>
+                                                                class="btn btn-success col-3"> <i class="fas fa-save"></i> Registrar</button>
 
                                                             <button type="button" class="btn btn-success col-3"
                                                                 data-dismiss="modal"
-                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "><i class="fas fa-window-close"></i> Cancelar</button>
 
 
 
@@ -357,11 +358,11 @@
                                                             <button
                                                                 style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
                                                                 type="submit" id="btnRegistroCategoria"
-                                                                class="btn btn-success col-3">Registrar</button>
+                                                                class="btn btn-success col-3"> <i class="fas fa-save"></i> Registrar</button>
 
                                                             <button type="button" class="btn btn-success col-3"
                                                                 data-dismiss="modal"
-                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "><i class="fas fa-window-close"></i> Cancelar</button>
 
 
 
@@ -502,11 +503,11 @@
                                                             <button
                                                                 style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
                                                                 type="submit" id="btnRegistroMarca"
-                                                                class="btn btn-success col-3">Registrar</button>
+                                                                class="btn btn-success col-3"><i class="fas fa-save"></i> Registrar</button>
 
                                                             <button type="button" class="btn btn-success col-3"
                                                                 data-dismiss="modal"
-                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "><i class="fas fa-window-close"></i> Cancelar</button>
 
 
 
@@ -651,11 +652,11 @@
                                                             <button
                                                                 style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
                                                                 type="submit" id="btnRegistroPresentacion"
-                                                                class="btn btn-success col-3">Registrar</button>
+                                                                class="btn btn-success col-3"><i class="fas fa-save"></i> Registrar</button>
 
                                                             <button type="button" class="btn btn-success col-3"
                                                                 data-dismiss="modal"
-                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "><i class="fas fa-window-close"></i> Cancelar</button>
 
 
 
@@ -799,11 +800,11 @@
                                                             <button
                                                                 style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
                                                                 type="submit" id="btnRegistroUmedida"
-                                                                class="btn btn-success col-3">Registrar</button>
+                                                                class="btn btn-success col-3"><i class="fas fa-save"></i> Registrar</button>
 
                                                             <button type="button" class="btn btn-success col-3"
                                                                 data-dismiss="modal"
-                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "><i class="fas fa-window-close"></i> Cancelar</button>
 
 
                                                         </div>
@@ -945,11 +946,11 @@
                                                             <button
                                                                 style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
                                                                 type="submit" id="btnRegistroRaza"
-                                                                class="btn btn-success col-3">Registrar</button>
+                                                                class="btn btn-success col-3"><i class="fas fa-save"></i> Registrar</button>
 
                                                             <button type="button" class="btn btn-success col-3"
                                                                 data-dismiss="modal"
-                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "><i class="fas fa-window-close"></i> Cancelar</button>
 
 
                                                         </div>
@@ -1091,11 +1092,11 @@
                                                             <button
                                                                 style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto; width:100%"
                                                                 type="submit" id="btnRegistroEspecie"
-                                                                class="btn btn-success col-3">Registrar</button>
+                                                                class="btn btn-success col-3"><i class="fas fa-save"></i> Registrar</button>
 
                                                             <button type="button" class="btn btn-success col-3"
                                                                 data-dismiss="modal"
-                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; ">Cerrar</button>
+                                                                style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "><i class="fas fa-window-close"></i> Cancelar</button>
 
 
                                                         </div>

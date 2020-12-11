@@ -133,7 +133,6 @@
 
                             </thead>
 
-
                             <tfoot>
                             </tfoot>
                         </table>
@@ -152,7 +151,7 @@
 
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
                             href="<?php echo base_url();?>cliente" id="botonAtras"
-                            class="btn btn-success col-2">Atrás</a>
+                            class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 
 
                     </div>

@@ -161,11 +161,11 @@
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
                             id="botonActualizarCliente" action="confirmEdit"
-                            class="btn btn-success col-2">Actualizar</button>
+                            class="btn btn-success col-2"><i class="fas fa-save"></i> Actualizar</button>
 
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
                             href="<?php echo base_url();?>cliente" id="botonAtras"
-                            class="btn btn-success col-2">Atrás</a>
+                            class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 
 
                     </div>
@@ -388,13 +388,14 @@
                             <div class="text-center card-footer">
 
 
-                                <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
-                                    id="btnActualizarAnadirMascota" action="confirmEdit"
-                                    class="btn btn-success col-2">Añadir</button>
+                                <button style="padding: 10px 5px; margin: 10px 5px; margin: 5 auto;"
+                                    id="btnActualizarAnadirMascota" action="confirmEdit" 
+                                    class="btn btn-success col-2"><i class="fas fa-save"></i> Anadir</button>
+                                    
 
-                                <button style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
+                                <button style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto;"
                                     data-dismiss="modal" id="botonCancelarMascotaA"
-                                    class="btn btn-success col-2">Cancelar</button>
+                                    class="btn btn-success col-2"><i class="fas fa-window-close"></i> Cancelar</button>
 
 
 

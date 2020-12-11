@@ -42,8 +42,7 @@ $(document).ready(function () {
 		
 						$("#descripcionTipoDocumento").val("");
 
-										
-						$("#btnRegistroTipoDocumento").html("Registrar");
+						$("#btnRegistroTipoDocumento").html("<i class='fas fa-save'></i> Registrar");
 						$("#etiqueta").html("Registro de tipo de documento");
 
 						 control = 1;
@@ -117,7 +116,8 @@ $(document).ready(function () {
 		$("#codigoTipoDocumento").val(id);
 		$("#descripcionTipoDocumento").val(descripcion);
 
-		$("#btnRegistroTipoDocumento").html("Actualizar");
+
+		$("#btnRegistroTipoDocumento").html("<i class='fas fa-save'></i> Actualizar");
 		$("#etiqueta").html("Actualizar el tipo de documento");
 
 		control = 2;
@@ -326,7 +326,7 @@ $(document).ready(function () {
 						$("#descripcionCategoria").val("");
 
 										
-						$("#btnRegistroCategoria").html("Registrar");
+						$("#btnRegistroCategoria").html("<i class='fas fa-save'></i> Registrar");
 						$("#etiquetaCategoria").html("Registro de categoria");
 
 						 controlCategoria = 1;
@@ -400,7 +400,8 @@ $(document).ready(function () {
 		$("#idCategoria").val(idCategoria);
 		$("#descripcionCategoria").val(descripcionCategoria);
 
-		$("#btnRegistroCategoria").html("Actualizar");
+
+		$("#btnRegistroCategoria").html("<i class='fas fa-save'></i> Actualizar");
 		$("#etiquetaCategoria").html("Actualizar la categoria");
 
 		controlCategoria = 2;
@@ -422,7 +423,7 @@ $(document).ready(function () {
 		) {
 			Swal.fire({
 				title: "¡Proceso no completado!",
-				text: "La categoria " + categoriaValidation + " ya esta registrada",
+				text: "La categoria " + categoriaValidation + " ya esta registrada.",
 				type: "warning",
 				confirmButtonColor: "#28a745",
 			});
@@ -621,8 +622,7 @@ $(document).ready(function () {
 		
 						$("#descripcionMarca").val("");
 
-										
-						$("#btnRegistroMarca").html("Registrar");
+						$("#btnRegistroMarca").html("<i class='fas fa-save'></i> Registrar");				
 						$("#etiquetaMarca").html("Registro de marca");
 
 						 controlMarca = 1;
@@ -690,7 +690,7 @@ $(document).ready(function () {
 		$("#idMarca").val(idMarca);
 		$("#descripcionMarca").val(descripcionMarca);
 
-		$("#btnRegistroMarca").html("Actualizar");
+		$("#btnRegistroMarca").html("<i class='fas fa-save'></i> Actualizar");	
 		$("#etiquetaMarca").html("Actualizar la marca");
 
 		controlMarca = 2;
@@ -902,8 +902,8 @@ $(document).ready(function () {
 		
 						$("#descripcionPresentacion").val("");
 
-										
-						$("#btnRegistroPresentacion").html("Registrar");
+						$("#btnRegistroPresentacion").html("<i class='fas fa-save'></i> Registrar");	
+						
 						$("#etiquetaPresentacion").html("Registro de presentación");
 
 						 controlPresentacion = 1;
@@ -971,7 +971,8 @@ $(document).ready(function () {
 		$("#idPresentacion").val(idPresentacion);
 		$("#descripcionPresentacion").val(descripcionPresentacion);
 
-		$("#btnRegistroPresentacion").html("Actualizar");
+	
+		$("#btnRegistroPresentacion").html("<i class='fas fa-save'></i> Actualizar");
 		$("#etiquetaPresentacion").html("Actualizar la presentación");
 
 		controlPresentacion = 2;
@@ -1182,7 +1183,8 @@ $(document).ready(function () {
 						$("#descripcionUmedida").val("");
 
 										
-						$("#btnRegistroUmedida").html("Registrar");
+					
+						$("#btnRegistroUmedida").html("<i class='fas fa-save'></i> Registrar");
 						$("#etiquetaUmedida").html("Registro de unidad de medida");
 
 						 controlUmedida = 1;
@@ -1250,7 +1252,7 @@ $(document).ready(function () {
 		$("#idUmedida").val(idUmedida);
 		$("#descripcionUmedida").val(descripcionUmedida);
 
-		$("#btnRegistroUmedida").html("Actualizar");
+		$("#btnRegistroUmedida").html("<i class='fas fa-save'></i> Actualizar");
 		$("#etiquetaUmedida").html("Actualizar la unidad de medida");
 
 		controlUmedida = 2;
@@ -1462,7 +1464,8 @@ $(document).ready(function () {
 						$("#descripcionRaza").val("");
 
 										
-						$("#btnRegistroRaza").html("Registrar");
+				
+						$("#btnRegistroRaza").html("<i class='fas fa-save'></i> Registrar");
 						$("#etiquetaRaza").html("Registro de raza");
 
 						 controlRaza = 1;
@@ -1530,7 +1533,7 @@ $(document).ready(function () {
 		$("#idRaza").val(idRaza);
 		$("#descripcionRaza").val(descripcionRaza);
 
-		$("#btnRegistroRaza").html("Actualizar");
+		$("#btnRegistroRaza").html("<i class='fas fa-save'></i> Actualizar");
 		$("#etiquetaRaza").html("Actualizar la raza");
 
 		controlRaza = 2;
@@ -1739,8 +1742,8 @@ $(document).ready(function () {
 		
 						$("#descripcionEspecie").val("");
 
-										
-						$("#btnRegistroEspecie").html("Registrar");
+					
+						$("#btnRegistroEspecie").html("<i class='fas fa-save'></i> Registrar");
 						$("#etiquetaEspecie").html("Registro de especie");
 
 						 controlEspecie = 1;
@@ -1808,7 +1811,7 @@ $(document).ready(function () {
 		$("#idEspecie").val(idEspecie);
 		$("#descripcionEspecie").val(descripcionEspecie);
 
-		$("#btnRegistroEspecie").html("Actualizar");
+		$("#btnRegistroEspecie").html("<i class='fas fa-save'></i> Actualizar");
 		$("#etiquetaEspecie").html("Actualizar la especie");
 
 		controlEspecie = 2;
