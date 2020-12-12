@@ -7,9 +7,9 @@ class Proveedor extends CI_controller
 	public function __construct()
 	{
 
-		/*************************************************************/
-		// **Aqui se cargan todas las librerias que vamos a utilizar // **
-		/*************************************************************/
+		/*********************/
+		// *Aqui se cargan todas las librerias que vamos a utilizar // *
+		/*********************/
 		parent::__construct();
 		$this->load->model('Model_proveedor');
 		$this->load->model('Model_producto');
@@ -279,16 +279,6 @@ class Proveedor extends CI_controller
 	
 	}
 		
-
-	public function consulta_Exis_id(){
-
-
-		$idMarca=$this->input->post('idMarca');
-		$data['data'] =$this->Model_proveedor->consulta_Exis_id($idMarca);
-		
-		echo json_encode($data);
-
-	}
 
 
 

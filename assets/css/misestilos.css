@@ -71,3 +71,16 @@ p.error {
 
 }
 
+.card-img-top {
+    width: 100%;
+    height: 200px !important; /*esta es la parte importante para que todas tus card-img tengan la misma medida sin importar el tamaño de la imagen*/
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+  }
+
+  .dataTables_filter {
+     
+        float: right;
+      
+  }
+

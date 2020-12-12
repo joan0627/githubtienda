@@ -310,7 +310,7 @@ $(document).ready(function () {
 		selector: ".totalVentas",
 		currency: "COP",
 	});
-});
+
 
      
     //Select2 para el campo  productos en registro de historial de la mascota
@@ -540,5 +540,5 @@ $(document).ready(function () {
 
 
   
-});
 
+});
