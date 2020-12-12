@@ -306,10 +306,7 @@ $(document).ready(function () {
 		placeholder: "0",
 	});
 
-	OSREC.CurrencyFormatter.formatAll({
-		selector: ".totalVentas",
-		currency: "COP",
-	});
+	
 
 
      
