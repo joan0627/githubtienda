@@ -1590,7 +1590,7 @@ class CI_Form_validation {
 
 	public function myAlpha($string) 
     {
-        if ( !preg_match('/^[a-z .,\-]+$/i',$string) )
+        if ( !preg_match('/^[a-z ñ .,\-]+$/i',$string) )
         {
             return false;
         }

@@ -1,6 +1,6 @@
 $(document).ready(function () {
-
-
+    limpiarnotificaciones();
+    notificaciones();
 
  /***//////////////////////////////////////////////////////////////////////////***/
     $('#calendar').fullCalendar({ //INICIO DE LA CONFIGURACIÓN DEL CALENDARIO
@@ -11,7 +11,7 @@ $(document).ready(function () {
         //Vista por defecto: Agenda del dia
         defaultView: 'month',
         //Los eventos se puede arrastrar
-         editable:true,
+         editable:false,
         //Permite a un usuario resaltar varios días o intervalos de tiempo haciendo clic y arrastrando.
         selectable: true,
 
@@ -139,6 +139,7 @@ $(document).ready(function () {
                $('#botonRegistroCita').show();
                $('#botonEditarCita').hide();
                $('#botonEliminarCita').hide();
+               $('#divhora').hide();
                $('#estado').hide();
                $('#ob').addClass('col-md-12');
                
@@ -222,6 +223,7 @@ $(document).ready(function () {
             $('#botonRegistroCita').hide();
             $('#botonEditarCita').show();
             $('#botonEliminarCita').show();
+            $('#divhora').hide();
             $('#estado').show();
             $('#ob').removeClass('col-md-12');
             $('#ob').addClass('col-md-6');
@@ -248,6 +250,11 @@ $(document).ready(function () {
          
             cambiarestado(calEvent.color,calEvent.textColor);
             bloquearcheck(calEvent.estado);
+
+
+
+
+            
             /**
              * Se realiza de esta forma ya que en la BD viene la hora y 
              * fecha juntas, se utiliza entonces _i.split para separar y enviar 
@@ -257,11 +264,38 @@ $(document).ready(function () {
             FechaHora = calEvent.start._i.split(" ");
           
             $('#fechaCita').val(moment(FechaHora[0],'YYYY-MM-DD').format('DD-MM-YYYY'));
+             $('#horaCita').val(moment(FechaHora[1],'HH:mm:ss').format('hh:mm a'));
+
+
+           /*  var hoy = new Date();
+             var hoy1 = moment(hoy).format('DD-MM-YYYY');
+
             
-            $('#horaCita').val(moment(FechaHora[1],'HH:mm:ss').format('hh:mm a'));
+         
+             var fechaC= $('#fechaCita').val();
+            
 
+             if(fechaC > hoy1)
+             {
+         
+                 $('#timepicker').datetimepicker('minDate', false);
+             }
+             else
+             {
+         
+                  $('#timepicker').datetimepicker('minDate', moment());
+             }
+
+*/
+
+
+             //Función para validar que la hora de fin no sea inferior a la hora de inicio del evento
+             var horaMin =  $('#horaCita').val();
+
+            
+            $('#timepickerfin').datetimepicker('minDate', moment(horaMin,'hh:mm a').add(1, 'minutes'));
             $('#modal-cita').modal();
-
+           
       
          
           },
@@ -271,59 +305,8 @@ $(document).ready(function () {
 
 
         /***//////////////////////////////////////////////////////////////////////////***/
-/*
-          eventDrop:function(calEvent,delta,revertFunc)
-          {
-            //Recolectar información del evento
-            $("#idCita").val(calEvent.id);
-            $("#asunto").val(calEvent.title);
-            $("#observacionesCita").val(calEvent.descripcion);
-            $("#color").val(calEvent.color);
-            $("#colortexto").val(calEvent.textColor);
 
-            //Doy formato a la fecha y hora para colocarlas 
-            //en los respectivos campos por separado, ya que
-            //el formato que devuelve CalEvent contiene la T
-            var fechaHora = calEvent.start.format().split("T");
-            $('#fechaCita').val(fechaHora[0]);
-            $('#horaCita').val(fechaHora[1]);
-
-            RecolectarDatos();
-
-            Swal.fire({
-                title: "¡Atención!",
-                text: "¿Está seguro que desea cambiar la fecha de la cita? ",
-                type: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#28a745",
-                cancelButtonColor: "#28a745",
-                confirmButtonText: "Si",
-                cancelButtonText: "No",
-            }).then((result) => {
-                if (result.value) {
-
-                    verificarcita('editarcita');
-
-                   // EnviarInformacion('editarcita',nuevaCita,true);
-
-                    Swal.fire({
-                        title: "¡Proceso completado!",
-                        text: "La fecha de la cita ha sido cambiada exitosamente.",
-                        type: "success",
-                        confirmButtonColor: "#28a745",
-                    });
-
-                }
-                else
-                {
-                    revertFunc();
-                }
-            });
-           
-
-          },
-
-*/
+  
 
           eventRender: function(event, element) {
            // element.append("<br/>" + event.start); 
@@ -353,7 +336,6 @@ $(document).ready(function () {
 
         }
 
-   
 
          
        
@@ -606,7 +588,28 @@ $(document).ready(function () {
                                     }
                                     else
                                     {
-                                        e = 'si';
+
+
+                                        var currentTime1 = new Date();
+                                        currentTime1 =  moment(currentTime1).format('YYYY-MM-DD HH:mm');
+                                                console.log('tiempo actual '+currentTime1)
+                                        
+                                        if(moment(currentTime1).isAfter(nuevaCita.start) && accion != 'editarcita')
+                                        {
+                                            Swal.fire({
+                                                title: "¡Atención!",
+                                                html: "No se puede crear una cita en una hora o fecha pasada.",
+                                                type: "warning",
+                                                confirmButtonColor: "#28a745",
+                                            });
+    
+                                            e='no';
+                                        }
+                                        else
+                                        {
+                                            e = 'si';
+                                        }
+                                        
                                     }
 
                                    
@@ -650,10 +653,13 @@ $(document).ready(function () {
                 //Hay disponibilidad creada
                 else
                 {
+
+                    console.log('Hay una disponibilidad este dia');
                     //Recorro los eventos creados en disponibilidad: Eventos ocupados
                     
                     $.each(data, function (i, item) {
 
+                      
                         /*Si hay enventos ocupados que se crucen con la nueva cita,
                          entonces saldrá la alerta*/
                          r= 'no';
@@ -661,7 +667,7 @@ $(document).ready(function () {
                         {
                             Swal.fire({
                                 title: "¡Atención!",
-                                html: "No hay disponibilidad desde la(s) "+ moment( data[0].start).format("h:mm a ") + "hasta la(s) "+  moment(data[0].end).format("h:m a ")+ ".<br> Por favor programe la cita en otro horario.",
+                                html: "No hay disponibilidad desde la(s) "+ moment( data[0].start).format("h:mm a ") + "hasta la(s) "+  moment(data[0].end).format("h:mm a ")+ ".<br> Por favor programe la cita en otro horario.",
                                 type: "warning",
                                 confirmButtonColor: "#28a745",
                             });
@@ -673,6 +679,7 @@ $(document).ready(function () {
                         else
                         {
                            r= 'si';
+                          
                         }
                     });
 
@@ -728,7 +735,28 @@ $(document).ready(function () {
                                     }
                                     else
                                     {
-                                        c = 'si';
+
+                                        var currentTime2 = new Date();
+                                        currentTime2 =  moment(currentTime2).format('YYYY-MM-DD HH:mm');
+
+                                        if(moment(currentTime2).isAfter(nuevaCita.start))
+                                        {
+                                            Swal.fire({
+                                                title: "¡Atención!",
+                                                html: "No se puede crear una cita en una hora o fecha pasada.",
+                                                type: "warning",
+                                                confirmButtonColor: "#28a745",
+                                            });
+    
+                                            c='no';
+                                        }
+                                        else
+                                        {
+                                            c = 'si';
+
+                                        }
+                                       
+                                      
                                     }
 
                                    
@@ -767,11 +795,18 @@ $(document).ready(function () {
                             },
                         },
                     });
-                    
+
                    
                     
 
                     }  
+
+
+                    else
+                    {
+                    
+                    }
+                    
                         
                 
 
@@ -819,14 +854,21 @@ $(document).ready(function () {
                 confirmButtonText: "Si",
                 cancelButtonText: "No",
             }).then((result) => {
+              
                 if (result.value) {
-                    EnviarInformacion(accion,nuevaCita)
+                 
+                    
                     Swal.fire({
                         title: "¡Proceso completado!",
                         text: "La cita ha sido registrada exitosamente.",
                         type: "success",
                         confirmButtonColor: "#28a745",
-                    });
+                    }).then(function() {
+                        EnviarInformacion(accion,nuevaCita);
+                        limpiarnotificaciones();
+                        notificaciones();
+                    })
+                    
 
                 }
             });
@@ -846,19 +888,33 @@ $(document).ready(function () {
                 cancelButtonText: "No",
             }).then((result) => {
                 if (result.value) {
-                    EnviarInformacion(accion,nuevaCita)
+              
                     Swal.fire({
                         title: "¡Proceso completado!",
                         text: "La cita ha sido actualizada exitosamente.",
                         type: "success",
                         confirmButtonColor: "#28a745",
                     }).then(function() {
-                        if(auth ==1)
+                        EnviarInformacion(accion,nuevaCita);
+                        limpiarnotificaciones();
+                        notificaciones();
+                        if(historial==1)
                         {
-                         $('#modal-pagarCita').modal();
-                         pagoCita();
-                       }
-                      
+                            $('#modal-historial').modal();
+                        }
+                        else
+                        {
+                            historial=0;
+                            if(auth ==1)
+                            {
+                               
+                             $('#modal-pagarCita').modal();
+                             pagoCita();
+                           }
+                          
+
+                        }
+                     
                     });
                    
 
@@ -874,11 +930,13 @@ $(document).ready(function () {
  }
 
  /***//////////////////////////////////////////////////////////////////////////***/
+       
        var horaFinal;
        var i=1;
        var auth=0;
+       var historial = 0;
 
-       function RecolectarDatos(accion)
+       function RecolectarDatos(accion,his)
        {
 
         var currentTime = moment();
@@ -912,22 +970,37 @@ $(document).ready(function () {
         {
 
           
-            var fechaC = moment($('#fechaCita').val(),'DD-MM-YYYY').format('YYYY-MM-DD HH:mm' );
-            var cu= moment(currentTime).format('YYYY-MM-DD HH:mm' );
+            var fechaC = moment($('#fechaCita').val(),'DD-MM-YYYY').format('YYYY-MM-DD' )+ " "+moment($('#horaCita').val(),'hh:mm a').format('HH:mm:ss');
+            var cu= moment(currentTime).format('YYYY-MM-DD HH:mm:ss' );
 
-            if($('#estadoCita').val() == 3 && fechaC < cu) //SI LA CITA ES CON ESTADO FINALIZADA
+           
+            if($('#estadoCita').val() == 3 && cu > fechaC) //SI LA CITA ES CON ESTADO FINALIZADA
             {
                 //moment($('#horaCita').val(), 'hh:mm a').add(60, 'minutes').format('HH:mm:ss');
-                 console.log('este es moment'+currentTime);
-                horaFinal =  moment(currentTime).format('YYYY-MM-DD HH:mm' );
                 
-                /**AUTORIZAR ABRIR MODAL DE PAGO */
-                 auth=1;
-            
+               // ESTO FINALIZA A LA HORA ACTUAL: horaFinal =  moment(currentTime).format('YYYY-MM-DD HH:mm' );
+
+               horaFinal = moment($('#fechaCita').val(),'DD-MM-YYYY').format('YYYY-MM-DD')+ " "+  moment($('#horaFinCita').val(), 'hh:mm a').format('HH:mm:ss');
+
+                //Si el servicio es vacunación y la cita está FINALIZADA se abrirá el modal del historial
+                if($('#tiposervicioscita').val() == 1 || $('#tiposervicioscita').val() == 3){
+                    
+                    historial=1;
+                    auth=0;
+                }
+                else
+                 {
+                     historial=0;
+                      /**AUTORIZAR ABRIR MODAL DE PAGO */
+                        auth=1;
+                 }
+               
+               
               
             }
-            else if($('#estadoCita').val() == 3 && fechaC != cu )//SI LA CITA ES CON ESTADO FINALIZADA
+            else if($('#estadoCita').val() == 3 && cu < fechaC)//SI LA CITA ES CON ESTADO FINALIZADA
             {
+ 
                 Swal.fire({
                     title: "¡Proceso no completado!",
                     text: "La cita aún no se cumple, por lo tanto no se puede finalizar.",
@@ -935,11 +1008,15 @@ $(document).ready(function () {
                     confirmButtonColor: "#28a745",
                 
                 });
-            
+                historial=0;
                 i= 0;
+                 /** NO AUTORIZAR ABRIR MODAL DE PAGO */
+                 auth=0;
+                
             } else if($('#estadoCita').val() == 2 && fechaC < cu){//SI LA CITA ES CON ESTADO EN PROCESO
-               // horaFinal =  moment(currentTime).format('YYYY-MM-DD HH:mm' );
-
+                 /** NO AUTORIZAR ABRIR MODAL DE PAGO */
+                 auth=0;
+                 historial=0;
             }else if($('#estadoCita').val() == 2 && fechaC != cu)//SI LA CITA ES CON ESTADO EN PROCESO
             {
                  Swal.fire({
@@ -949,13 +1026,15 @@ $(document).ready(function () {
                     confirmButtonColor: "#28a745",
                 
                 });
-            
+             /** NO AUTORIZAR ABRIR MODAL DE PAGO */
+                 auth=0;
                 i= 0;
+                historial=0;
             }
             else{
                 i=1;
 
-                if($('#tiposervicioscita').val() == 1) //Servicio de Vacunación : 1
+            if($('#tiposervicioscita').val() == 1) //Servicio de Vacunación : 1
             {
               
                 //Establecemos un intervalo de 15 min para las citas de tipo Vacunación 
@@ -983,6 +1062,7 @@ $(document).ready(function () {
 
 
         }
+   
        
     
 
@@ -991,7 +1071,7 @@ $(document).ready(function () {
             idservicio:$('#serviciocita').val(),
             title:$('#asunto').val(),
             mascota:$('#mascotacliente').val(), //traer del campo escondiido   ojo
-          //  (moment('15-06-2010', 'DD-MM-YYYY')).format('MM-DD-YYYY')
+            //(moment('15-06-2010', 'DD-MM-YYYY')).format('MM-DD-YYYY')
             start: moment($('#fechaCita').val(),'DD-MM-YYYY').format('YYYY-MM-DD')+ " "+moment($('#horaCita').val(),'hh:mm a').format('HH:mm:ss'),
             //start:$('#fechaCita').val()+ " "+$('#horaCita').val(),
             end: horaFinal,
@@ -1004,7 +1084,7 @@ $(document).ready(function () {
            // estado:$('#estadocita').val()
         };
 
-        console.log(nuevaCita.start)
+        
 
        
     }
@@ -1039,12 +1119,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
      /***//////////////////////////////////////////////////////////////////////////***/
 
         function EnviarInformacion(accion,objEvento,modal)
@@ -1055,16 +1129,17 @@ $(document).ready(function () {
                 data:nuevaCita,
                  //dataType: 'json',
                 success: function (data) {
-                    console.log(data)
+                  
 
                     if(data)
-                    {
+                    { 
+                        $('#modal-cita').modal('toggle');
                         $('#calendar').fullCalendar('refetchEvents');
-
-                        if(!modal)
+                       
+                       /* if(!modal)
                         {
-                            $('#modal-cita').modal('toggle');
-                        }
+                           $('#modal-cita').modal('toggle');
+                        }*/
 
 
                       
@@ -1097,12 +1172,12 @@ $(document).ready(function () {
         function limpiarFormulario()
         {
             $("#idCita").val('');
-            $('#tiposervicioscita').val('');
+            $('#tiposervicioscita').val('').prop('disabled',false);
             $('#serviciocita').val('').prop('disabled',true);
             $("#checkboxasunto").prop('checked', false); 
             $('#asunto').val('').prop("disabled", true);
             $("#horaCita").val('');
-             $("#clienteselect").val('').trigger('change');
+             $("#clienteselect").val('').trigger('change').prop('disabled',false);
             $("#mascotacliente").val('').prop('disabled',true);
             $('#razam').val('');
             $('#especiem').val(''); 
@@ -1530,6 +1605,7 @@ $(document).ready(function () {
             {
                 //Puede hacer lo que quiera con la cita
                 //Puede seguir con los colores Originales y además los puede cambiar
+                $('#divhora').hide();
                 $("#checkboxcolor").prop('checked', false); 
                 $('#checkboxcolor').prop('disabled',false);
 
@@ -1546,6 +1622,7 @@ $(document).ready(function () {
             }
             else if(estado == 2) // Estado CITA EN PROCESO
             {
+                $('#divhora').hide();
                 $("#checkboxcolor").prop('checked', false); 
                 $('#checkboxcolor').prop('disabled',true);
                 
@@ -1563,7 +1640,7 @@ $(document).ready(function () {
             else if(estado == 3) // Estado CITA FINALIZADA
             {
 
-                
+                $('#divhora').show();
                 $("#checkboxcolor").prop('checked', false); 
                 $('#checkboxcolor').prop('disabled',true);
                 
@@ -1581,6 +1658,7 @@ $(document).ready(function () {
     
             } else if(estado == 4) // Estado CITA CANCELADA
             {
+                $('#divhora').hide();
                 $("#checkboxcolor").prop('checked', false); 
                 $('#checkboxcolor').prop('disabled',true);
                 
@@ -1596,6 +1674,7 @@ $(document).ready(function () {
     
             } else if(estado == 5) // Estado CITA NO ASISTIÓ
             {
+                $('#divhora').hide();
                 $("#checkboxcolor").prop('checked', false); 
                 $('#checkboxcolor').prop('disabled',true);
                 
@@ -1666,6 +1745,7 @@ function pagoCita(){
            
            var precio= response[0].precio;
            $("#total_ventacita").val(precio);
+           $("#subtotal_ventacita").val(precio);
         },
         error: function () {
             console.log('error')
@@ -1724,7 +1804,7 @@ function pagoCita(){
         var total = $("#total_ventacita").val();
 		var entregado = $("#entregadocita").val();
 
-		if (entregado == "") {
+		if (entregado == "" || entregado == 0) {
 			$("#cambiocita").html("0");
 		} else {
 			var monto = function (i) {
@@ -1745,6 +1825,453 @@ function pagoCita(){
 	});
 }
 
+/*Función para calcular el descuento  la venta de la cita */
+
+
+
+
+/*Función para guardar la venta de la cita */
+  
+
+    $("#descuento_ventacita").keyup(function () {
+        
+        var descuento =  $("#descuento_ventacita").val();
+        var subtotal = $("#subtotal_ventacita").val();
+        $("#cambiocita").html("0");
+        $("#entregadocita").val("");    
+
+        if (descuento == 0)
+        {
+            $("#total_ventacita").val(subtotal);
+            $("#entregadocita").val("");
+            $("#cambiocita").html("0");
+            
+
+        }
+        else
+        {
+
+            var vdesc = parseInt(100 -descuento);
+            var resultado = parseInt((subtotal * vdesc)/100) ;
+      
+
+       /* var total = OSREC.CurrencyFormatter.format(resultado, {
+            currency: "COP",
+        });*/
+
+        $("#total_ventacita").val(resultado);
+
+        }
+     
+        
+  
+
+    });
+
+    /*Función para registrar la venta del servicio*/
+
+$('#registroVentaCita').click(function(e){
+    e.preventDefault();
+
+
+     //Validaciones de los campos para registrar el historial de la mascota
+
+     var validar_formularioventa = $("#form-citaventa").validate({
+        ignore: [],
+        rules: {
+            entregadocita: { required: true },
+            descuento_ventacita: { required: true }
+         
+        },
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+
+        messages: {
+            entregadocita: "El campo entregado es obligatorio.",
+            descuento_ventacita: "El campo descuento es obligatorio.",
+        
+          
+          
+        },
+        errorElement: 'p',
+
+        errorPlacement: function(error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+
+    });
+
+    if (validar_formularioventa.form()) {
+
+          //Recolectar información de los campos
+
+ 
+    datos = {
+        fechaVenta: $("#fechaVenta").val(),
+        vendedorCita:$("#vendedorCita").val(), 
+        idServicio:$("#serviciocita").val(),  
+        formapago: $("#forma_pagocita").val(),
+        descuento: $("#descuento_ventacita").val(),
+        total: $("#total_ventacita").val(),
+        comprobante: $("#Ncomprobantecita").val(),
+        observaciones : $("#observacionesCita").val(),
+    };
+    
+
+   /*  var validar_formularioventa = $("#form-citaventa").validate({
+        ignore: [],
+        rules: {
+    
+            entregadocita: { required: true }
+           
+        
+        },
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+
+        messages: {
+            entregadocita: "El campo entregado es obligatorio. "
+           
+        },
+        errorElement: 'p',
+
+        errorPlacement: function(error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+
+    });*/
+
+    $.ajax({
+        type:"POST",
+        url: "/tienda/Agenda/registrarventa",
+        data:{
+            datos:datos
+             },
+        dataType: 'json',
+        success: function (data) {
+            Swal.fire({
+                title: "¡Proceso completado!",
+                text: "La venta del servicio ha sido registrada exitosamente.",
+                type: "success",
+                confirmButtonColor: "#28a745",
+            }).then(function() {
+               
+                if($("#radioSi").is(':checked')) 
+                {
+                
+                   
+                    $('#tiposervicioscita').prop('disabled',true);
+                    $('#serviciocita').prop('disabled',true);
+
+                   
+                    $('#clienteselect').prop('disabled',true);
+                    $('#mascotacliente').prop('disabled',true);
+
+                    var fechaprox = $('#fechaCitahistorial').val();
+                   // var horaprox = $('#horaCitahistorial').val();
+                   var fecha =  $('#fechaCita').val(fechaprox);
+                   var hora= $('#horaCita').val();
+                    
+                    $('#divhora').hide();
+                    $("#observacionesCita").val('');
+
+                    $("#checkboxcolor").prop('checked', false); 
+                    $("#checkboxcolor").prop('disabled', false); 
+
+                    $('#color').val('').prop("disabled", true);
+                    $("#checkboxcolortexto").prop('checked', false); 
+                    $("#checkboxcolortexto").prop('disabled', false); 
+                    $("#colortexto").prop("disabled", true);
+
+                    var idts= $('#tiposervicioscita').val();
+
+                    if(idts == 1) //Primer servicio: Ej Vacunación
+                    {
+        
+                        $("#color").val('#e0dd0d');
+                        $("#colortexto").val('#021838');
+                    }
+                    else if(idts == 3){ //Tercer servicio: Ej Desparasitación
+        
+                        $("#color").val('#5e0270');
+                        $("#colortexto").val('#f0f8fa');
+                        
+                    }
+
+                    //Validación para hora Inicial
+      
+                    var hoy2 = new Date();
+                    var hoy3 = moment(hoy2).format('DD-MM-YYYY');
+                
+                   
+                    var fechaC1= $('#fechaCita').val();
+                   
+                   
+       
+                    if(fechaC1 > hoy3)
+                    {
+                        console.log('esa fecha es en el futuro')
+                        $('#timepicker').datetimepicker('minDate', false);
+                    }
+                    else
+                    {
+                        console.log('esa fecha es en el pasado')
+                         $('#timepicker').datetimepicker('minDate', moment());
+                    }
+
+                     
+                    $('#botonRegistroCita').show();
+                    $('#botonEditarCita').hide();
+                    $('#botonEliminarCita').hide();
+                    $('#estado').hide();
+                    $('#ob').addClass('col-md-12');
+
+                    $('#modal-cita').modal();
+                }
+                else if($("#radioNo").is(':checked')) 
+                
+                {
+                    console.log('radio quedo en no')
+                   // $('#modal-cita').modal('toggle');
+                }
+
+             });
+
+             $('#modal-pagarCita').modal('toggle');
+
+           
+
+          
+     
+        },
+        error: function (data) {
+            Swal.fire({
+                title: "¡Proceso no completado!",
+                text: "La venta no se pudo registrar.",
+                type: "warning",
+                confirmButtonColor: "#28a745",
+            });
+          
+       
+        },
+        statusCode: {
+            400: function (data) {
+                var json = JSON.parse(data.responseText);
+                Swal.fire("¡Error!", json.msg, "error");
+            },
+        },
+
+    })
+
+    }
+    
+
+  
+
+
+
+   });
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+/*Función para bloquear campo hora en registro de historial de cita 
+
+$("#radioSi").change(function () {
+
+    if (this.checked) {
+        
+        $("#divhorahis").show();
+    
+    }
+    else
+    {
+        $("#divhorahis").hide();
+        $("#horaCitahistorial").val("");
+    }
+
+});
+
+$("#radioNo").change(function () {
+
+    if (this.checked) {
+        
+
+        $("#divhorahis").hide();
+        $("#horaCitahistorial").val("");
+    }
+    else
+    {
+        $("#horaCitahistorial").prop("disabled", false);
+    
+    }
+
+});
+
+*/
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+    /*Función para registrar el historial de la mascota*/
+
+    $('#botonRegistroHistorial').click(function(e){
+        e.preventDefault();
+        
+        //Validaciones de los campos para registrar el historial de la mascota
+
+        var validar_formulariohistorial = $("#form-historial").validate({
+            ignore: [],
+            rules: {
+                productoselect: { required: true },
+                dosis: { required: true },
+                unidadmedidahis: { required: true },
+                fechaCitahistorial: { required: true }
+             
+            },
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+    
+            messages: {
+                productoselect: "El campo producto aplicado es obligatorio.",
+                dosis: "El campo dosis es obligatorio.",
+                unidadmedidahis: "El campo unidad de medida es obligatorio.",
+                fechaCitahistorial: "El campo fecha próxima es obligatorio.",
+              
+              
+            },
+            errorElement: 'p',
+    
+            errorPlacement: function(error, element) {
+                $(element).parents('.form-group').append(error);
+            }
+    
+        });
+
+        if (validar_formulariohistorial.form()) {
+
+               //Recolectar información de los campos
+    
+     
+        datos = {
+            
+            serviciocita:$("#serviciocita").val(),
+            mascotacliente:$("#mascotacliente").val(), 
+            producto:$("#productoselect").val(),  
+            dosis: $("#dosis").val(),
+            unidadmedida: $("#unidadmedidahis").val(),
+            fechaAplicacion: moment($('#fechaCita').val(),'DD-MM-YYYY').format('YYYY-MM-DD'),
+            fechaProxima:  moment($('#fechaCitahistorial').val(),'DD-MM-YYYY').format('YYYY-MM-DD'),
+            observaciones : $("#observacionesHistorial").val(),
+        };
+
+        Swal.fire({
+            title: "¡Atención!",
+            text: "¿Está seguro que desea registrar el historial de la mascota? ",
+            type: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#28a745",
+            confirmButtonText: "Si",
+            cancelButtonText: "No",
+        }).then((result) => {
+            if (result.value) {
+
+                $.ajax({
+                    type:"POST",
+                    url: "/tienda/Agenda/registrarhistorial",
+                    data:{
+                        datos:datos
+                         },
+                    dataType: 'json',
+                    success: function (data) {
+                        Swal.fire({
+                            title: "¡Proceso completado!",
+                            text: "El historial de la mascota ha sido registrado exitosamente.",
+                            type: "success",
+                            confirmButtonColor: "#28a745",
+                        }).then(function() {
+                            $('#modal-pagarCita').modal();
+                            pagoCita();
+                         });
+                        $('#modal-historial').modal('toggle');
+                        
+        
+                        
+        
+                    },
+                    error: function (data) {
+                        Swal.fire({
+                            title: "¡Proceso no completado!",
+                            text: "El historial de la mascota no se pudo registrar.",
+                            type: "warning",
+                            confirmButtonColor: "#28a745",
+                        });
+                      
+                   
+                    },
+                    statusCode: {
+                        400: function (data) {
+                            var json = JSON.parse(data.responseText);
+                            Swal.fire("¡Error!", json.msg, "error");
+                        },
+                    },
+            
+                })
+            
+
+            }
+        });
+
+        
+    
+    
+      
+
+       
+        }
+ 
+    
+     
+    
+    
+    
+       });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
  * 
  * Función para no cerrar el modal de pago de cita
@@ -1754,6 +2281,115 @@ $("#modal-pagarCita").modal({
     backdrop: "static", 
     keyboard: false 
 });*/
+
+
+
+
+
+
+
+
+function notificaciones()
+{
+    $("#encabezado").empty();
+    $("#contadorN").empty();
+    $("#notificaciones").empty();
+
+    var hoy = new Date();
+    console.log(hoy)
+    //Sólo fecha de hoy 
+    var hoyFormateado = moment(hoy).format('YYYY-MM-DD');
+     //Hoy con hora
+     //var horaHoy = moment(hoy,'HH:mm:ss');
+     var horaHoy = moment(hoy).format('HH:mm:ss');
+
+
+    /*Función para traer las citas del día y cargarlas a notificaciones*/
+    $.ajax({
+        type:"POST",
+        url: "/tienda/Notificaciones/cargarcitasdia",
+        data:{
+           fechaHoy:hoyFormateado
+             },
+        dataType: 'json',
+        success: function (data) {
+
+            var numN =  data.length;
+            var mensaje;
+
+           
+            $.each(data, function (i, item) {
+
+                if(horaHoy > item.hora)
+                {
+                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/calendario"><i style="color:#C6303E;"class="fas fa-exclamation mr-3"></i><small>Cambiar estado de cita de la(s) ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                numN+=1;
+                }
+
+                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/calendario"><i style="color:#28A745;" class="fas fa-clock mr-2"></i><small>Cita a las ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                
+            });
+
+               $("#contadorN").append(numN);
+            
+               if(numN < 1)
+               {
+                 mensaje = ' notificaciones'
+               }
+               else if(numN == 1 )
+               {
+                 mensaje = ' notificación'
+               }
+               else if( numN > 1)
+               {
+                   mensaje = ' notificaciones'
+               }
+
+               $("#encabezado").append('Tiene '+numN + mensaje);
+              
+               
+              
+        },
+        error: function (data) {
+          
+          //mensaje de error
+       
+        },
+        statusCode: {
+            400: function (data) {
+                var json = JSON.parse(data.responseText);
+                Swal.fire("¡Error!", json.msg, "error");
+            },
+        },
+
+    })
+
+
+
+
+
+    $('#refrescar').click(function(e){
+        e.preventDefault();
+        location.reload();
+
+    });
+
+}
+
+
+function limpiarnotificaciones()
+{
+    $("#encabezado").empty();
+    $("#contadorN").empty();
+    $("#notificaciones").empty();
+
+
+}
+
+
+
+    setInterval(notificaciones, 60000);
+
 
 
 

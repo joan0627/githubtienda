@@ -1409,8 +1409,9 @@ $(document).ready(function () {
 				render: function (data, type, row) {
 					return row.dosis + " " + row.descripcionUnidadmedida;
 				},
+				
 			},
-	
+
 			
 			{
 				render: function (data, type, row) {

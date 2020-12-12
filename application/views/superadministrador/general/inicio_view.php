@@ -6,11 +6,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-dog-house-50.png"> Escritorio</h1>
+                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-dog-house-50.png"> Inicio</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Escritorio</a></li>
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                         <li class="breadcrumb-item active">Principal</li>
                     </ol>
                 </div>
@@ -31,6 +31,7 @@
                             <h3>4</h3>
 
                             <p>Usuarios</p>
+                            <span>Nuevos usuarios: 2</span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
@@ -45,6 +46,7 @@
                             <h3>150</h3>
 
                             <p>Productos</p>
+                            <span>Nuevos productos: 20</span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pricetags"></i>
@@ -155,7 +157,7 @@ $.toaster({
 });
 $.toaster({
     message: '<?php echo $this->session->flashdata('authiniciosesion') ?>',
-    title: 'Bienvenido',
+    title: 'Bienvenido(a)',
     priority: 'success',
 
 });

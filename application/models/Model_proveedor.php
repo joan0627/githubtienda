@@ -242,6 +242,27 @@ class Model_proveedor extends Ci_model
 		
 	}
 
+
+	public function consulta_Exis_id($idMarca){
+		$this->db->select('dpm.idMarca');
+		$this->db->from('detalleproveedormarca dpm');
+		$this->db->where('idMarca', $idMarca);
+	
+		$consulta = $this->db->get();
+
+		if($consulta->num_rows() > 1)  
+		{
+
+			return 1;
+
+
+		}else{
+
+			return 0;
+
+		}
+	
+	}
 	
 		
 

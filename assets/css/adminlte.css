@@ -7994,9 +7994,7 @@ button.bg-dark:focus {
   overflow: auto !important;
 }
 
-.overflow-hidden {
-  overflow: hidden !important;
-}
+
 
 .position-static {
   position: static !important;

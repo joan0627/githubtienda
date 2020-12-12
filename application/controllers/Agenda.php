@@ -43,6 +43,8 @@ class Agenda extends CI_Controller {
 		$datos['tiposservicios'] = $this->Model_agenda->buscartiposervicios();
 		$datos['estados']= $this->Model_agenda->buscarestados();
 		$datos['formaPago']= $this->Model_agenda->buscarformapago();
+		$datos['productos']= $this->Model_agenda->cargarproductos();
+		$datos['unidades']= $this->Model_agenda->cargarunidadmedida();
 
         $this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
@@ -255,6 +257,54 @@ class Agenda extends CI_Controller {
 	}
 
 
+
+
+
+	public function registrarventa()
+	{
+		$datosVenta["idFactura"]= "";
+		$datosVenta["fecha"]= $this->input->post("datos[fechaVenta]");
+		$datosVenta["vendedor"]= $this->input->post("datos[vendedorCita]");
+		$datosVenta["idServicio"]= $this->input->post("datos[idServicio]");
+		$datosVenta["descuento"]= $this->input->post("datos[descuento]");
+		$datosVenta["totalGlobal"]= $this->input->post("datos[total]");
+		$datosVenta["formaPago"]= $this->input->post("datos[formapago]");
+		$datosVenta["nComprobante"]= $this->input->post("datos[comprobante]");
+		$datosVenta["observaciones"]= $this->input->post("datos[observaciones]");
+
+		
+		//$descuento = $this->input->post("descuento");
+	
+		$res= $this->Model_agenda->registrarventa($datosVenta);
+		
+		//ENviar de nuevo para comprobar 
+		echo json_encode ($res);
+
+	}
+
+	public function registrarhistorial()
+	{
+		$datosHistorial["idDetalleHistorialMascota"]= "";
+		$datosHistorial["idservicio"]= $this->input->post("datos[serviciocita]");
+		$datosHistorial["idMascota"]= $this->input->post("datos[mascotacliente]");
+		$datosHistorial["idProducto"]= $this->input->post("datos[producto]");
+		$datosHistorial["dosis"]= $this->input->post("datos[dosis]");
+		$datosHistorial["idUnidadmedida"]= $this->input->post("datos[unidadmedida]");
+		$datosHistorial["fechaAplicacion"]= $this->input->post("datos[fechaAplicacion]");
+		$datosHistorial["fechaProxima"]= $this->input->post("datos[fechaProxima]");
+		$datosHistorial["observaciones"]= $this->input->post("datos[observaciones]");
+
+		
+		//$descuento = $this->input->post("descuento");
+	
+		$res= $this->Model_agenda->registrarhistorial($datosHistorial);
+		
+		//ENviar de nuevo para comprobar 
+		echo json_encode ($res);
+		
+	}
+
+	
 
 	
 

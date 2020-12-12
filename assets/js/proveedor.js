@@ -714,6 +714,7 @@ $(document).ready(function () {
 		});
 
 
+
 	var validar_ActualizarProveedor = $("#form_actualizar_proveedor").validate({
 		ignore: [],
 		
