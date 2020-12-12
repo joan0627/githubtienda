@@ -280,6 +280,16 @@ class Proveedor extends CI_controller
 	}
 		
 
+	public function consulta_Exis_id(){
+
+
+		$idMarca=$this->input->post('idMarca');
+		$data['data'] =$this->Model_proveedor->consulta_Exis_id($idMarca);
+		
+		echo json_encode($data);
+
+	}
+
 
 
 	
