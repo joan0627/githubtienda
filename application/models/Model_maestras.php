@@ -7,7 +7,7 @@ class Model_maestras extends Ci_model
 
 	//Nombre de la tabla
 	public $tablaTipoDocumento = 'tipodocumento';
-	public $tablaCategoria = 'Categoria';
+	public $tablaCategoria = 'categoria';
 	public $tablaMarca = 'marca';
 	public $tablaPresentacion = 'presentacion';
 	public $tablaUmedida = 'unidadmedida';

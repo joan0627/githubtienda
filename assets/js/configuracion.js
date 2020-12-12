@@ -289,7 +289,7 @@ $(document).ready(function () {
 
 	/**
 	 *
-	 * Función para crear el datatable de la tabla maestra Tipo de documento
+	 * Función para crear el datatable de la tabla maestra Categoria
 	 *
 	 */
 
@@ -369,7 +369,7 @@ $(document).ready(function () {
 		],
 	});
 
-		//reglas de validación del form de tipo de docuemnto 
+		//reglas de validación del form de categoria
 		var validar_Categoria = $("#FormCategoria").validate({
 			ignore: [],
 	
