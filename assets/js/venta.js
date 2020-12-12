@@ -567,7 +567,7 @@ $(document).ready(function () {
 								error: function () {
 									Swal.fire({
 										title: "¡Proceso no completado!",
-										text: "La  venta no se pudo registrar.",
+										text: "La venta no se pudo registrar.",
 										type: "warning",
 										confirmButtonColor: "#28a745",
 									});

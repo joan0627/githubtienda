@@ -1,8 +1,8 @@
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-green elevation-4 ">
+  <aside class="main-sidebar sidebar-light-green elevation-4">
       <!-- Brand Logo -->
       <a href="#" class="brand-link">
-          <img src="<?php echo base_url();?>assets/img/logo5.png" alt="AdminLTE Logo"
+          <img src="<?php echo base_url();?>assets/img/logo5.png" alt="Logo IntraRuk"
               class="brand-image img-circle elevation-3" style="opacity: .8">
           <span  class="brand-text font-weight-light">IntraRuk</span>
       </a>
@@ -166,13 +166,32 @@
                   </li>
                   <?php }
                     else if($this->session->userdata("idRol") == 200){}?>
-                  <li class="nav-item">
-                      <a href="<?php echo base_url();?>venta" class="nav-link">
-                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-shop-30.png" class="nav-icon">
+                   
+                  <li class="nav-item has-treeview">
+                      <a href="#" class="nav-link">
+                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-shop-50.png" class="nav-icon">
                           <p>
                               Ventas
+                              <i class="fas fa-angle-left right"></i>
                           </p>
                       </a>
+
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a  href="<?php echo base_url();?>venta" class="nav-link">
+                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-caja-registradora-50.png"
+                                      class="nav-icon">
+                                  <p>Venta de productos</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="<?php echo base_url();?>" class="nav-link">
+                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-factura-50.png"
+                                      class="nav-icon">
+                                  <p>Venta de servicios</p>
+                              </a>
+						  </li>
+                      </ul>
                   </li>
                   <?php  if($this->session->userdata("idRol") == 100){ ?>
                   <li class="nav-item">

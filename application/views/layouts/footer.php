@@ -65,6 +65,7 @@
 <script src="<?php echo base_url(); ?>assets/js/cliente.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/formatos.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/venta.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/notificaciones.js"></script>
 
 </body>
 

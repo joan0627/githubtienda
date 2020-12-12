@@ -237,6 +237,13 @@ $(document).ready(function() {
     
 });
 
+     
+    //Select2 para el campo  productos en registro de historial de la mascota
+    $("#productoselect").select2({
+        placeholder: "-Seleccione un producto-",
+        theme: "bootstrap4",
+
+    });
 
     //Campo fecha en disponibilidad
     $('#datepickerdis').datetimepicker({
@@ -273,13 +280,13 @@ $(document).ready(function() {
 
 
 
-   //Campo hora en registro cita
+   //Campo hora INICIO en registro cita
 
   // var hours = currentTime.getHours()
    $('#timepicker').datetimepicker({
     //format: ''
      //format:'HH:mm:ss'
-     minDate:moment(),
+    // minDate:moment(),
      format: 'hh:mm a',
      ignoreReadonly: true,
     //Defino las horas habilitadas para las citas, esto corresponde al horario de la tienda.
@@ -288,6 +295,69 @@ $(document).ready(function() {
     
   })
 
+
+
+  
+   //Campo hora FIN en registro cita
+  $('#timepickerfin').datetimepicker({
+    format: 'hh:mm a',
+   // minDate:moment({h:7}),
+     ignoreReadonly: true,
+    //Defino las horas habilitadas para las citas, esto corresponde al horario de la tienda.
+     enabledHours: [8,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    //minDate: moment(hours).add(1, 'hh'),enabledHours: [8,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    
+  })
+
+
+  //////////////////////////////////////////////////////////////////////////////
+
+
+     
+    //Campo fecha en el formulario historial de la mascota
+    $('#datepickerhis').datetimepicker({
+        // format: 'YYYY-MM-DD',
+        format: 'DD-MM-YYYY',
+         locale:'es',
+         minDate:new Date(moment().subtract(1, 'day')), 
+         ignoreReadonly: true,
+     });
+ 
+ 
+ 
+ 
+    //Campo hora en el formulario historial de la mascota
+ 
+   // var hours = currentTime.getHours()
+    $('#timepickerhis').datetimepicker({
+     //format: ''
+      //format:'HH:mm:ss'
+      minDate:moment(),
+      format: 'hh:mm a',
+      ignoreReadonly: true,
+     //Defino las horas habilitadas para las citas, esto corresponde al horario de la tienda.
+      enabledHours: [8,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+     //minDate: moment(hours).add(1, 'hh'),enabledHours: [8,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+     
+   })
+ 
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ///////////////////////////////////////////////////////////////////////////////////
   
   
 
@@ -319,7 +389,7 @@ $(document).ready(function() {
 });
 
 
-
+//FORMATO MODAL VENTA
     $("#entregado").inputmask({
   
         rightAlign: false,
@@ -357,7 +427,40 @@ $(document).ready(function() {
         currency: "COP",
     });
 
+    $("#descuento_ventacita").inputmask({
+        //Quita el enmaskaramiento al enviar el dato
+        //autoUnmask: INVESTIGAR
 
+        rightAlign: true,
+        removeMaskOnSubmit: true,
+        prefix: "",
+        alias: "numeric",
+        groupSeparator: "",
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        max: 100,
+        allowMinus: false,
+        autoUnmask: true,
+        placeholder: "0",
+        clearMaskOnLostFocus: false,
+    })
+
+    $("#entregadocita").inputmask({
+        rightAlign: false,
+        alias: "currency",
+        prefix: "",
+        radixPoint: ",",
+        groupSeparator: ".",
+        removeMaskOnSubmit: true,
+        autoGroup: true,
+        digits: 0,
+        digitsOptional: false,
+        min: 0,
+        allowMinus: false,
+        placeholder: "0",
+    });
  
 
 

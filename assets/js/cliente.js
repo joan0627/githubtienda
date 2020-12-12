@@ -1371,10 +1371,19 @@ $(document).ready(function () {
 				render: function (data, type, row) {
 					return row.dosis + " " + row.descripcionUnidadmedida;
 				},
+				
 			},
 		
-			{ data: "fechaAplicacion",  className: "text-center"  },
-
+			{
+				render: function (data, type, row) {
+					return moment(row.fechaAplicacion).format('DD-MM-YYYY');
+					
+				},
+				className: 'text-center',
+			},
+			
+		
+		
 			
 
 			{ data: "fechaProxima",  className: "text-center"  },

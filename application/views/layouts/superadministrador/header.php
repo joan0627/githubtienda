@@ -119,35 +119,22 @@
             <ul class="navbar-nav ml-auto">
                 
                
-                <!-- Notifications Dropdown Menu 
-                <li class="nav-item dropdown">
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown user-body">
                     <a class="nav-link" data-toggle="dropdown" href="#">
 						<i class=""><img src="<?php echo base_url();?>assets/img/iconos/icons8-notification-26.png"></i>
-                        <span style="font-size:12px; right:14px; top:4px; 	 " class="badge badge-danger navbar-badge">3</span>
+                        <span id="contadorN" style="font-size:12px; right:14px; top:4px;" class="badge badge-danger navbar-badge"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">3 Notificaciones</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-							<i style="color:#28A745;" class="fas fa-clock mr-2"></i>Cita a las 19:30 PM
-							
-                         
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-						
-                            <i style="color:#C6303E;"class="fas fa-exclamation mr-3"></i>Cambiar estado de cita ID #8939
-                         
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-						<i style="color:#28A745;" class="fas fa-clock mr-2"></i>Cita a las 15:30 PM
+                    <div style=" overflow: auto;" class="dropdown-menu dropdown-menu-lg fijo dropdown-menu-right">
                      
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
+                    <a style="background-color: #FFC107 !important;"id="refrescar" class="dropdown-item dropdown-header"  href="#" ><i class="fas fa-sync-alt"></i> Refrescar</a>
+                    <div id="notificaciones"></div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-footer">No hay más notificaciones</a>
+               
                     </div>
-                </li>-->
+                    
+                </li>
 
 
                 <li class=" dropdown user user-menu">

@@ -62,3 +62,10 @@ p.error {
     width: 2.67rem !important;
 }
 
+
+.fijo {
+
+    max-height: 280px !important;
+    min-height: auto !important;
+
+}

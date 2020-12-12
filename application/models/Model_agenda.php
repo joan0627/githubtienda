@@ -21,6 +21,14 @@ class Model_agenda extends Ci_model {
 
 	public $tablaFormaPago= 'formapago';
 
+	public $tablaVenta = 'ventaservicio';
+
+	public $tablaProducto = 'producto';
+
+	public $tablaUnidadMedida = 'unidadmedida';
+
+	public $tablaHistorial = 'detallehistorialmascota';
+
 	public function _construct() {
 	
 	}
@@ -367,6 +375,61 @@ class Model_agenda extends Ci_model {
 		return $consulta->result();
 		
 	}
+
+	/***
+	 * Para registrar el encabezado de la venta de la cita
+	*/
+
+	function registrarventa($datosventa) {
+
+		$this->db->insert($this->tablaVenta, $datosventa);
+		return $this->db->insert_id();
+		
+	}
+
+
+
+	/*Para cargar los productos para el historial de vacunación*/
+	
+	function cargarproductos() {
+
+		$this->db->select();
+		$this->db->from($this->tablaProducto);
+		$this->db->where('estado = ',1);
+		$this->db->where('idCategoria = ',1);
+		$this->db->or_where('idCategoria = ',2);
+		$consulta = $this->db->get();
+		return $consulta->result();
+		
+	}
+
+
+	/*Para cargar las unidades de medida para el historial de vacunación*/
+	
+	function cargarunidadmedida() {
+
+		$this->db->select();
+		$this->db->from($this->tablaUnidadMedida);
+	
+		
+		$consulta = $this->db->get();
+		return $consulta->result();
+		
+	}
+
+
+		/*Para registrar el historial de vacunación*/
+	
+
+	function registrarhistorial($datoshistorial) {
+
+		$this->db->insert($this->tablaHistorial, $datoshistorial);
+		return $this->db->insert_id();
+		
+	}
+
+
+
 }
 
 
