@@ -94,7 +94,7 @@ class Proveedor extends CI_controller
 		$nombreContactoP= $this->input->post('nombreContactoP');
 		$diaVisitaP= $this->input->post('diaVisitaP');
 		$observacionesP = $this->input->post('observacionesP');
-		$estado = true;
+		
 
 		$datosRegistroCompra = array(
 			'idTipoDocumento' =>$idTipodocumento,
@@ -107,7 +107,7 @@ class Proveedor extends CI_controller
 			'nombreContacto'=>$nombreContactoP,
 			'diaVisita' => $diaVisitaP,
 			'observaciones' =>$observacionesP,
-			'estado'=>$estado
+		
 			
 			
 		);
@@ -184,13 +184,16 @@ class Proveedor extends CI_controller
 
 	}
 
-	public function estado_marca(){
 
-		$idMarca =$this->input->post("idMarca");
-		$estado =$this->input->post("estado");
+	public function deleteDetalleMarca(){
 
-		$this->Model_proveedor->ActualizaEstadoMarca($idMarca, $estado);
+		$_id= $this->input->post('id');
+		$idProveedor= $this->input->post('idProveedor');
+	
 
+		 $this->Model_proveedor->borrarDetalleMarca($_id,$idProveedor);
+		
+		
 	}
 
 
@@ -226,17 +229,14 @@ class Proveedor extends CI_controller
 	}
 
 
+	public function consulta_Exis_id(){
 
-	public function registro_mascota(){
 
-	
-		$tipoMascota = $this->input->post("tipomascota");
-		$nombreM = $this->input->post("nombreM");
-	
-
-		$this->Model_cliente->insertarMascota($datosMascota);
-		$limite = $this->Model_cliente->consultarRows($numRows);
-
+		$idMarca=$this->input->post('idMarca');
+		$documentoProveedor=$this->input->post('documentoProveedor');
+		$data=$this->Model_proveedor->consulta_Exis_id($idMarca,$documentoProveedor);
+		
+		echo json_encode($data);
 
 	}
 

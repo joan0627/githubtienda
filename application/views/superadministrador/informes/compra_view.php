@@ -18,7 +18,7 @@
 
                                 <div class="fecha">Fecha: <?php  foreach ($encabezado as $key) {echo $key->fechaRegistroCompra;} ?></div>
                                 <div class="fecha">Usuario:<?php  foreach ($encabezado as $key) {echo $key->nombre;} ?></div>
-                                <div class="fecha">Estado: <?php  foreach ($encabezado as $key) {echo ($key->estado==1) ? 'Registrada' :'Anulada'; } ?></div>
+                                <div class="fecha">Estado: <?php  foreach ($encabezado as $key) {echo ($key->estadoCompra==1) ? 'Registrada' :'Anulada'; } ?></div>
                             </td>
 
 
@@ -84,9 +84,9 @@
                                     <strong style="font-weight: bold;">Dirección:</strong> Cra. 79 #2 B-43 <br>
                                     <strong style="font-weight: bold;">Ciudad:</strong> Medellín, Antioquia
                                     <br>
-                                    <strong style="font-weight: bold;">Teléfono:</strong> 4488723
+                                    <strong style="font-weight: bold;">Teléfono:</strong> 3057275665
                                     <br>
-                                    <strong style="font-weight: bold;">Correo:</strong> dominio@hotmail.com
+                                    <strong style="font-weight: bold;">Correo:</strong> katy1324-1@hotmail.com
                                 </div>
                             </td>
 

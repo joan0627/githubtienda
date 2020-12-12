@@ -41,7 +41,7 @@
                     <!-- /.col -->
                 </div>
 
-               
+
                 <!-- info row -->
                 <form class="form_venta" id="form_venta" role="form" method="POST">
                     <!--Inicio del card body-->
@@ -79,15 +79,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Vendedor</label> <label style="color: red;"> * </label>
-                                <select id="vendedor" class="js-example-venta-single form-control " style="width: 100%;"
+                                <select disabled id="vendedor" class="form-control " style="width: 100%;"
                                     name="vendedor">
-                                    <option></option>
-                                    <?php foreach ($usuarios as $valor) : ?>
 
-                                    <option value="<?php  echo  $valor->idUsuario; ?>">
-                                        <?php echo  $valor->nombre; ?></option>
-
-                                    <?php endforeach; ?>
+                                    <option
+                                        value="<?php if ($idUsuario= $this->session->userdata("idUsuario")){ echo $idUsuario;}?>">
+                                        <?php if ($nombre= $this->session->userdata("nombre")){ echo $nombre;}?>
+                                    </option>
 
                                 </select>
                             </div>
@@ -145,8 +143,8 @@
                                     </td>
 
                                     <td colspan="2">
-                                        <input disabled id="descuentoVenta"  type="text" class="form-control col-md-2 text-center" style=""
-                                            placeholder="%">
+                                        <input disabled id="descuentoVenta" type="text"
+                                            class="form-control col-md-2 text-center" style="" placeholder="%">
 
                                     </td>
                                 </tr>
@@ -238,36 +236,41 @@
 
 
 
-      
 
 
 
-     
+
+
         <div class="card-footer ">
-
-             <label>Observaciones</label>
-
+            <label>Observaciones</label>
             <div class="row">
 
-
+               
                 <div class="col-md-10">
-                    <textarea style="width:50%" class="form-control" rows="2" placeholder="Ingrese una observación"
-                        name="observacionesVenta" id="observacionesVenta"></textarea>
+                    <textarea maxlength="150" style="width:50%" class="form-control" rows="2"
+                        placeholder="Ingrese una observación" name="observacionesVenta"
+                        id="observacionesVenta"></textarea>
+                       
                 </div>
 
+                <div class="col-md-5">
+                    <div style="color: gray;" class="contadorVenta text-right"><span
+                        id="contadorVenta"></span><span>/150</span></div>
+                </div>
+
+
+            
+                <div class="col-md-12 text-right">
+                    <a style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
+                        href="<?php echo base_url()?>venta" class="btn btn-success col-2"><i
+                            class="fas fa-arrow-left"></i> Atrás</a>
+
+                    <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="pagarVenta"
+                        class="btn btn-success col-2"><i class="fas fa-coins"></i> Cobrar</button>
+
+                </div>
             </div>
 
-
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <a style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" href="<?php echo base_url()?>venta"
-                            class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
-
-                        <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="pagarVenta"
-                            class="btn btn-success col-2"><i class="fas fa-coins"></i> Cobrar</button>
-
-                    </div>
-                </div>
 
 
 
@@ -368,7 +371,8 @@
 
 
 
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"><i
+                                class="fas fa-window-close"></i> Cancelar</button>
 
                         <button id="registroVenta" type="button" class="btn btn-success">
                             <i class="fas fa-save"></i> Registrar</button>

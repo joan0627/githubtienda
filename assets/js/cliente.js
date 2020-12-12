@@ -47,6 +47,10 @@ $(document).ready(function () {
 						var diff = max_chars + chars;
 						$("#contadorR").html(diff);
 					});
+
+					$('#razaM').val("").trigger('change');
+
+					
 				},
 			},
 		],
@@ -88,12 +92,15 @@ $(document).ready(function () {
 	 **/
 
 
-
-	
 	//reglas de validación del form de mascota
 	var validar_formulario = $("#formMascota").validate({
 
 		ignore: [],
+
+		
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
 
 		rules: {			
 			tipoMascota: { required: true },
@@ -130,6 +137,10 @@ $(document).ready(function () {
 			},
 		},
 		errorElement: "p",
+
+		errorPlacement: function(error, element) {
+			$(element).parents('.form-group').append(error);
+		}
 	});
 
 	//Add reglas manuales
@@ -271,7 +282,7 @@ $(document).ready(function () {
 				//Se limpia la tabla, setiando los campos a vacio.
 				$("#tipoMascota").val("");
 				$("#nombreM").val("");
-				$("#razaM").val(""),
+				$('#razaM').val("").trigger('change');
 					$("#sexoM").val(""),
 					$("#cumpleanosM").val(""),
 					$("#edadM").val(""),
@@ -313,7 +324,8 @@ $(document).ready(function () {
 					$("#edadM").val(row.data()[10]);
 					$("#tiempoM").val(row.data()[11]);
 					$("#tipoMascota").val(row.data()[12]);
-					$("#razaM").val(row.data()[13]);
+					$("#razaM").val(row.data()[13]).trigger('change');
+				
 
 					var max_chars = 0;
 
@@ -514,6 +526,13 @@ $(document).ready(function () {
 	var documentoC = $("#documentoClienteA").val();
 
 	var tablaActualizar = $("#ActualizarTablaDetalleMascota").DataTable({
+
+
+		language: {
+			searchPlaceholder: "Estoy buscando...",
+			url: "../../assets/plugins/datatables/Spanish.lang",
+		},
+
 		responsive: true,
 		bInfo: false,
 		bFilter: false,
@@ -543,7 +562,9 @@ $(document).ready(function () {
 					$("#FormActualizarMascota")[0].reset();
 					validar_FormMascota.resetForm();
 
-					$("#btnActualizarAnadirMascota").html("Añadir");
+				
+					$("#btnActualizarAnadirMascota").html("<i class='fas fa-save'></i> Añadir");
+				
 					$("#nameEtiqueta").html("Registrar mascota");
 
 					var max_chars = 0;
@@ -556,6 +577,8 @@ $(document).ready(function () {
 						var diff = max_chars + chars;
 						$("#contador").html(diff);
 					});
+					$('#razaActualizar').val("").trigger('change');
+					
 
 					control = 1;
 
@@ -621,6 +644,12 @@ $(document).ready(function () {
 	//reglas de validación del form de cliente
 	var validar_FormMascota = $("#FormActualizarMascota").validate({
 		ignore: [],
+
+
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+
 		rules: {
 			tipoMascotaActualizar: { required: true },
 			nombreActualizar: { required: true },
@@ -653,6 +682,10 @@ $(document).ready(function () {
 		},
 
 		errorElement: "p",
+
+		errorPlacement: function(error, element) {
+			$(element).parents('.form-group').append(error);
+		}
 	});
 
 	//reglas de validación del form de cliente
@@ -688,11 +721,16 @@ $(document).ready(function () {
 	$("#ActualizarTablaDetalleMascota tbody").on("click", ".btneditar", function (
 		ev
 	) {
+
+
+
+	
 		ev.preventDefault();
 
 		$(".contador").hide();
 
-		$("#btnActualizarAnadirMascota").html("Actualizar");
+
+		$("#btnActualizarAnadirMascota").html("<i class='fas fa-save'></i> Actualizar");
 		$("#nameEtiqueta").html("Actualizar mascota");
 
 		validar_FormMascota.resetForm();
@@ -711,8 +749,8 @@ $(document).ready(function () {
 		$("#edadActualizar").val(data.edad);
 		$("#tiempoActualizar").val(data.tiempo);
 		$("#tipoMascotaActualizar").val(data.idTipoMascota);
-		$("#razaActualizar").val(data.idraza);
-
+		$("#razaActualizar").val(data.idraza).trigger('change');
+		
 		$("#modalActualizarMascota").modal("show");
 
 		var max_chars = 0;
@@ -826,7 +864,7 @@ $(document).ready(function () {
 				var edadA = $("#edadActualizar").val();
 				var tiempoA = $("#tiempoActualizar").val();
 				var observacionesA = $("#observacionesActualizar").val();
-
+ 			
 				Swal.fire({
 					title: "¡Atención!",
 					text: "¿Está seguro que desea actualizar esta mascota?",
@@ -1342,7 +1380,7 @@ $(document).ready(function () {
 	 */
 
 	var idMascotaH = $("#idMascotaHistorial").val();
-	
+
 
 	$("#tableHistorialMascota").DataTable({
 
@@ -1373,7 +1411,8 @@ $(document).ready(function () {
 				},
 				
 			},
-		
+
+			
 			{
 				render: function (data, type, row) {
 					return moment(row.fechaAplicacion).format('DD-MM-YYYY');
@@ -1381,18 +1420,21 @@ $(document).ready(function () {
 				},
 				className: 'text-center',
 			},
-			
-		
-		
-			
 
-			{ data: "fechaProxima",  className: "text-center"  },
+					
+			{
+				render: function (data, type, row) {
+					return moment(row.fechaProxima).format('DD-MM-YYYY');
+					
+				},
+				className: 'text-center',
+			},
 
 			{ data: "observaciones",  className: "text-center" },
 
 		],
 	});
-	
 
+	
 
 });

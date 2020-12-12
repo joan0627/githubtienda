@@ -137,11 +137,11 @@
 
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" id="btnRegistroCliente"
-                            action="confirmEdit" class="btn btn-success col-2">Registrar</button>
+                            action="confirmEdit" class="btn btn-success col-2"><i class="fas fa-save"></i> Registrar</button>
 
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
                             href="<?php echo base_url();?>cliente" id="botonAtras"
-                            class="btn btn-success col-2">Atrás</a>
+                            class="btn btn-success col-2"><i class="fas fa-arrow-left"></i> Atrás</a>
 
 
                     </div>
@@ -226,12 +226,11 @@
                                             <div class="form-group ">
 
                                                 <label>Raza</label> <label style="color: red;"> *</label>
-                                                <select id="razaM" name="razaM" class="form-control select2bs4"
+                                                <select id="razaM" name="razaM" class="js-example-placeholder-Raza-registro-single form-control"
                                                     style="width: 100%;">
 
-                                                    <?php foreach ($razas as $clave => $valor) : ?>
-                                                    <option value="" selected hidden>-Seleccione la raza de mascota-
-                                                    </option>;
+                                                    <?php foreach ($razas as $clave => $valor) : ?>                              
+                                                    <option></option>
                                                     <option value="<?php echo  $valor->idraza; ?>">
                                                         <?php echo  $valor->descripcionRaza; ?></option>
                                                     <?php endforeach; ?>
@@ -356,11 +355,11 @@
 
 
                                 <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;"
-                                    id="btnAnadirMascota" action="addFila" class="btn btn-success col-2">Añadir</button>
+                                    id="btnAnadirMascota" action="addFila" class="btn btn-success col-2"><i class="fas fa-save"></i> Añadir</button>
 
                                 <button style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
                                     data-dismiss="modal" id="botonCancelarMascota"
-                                    class="btn btn-success col-2">Cancelar</button>
+                                    class="btn btn-success col-2"><i class="fas fa-window-close"></i> Cancelar</button>
 
 
 

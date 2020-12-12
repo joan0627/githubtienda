@@ -159,7 +159,6 @@
                                     <tr>
                                         <th>Id marca</th>
                                         <th>Descripción</th>
-                                        <th>Estado</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
@@ -225,7 +224,7 @@
 
                                 <div class="float-right">
 
-                                    <a href="#" class="btn btn-success"><i class="fas fa-plus-circle "></i>
+                                    <a href="<?php echo base_url();?>Configuracion/informacion" class="btn btn-success"><i class="fas fa-plus-circle "></i>
                                         Crear marca</a>
                                 </div>
                             </div>

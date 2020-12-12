@@ -40,17 +40,7 @@ class Model_proveedor extends Ci_model
 		return $consulta->row();
 	}
 
-	/*
- 	//Función para  buscar un todos los proveedores
-	function BuscarTodosProveedor() {
 
-		$this->db->select();
-		$this->db->from($this->tablaProveedor);
-
-		$consulta = $this->db->get();
-		return $consulta->result();
-		
-	}*/
 
 	//Función para buscar todos los tipos de documentos
 	function BuscarTiposDocumentos()
@@ -69,6 +59,17 @@ class Model_proveedor extends Ci_model
 
 		$this->db->select();
 		$this->db->from($this->tablaProveedor);
+		$consulta = $this->db->get();
+		return $consulta->result();
+	 }
+
+
+	 function BuscarTodosProveedorCompra()
+	 {
+
+		$this->db->select();
+		$this->db->from($this->tablaProveedor);
+		$this->db->where('estado',1);
 		$consulta = $this->db->get();
 		return $consulta->result();
 	 }
@@ -167,16 +168,19 @@ class Model_proveedor extends Ci_model
 		$this->db->set('estado', $estadoP);	
 		$this->db->where($this->idProveedorPK ,$documentoP);
 		$this->db->update($this->tablaProveedor);
+		
 	}
 
 
 	
-	function ActualizaEstadoMarca($idMarca, $estado){
-
-		$this->db->set('estadoMarca', $estado);	
-		$this->db->where('idMarca' ,$idMarca);
-		$this->db->update('marca');
+	function borrarDetalleMarca($id,$idProveedor){
+		$this->db->select();
+		$this->db->from('detalleproveedormarca');
+		$this->db->where('documentoProveedor',$idProveedor);
+		$this->db->where('idMarca',$id);
+		$this->db->delete('detalleproveedormarca');
 	}
+
 	
 
 	function consulta_documento($documento){
@@ -198,6 +202,29 @@ class Model_proveedor extends Ci_model
 
 			}
 	
+
+	}
+
+	
+	public function consulta_Exis_id($idMarca,$documentoProveedor){
+		$this->db->select('dpm.idMarca');
+		$this->db->from('detalleproveedormarca dpm');
+		$this->db->where('dpm.idMarca', $idMarca);
+		$this->db->where('dpm.documentoProveedor', $documentoProveedor);
+
+		$consulta = $this->db->get();
+
+		if($consulta->num_rows() >= 1)  
+		{
+
+			return 1;
+
+
+		}else{
+
+			return 0;
+
+		}
 
 	}
 

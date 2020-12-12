@@ -58,9 +58,9 @@
                                     <strong style="font-weight: bold;">Dirección:</strong> Cra. 79 #2 B-43 <br>
                                     <strong style="font-weight: bold;">Ciudad:</strong> Medellín, Antioquia
                                     <br>
-                                    <strong style="font-weight: bold;">Teléfono:</strong> 4488723
+                                    <strong style="font-weight: bold;">Teléfono:</strong> 3057275665
                                     <br>
-                                    <strong style="font-weight: bold;">Correo:</strong> dominio@hotmail.com
+                                    <strong style="font-weight: bold;">Correo:</strong> katy1324-1@hotmail.com
                                 </div>
                             </td>
 
@@ -109,7 +109,7 @@
                 <?php 
               
                         
-                foreach ($detalleVenta as $key) { 
+                foreach ($encabezadoVenta as $key) { 
 
                     $descuento=  $key->descuentoTotal;
 
@@ -133,7 +133,7 @@
                     <?php 
                         $precioneto=0;
                         
-                     foreach ($detalleVenta as $key) { 
+                     foreach ($encabezadoVenta as $key) { 
 
 
                    

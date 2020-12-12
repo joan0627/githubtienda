@@ -34,25 +34,24 @@ class Compra extends CI_controller
 			redirect(base_url().'errors/error_404');
 						
 		}
-	
 
-		/*$this->form_validation->set_rules('proveedor', 'proveedor', 'required');
-		$this->form_validation->set_rules('facturaProveedor', 'factura N°', 'required');
-		$this->form_validation->set_rules('fechafacturaProveedor', 'fecha factura', 'required');*/
 
 	
 	}
 
 
-	public function index($page=1)
+	public function index()
 	{
 		
-		$page_size=2;
-		$offset=0* $page_size;
+	
+			$buscar = $this->input->get("buscar");
 
+			if ($buscar == 'Registrada' || $buscar == 'registrada' || $buscar == 'REGISTRADA') {
+				$buscar = 1;
+			} elseif ($buscar == 'Anulada' || $buscar == 'anulada' || $buscar == 'ANULADA') {
+				$buscar = 0;
+			}
 		
-		
-		  $buscar = $this->input->get("buscar");
 		
 		 
 			$datosCompra['resultado'] = $this->Model_compra->BuscarDatosCompra($buscar);
@@ -100,7 +99,7 @@ class Compra extends CI_controller
 	
 
 			$resultado = $this->Model_compra->obtenerId();
-			$resultado1 = $this->Model_proveedor->BuscarTodosProveedor();
+			$resultado1 = $this->Model_proveedor->BuscarTodosProveedorCompra();
 
 			//Carga de los productos en el MODAL de compras
 			$buscar = $this->input->get("buscar");
@@ -110,7 +109,7 @@ class Compra extends CI_controller
 			$datosCarga['proveedores']= $resultado1;
 			$datosCarga['Productos']= $resultado2;
 
-			$datosCarga['Proveedores'] = $this->Model_proveedor->BuscarTodosProveedor();
+			$datosCarga['Proveedores'] = $this->Model_proveedor->BuscarTodosProveedorCompra();
 			
 
 
@@ -119,12 +118,6 @@ class Compra extends CI_controller
 
 			//Datos carga en general
 		
-
-				
-			/*********************/
-			// *			Validación de los campos					*// 
-			/*********************/
-	
 
 
 				$this->load->view('layouts/superadministrador/header');
@@ -255,8 +248,28 @@ class Compra extends CI_controller
 
 			$this->Model_compra->actualizarEstado($idCompra, $estado);
 
-		
+			$data = $this->Model_compra->cantidad_codigo_compra($idCompra);
+	
+			echo json_encode($data);
 	}	
+
+
+	public function anular_cantidad_compra(){
+
+
+		$idProducto= $this->input->post('idProducto');
+		$cantidad= $this->input->post('cantidad');
+
+		//Se actualiza la existencia
+		$existenciaActual=$this->Model_producto->consultaExistencia($idProducto);
+		$cantidad = $existenciaActual["existencia"]-$cantidad;
+		
+		
+		$this->Model_compra->actualizarExistenciaCompra($idProducto, $cantidad);
+
+
+		
+	}
 
 
 

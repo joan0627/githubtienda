@@ -98,11 +98,11 @@ class Model_compra extends Ci_model
 		$this->db->from('compras c');
 		$this->db->join('proveedor p', ' p.documento = c.documentoProveedor');		
 		$this->db->join('usuario u', ' u.idUsuario = c.idUsuario');
-		$this->db->or_like("c.idCompras",$buscar);
-		//$this->db->or_like("fechaRegistroCompra",$buscar);
+		$this->db->or_like("c.idCompras",$buscar,'none');
 		$this->db->or_like("p.nombre",$buscar);
 		$this->db->or_like("u.nombre",$buscar);
-		//$this->db->or_like("valor",$buscar);
+		$this->db->or_like("c.estado",$buscar,'none');
+		$this->db->or_like("totalGlobal",$buscar,'none');
 		$this->db->order_by('fechahora', 'DESC');
 		$consulta = $this->db->get();
 		
@@ -189,7 +189,7 @@ function actualizarEstado($idCompra, $estado){
 
 function buscarDatosEncabezado($idCompra) {
 
-	$this->db->select('c.*,p.*,p.nombre as nombreProveedor,u.nombre,c.observaciones as observacionesCompra');
+	$this->db->select('c.*,c.estado as estadoCompra, p.*,p.nombre as nombreProveedor,u.nombre,c.observaciones as observacionesCompra');
 	$this->db->from('compras c');
 	$this->db->join('proveedor p', ' p.documento = c.documentoProveedor');
 	$this->db->join('usuario u', ' u.idUsuario = c.idUsuario');
@@ -199,7 +199,6 @@ function buscarDatosEncabezado($idCompra) {
 
 	return $consulta->result();
 
-	
 }
 
 
@@ -224,6 +223,24 @@ function buscarCompraDetalle($idCompra)
 
 
 }
+
+
+function cantidad_codigo_compra($idCompra){
+	$this->db->select('cantidad, idProducto');
+	$this->db->from('detallecompra');    
+	$this->db->where('idCompra', $idCompra); 
+
+	$consulta = $this->db->get();
+	return $consulta->result();
+}
+
+function actualizarExistenciaCompra($idProducto, $cantidad){
+
+	$this->db->set('existencia', $cantidad);	
+	$this->db->where('idProducto' ,$idProducto);
+	$this->db->update('producto');
+}
+
 
 
 

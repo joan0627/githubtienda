@@ -33,7 +33,7 @@
                             </span>
 
                             <span class="col-auto input-group-btn">
-                                <a type="button" role="link" class="btn bg-success" onclick="location.href='compra';"><i class="fas fa-sync-alt"></i></a>
+                                <a type="button" role="link" class="btn bg-success" onclick="location.href='<?php echo base_url(); ?>compra/'";><i class="fas fa-sync-alt"></i></a>
 
                             </span>
 
@@ -113,7 +113,7 @@
                             <td><?php echo  $d->idCompras;?></td>
                             <td><?php echo  $d->nombreP;?></td>
                             <td ><?php echo  $d->nombreU;?></td>
-                            <td style="color:green; " class="listadoCompramoney"><?php echo  $d->totalGlobal;?></td>
+                            <td style="text-align:center; font-size: 16.5px ;color:green; font-weight: bold;" class="listadoCompramoney"><?php echo  $d->totalGlobal;?></td>
                             <td style="text-align:center; "><?php echo  $d->fechaRegistroCompra;?></td>
 
                             <?php if ($d->estado ==1) {?>

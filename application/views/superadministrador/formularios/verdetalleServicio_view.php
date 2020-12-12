@@ -136,7 +136,7 @@
 
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; " 
                         href="<?php echo base_url(); ?>servicio"
-                            id="botonAtras" class="btn btn-success col-2">Atrás</a>
+                            id="botonAtras" class="btn btn-success col-2"><i  class="fas fa-arrow-left"></i> Atrás</a>
 
                     </div>
                     <!--Fin del footer del contenido-->

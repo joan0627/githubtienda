@@ -57,6 +57,7 @@ p.error {
     width: 100%;
   }
   
+
   .user-panel img {
     height: auto !important;
     width: 2.67rem !important;
@@ -69,3 +70,4 @@ p.error {
     min-height: auto !important;
 
 }
+

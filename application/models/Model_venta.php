@@ -132,20 +132,7 @@ class Model_venta extends Ci_model
 	}
 
 
-	//Informe venta
 
-	function BuscarTodosUsuariosSelect() {
-
-		$this->db->select();
-		$this->db->from('usuario');
-		$this->db->where('estado', 1); 
-
-
-		$consulta = $this->db->get();
-		return $consulta->result();
-		
-	}
-	
 function buscarDatosEncabezadoVenta($idventa) {
 
 	$this->db->select('v.*,u.nombre,v.observaciones as observacionesCompra, fp.descripcion');
