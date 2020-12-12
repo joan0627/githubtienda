@@ -70,7 +70,7 @@ class Producto extends CI_controller
         $datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcionProducto"] = $datosCarga["idCategoria"] =
         $datosCarga["idMarca"] = $datosCarga["idPresentacion"] = $datosCarga["valorMedida"] = $datosCarga["idUnidadMedida"] =
         $datosCarga["existencia"] = $datosCarga["idEspecieProducto"] = $datosCarga["indicaciones"] = $datosCarga["contraindicaciones"] =
-        $datosCarga["peso"] = $datosCarga["unidadMedidapeso"] = $datosCarga["precio"]= "";
+        $datosCarga["peso"] = $datosCarga["precio"]= "";
 
         //$datosCarga['productos']  = $this->Model_producto->buscarDatosProducto();
         //Arreglo para recorrer y buscar los select "Tablas fuertes"
@@ -99,8 +99,7 @@ class Producto extends CI_controller
         $datosCarga["indicaciones"] = $this->input->post("indicaciones");
         $datosCarga["contraindicaciones"] = $this->input->post("contraIndicaciones");
         $datosCarga["peso"] = $this->input->post("peso");
-        $datosCarga["unidadMedidapeso"] = $this->input->post("UnidadPeso");
-
+       
         /*********************/
         // *Validaciónn de los campos*//
         /*********************/
@@ -120,7 +119,7 @@ class Producto extends CI_controller
             $datosProducto["indicaciones"] = $this->input->post("indicaciones");
             $datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
 
-            $datosProducto["unidadMedidapeso"] = $this->input->post("UnidadPeso");
+        
             $datosProducto["peso"] = $this->input->post("peso");
             $datosProducto["precio"] = $this->input->post("precioVenta");
 

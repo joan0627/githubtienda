@@ -199,9 +199,9 @@
                             <div class="form-group">
                                 <label>Unidad de medida</label> <label style="color: red;"> * </label>
                                 <select name="unidadDeMedida" class="form-control">
-                                    <?php if ($unidadMedida != "") : ?>
+                                    <?php if ($h != "") : ?>
                                     <?php foreach ($unidadesmedidas as $clave1 => $valor) : ?>
-                                    <?php if ($unidadMedida == $valor->idUnidadMedida) : ?>
+                                    <?php if ($h == $valor->idUnidadMedida) : ?>
 
                                     <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
                                         <?php
@@ -330,62 +330,26 @@
                     <div class="row">
 
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
 
-                            <div class="form-group">
-
-                                <label>Peso</label>
+                             <label>Peso</label>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </span>
+                                </div>
                                 <input class="form-control" rows="3" placeholder="Ingrese la edad" name="peso"
                                     value="<?php if(isset($_POST['peso'])){ echo $_POST['peso']; }else{ echo $productos['peso']; } ?>"></input>
+
                             </div>
                         </div>
-
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Unidad de tiempo</label>
-                                <select name="UnidadPesoA" class="form-control " style="width: 100%;">
-                                    <?php if ($unidadMedidapeso != "") : ?>
-                                    <?php foreach ($unidadesmedidas as $clave2 => $valor) : ?>
-                                    <?php if ($unidadMedidapeso == $valor->idUnidadMedida) : ?>
-
-                                    <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
-                                        <?php
-
-
-													echo  $valor->descripcionUnidadmedida; ?></option>
-                                    <?php
-												foreach ($unidadesmedidas as $clave2 => $valor) : ?>
-
-
-                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
-                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
-
-                                    <?php endforeach; ?>
-
-                                    <?php endif;  ?>
-                                    <?php endforeach; ?>
-                                    <?php else :
-										foreach ($unidadesmedidas as $clave2 => $valor) : ?>
-                                    <option value="<?php  echo $productos['idUnidadMedida']; ?>" selected hidden>
-                                        <?php  echo $productos['descripcionUnidadmedida']; ?></option>;
-                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
-                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
-
-                                    <?php endforeach; ?>
-                                    <?php endif ?>
-
-
-                                </select>
-                            </div>
-                        </div>
-
 
                         <?php endif;  ?>
 
                       
                         <?php if ($productos['idCategoria'] == 1 || $productos['idCategoria'] ==2) {?>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -404,7 +368,7 @@
 
                         else {?>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label>Precio de venta</label> <label style="color: red;"> * </label>
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
