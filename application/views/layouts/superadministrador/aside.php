@@ -11,7 +11,7 @@
 
 
       <!-- Sidebar -->
-      <div class="sidebar  ">
+      <div class="sidebar">
           <!-- Sidebar user (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
               <div class="image">
@@ -28,7 +28,7 @@
           <!-- Sidebar Menu -->
           <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                  data-accordion="false">
+                  data-accordion="true">
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                   <li class="nav-item">

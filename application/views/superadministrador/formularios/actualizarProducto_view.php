@@ -36,7 +36,7 @@
                 <!--Inicio del card body-->
                 <div class="card-body ">
 
-                     <div class="row">
+                    <div class="row">
                         <div class="col-md-6">
                             <div style="text-align:left">
                                 <i><small> Todos los campos marcados con <label style="color: red;">asterisco
@@ -323,66 +323,112 @@
 
 
                     </div>
-
                     <?php endif;  ?>
 
+
+                    <?php if($productos['idCategoria'] ==1 || $productos['idCategoria'] ==2): ?>
                     <div class="row">
-                        <?php if($productos['idCategoria'] ==1 || $productos['idCategoria'] ==2): ?>
-                            
-
-                                <div class="col-md-2 ">
-
-                                    <div class="form-group">
-
-                                        <div class="icheck-primary d-inline">
-                                            <input  type="checkbox" name="check_actualizar"
-                                            value="1" id="check_actualizar">
-                                            <label for="check_actualizar">Todas las edades</label>
-                                        </div>
-
-                                    </div>
 
 
-                                </div>
-
-
-                     
-                        <div class="col-md-2">
+                        <div class="col-md-4">
 
                             <div class="form-group">
 
-                                <label>Edad</label>
-                                <input  id="edad_actualizar" class="form-control" rows="3"
-                                    placeholder="Ingrese la edad" name="edad"
-                                    value="<?php if(isset($_POST['edad'])){ echo $_POST['edad']; }else{ echo $productos['edad']; } ?>"></input>
+                                <label>Peso</label>
+                                <input class="form-control" rows="3" placeholder="Ingrese la edad" name="peso"
+                                    value="<?php if(isset($_POST['peso'])){ echo $_POST['peso']; }else{ echo $productos['peso']; } ?>"></input>
                             </div>
                         </div>
 
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Unidad de tiempo</label>
-                                <select  id="tiempo_actualizar" class="form-control " style="width: 100%;"
-                                    name="unidadTiempo">
+                                <select name="UnidadPesoA" class="form-control " style="width: 100%;">
+                                    <?php if ($unidadMedidapeso != "") : ?>
+                                    <?php foreach ($unidadesmedidas as $clave2 => $valor) : ?>
+                                    <?php if ($unidadMedidapeso == $valor->idUnidadMedida) : ?>
 
-                                    <option hidden ><?php  echo $productos['unidadTiempo'];  ?></option>
-                                    <option hidden value=""><?php if(isset($_POST['unidadTiempo'])){ echo $_POST['unidadTiempo']; }?></option> 
-                                    <option hidden id="placeholder" value="">-Seleccione la unidad de tiempo-</option>
-                                    <option>Dia(s)</option>
-                                    <option>Semana(s)</option>
-                                    <option>Mes(es)</option>
-                                    <option>Año(s)</option>
+                                    <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
+                                        <?php
+
+
+													echo  $valor->descripcionUnidadmedida; ?></option>
+                                    <?php
+												foreach ($unidadesmedidas as $clave2 => $valor) : ?>
+
+
+                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
+
+                                    <?php endforeach; ?>
+
+                                    <?php endif;  ?>
+                                    <?php endforeach; ?>
+                                    <?php else :
+										foreach ($unidadesmedidas as $clave2 => $valor) : ?>
+                                    <option value="<?php  echo $productos['idUnidadMedida']; ?>" selected hidden>
+                                        <?php  echo $productos['descripcionUnidadmedida']; ?></option>;
+                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
+
+                                    <?php endforeach; ?>
+                                    <?php endif ?>
+
 
                                 </select>
                             </div>
                         </div>
 
-                        
 
                         <?php endif;  ?>
 
+                      
+                        <?php if ($productos['idCategoria'] == 1 || $productos['idCategoria'] ==2) {?>
+                        <div class="col-md-4">
+                            <label>Precio de venta</label> <label style="color: red;"> * </label>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
+                                    id="precioVentaProductoA" name="precioVenta"
+                                    value="<?php if(isset($_POST['precioVenta'])){ echo $_POST['precioVenta']; }else{ echo $productos['precio']; } ?>">
 
-                        <div class="col-md-3">
+                            </div>
+                            <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
+                        </div>
+                        <?php }
+
+                        else {?>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Precio de venta</label> <label style="color: red;"> * </label>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
+                                        id="precioVentaProductoA" name="precioVenta"
+                                        value="<?php if(isset($_POST['precioVenta'])){ echo $_POST['precioVenta']; }else{ echo $productos['precio']; } ?>">
+
+                                </div>
+                                <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+
+                        
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4" style="display:none;">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -398,13 +444,7 @@
                             <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
                         </div>
 
-                        <input id="Valor" type="text" class="form-control "
-                            value="<?php echo $this->session->set_userdata('valorSesion', 'perra');?>" hidden>
-
-
                     </div>
-
-               
                     <!--Fin del card body-->
 
                     <!--Inicio del footer del contenido-->
@@ -414,10 +454,11 @@
 
 
                         <button style="padding: 10px 5px; margin: 10px 5px;   margin: 5 auto;" type="submit"
-                            id="botonActualizarProducto" class="btn btn-success col-2"><i class="fas fa-save"></i> Actualizar</button>
+                            id="botonActualizarProducto" class="btn btn-success col-2"><i class="fas fa-save"></i>
+                            Actualizar</button>
                         <a style="padding: 10px 5px; margin: 10px 5px;  margin: 5 auto; "
-                            href="<?php echo base_url(); ?>producto" id="botonAtras"
-                            class="btn btn-success col-2"><i  class="fas fa-arrow-left"></i> Atrás</a>
+                            href="<?php echo base_url(); ?>producto" id="botonAtras" class="btn btn-success col-2"><i
+                                class="fas fa-arrow-left"></i> Atrás</a>
 
 
                     </div>

@@ -70,7 +70,7 @@ class Producto extends CI_controller
         $datosCarga["idProducto"] = $datosCarga["nombreProducto"] = $datosCarga["descripcionProducto"] = $datosCarga["idCategoria"] =
         $datosCarga["idMarca"] = $datosCarga["idPresentacion"] = $datosCarga["valorMedida"] = $datosCarga["idUnidadMedida"] =
         $datosCarga["existencia"] = $datosCarga["idEspecieProducto"] = $datosCarga["indicaciones"] = $datosCarga["contraindicaciones"] =
-        $datosCarga["edadAplicacion"] = $datosCarga["precio"] = "";
+        $datosCarga["peso"] = $datosCarga["unidadMedidapeso"] = $datosCarga["precio"]= "";
 
         //$datosCarga['productos']  = $this->Model_producto->buscarDatosProducto();
         //Arreglo para recorrer y buscar los select "Tablas fuertes"
@@ -98,8 +98,8 @@ class Producto extends CI_controller
         //Datos carga del select Vacuna
         $datosCarga["indicaciones"] = $this->input->post("indicaciones");
         $datosCarga["contraindicaciones"] = $this->input->post("contraIndicaciones");
-        $datosCarga["edad"] = $this->input->post("edad");
-        $datosCarga["unidadTiempo"] = $this->input->post("unidadTiempo");
+        $datosCarga["peso"] = $this->input->post("peso");
+        $datosCarga["unidadMedidapeso"] = $this->input->post("UnidadPeso");
 
         /*********************/
         // *Validaciónn de los campos*//
@@ -120,23 +120,10 @@ class Producto extends CI_controller
             $datosProducto["indicaciones"] = $this->input->post("indicaciones");
             $datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
 
-            $datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
-            $datosProducto["edad"] = $this->input->post("edad");
-
-            $check = $this->input->post("check");
-
-            if ($check) {
-
-                $datosProducto['checking'] = $check;
-
-            } else {
-                $datosProducto['checking'] = 0;
-
-            }
-
+            $datosProducto["unidadMedidapeso"] = $this->input->post("UnidadPeso");
+            $datosProducto["peso"] = $this->input->post("peso");
             $datosProducto["precio"] = $this->input->post("precioVenta");
 
-            var_dump($datosProducto["checking"]);
             $this->Model_producto->insertarProducto($datosProducto);
             $this->session->set_flashdata('message', 'El producto ' . $datosCarga["nombreProducto"] . ' se ha registrado exitosamente.');
             redirect("Producto");
@@ -217,9 +204,9 @@ class Producto extends CI_controller
         $data["presentacion"] = $this->input->post("presentacion");
         $data["especieproducto"] = $this->input->post("tipoespecie");
         $data["marca"] = $this->input->post("marca");
+        $data["peso"] = $this->input->post("peso");
 
-        $data["edad"] = $this->input->post("edad");
-        $data["unidadTiempo"] = $this->input->post("unidadTiempo");
+        $data["unidadMedidapeso"] = $this->input->post("UnidadPesoA");
 
         //$this->input->server("REQUEST_METHOD")=="POST"
         if ($this->form_validation->run()) {
@@ -237,21 +224,11 @@ class Producto extends CI_controller
             $datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
             $datosProducto["indicaciones"] = $this->input->post("indicaciones");
             $datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
-            $datosProducto["unidadTiempo"] = $this->input->post("unidadTiempo");
-            $datosProducto["edad"] = $this->input->post("edad");
+            $datosProducto["unidadMedidapeso"] = $this->input->post("UnidadPesoA");
+            $datosProducto["peso"] = $this->input->post("peso");
             $datosProducto["precio"] = $this->input->post("precioVenta");
 
-            $check = $this->input->post("check_actualizar");
-
-            if ($check) {
-
-                $datosProducto['checking'] = $check;
-
-            } else {
-                $datosProducto['checking'] = 0;
-
-            }
-
+  
             $this->Model_producto->actualizarProducto($idProducto, $datosProducto);
 
             $this->session->set_flashdata('actualizar', 'El producto ' . $datosProducto["nombreProducto"] . ' se ha actualizado exitosamente.');

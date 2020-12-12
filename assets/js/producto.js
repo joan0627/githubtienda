@@ -28,43 +28,6 @@ $(document).ready(function () {
 		$(".edad_Utiempo").hide();
 	}
 
-	//ckeck
-
-	$("#check").change(function () {
-		if (this.checked) {
-			$("#edad_tiempo").prop("disabled", true);
-			$("#tiempo").prop("disabled", true);
-
-			$("#edad_tiempo").val("");
-			$("#tiempo").val("");
-		} else {
-			$("#edad_tiempo").prop("disabled", false);
-			$("#tiempo").prop("disabled", false);
-		}
-	});
-
-	/*
-		if ('#check_actualizar:checked') {
-			console.log('ckeckiado');
-			$("#edad_actualizar").prop("disabled", true);
-			$("#tiempo_actualizar").prop("disabled", true);
-
-		} else{
-			$("#edad_actualizar").prop("disabled", false);
-			$("#tiempo_actualizar").prop("disabled", false);
-
-		}
-
-		var edad1 = $("#edad_actualizar").val();
-		var tiempo1 = $('#tiempo_actualizar').val();
-
-		if(edad1 != "" || tiempo1 != ""){
-			$("#edad_actualizar").prop("disabled", false);
-			$("#tiempo_actualizar").prop("disabled", false);
-			
-		}
-*/
-
 	if ("#check_actualizar:checked") {
 		$("#edad_actualizar").prop("disabled", true);
 		$("#tiempo_actualizar").prop("disabled", true);
@@ -79,76 +42,8 @@ $(document).ready(function () {
 		$("#placeholder").prop("selected", true);
 	}
 
-	$("#check_actualizar").change(function () {
-		if (this.checked) {
-			$("#edad_actualizar").prop("disabled", true);
-			$("#tiempo_actualizar").prop("disabled", true);
-
-			$("#edad_actualizar").val("");
-			$("#tiempo_actualizar").val("");
-
-			var tiempo = $("#tiempo_actualizar").val();
-			if (tiempo == "") {
-				$("#placeholder").prop("selected", true);
-			}
-		} else {
-			$("#edad_actualizar").prop("disabled", false);
-			$("#tiempo_actualizar").prop("disabled", false);
-
-			$("#edad_actualizar").val("");
-			$("#tiempo_actualizar").val("");
-
-			var tiempo = $("#tiempo_actualizar").val();
-			if (tiempo == "") {
-				$("#placeholder").prop("selected", true);
-			}
-		}
-	});
-	/*
-
-	$("#formActualizarP").submit(function() {
 
 
-		
-			if ('#check_actualizar'.checked) {
-				$("#edad_actualizar").prop("disabled", true);
-				$("#tiempo_actualizar").prop("disabled", true);
-	
-				$("#edad_actualizar").val("");
-				$('#tiempo_actualizar').val("");
-	
-	
-	
-				var tiempo = $('#tiempo_actualizar').val();
-					if(tiempo == ""){
-						$("#placeholder").prop("selected", true);
-					}
-				
-	
-			} 
-			else 
-			{
-				$("#edad_actualizar").prop("disabled", false);
-				$("#tiempo_actualizar").prop("disabled", false);
-			
-	
-				$("#edad_actualizar").val("");
-				$('#tiempo_actualizar').val("");
-	
-	
-	
-				var tiempo = $('#tiempo_actualizar').val();
-				if(tiempo == ""){
-					$("#placeholder").prop("selected", true);
-					
-				}
-				
-			
-			}
-		
-
-
-	});*/
 
 	/**
 	 *

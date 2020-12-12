@@ -357,45 +357,55 @@
 
                     <div class="row">
 
-                        <div class="col-md-2 edad_Utiempo" style="display:none;">
-
+                        <div class="col-md-4 edad_Utiempo" style="display:none;">
                             <div class="form-group">
 
-                                <div class="icheck-primary d-inline">
-                                    <input checked type="checkbox" value="1" name="check" id="check">
-                                    <label for="check">Todas las edades</label>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                        <div class="col-md-2 edad_Utiempo" style="display:none;">
-                            <div class="form-group">
-
-                                <label>Edad</label>
-                                <input disabled id="edad_tiempo" class="form-control" rows="3"
-                                    placeholder="Ingrese la edad" name="edad" value="<?php echo $edad;?>"></input>
+                                <label>Peso</label>
+                                <input id="edad_tiempo" class="form-control" rows="3"
+                                    placeholder="Especifique el peso o rango de peso" name="peso" value="<?php echo $peso;?>"></input>
                                 <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
                             </div>
                         </div>
 
-                        <div class="col-md-5 edad_Utiempo" style="display:none;">
+                        <div class="col-md-4 edad_Utiempo" style="display:none;">
                             <div class="form-group">
-                                <label>Unidad de tiempo</label>
-                                <select disabled id="tiempo" class="form-control " style="width: 100%;"
-                                    name="unidadTiempo" value="<?php echo $unidadTiempo;?>">
-                                    <option hidden value="">-Seleccione la unidad de tiempo-</option>
-                                    <option>Dia(s)</option>
-                                    <option>Semana(s)</option>
-                                    <option>Mes(es)</option>
-                                    <option>Año(s)</option>
+                                <label>Unidad de medida</label>
+                                <select  name="UnidadPeso" class="form-control " style="width: 100%;">
+                                <?php if ($unidadMedidapeso != "") : ?>
+                                    <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
+                                    <?php if ($unidadMedidapeso == $valor->idUnidadMedida) : ?>
+
+                                    <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
+                                        <?php
+
+
+													echo  $valor->descripcionUnidadmedida; ?></option>
+                                    <?php
+												foreach ($unidadesmedidas as $clave => $valor) : ?>
+
+
+                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
+
+                                    <?php endforeach; ?>
+
+                                    <?php endif;  ?>
+                                    <?php endforeach; ?>
+                                    <?php else :
+										foreach ($unidadesmedidas as $clave => $valor) : ?>
+                                    <option value="" selected hidden>-Seleccione una unidad de medida-</option>;
+                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
+                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
+
+                                    <?php endforeach; ?>
+                                    <?php endif ?>
+
 
                                 </select>
                             </div>
                         </div>
                       
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
