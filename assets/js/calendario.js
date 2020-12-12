@@ -1,6 +1,6 @@
 $(document).ready(function () {
-
-
+    limpiarnotificaciones();
+    notificaciones();
 
  /***//////////////////////////////////////////////////////////////////////////***/
     $('#calendar').fullCalendar({ //INICIO DE LA CONFIGURACIÓN DEL CALENDARIO
@@ -854,14 +854,21 @@ $(document).ready(function () {
                 confirmButtonText: "Si",
                 cancelButtonText: "No",
             }).then((result) => {
+              
                 if (result.value) {
-                    EnviarInformacion(accion,nuevaCita)
+                 
+                    
                     Swal.fire({
                         title: "¡Proceso completado!",
                         text: "La cita ha sido registrada exitosamente.",
                         type: "success",
                         confirmButtonColor: "#28a745",
-                    });
+                    }).then(function() {
+                        EnviarInformacion(accion,nuevaCita);
+                        limpiarnotificaciones();
+                        notificaciones();
+                    })
+                    
 
                 }
             });
@@ -881,15 +888,16 @@ $(document).ready(function () {
                 cancelButtonText: "No",
             }).then((result) => {
                 if (result.value) {
-                    EnviarInformacion(accion,nuevaCita)
+              
                     Swal.fire({
                         title: "¡Proceso completado!",
                         text: "La cita ha sido actualizada exitosamente.",
                         type: "success",
                         confirmButtonColor: "#28a745",
                     }).then(function() {
-
-                       
+                        EnviarInformacion(accion,nuevaCita);
+                        limpiarnotificaciones();
+                        notificaciones();
                         if(historial==1)
                         {
                             $('#modal-historial').modal();
@@ -1124,13 +1132,14 @@ $(document).ready(function () {
                   
 
                     if(data)
-                    {
+                    { 
+                        $('#modal-cita').modal('toggle');
                         $('#calendar').fullCalendar('refetchEvents');
-
-                        if(!modal)
+                       
+                       /* if(!modal)
                         {
-                            $('#modal-cita').modal('toggle');
-                        }
+                           $('#modal-cita').modal('toggle');
+                        }*/
 
 
                       
@@ -2272,6 +2281,115 @@ $("#modal-pagarCita").modal({
     backdrop: "static", 
     keyboard: false 
 });*/
+
+
+
+
+
+
+
+
+function notificaciones()
+{
+    $("#encabezado").empty();
+    $("#contadorN").empty();
+    $("#notificaciones").empty();
+
+    var hoy = new Date();
+    console.log(hoy)
+    //Sólo fecha de hoy 
+    var hoyFormateado = moment(hoy).format('YYYY-MM-DD');
+     //Hoy con hora
+     //var horaHoy = moment(hoy,'HH:mm:ss');
+     var horaHoy = moment(hoy).format('HH:mm:ss');
+
+
+    /*Función para traer las citas del día y cargarlas a notificaciones*/
+    $.ajax({
+        type:"POST",
+        url: "/tienda/Notificaciones/cargarcitasdia",
+        data:{
+           fechaHoy:hoyFormateado
+             },
+        dataType: 'json',
+        success: function (data) {
+
+            var numN =  data.length;
+            var mensaje;
+
+           
+            $.each(data, function (i, item) {
+
+                if(horaHoy > item.hora)
+                {
+                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/calendario"><i style="color:#C6303E;"class="fas fa-exclamation mr-3"></i><small>Cambiar estado de cita de la(s) ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                numN+=1;
+                }
+
+                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/calendario"><i style="color:#28A745;" class="fas fa-clock mr-2"></i><small>Cita a las ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                
+            });
+
+               $("#contadorN").append(numN);
+            
+               if(numN < 1)
+               {
+                 mensaje = ' notificaciones'
+               }
+               else if(numN == 1 )
+               {
+                 mensaje = ' notificación'
+               }
+               else if( numN > 1)
+               {
+                   mensaje = ' notificaciones'
+               }
+
+               $("#encabezado").append('Tiene '+numN + mensaje);
+              
+               
+              
+        },
+        error: function (data) {
+          
+          //mensaje de error
+       
+        },
+        statusCode: {
+            400: function (data) {
+                var json = JSON.parse(data.responseText);
+                Swal.fire("¡Error!", json.msg, "error");
+            },
+        },
+
+    })
+
+
+
+
+
+    $('#refrescar').click(function(e){
+        e.preventDefault();
+        location.reload();
+
+    });
+
+}
+
+
+function limpiarnotificaciones()
+{
+    $("#encabezado").empty();
+    $("#contadorN").empty();
+    $("#notificaciones").empty();
+
+
+}
+
+
+
+    setInterval(notificaciones, 60000);
+
 
 
 

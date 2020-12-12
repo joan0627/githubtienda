@@ -127,7 +127,7 @@
                     </a>
                     <div style=" overflow: auto;" class="dropdown-menu dropdown-menu-lg fijo dropdown-menu-right">
                      
-                    <a style="background-color: #FFC107 !important;"id="refrescar" class="dropdown-item dropdown-header"  href="#" ><i class="fas fa-sync-alt"></i> Refrescar</a>
+                    <a id="encabezado" class="dropdown-header" ></i></a>
                     <div id="notificaciones"></div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-footer">No hay más notificaciones</a>
