@@ -446,7 +446,7 @@ $(document).ready(function () {
                     type: "success",
                     confirmButtonColor: "#28a745",
                 }).then(function() {
-                   // window.location = "http://localhost:8888/tienda/agenda/calendario";
+                   // window.location = "http://localhost:8888/tienda/agenda/";
                     $('#calendar').fullCalendar('render');
                 });
                
@@ -739,7 +739,7 @@ $(document).ready(function () {
                                         var currentTime2 = new Date();
                                         currentTime2 =  moment(currentTime2).format('YYYY-MM-DD HH:mm');
 
-                                        if(moment(currentTime2).isAfter(nuevaCita.start))
+                                        if(moment(currentTime2).isAfter(nuevaCita.start) && nuevaCita.estado==1)
                                         {
                                             Swal.fire({
                                                 title: "¡Atención!",
@@ -907,7 +907,7 @@ $(document).ready(function () {
                             historial=0;
                             if(auth ==1)
                             {
-                               
+                            limpiarModalPago();
                              $('#modal-pagarCita').modal();
                              pagoCita();
                            }
@@ -2198,6 +2198,7 @@ $("#radioNo").change(function () {
                             type: "success",
                             confirmButtonColor: "#28a745",
                         }).then(function() {
+                            limpiarModalPago();
                             $('#modal-pagarCita').modal();
                             pagoCita();
                          });
@@ -2245,19 +2246,20 @@ $("#radioNo").change(function () {
     
        });
     
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
+function limpiarModalPago()
+{
+    $("#target").val($("#target option:first").val())
+    $('#descuento_ventacita').val('');
+    $('#subtotal_ventacita').val('');
+    $('#total_ventacita').val('');
+    $('#entregadocita').val('');
+    $('#Ncomprobantecita').val('');
+    $('#cambiocita').html('');
+    
+      
+}
 
 
 
@@ -2322,11 +2324,11 @@ function notificaciones()
 
                 if(horaHoy > item.hora)
                 {
-                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/calendario"><i style="color:#C6303E;"class="fas fa-exclamation mr-3"></i><small>Cambiar estado de cita de la(s) ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/"><i style="color:#C6303E;"class="fas fa-exclamation mr-3"></i><small>Cambiar estado de cita de la(s) ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
                 numN+=1;
                 }
 
-                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/calendario"><i style="color:#28A745;" class="fas fa-clock mr-2"></i><small>Cita a las ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/"><i style="color:#28A745;" class="fas fa-clock mr-2"></i><small>Cita a las ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
                 
             });
 

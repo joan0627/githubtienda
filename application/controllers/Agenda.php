@@ -15,8 +15,6 @@ class Agenda extends CI_Controller {
 	
 
 
-	
-
 		/*Protección URL*/
 		if(!$this->session->userdata('login'))
 		{
@@ -32,13 +30,6 @@ class Agenda extends CI_Controller {
 
 	public function index()
 	{
-		
-	}
-
-
-	public function calendario()
-	{
-
 		$datos['clientes'] = $this->Model_agenda->buscarClientes();
 		$datos['tiposservicios'] = $this->Model_agenda->buscartiposervicios();
 		$datos['estados']= $this->Model_agenda->buscarestados();
@@ -51,8 +42,9 @@ class Agenda extends CI_Controller {
 		$this->load->view('superadministrador/formularios/calendario_view.php',$datos);
 		$this->load->view('layouts/footer');
 		
-	
 	}
+
+
 	public function servicios()
 	{
 
@@ -308,11 +300,24 @@ class Agenda extends CI_Controller {
 
 	
 
-	public function historialcitasu()
+	public function historialcitas()
 	{
+
+		$buscar = $this->input->get("buscar");
+
+        /*if ($buscar == 'Registrada' || $buscar == 'registrada' || $buscar == 'REGISTRADA') {
+            $buscar = 1;
+        } elseif ($buscar == 'Anulada' || $buscar == 'anulada' || $buscar == 'ANULADA') {
+            $buscar = 0;
+		}*/
+		
+		$datosCitas['resultado'] = $this->Model_agenda->Historialcitas($buscar);
+
+		
+	
 		$this->load->view('layouts/superadministrador/header');
 		$this->load->view('layouts/superadministrador/aside');
-		$this->load->view('superadministrador/general/historialCitas_view');
+		$this->load->view('superadministrador/general/historialCitas_view',$datosCitas);
 		$this->load->view('layouts/footer');
 		
 	}

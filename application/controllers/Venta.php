@@ -26,8 +26,11 @@ class Venta extends CI_controller
 	}
 
 
-	public function index()
+
+
+	public function ventaproductos()
 	{
+
 		$buscar = $this->input->get("buscar");
 
         if ($buscar == 'Registrada' || $buscar == 'registrada' || $buscar == 'REGISTRADA') {
@@ -43,8 +46,30 @@ class Venta extends CI_controller
 		$this->load->view('layouts/superadministrador/aside');
 		$this->load->view('superadministrador/general/listadoVentas_view', $datosVenta);
 		$this->load->view('layouts/footer');
-
+		
 	}
+
+	public function ventaservicios()
+	{
+
+		$buscar = $this->input->get("buscar");
+
+        if ($buscar == 'Registrada' || $buscar == 'registrada' || $buscar == 'REGISTRADA') {
+            $buscar = 1;
+        } elseif ($buscar == 'Anulada' || $buscar == 'anulada' || $buscar == 'ANULADA') {
+            $buscar = 0;
+        }
+		
+		 
+		$datosVenta['resultado'] = $this->Model_venta->BuscarDatosVentaServicios($buscar);
+		
+		$this->load->view('layouts/superadministrador/header');
+		$this->load->view('layouts/superadministrador/aside');
+		$this->load->view('superadministrador/general/listadoVentasServicios_view', $datosVenta);
+		$this->load->view('layouts/footer');
+		
+	}
+	
 
 
 	public function registrarventa(){
@@ -204,6 +229,7 @@ class Venta extends CI_controller
 
 	}
 
+	/* INFORME DE VENTA DE LOS PRODUCTOS*/
 
 	public function InformeVenta($idventa)
 	{
@@ -228,6 +254,31 @@ class Venta extends CI_controller
 
 	}
 
+
+	/* INFORME DE VENTA DE LOS SERVICIOS*/
+
+	public function informeventaservicio($idventa)
+	{
+	
+		$consulta['encabezadoVenta']=$this->Model_venta->buscarDatosEncabezadoVenta($idventa);
+        $consulta['detalleVenta']=$this->Model_venta->buscarVentaDetalle($idventa);
+	
+    
+        $stylesheet = file_get_contents('assets/plugins/bootstrap/css/bootstrap.min.css');
+        $stylesheet .= file_get_contents('assets/css/invoice.css');
+    
+
+		$mpdf = new \Mpdf\Mpdf();
+		
+		$mpdf->SetDisplayMode('fullpage');
+		$html=$this->load->view('superadministrador/informes/venta_view',$consulta,TRUE);
+		$mpdf->WriteHTML($stylesheet,1);
+		
+		$mpdf->WriteHTML($html,2);
+		
+		$mpdf->Output();
+
+	}
 
 
 

@@ -32,6 +32,42 @@ class Model_agenda extends Ci_model {
 	public function _construct() {
 	
 	}
+
+	//Función para cargar el historial de citas y buscar citas en el campo de busqueda
+	function Historialcitas($buscar) {
+	
+		//$this->db->select();
+		$this->db->select('c.*, s.nombreServicio, cl.nombre, m.nombreMascota, e.descripcion as nombreEstado ');
+		$this->db->from('citaprueba c');
+		$this->db->join('servicio s', ' s.idServicio = c.idservicio');
+		$this->db->join('mascota m', ' m.idMascota = c.mascota');
+		$this->db->join('cliente cl', ' m.documentoCliente = cl.documento');			
+		$this->db->join('estado e', ' e.idEstado = c.estado');	
+		$this->db->or_like("c.id",$buscar,'none');
+		$this->db->or_like("s.nombreServicio",$buscar);
+		$this->db->or_like("c.title",$buscar);
+		$this->db->or_like("cl.nombre",$buscar,'none');
+		$this->db->or_like("m.nombreMascota",$buscar);
+		$this->db->or_like("c.start",$buscar);
+		$this->db->order_by('c.start', 'DESC');
+		$consulta = $this->db->get();
+		
+
+
+		if($consulta->num_rows()==0)
+		{
+
+			$this->session->set_flashdata('busqueda', 'No hay resultados ');
+
+		}
+		else
+		{
+			$this->session->set_flashdata('busqueda', '');
+		}
+		return $consulta->result();
+
+		
+	}
 	
 	function buscarClientes()
 	{

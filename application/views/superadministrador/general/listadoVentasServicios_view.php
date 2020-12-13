@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-shop-50.png">Venta de servicios</h1>
+                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-factura-50.png">Venta de servicios</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -33,7 +33,7 @@
                             </span>
 
                             <span class="col-auto input-group-btn">
-                                <a type="button" role="link" class="btn bg-success" onclick="location.href='<?php echo base_url(); ?>venta/'";><i
+                                <a type="button" role="link" class="btn bg-success" onclick="location.href='<?php echo base_url(); ?>venta/ventaservicios'";><i
                                         class="fas fa-sync-alt"></i></a>
 
                             </span>
@@ -58,7 +58,7 @@
         <div class="card  card-success">
             <!-- Incio Caja superior -->
             <div class="card-header">
-                <h3 class="card-title">Historial de ventas de servicios</h3>
+                <h3 class="card-title">Historial de venta de servicios</h3>
 
                 <div class="card-tools">
 
@@ -72,7 +72,7 @@
 
             <!--Inicio del card body-->
             <div class="card-body p-0">
-                <table id="tablaVentas" class="table table-striped projects">
+                <table id="tablaVentasServicios" class="table table-striped projects">
                     <thead>
                         <tr>
                             <th>
@@ -113,7 +113,7 @@
 
                             <td><?php echo  $d->idFactura;?></td>
 
-
+                            <td><?php echo  $d->nombreServicio;?></td>
                             <td style="text-align:center; "><?php echo  $d->nombre;?></td>
 
                             <td style="text-align:center; font-size: 16.5px ;color:green; font-weight: bold;"
@@ -122,14 +122,14 @@
                             <td style="text-align:center; "><?php echo  $d->fecha;?></td>
 
                             <?php if ($d->estado ==1) {?>
-                            <td style="text-align:center; "> <span id="estadoventa<?php echo  $d->idFactura ?>"
+                            <td style="text-align:center; "> <span id="estadoventaservicio<?php echo  $d->idFactura ?>"
                                     class="badge badge-success">Registrada</span></td>
                             <?php  }
                            
                            else
                             {
                                 if ($d->estado ==0) { ?>
-                            <td style="text-align:center; "> <span id="estadoventa<?php echo  $d->idFactura ?>"
+                            <td style="text-align:center; "> <span id="estadoventaservicio<?php echo  $d->idFactura ?>"
                                     class="badge badge-danger">Anulada</span></td>
                             <?php   }  
                                 } ?>
@@ -137,7 +137,7 @@
 
 
                             <td class="project-actions  text-center  ">
-                                <a class="btn btn-primary btn-sm" target="_blank" href="<?php echo base_url();?>venta/InformeVenta/<?= $d->idFactura;?>">
+                                <a class="btn btn-primary btn-sm" target="_blank" href="<?php echo base_url();?>venta/informeventaservicio/<?= $d->idFactura;?>">
                                     <i class="fas fa-file-alt"></i>
                                     Ver
                                 </a>
@@ -146,14 +146,14 @@
                                 <?php if($d->estado ==0): ?>
 
                                 <button disabled type="submit" class="btn btn-danger btn-sm"
-                                    data-idventas="<?=$d->idFactura?>" id="anularVenta<?php echo  $d->idFactura ?>"><i
+                                    data-idventas="<?=$d->idFactura?>" id="anularVentaServicio<?php echo  $d->idFactura ?>"><i
                                         class="fas fa-window-close"></i> Anular</button>
 
                                 <?php endif?>
 
                                 <?php if($d->estado ==1): ?>
-                                <button type="submit" class=" anularVenta btn btn-danger btn-sm"
-                                    data-idventas="<?=$d->idFactura?>" id="anularVenta<?php echo  $d->idFactura ?>"><i
+                                <button type="submit" class="anularVentaServicio btn btn-danger btn-sm"
+                                    data-idventas="<?=$d->idFactura?>" id="anularVentaServicio<?php echo  $d->idFactura ?>"><i
                                         class="fas fa-window-close"></i> Anular</button>
 
                                 <?php endif?>

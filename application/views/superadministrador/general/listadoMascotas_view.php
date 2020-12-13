@@ -6,11 +6,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-mascotas-50.png"> Mascotas</h1>
+                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-order-history-50.png">Historial de mascotas</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Mascotas</a></li>
+                        <li class="breadcrumb-item"><a href="#">Clientes</a></li>
                         <li class="breadcrumb-item active">Historial de mascotas</li>
                     </ol>
                 </div>

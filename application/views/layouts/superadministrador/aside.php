@@ -126,15 +126,15 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?php echo base_url();?>agenda/calendario" class="nav-link">
+                              <a href="<?php echo base_url();?>agenda" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-bookmark-50.png"
                                       class="nav-icon">
                                   <p>Agenda</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php echo base_url();?>agenda/historialcitasu" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-order-history-50.png"
+                              <a href="<?php echo base_url();?>agenda/historialcitas" class="nav-link">
+                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-pasado-50.png"
                                       class="nav-icon">
                                   <p>Historial de citas</p>
                               </a>
@@ -178,14 +178,14 @@
 
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a  href="<?php echo base_url();?>venta" class="nav-link">
-                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-caja-registradora-50.png"
+                              <a  href="<?php echo base_url();?>venta/ventaproductos" class="nav-link">
+                                  <img src="<?php echo base_url();?>assets/img/iconos/icons8-caja-registradora-60.png"
                                       class="nav-icon">
                                   <p>Venta de productos</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="<?php echo base_url();?>" class="nav-link">
+                              <a href="<?php echo base_url();?>venta/ventaservicios" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-factura-50.png"
                                       class="nav-icon">
                                   <p>Venta de servicios</p>
@@ -246,10 +246,19 @@
                       </ul>
                   </li>
                   <li class="nav-item">
-                      <a href="listado" class="nav-link">
-                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-decision-30.png" class="nav-icon">
+                      <a href="" class="nav-link">
+                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-signo-de-interrogación-50.png" class="nav-icon">
                           <p>
                               Ayuda
+                          </p>
+                      </a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a href="" class="nav-link">
+                          <img src="<?php echo base_url();?>assets/img/iconos/icons8-información-50.png" class="nav-icon">
+                          <p>
+                              Acerca de
                           </p>
                       </a>
                   </li>
