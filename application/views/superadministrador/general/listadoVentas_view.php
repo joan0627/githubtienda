@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-shop-50.png">Ventas</h1>
+                    <h1><img src="<?php echo base_url();?>assets/img/iconos/icons8-caja-registradora-60.png">Venta de productos</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Ventas</a></li>
-                        <li class="breadcrumb-item active">Historial de ventas</li>
+                        <li class="breadcrumb-item active">Venta de productos</li>
                     </ol>
                 </div>
 
@@ -19,7 +19,6 @@
             <br>
         </div><!-- FIN/.container-fluid -->
 
-        <!--boton crear servicio-->
         <form method="get">
             <div class="container-fluid">
                 <div class="row mb-1">
@@ -33,7 +32,7 @@
                             </span>
 
                             <span class="col-auto input-group-btn">
-                                <a type="button" role="link" class="btn bg-success" onclick="location.href='<?php echo base_url(); ?>venta/'";><i
+                                <a type="button" role="link" class="btn bg-success" onclick="location.href='<?php echo base_url(); ?>venta/ventaproductos'";><i
                                         class="fas fa-sync-alt"></i></a>
 
                             </span>
@@ -62,7 +61,7 @@
         <div class="card  card-success">
             <!-- Incio Caja superior -->
             <div class="card-header">
-                <h3 class="card-title">Historial de ventas</h3>
+                <h3 class="card-title">Historial de venta de productos</h3>
 
                 <div class="card-tools">
 

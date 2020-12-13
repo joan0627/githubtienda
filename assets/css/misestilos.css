@@ -84,3 +84,32 @@ p.error {
       
   }
 
+  /*Estilos para cintillos de Estado de historial de cita*/
+
+  /*Estado: En proceso*/
+  .badge-enprogreso {
+    color: #ffffff;
+    background-color:#1af202;
+    font-size: 75%;
+}
+
+/*Estado: Finalizada*/
+.badge-finalizada {
+    color: #ffffff;
+    background-color:#073ded;
+    font-size: 75%;
+}
+/*Estado: Cancelada*/
+.badge-cancelada {
+    color: #ffffff;
+    background-color:#ed0000;
+    font-size: 75%;
+}
+/*Estado: No asistió*/
+.badge-noasistio {
+    color: #ffffff;
+    background-color:#f08502;
+    font-size: 75%;
+}
+
+

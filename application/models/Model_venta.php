@@ -190,6 +190,41 @@ function actualizarExistencia($idProducto, $cantidad){
 	$this->db->update('producto');
 }
 
+/*Consultas para Venta de servicios*/
 
+	//Función para buscar registros en el campo de busqueda
+	function BuscarDatosVentaServicios($buscar) {
+	
+		//$this->db->select();
+		$this->db->select('v.*, u.nombre, f.descripcion, s.nombreServicio');
+		$this->db->from('ventaservicio v');
+		$this->db->join('usuario u', ' u.idUsuario = v.vendedor');
+		$this->db->join('servicio s', ' s.idServicio = v.idServicio');		
+		$this->db->join('formapago f', ' f.idFormaPago = v.formapago');	
+		$this->db->or_like("v.idFactura",$buscar,'none');
+		$this->db->or_like("u.nombre",$buscar);
+		$this->db->or_like("s.nombreServicio",$buscar);
+		$this->db->or_like("v.totalGlobal",$buscar,'none');
+		$this->db->or_like("f.descripcion",$buscar);
+		$this->db->or_like("v.estado",$buscar,'none');
+		$this->db->order_by('fechahora', 'DESC');
+		$consulta = $this->db->get();
+		
+
+
+		if($consulta->num_rows()==0)
+		{
+
+			$this->session->set_flashdata('busqueda', 'No hay resultados ');
+
+		}
+		else
+		{
+			$this->session->set_flashdata('busqueda', '');
+		}
+		return $consulta->result();
+
+		
+	}
 
 }
