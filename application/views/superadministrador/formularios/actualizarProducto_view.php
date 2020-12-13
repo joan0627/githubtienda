@@ -103,7 +103,7 @@
                                 <select name="marca"
                                     class="js-example-placeholder-marca-actualizar-single form-control">
                                     <option value="<?php echo $productos['idMarca'];?>" selected>
-                                        <?php echo $productos['descripcionMarca'];?></option>
+                                    <?php echo $productos['descripcionMarca'];?></option>
                                     <?php if ($marca != "") : ?>
                                     <?php foreach ($marcas as $clave => $valor) : ?>
                                     <?php if ($marca == $valor->idMarca) : ?>
@@ -199,9 +199,9 @@
                             <div class="form-group">
                                 <label>Unidad de medida</label> <label style="color: red;"> * </label>
                                 <select name="unidadDeMedida" class="form-control">
-                                    <?php if ($h != "") : ?>
+                                    <?php if ($unidadmedida != "") : ?>
                                     <?php foreach ($unidadesmedidas as $clave1 => $valor) : ?>
-                                    <?php if ($h == $valor->idUnidadMedida) : ?>
+                                    <?php if ($unidadmedida == $valor->idUnidadMedida) : ?>
 
                                     <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
                                         <?php
@@ -336,10 +336,10 @@
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="fas fa-dollar-sign"></i>
+                                        <strong>KG</strong> 
                                     </span>
                                 </div>
-                                <input class="form-control" rows="3" placeholder="Ingrese la edad" name="peso"
+                                <input class="form-control" rows="3" placeholder="Ingrese el peso en kilogramos" name="peso"
                                     value="<?php if(isset($_POST['peso'])){ echo $_POST['peso']; }else{ echo $productos['peso']; } ?>"></input>
 
                             </div>
@@ -386,29 +386,8 @@
                         </div>
                         <?php } ?>
 
-
-                        
                     </div>
 
-
-                    <div class="row">
-                        <div class="col-md-4" style="display:none;">
-                            <label>Precio de venta</label> <label style="color: red;"> * </label>
-                            <div class="form-group input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
-                                    id="precioVentaProductoA" name="precioVenta"
-                                    value="<?php if(isset($_POST['precioVenta'])){ echo $_POST['precioVenta']; }else{ echo $productos['precio']; } ?>">
-
-                            </div>
-                            <?php echo form_error('precioVenta', '<p class="text-danger">', '</p>'); ?>
-                        </div>
-
-                    </div>
                     <!--Fin del card body-->
 
                     <!--Inicio del footer del contenido-->

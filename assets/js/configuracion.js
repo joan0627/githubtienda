@@ -423,7 +423,7 @@ $(document).ready(function () {
 		) {
 			Swal.fire({
 				title: "¡Proceso no completado!",
-				text: "La categoria " + categoriaValidation + " ya esta registrada.",
+				text: "La categoria " + categoriaValidation + " ya se encuentra registrada.",
 				type: "warning",
 				confirmButtonColor: "#28a745",
 			});

@@ -572,10 +572,7 @@ $(document).ready(function () {
 				success: function (data) {
 				
 
-						console.log("Devuelta "+data);
-						//console.log("solo "+idMarca);
-
-						//if (data[0].existencia) {
+					
 						if(data == 0){
 
 							Swal.fire({
@@ -619,8 +616,12 @@ $(document).ready(function () {
 
 
 						}else{
-
-							alert("No se puede compa");
+							Swal.fire({
+								title: "¡Proceso no completado!",
+								text: "La marca ya se encuentra registrada.",
+								type: "warning",
+								confirmButtonColor: "#28a745",
+							});
 						}
 			
 				}

@@ -199,13 +199,12 @@ class Producto extends CI_controller
         $data['especieproductos'] = $this->Model_producto->buscarTodasEspecies();
 
         $data["categoria"] = $this->input->post("categoria");
-        $data["unidadMedida"] = $this->input->post("unidadDeMedida");
+        $data["unidadmedida"] = $this->input->post("unidadDeMedida");
         $data["presentacion"] = $this->input->post("presentacion");
         $data["especieproducto"] = $this->input->post("tipoespecie");
         $data["marca"] = $this->input->post("marca");
         $data["peso"] = $this->input->post("peso");
 
-        $data["unidadMedidapeso"] = $this->input->post("UnidadPesoA");
 
         //$this->input->server("REQUEST_METHOD")=="POST"
         if ($this->form_validation->run()) {
@@ -214,7 +213,7 @@ class Producto extends CI_controller
 
             $datosProducto["nombreProducto"] = $this->input->post("nombre");
             $datosProducto["descripcionProducto"] = $this->input->post("descripcion");
-            //$datosProducto["idCategoria"] = 1;//$this->input->post("categoria");
+      
             $datosProducto["marca"] = $this->input->post("marca");
             $datosProducto["idPresentacion"] = $this->input->post("presentacion");
             $datosProducto["valorMedida"] = $this->input->post("valorDeMedida");
@@ -223,7 +222,6 @@ class Producto extends CI_controller
             $datosProducto["idEspecieProducto"] = $this->input->post("tipoespecie");
             $datosProducto["indicaciones"] = $this->input->post("indicaciones");
             $datosProducto["contraindicaciones"] = $this->input->post("contraIndicaciones");
-            $datosProducto["unidadMedidapeso"] = $this->input->post("UnidadPesoA");
             $datosProducto["peso"] = $this->input->post("peso");
             $datosProducto["precio"] = $this->input->post("precioVenta");
 

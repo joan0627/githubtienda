@@ -357,55 +357,25 @@
 
                     <div class="row">
 
-                        <div class="col-md-4 edad_Utiempo" style="display:none;">
-                            <div class="form-group">
 
-                                <label>Peso</label>
+                        <div class="col-md-6 edad_Utiempo" style="display:none;">
+
+                            <label>Peso</label>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                       <strong>KG</strong> 
+                                    </span>
+                                </div>
                                 <input id="edad_tiempo" class="form-control" rows="3"
-                                    placeholder="Especifique el peso o rango de peso" name="peso" value="<?php echo $peso;?>"></input>
+                                 placeholder="Especifique el peso o rango de peso" name="peso" value="<?php echo $peso;?>"></input>
                                 <?php echo form_error('edad', '<p class="text-danger">', '</p>'); ?>
+
                             </div>
                         </div>
 
-                        <div class="col-md-4 edad_Utiempo" style="display:none;">
-                            <div class="form-group">
-                                <label>Unidad de medida</label>
-                                <select  name="UnidadPeso" class="form-control " style="width: 100%;">
-                                <?php if ($unidadMedidapeso != "") : ?>
-                                    <?php foreach ($unidadesmedidas as $clave => $valor) : ?>
-                                    <?php if ($unidadMedidapeso == $valor->idUnidadMedida) : ?>
-
-                                    <option hidden value=" <?php echo  $valor->idUnidadMedida; ?>" selected>
-                                        <?php
-
-
-													echo  $valor->descripcionUnidadmedida; ?></option>
-                                    <?php
-												foreach ($unidadesmedidas as $clave => $valor) : ?>
-
-
-                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
-                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
-
-                                    <?php endforeach; ?>
-
-                                    <?php endif;  ?>
-                                    <?php endforeach; ?>
-                                    <?php else :
-										foreach ($unidadesmedidas as $clave => $valor) : ?>
-                                    <option value="" selected hidden>-Seleccione una unidad de medida-</option>;
-                                    <option value=" <?php echo  $valor->idUnidadMedida; ?>">
-                                        <?php echo  $valor->descripcionUnidadmedida; ?></option>
-
-                                    <?php endforeach; ?>
-                                    <?php endif ?>
-
-
-                                </select>
-                            </div>
-                        </div>
                       
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label>Precio de venta</label> <label style="color: red;"> * </label>
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">

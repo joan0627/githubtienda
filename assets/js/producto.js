@@ -5,16 +5,19 @@ $(document).ready(function () {
 	 */
 	$("#categoria").on("change", function () {
 		var selectCategoria = $(this).val();
-
 		/*var prueba = sessionStorage.categoria = selectCategoria;
 		console.log({prueba})*/
 
 		if (selectCategoria == 1 || selectCategoria == 2) {
 			$(".indicaciones_Contra").show();
 			$(".edad_Utiempo").show();
+
 		} else {
 			$(".indicaciones_Contra").hide();
 			$(".edad_Utiempo").hide();
+			$('#indicacionesRegistroProducto').val("");
+			$('#ContraindicacionesRegistroProducto').val("");
+			$('#edad_tiempo').val("");
 		}
 	});
 

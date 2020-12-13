@@ -160,90 +160,61 @@
 
                         </div>
                     <?php endif;  ?>
-              
-                    <?php if($clave['idCategoria'] ==1 || $clave['idCategoria'] ==2): ?>
+                        <?php if ($clave['idCategoria'] == 1 || $clave['idCategoria'] ==2) {?>
+                            <div class="row">
+                                <div class="col-md-6">
 
+                                    <label>Peso</label>
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <strong>KG</strong> 
+                                            </span>
+                                        </div>
+                                        <input disabled class="form-control" rows="3" placeholder="Ingrese el peso en kilogramos" name="peso"
+                                            value="<?php echo $clave['peso']; ?>"></input>
 
-              
-                        <div class="row">
-
-
-
-                          <?php if($clave['checking'] ==1):?>
-
-                            <div class="col-md-2 ">
-
-                                <div class="form-group">
-
-                                    <div class="icheck-primary d-inline">
-                                        <input disabled checked type="checkbox" name="check_actualizar"
-                                        value="1" id="check_actualizar">
-                                        <label for="check_actualizar">Todas las edades</label>
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-                            <?php endif;  ?>
-
-
-
-                            <?php if($clave['checking'] ==0):?>
-
-                            <div class="col-md-2 ">
-
-                                <div class="form-group">
-
-                                    <div class="icheck-primary d-inline">
-                                        <input disabled type="checkbox" name="check_actualizar"
-                                        value="1" id="check_actualizar">
-                                        <label for="check_actualizar">Todas las edades</label>
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-                            <?php endif;?>
-                        
-                                <div class="col-md-4">
-                                    <div class="form-group">
-
-                                        <label>Edad</label>
-                                        <input class="form-control" rows="3" readonly="readonly"
-                                            placeholder="Ingrese el tiempo recomendado" name="edad"
-                                            value="<?php echo $clave['edad']; ?>"></input>
                                     </div>
                                 </div>
                             
+                                <div class="col-md-6">
+                                    <label>Precio de venta</label> 
+                                    <div class="form-group input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </span>
+                                        </div>
+                                        <input disabled type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
+                                            id="precioVentaProductoA" name="precioVenta"
+                                            value="<?php echo $clave['precio']; ?>">
+                                    </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group Utiempo">
-                                    <label>Unidad de tiempo</label>
-                                    <input class="form-control" readonly="readonly"
-                                        placeholder="Ingrese el tiempo recomendado" name="unidadTiempo"
-                                        value="<?php echo $clave['unidadTiempo'];?>"></input>
                                 </div>
+                             
+                          
                             </div>
+                        <?php }
 
+                        else {?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Precio de venta</label> 
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </span>
+                                    </div>
+                                    <input disabled type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
+                                        id="precioVentaProductoA" name="precioVenta"
+                                        value="<?php echo $clave['precio']; ?>">
 
-                            <div class="col-md-2">
-                            <label>Precio de venta</label>
-                            <div class="form-group input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Ingrese el precio de la vacuna"
-                                   id="precioVentaProductoD"  name="precioVenta" readonly="readonly" value="<?php echo $clave['precio']; ?>">
+                              
                             </div>
                         </div>
-                        </div>
-                    <?php endif;  ?>
+                        <?php } ?>
 
 
 
