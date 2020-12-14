@@ -236,7 +236,7 @@
                               <a href="<?php echo base_url();?>configuracion/disponibilidad" class="nav-link">
                                   <img src="<?php echo base_url();?>assets/img/iconos/icons8-planner-50.png"
                                       class="nav-icon">
-                                  <p>Disponibilidad</p>
+                                  <p>Programación</p>
                               </a>
                           </li>
                           <?php }

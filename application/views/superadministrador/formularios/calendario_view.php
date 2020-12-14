@@ -201,8 +201,6 @@
                                                 </div>
                                             </div>
 
-
-
                                         </div>
 
                                         <div class="col-md-3">
@@ -489,14 +487,6 @@
                         <div class="card  card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Registro de historial de vacunación/desparasitación</h3>
-
-                                <div class="float-right">
-
-
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
                             </div>
 
                             <div class="card-body">

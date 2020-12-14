@@ -179,7 +179,7 @@ class Model_agenda extends Ci_model {
 
 
 
-
+	//**DISPONIBILIDAD */
 
 	//Función para registrar la disponibilidad
 	function insertardisponibilidad($datosDisponibilidad)
@@ -189,6 +189,28 @@ class Model_agenda extends Ci_model {
 		return $this->db->insert_id();
 		
 	}
+	//Función para actualizar la disponibilidad
+	function actualizardisponibilidad($idDisponibilidad, $datosDisponibilidad)
+	{
+		
+		$this->db->where($this->idDisponibilidadPK ,$idDisponibilidad);
+		$this->db->update($this->tablaDisponibilidad, $datosDisponibilidad);
+	}
+
+	//Función para eliminar una disponibilidad
+	function eliminardisponibilidad($idDisponibilidad)
+	{
+		
+		$this->db->where('idDisponibilidad', $idDisponibilidad);
+		$this->db->delete($this->tablaDisponibilidad);
+
+	}
+
+
+	//**DISPONIBILIDAD */
+
+
+
 
 	//Función para registrar una cita
 	function insertarCita($datosCita)

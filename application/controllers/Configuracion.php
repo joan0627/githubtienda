@@ -192,14 +192,40 @@ class Configuracion extends CI_Controller {
 		$datosDisponibilidad["title"] = $this->input->post("title");
 		$datosDisponibilidad["start"] = $this->input->post("start");
 		$datosDisponibilidad["end"] = $this->input->post("end");
-		$datosDisponibilidad["rendering"] = $this->input->post("rendering");
+		
 
-	
 		$res= $this->Model_agenda->insertardisponibilidad($datosDisponibilidad);
 
 		echo json_encode($res);
 
 		
+	}
+
+
+	public function editardisponibilidad()
+
+	{
+		$id =$this->input->post("idDisponibilidad");
+		$datosDisponibilidad["title"] = $this->input->post("title");
+		$datosDisponibilidad["start"] = $this->input->post("start");
+		$datosDisponibilidad["end"] = $this->input->post("end");
+
+		$res= $this->Model_agenda->actualizardisponibilidad($id,$datosDisponibilidad);
+
+
+		echo json_encode($res);
+
+
+	}
+
+	public function eliminardisponibilidad()
+
+	{
+			$id =$this->input->post("idDisponibilidad");
+			$res= $this->Model_agenda->eliminardisponibilidad($id);
+
+			echo json_encode($res);
+
 	}
 
 
