@@ -263,6 +263,7 @@ class Agenda extends CI_Controller {
 		$datosVenta["formaPago"]= $this->input->post("datos[formapago]");
 		$datosVenta["nComprobante"]= $this->input->post("datos[comprobante]");
 		$datosVenta["observaciones"]= $this->input->post("datos[observaciones]");
+		$datosVenta["idcliente"]= $this->input->post("datos[cliente]");
 
 		
 		//$descuento = $this->input->post("descuento");

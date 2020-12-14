@@ -237,8 +237,9 @@ function actualizarExistencia($idProducto, $cantidad){
 
 	function buscarDatosEncabezadoVentaServicio($idventa) {
 
-		$this->db->select('vs.*,s.nombreServicio,u.nombre,vs.observaciones as observacionesCompra, fp.descripcion');
+		$this->db->select('vs.*,s.nombreServicio,u.nombre,c.nombre as namecliente,c.direccion,c.correo,c.celular,vs.observaciones as observacionesCompra, fp.descripcion');
 		$this->db->from('ventaservicio vs');
+		$this->db->join('cliente c', ' c.documento = vs.idcliente');
 		$this->db->join('servicio s', ' s.idServicio = vs.idServicio');
 		$this->db->join('usuario u', ' u.idUsuario = vs.vendedor');
 		$this->db->join('formapago fp', ' fp.idFormaPago = vs.formaPago');

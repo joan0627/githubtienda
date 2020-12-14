@@ -1922,6 +1922,7 @@ $('#registroVentaCita').click(function(e){
         total: $("#total_ventacita").val(),
         comprobante: $("#Ncomprobantecita").val(),
         observaciones : $("#observacionesCita").val(),
+        cliente: $("#clienteselect").val(),
     };
     
 
