@@ -246,7 +246,7 @@
                       </ul>
                   </li>
                   <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="<?php echo base_url();?>ayuda" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-signo-de-interrogación-50.png" class="nav-icon">
                           <p>
                               Ayuda
@@ -255,7 +255,7 @@
                   </li>
 
                   <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="<?php echo base_url();?>acercade" class="nav-link">
                           <img src="<?php echo base_url();?>assets/img/iconos/icons8-información-50.png" class="nav-icon">
                           <p>
                               Acerca de
