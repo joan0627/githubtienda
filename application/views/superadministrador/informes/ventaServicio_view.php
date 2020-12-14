@@ -45,32 +45,65 @@
             <tr style=" background-color: #fafafa;" class="information">
 
 
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td align="left">
+<td colspan="2">
+    <table>
+        <tr>
 
-                                <div style="">
-                                    <div style="text-align:center;">
-                                        <h5 style="font-weight: bold;"> El rincón de la mascota</h5>
-                                    </div>
-                                    <br>
-                                    <strong style="font-weight: bold;">Dirección:</strong> Cra. 79 #2 B-43 <br>
-                                    <strong style="font-weight: bold;">Ciudad:</strong> Medellín, Antioquia
-                                    <br>
-                                    <strong style="font-weight: bold;">Teléfono:</strong> 3057275665
-                                    <br>
-                                    <strong style="font-weight: bold;">Correo:</strong> katy1324-1@hotmail.com
-                                </div>
-                            </td>
+                <td></td>
+
+            <td align="left">
 
 
-                        </tr>
+                <div >
+                    <div style="text-align:center;">
+                        <h5 style="font-weight: bold;">Cliente:</h5> <?php  foreach ($encabezadoVentaServicio as $key) {echo $key->namecliente;} ?>
+                    </div>
+                    <br>
 
-                    </table>
+                    <strong style="font-weight: bold;">Dirección:</strong> <?php  foreach ($encabezadoVentaServicio as $key) {echo ($key->direccion!='')?$key->direccion : 'Sin datos';} ?>
+                   
+                    <div>
 
-                </td>
-            </tr>
+                    <strong style="font-weight: bold;">Celular:</strong> <?php  foreach ($encabezadoVentaServicio as $key) {echo ($key->celular!='')?$key->celular : 'Sin datos';} ?>
+                   <br>
+                    <strong style="font-weight: bold;">Correo:</strong> <?php  foreach ($encabezadoVentaServicio as $key) {echo ($key->correo!='')? $key->correo : 'Sin datos' ;} ?>
+                        
+                     </div>
+
+                  
+                </div>
+
+
+
+            </td>
+            <td> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</td>
+           
+
+
+            <td align="left">
+
+                <div style="">
+                    <div style="text-align:center;">
+                    <h5 style="font-weight: bold;"> El rincón de la mascota</h5>
+                    </div>
+                    <br>
+                    <strong style="font-weight: bold;">Dirección:</strong> Cra. 79 #2 B-43 <br>
+                    <strong style="font-weight: bold;">Ciudad:</strong> Medellín, Antioquia
+                    <br>
+                    <strong style="font-weight: bold;">Teléfono:</strong> 3057275665
+                    <br>
+                    <strong style="font-weight: bold;">Correo:</strong> katy1324-1@hotmail.com
+                </div>
+            </td>
+
+
+
+        </tr>
+
+    </table>
+
+</td>
+</tr>
         </table>
 
     </div>

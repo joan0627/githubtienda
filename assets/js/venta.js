@@ -573,7 +573,7 @@ $(document).ready(function () {
 							type: "success",
 							confirmButtonColor: "#28a745",
 						}).then(function () {
-							window.location = "http://localhost:8888/tienda/venta/";
+							window.location = "http://localhost:8888/tienda/venta/ventaproductos/";
 						});
 					},
 					error: function () {

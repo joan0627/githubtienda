@@ -67,6 +67,7 @@
 <script src="<?php echo base_url(); ?>assets/js/venta.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/ventaServicio.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/inicio.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/graficos.js"></script>
 
 
 

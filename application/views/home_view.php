@@ -76,9 +76,9 @@
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li><a href="#home-section" class="nav-link">Home</a></li>
                                 <li><a href="#about-section" class="nav-link">Sobre nosotros</a></li>
-                                <li><a href="#pricing-section" class="nav-link">Productos</a></li>
-                                <li><a href="#services-section" class="nav-link">Servicios</a></li>
-                                <li><a href="#contact-section" class="nav-link">Contáctenos</a></li>
+                                <li><a href="#productos" class="nav-link">Productos</a></li>
+                                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                                <li><a href="#contacto" class="nav-link">Contáctenos</a></li>
 
 
                                 <a href="login" class="btn btn-success">Iniciar sesión</a>
@@ -148,11 +148,10 @@
                         </div>
                         <div class="col-lg-5 mr-auto text-lg-right align-self-center order-lg-1" data-aos="fade-right">
                             <h2 class="text-black">Quiénes somos</h2>
-                            <p class="mb-4">Somos una tienda de mascotas colombiana con más de 4 años en el mercado,
+                            <p class="mb-4">Somos una tienda de mascotas colombiana con más de 7 años en el mercado,
                                 contamos con cientos de productos atractivos y de alta calidad para tus mascotas.
-                                Dentro de nuestro inventario tenemos: alimentos, accesorios, juguetes y productos
-                                de aseo e higiene. Pero no sólo tenemos una gran variedad de alimentos y accesorios,
-                                sino también ofrecemos los servicios de vacunación, desparasitación y Peluquería,
+                                Dentro de nuestro inventario tenemos: concentrados, accesorios, juguetes y productos
+                                de aseo e higiene. También ofrecemos servicios de vacunación, desparasitación y peluquería,
                                 completando de esta forma, un servicio integral para tu mascota.</p>
 
                         </div>
@@ -171,12 +170,12 @@
                         </div>
                         <div class="col-lg-5 ml-auto align-self-center" data-aos="fade-left">
                             <h2 class="text-black">Misión</h2>
-                            <p class="mb-4">Ser una tienda de mascotas reconocida, que brinda una experiencia
-                                integral a sus clientes a través de productos y servicios de alta calidad;
-                                contando con el mejor talento humano en cada una de las áreas. Dar una solución
+                            <p class="mb-4">Ser una tienda de mascotas reconocida brindando una experiencia
+                                integral a nuestros clientes contando siempre con productos y un servicio de alta calidad;
+                                y el mejor talento humano en cada una de las áreas. Dando una solución
                                 integral sobre la atención de la mascota, a partir de una inmejorable oferta de
-                                producto,
-                                precio y servicio.</p>
+                                productos,
+                            precios y servicios.</p>
 
                         </div>
                     </div>
@@ -221,16 +220,12 @@
 
                 <div class="col-md-6" data-aos="fade-right">
                     <img class="img-fluid border10 rotate-reverse10"
-                        src="<?php echo base_url();?>assets/assetshome/images/dog_doctor.jpg" alt="Image">
+                        src="<?php echo base_url();?>assets/assetshome/images/acercademi.jpeg" alt="Image">
                 </div>
                 <div class="col-md-5 ml-auto align-self-center" data-aos="fade-left">
                     <h2 class="mb-2 heading mb-4">Acerca de <strong>mi</strong> </h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste amet praesentium tenetur quos eius
-                        asperiores incidunt <a href="#">reprehenderit</a> hic labore? Officiis enim laborum facere iure
-                        voluptatem autem veritatis cupiditate magnam saepe.</p>
-                    <p>Nulla, beatae ducimus? Dolor distinctio tempore hic consequatur, magni consectetur possimus
-                        tenetur eius, placeat, eveniet facilis perferendis vitae deleniti incidunt! Incidunt, illum eum?
-                        Suscipit aliquid consequatur repudiandae doloremque est nisi.</p>
+                    <p>Mi nombre es Caterine Restrepo Osorio soy auxiliar veterinaria y me encantan los animales.</p>
+                    <p>Estoy aqui para ofrecerte a ti y a tu mascota la mejor atención profesional y llena de amor, que tal vez no encontrarás en ningún otro lugar.</p>
 
                 </div>
             </div>
@@ -256,187 +251,6 @@
     </section>
 
 
-    <section class="site-section" id="faq-section">
-        <div class="container" id="accordion">
-            <div class="row justify-content-center" data-aos="fade-up">
-                <div class="col-lg-6 text-center heading-section mb-5">
-
-                    <h2 class="text-black mb-2">Preguntas frecuentes</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit facere quia quas quod at,
-                        reprehenderit eaque nam.</p>
-                </div>
-            </div>
-            <div class="row accordion justify-content-center block__76208">
-                <div class="col-lg-6 order-lg-1 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="">
-                    <img src="<?php echo base_url();?>assets/assetshome/images/dog_5.jpg" alt="Image"
-                        class="img-fluid rounded">
-                </div>
-                <div class="col-lg-5 ml-auto order-lg-2 align-self-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="accordion-item">
-                        <h3 class="mb-0 heading">
-                            <a class="btn-block" data-toggle="collapse" href="#collapseFive" role="button"
-                                aria-expanded="true" aria-controls="collapseFive">¿Cuándo debo vacunar a mi
-                                mascota?<span class="icon"></span></a>
-                        </h3>
-                        <div id="collapseFive" class="collapse show" aria-labelledby="headingOne"
-                            data-parent="#accordion">
-                            <div class="body-text">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum ipsum autem
-                                    minima repellat, corrupti consequuntur sit amet atque, optio provident harum eius
-                                    numquam dolores quam dolore quas! Quisquam, velit accusantium?</p>
-                            </div>
-                        </div>
-                    </div> <!-- .accordion-item -->
-
-                    <div class="accordion-item">
-                        <h3 class="mb-0 heading">
-                            <a class="btn-block" data-toggle="collapse" href="#collapseSix" role="button"
-                                aria-expanded="false" aria-controls="collapseSix">¿Por qué debo desparasitar a mi
-                                mascota? <span class="icon"></span></a>
-                        </h3>
-                        <div id="collapseSix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="body-text">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui doloremque magnam ea,
-                                    fuga deserunt dolor, atque ex libero aspernatur nobis nisi soluta nulla vitae natus
-                                    omnis! Inventore beatae amet autem?</p>
-                            </div>
-                        </div>
-                    </div> <!-- .accordion-item -->
-
-                    <div class="accordion-item">
-                        <h3 class="mb-0 heading">
-                            <a class="btn-block" data-toggle="collapse" href="#collapseSeven" role="button"
-                                aria-expanded="false" aria-controls="collapseSeven">¿Cómo debo alimentar a mi perro o a
-                                mi gato?<span class="icon"></span></a>
-                        </h3>
-                        <div id="collapseSeven" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="body-text">
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo, aspernatur
-                                    exercitationem consequatur soluta vero error autem nemo cum! Consequatur illo
-                                    voluptatum eos labore corrupti animi odio accusamus perferendis? Eveniet, odit.</p>
-                            </div>
-                        </div>
-                    </div> <!-- .accordion-item -->
-
-                    <div class="accordion-item">
-                        <h3 class="mb-0 heading">
-                            <a class="btn-block" data-toggle="collapse" href="#collapseEight" role="button"
-                                aria-expanded="false" aria-controls="collapseEight">¿Cada cuánto tiempo es recomendable
-                                bañar a mi mascota?<span class="icon"></span></a>
-                        </h3>
-                        <div id="collapseEight" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="body-text">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore dolorem aliquam
-                                    commodi magni. Animi harum voluptates odio asperiores, atque tenetur eveniet itaque
-                                    pariatur ut. Est quas ducimus architecto?</p>
-                            </div>
-                        </div>
-                    </div> <!-- .accordion-item -->
-
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
-    <section class="site-section bg-light block-13" id="nuestroequipo" data-aos="fade">
-        <div class="container">
-
-            <div class="row justify-content-center" data-aos="fade-up">
-                <div class="col-lg-6 text-center heading-section mb-5">
-
-                    <h2 class="text-black mb-2">Nuestro equipo</h2>
-                </div>
-            </div>
-            <div data-aos="fade-up" data-aos-delay="200">
-                <div class="owl-carousel nonloop-block-13">
-                    <div>
-                        <div class="block-testimony-1 text-center">
-
-                            <blockquote class="mb-4">
-                                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem porro aliquam
-                                    quisquam perferendis illum ad corporis tempore voluptatum, obcaecati, a unde?
-                                    Aliquam suscipit dicta, error velit quaerat eligendi quam ipsa..&rdquo;</p>
-                            </blockquote>
-
-                            <figure>
-                                <img src="<?php echo base_url();?>assets/assetshome/images/person_1.jpg" alt="Image"
-                                    class="img-fluid rounded-circle mx-auto">
-                            </figure>
-                            <h3 class="font-size-20 text-black">Auxiliar veterinario</h3>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="block-testimony-1 text-center">
-
-
-
-                            <blockquote class="mb-4">
-                                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat ad provident
-                                    ipsa similique quidem. Fugit nam deserunt ipsam? Excepturi, possimus.&rdquo;</p>
-                            </blockquote>
-
-                            <figure>
-                                <img src="<?php echo base_url();?>assets/assetshome/images/person_2.jpg" alt="Image"
-                                    class="img-fluid rounded-circle mx-auto">
-                            </figure>
-                            <h3 class="font-size-20 mb-4 text-black">Gerente</h3>
-
-
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="block-testimony-1 text-center">
-
-
-                            <blockquote class="mb-4">
-                                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores numquam,
-                                    animi est ratione aut explicabo fuga illum a nesciunt tempora! Incidunt laborum
-                                    blanditiis quidem voluptatibus enim placeat!&rdquo;</p>
-                            </blockquote>
-
-                            <figure>
-                                <img src="<?php echo base_url();?>assets/assetshome/images/person_1.jpg" alt="Image"
-                                    class="img-fluid rounded-circle mx-auto">
-                            </figure>
-                            <h3 class="font-size-20 text-black">Asistente</h3>
-
-
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="block-testimony-1 text-center">
-
-
-
-                            <blockquote class="mb-4">
-                                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nemo distinctio
-                                    ratione numquam. Magni quae a adipisci hic laborum voluptate optio ab tenetur.
-                                    Officiis mollitia nam itaque laborum?.&rdquo;</p>
-                            </blockquote>
-
-                            <figure>
-                                <img src="<?php echo base_url();?>assets/assetshome/images/person_2.jpg" alt="Image"
-                                    class="img-fluid rounded-circle mx-auto">
-                            </figure>
-                            <h3 class="font-size-20 mb-4 text-black">Vendedor</h3>
-
-
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
 
     <section class="site-section " id="servicios">
         <div class="container">
@@ -453,25 +267,22 @@
                     <div class="block_service">
                         <span class="icon-paw d-block display-3 text-primary mb-3"></span>
                         <h3>Peluquería</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts. </p>
+                        
                     </div>
 
                 </div>
                 <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="block_service">
                         <span class="icon-paw d-block display-3 text-primary mb-3"></span>
-                        <h3>vacunación</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts. </p>
+                        <h3>Vacunación</h3>
+                       
                     </div>
                 </div>
                 <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="block_service">
                         <span class="icon-paw d-block display-3 text-primary mb-3"></span>
                         <h3>Desparasitación</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts. </p>
+                      
                     </div>
                 </div>
 
@@ -481,8 +292,18 @@
                     <div class="block_service">
                         <span class="icon-paw d-block display-3 text-primary mb-3"></span>
                         <h3>Corte de uñas</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts. </p>
+                     
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="">
+
+                    <div class="block_service">
+                        <span class="icon-paw d-block display-3 text-primary mb-3"></span>
+                        <h3>Y mucho más</h3>
+                     
                     </div>
 
                 </div>
@@ -559,11 +380,11 @@
                                 </li>
                                 <li>
                                     <span class="d-block">Teléfono:</span>
-                                    <p>+(57) 4988723</p>
+                                    <p>4988723</p>
                                 </li>
                                 <li>
                                     <span class="d-block">Correo:</span>
-                                    <p>tiendaelrincon@gmail.com</p>
+                                    <p>katy1324-1@hotmail.com</p>
                                 </li>
                             </ul>
                         </div>
@@ -581,16 +402,13 @@
                     <div class="row">
                         <div class="col-md-5">
                             <h2 class="footer-heading mb-4">Sobre nosotros</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium
-                                magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+                            <p>Tienda de mascotas colombiana.</p>
                         </div>
                         <div class="col-md-3 ml-auto">
                             <h2 class="footer-heading mb-4">Enlances</h2>
                             <ul class="list-unstyled">
                                 <li><a href="#about-section" class="smoothscroll">Sobre nosotros</a></li>
                                 <li><a href="#trainers-section" class="smoothscroll">Acerca de mi</a></li>
-                                <li><a href="#faq-section" class="smoothscroll">Preguntas frecuentes</a></li>
-                                <li><a href="#nuestroequipo" class="smoothscroll">Nuestro equipo</a></li>
                                 <li><a href="#servicios" class="smoothscroll">Servicios</a></li>
                                 <li><a href="#contacto" class="smoothscroll">Contáctanos</a></li>
 
