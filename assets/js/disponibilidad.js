@@ -191,11 +191,11 @@ $(document).ready(function () {
 
        
      var timeInicio= $('#horaI').val();
-     moment(timeInicio,'hh:mm a');
+     var timeIniciof=   moment(timeInicio,'hh:mm a');
      var timeFin= $('#horaF').val();
-     moment(timeFin,'hh:mm a');
+     var timeFinf=moment(timeFin,'hh:mm a');
      
-        if(timeFin < timeInicio)
+        if(timeFinf < timeIniciof)
         {
             Swal.fire({
                 title: "¡Proceso no completado!",
@@ -287,14 +287,13 @@ $(document).ready(function () {
       $('#botonActualizarDisponibilidad').click(function(e){
         e.preventDefault();
 
-
-
         var timeInicio2= $('#horaI').val();
-        moment(timeInicio2,'hh:mm a');
+        var timeIniciof2=   moment(timeInicio2,'hh:mm a');
         var timeFin2= $('#horaF').val();
-        moment(timeFin2,'hh:mm a');
+        var timeFinf2=moment(timeFin2,'hh:mm a');
+
         
-        if(timeFin2 < timeInicio2)
+        if(timeFinf2 < timeIniciof2)
         {
             Swal.fire({
                 title: "¡Proceso no completado!",
