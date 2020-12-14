@@ -28,31 +28,31 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>4</h3>
+                            <h3 id="numUsuariosI"></h3>
 
                             <p>Usuarios</p>
-                            <span>Nuevos usuarios: 2</span>
+                            <span id="UDeshabilitados">Usuarios deshabilitados: </span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url();?>usuario" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3 id="numProductos"></h3>
 
                             <p>Productos</p>
-                            <span>Nuevos productos: 20</span>
+                            <span id="productoshoy">Nuevos productos: </span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pricetags"></i>
 
                         </div>
-                        <a href="#" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url();?>producto" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -60,16 +60,16 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>28</h3>
+                            <h3 id="citasMes"></h3>
 
-                            <p>Citas de: Junio</p>
-                            <span>Total de citas: 208</span>
+                            <p id="mesletra">Citas de: </p>
+                            <span id="totalcitas">Total de citas: </span>
                         </div>
                         <div class="icon">
                             <i class="ion ion-calendar"></i>
 
                         </div>
-                        <a href="#" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url();?>agenda/historialcitas" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -79,10 +79,10 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>$7'850.000</h3>
+                            <h3 id="valorTotalventa"></h3>
 
-                            <p>Ventas de: Junio</p>
-                            <span>Total de ventas: 126</span>
+                            <p id="ventasmes">Ventas de: </p>
+                            <span id="totalventas">Total de ventas: </span>
 
                         </div>
                         <div class="icon">

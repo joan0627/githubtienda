@@ -254,14 +254,13 @@ class Venta extends CI_controller
 
 	}
 
-
+	/*FUNCIONES DE VENTA DE SERVICIOS*/
 	/* INFORME DE VENTA DE LOS SERVICIOS*/
 
 	public function informeventaservicio($idventa)
 	{
 	
-		$consulta['encabezadoVenta']=$this->Model_venta->buscarDatosEncabezadoVenta($idventa);
-        $consulta['detalleVenta']=$this->Model_venta->buscarVentaDetalle($idventa);
+		$consulta['encabezadoVentaServicio']=$this->Model_venta->buscarDatosEncabezadoVentaServicio($idventa);
 	
     
         $stylesheet = file_get_contents('assets/plugins/bootstrap/css/bootstrap.min.css');
@@ -271,7 +270,7 @@ class Venta extends CI_controller
 		$mpdf = new \Mpdf\Mpdf();
 		
 		$mpdf->SetDisplayMode('fullpage');
-		$html=$this->load->view('superadministrador/informes/venta_view',$consulta,TRUE);
+		$html=$this->load->view('superadministrador/informes/ventaServicio_view',$consulta,TRUE);
 		$mpdf->WriteHTML($stylesheet,1);
 		
 		$mpdf->WriteHTML($html,2);
@@ -279,8 +278,7 @@ class Venta extends CI_controller
 		$mpdf->Output();
 
 	}
-
-
+	
 
 
 	public function registrarventaservicio(){
@@ -290,6 +288,23 @@ class Venta extends CI_controller
 		$this->load->view('layouts/footer');
 
 	}
+
+
+	
+
+
+	public function anular_venta_servicio(){
+
+		$estado = 0;
+		$idFactura= $this->input->post('idFactura');
+
+		$this->Model_venta->anularVenta_servicio($idFactura, $estado);
+
+	}
+	
+
+
+
 
 }
 

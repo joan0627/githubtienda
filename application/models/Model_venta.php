@@ -227,4 +227,30 @@ function actualizarExistencia($idProducto, $cantidad){
 		
 	}
 
+	/*FUNCIONES DE VENTA DE SERVICIOS*/
+	function anularVenta_servicio($idFactura, $estado){
+
+		$this->db->set('estado', $estado);	
+		$this->db->where('idFactura' ,$idFactura);
+		$this->db->update('ventaservicio');
+	}
+
+	function buscarDatosEncabezadoVentaServicio($idventa) {
+
+		$this->db->select('vs.*,s.nombreServicio,u.nombre,vs.observaciones as observacionesCompra, fp.descripcion');
+		$this->db->from('ventaservicio vs');
+		$this->db->join('servicio s', ' s.idServicio = vs.idServicio');
+		$this->db->join('usuario u', ' u.idUsuario = vs.vendedor');
+		$this->db->join('formapago fp', ' fp.idFormaPago = vs.formaPago');
+		$this->db->where($this->ventaPk,$idventa);		
+		$consulta = $this->db->get();
+		
+	
+		return $consulta->result();
+	
+		
+	}
+	
+
+
 }

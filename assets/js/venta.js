@@ -591,7 +591,7 @@ $(document).ready(function () {
 
 	/**
 	 *
-	 * Función para anular la compra
+	 * Función para anular la venta de un servicio
 	 */
 
 	$("#tablaVentas").on("click", ".anularVenta", function (ev) {

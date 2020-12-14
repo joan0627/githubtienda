@@ -7,8 +7,9 @@ class Inicio extends CI_Controller {
 	{
 		parent::__construct();
 
-
+		
 		$this->load->model('Model_login');
+		$this->load->model('Model_inicio');
 		$this->load->library('session');
 		$this->load->library('form_validation');
 	
@@ -126,6 +127,104 @@ class Inicio extends CI_Controller {
 
 
 	/* Fin de métodos del rol de Administrador */
+
+
+
+
+
+	/* FUNCIONES DE INICIO MINI INFORME DE USUARIO*/ 
+
+	public function todos_usuarios (){
+
+		$data = $this->Model_inicio->contarTodosUsuarios();
+
+		echo json_encode($data);
+
+	}
+
+	public function usuarios_deshabilitados (){
+
+		$data = $this->Model_inicio->contarUsuariosDeshabilitados();
+
+		echo json_encode($data);
+
+	}
+
+
+		/* FUNCIONES DE INICIO MINI INFORME DE PRODUCTO*/ 
+
+		public function todos_productos (){
+
+			$data = $this->Model_inicio->contarTodosProductos();
+	
+			echo json_encode($data);
+	
+		}
+	
+		public function productos_hoy (){
+
+			$fecha = $this->input->post("fechaActualF");
+			$data = $this->Model_inicio->contarProductosHoy($fecha);
+	
+			echo json_encode($data);
+	
+		}
+
+
+			/* FUNCIONES DE INICIO MINI INFORME DE CITAS*/ 
+
+			public function todas_citas (){
+
+				$data = $this->Model_inicio->contarTodascitas();
+		
+				echo json_encode($data);
+		
+			}
+		
+			public function citas_mes (){
+	
+				$fecha = $this->input->post("mesActualF");
+				$ano = $this->input->post("AnoActualF");
+				$data = $this->Model_inicio->contarCitasmes($fecha,$ano);
+		
+				echo json_encode($data);
+		
+			}
+
+
+			/* FUNCIONES DE INICIO MINI INFORME DE VENTAS*/ 
+
+			public function todas_ventas (){
+
+				$data = $this->Model_inicio->contarTodasVentas();
+				
+			
+				echo json_encode($data);
+				
+			}
+				
+
+
+			public function todas_ventas_servicios (){
+
+				$data = $this->Model_inicio->contarTodasVentas_servicios();
+				
+				echo json_encode($data);
+				
+			}
+
+			public function suma (){
+
+				$res['ventas'] = $this->Model_inicio->sumarVentas();
+				$res['ventaServicios'] = $this->Model_inicio->sumarVentas_servicios();
+
+				echo json_encode($res);
+				
+			}
+			
+
+
+	
 
 }
 

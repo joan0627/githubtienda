@@ -146,14 +146,14 @@
                                 <?php if($d->estado ==0): ?>
 
                                 <button disabled type="submit" class="btn btn-danger btn-sm"
-                                    data-idventas="<?=$d->idFactura?>" id="anularVentaServicio<?php echo  $d->idFactura ?>"><i
+                                    data-idventasS="<?=$d->idFactura?>" id="anularVentaServicio<?php echo  $d->idFactura ?>"><i
                                         class="fas fa-window-close"></i> Anular</button>
 
                                 <?php endif?>
 
                                 <?php if($d->estado ==1): ?>
                                 <button type="submit" class="anularVentaServicio btn btn-danger btn-sm"
-                                    data-idventas="<?=$d->idFactura?>" id="anularVentaServicio<?php echo  $d->idFactura ?>"><i
+                                    data-idventasS="<?=$d->idFactura?>" id="anularVentaServicio<?php echo  $d->idFactura ?>"><i
                                         class="fas fa-window-close"></i> Anular</button>
 
                                 <?php endif?>
