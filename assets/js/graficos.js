@@ -1,12 +1,23 @@
 $(document).ready(function(){
 
   
+ 
+
+
+
+
+
+
+
+
+
+  
     $("#ano").change(function(){
 
        
         var ano = $('#ano').val();
         var ano = moment(ano,'YYYY').format("YYYY");
-         console.log(ano);
+      
     
         $.ajax({
             type: "POST",
@@ -118,7 +129,7 @@ $(document).ready(function(){
             error: function () {
                 Swal.fire({
                     title: "¡Proceso no completado!",
-                    text: "informe mal.",
+                    text: "Informe mal.",
                     type: "warning",
                     confirmButtonColor: "#28a745",
                 });

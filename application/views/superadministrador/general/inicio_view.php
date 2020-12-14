@@ -36,7 +36,8 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="<?php echo base_url();?>usuario" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url();?>usuario" class="small-box-footer">Más <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -52,7 +53,8 @@
                             <i class="ion ion-pricetags"></i>
 
                         </div>
-                        <a href="<?php echo base_url();?>producto" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url();?>producto" class="small-box-footer">Más <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -69,7 +71,8 @@
                             <i class="ion ion-calendar"></i>
 
                         </div>
-                        <a href="<?php echo base_url();?>agenda/historialcitas" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url();?>agenda/historialcitas" class="small-box-footer">Más <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -88,7 +91,8 @@
                         <div class="icon">
                             <i class="ion ion-cash"></i>
                         </div>
-                        <a href="<?php echo base_url();?>venta/ventaproductos" class="small-box-footer">Más <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url();?>venta/ventaproductos" class="small-box-footer">Más <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -109,14 +113,14 @@
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                         class="fas fa-minus"></i>
                                 </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                        class="fas fa-times"></i></button>
+
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="chart">
-                                <canvas id="barChart"
-                                    style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+                        
+                            <div class="contenedorchart">
+                                <canvas id="barChartc" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -187,45 +191,37 @@ $.toaster({
 <?php } ?>
 
 <?php if ($this->session->flashdata('preguntaupdate')) { ?>
-            <script>
-            $.toaster({
-                settings: {
-                    'timeout': 5500,
+<script>
+$.toaster({
+    settings: {
+        'timeout': 5500,
 
 
-                }
-            });
-            $.toaster({
-                message: '<?php echo $this->session->flashdata('preguntaupdate') ?>',
-                title: 'Proceso completado',
-                priority: 'success',
+    }
+});
+$.toaster({
+    message: '<?php echo $this->session->flashdata('preguntaupdate') ?>',
+    title: 'Proceso completado',
+    priority: 'success',
 
-            });
-            </script>
-  <?php } ?>
+});
+</script>
+<?php } ?>
 
-  <?php if ($this->session->flashdata('contrasenanew')) { ?>
-            <script>
-            $.toaster({
-                settings: {
-                    'timeout': 5500,
-
-
-                }
-            });
-            $.toaster({
-                message: '<?php echo $this->session->flashdata('contrasenanew') ?>',
-                title: 'Proceso completado',
-                priority: 'success',
-
-            });
-            </script>
-  <?php } ?>
+<?php if ($this->session->flashdata('contrasenanew')) { ?>
+<script>
+$.toaster({
+    settings: {
+        'timeout': 5500,
 
 
+    }
+});
+$.toaster({
+    message: '<?php echo $this->session->flashdata('contrasenanew') ?>',
+    title: 'Proceso completado',
+    priority: 'success',
 
-
-
-
-
-  
+});
+</script>
+<?php } ?>
