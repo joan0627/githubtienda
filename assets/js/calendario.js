@@ -162,12 +162,12 @@ $(document).ready(function () {
 
 
                var currentTime = new Date();
-               moment(currentTime).format('DD-MM-YYYY');
+               var currentTimef= moment(currentTime).format('DD-MM-YYYY');
            
                var fechaCalendario= date;
-               moment(fechaCalendario).format('DD-MM-YYYY');
+               var fechaCalendariof=  moment(fechaCalendario).format('DD-MM-YYYY');
 
-               if(fechaCalendario > currentTime)
+               if(fechaCalendariof > currentTimef)
                {
            
                    $('#timepicker').datetimepicker('minDate', false);
