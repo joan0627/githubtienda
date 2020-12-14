@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El rincón de la mascota - Login</title>
@@ -20,18 +21,39 @@
 
     <!-- Plugin Sweet Alert 2: mensajes animados y popper: Este plugin se debe cargar siempre antes de ejecutarse por eso lo pusimos en el header-->
     <script src="<?php echo base_url(); ?>assets/plugins/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/assetshome/css/style.css">
 </head>
 
 
 
+
+  
+
+
+
+
+
+
 <body>
-
-
-
+        
 
     <div class="login-dark">
+
+            <div style="text-align:left; position: relative; top: 20px;" class="col-12 col-md-12 ">
+                        
+                <a href="<?php echo base_url();?>" class="btn btn-success">Inicio</a>
+    
+    
+            </div>          
+
+
         <form action="<?php echo base_url();?>login/iniciarsesion" method="post">
+
+          
        
+    
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group"><input autofocus class="form-control" type="text" name="username"
                     placeholder="Nombre de usuario" value="<?php echo $username;?>">
