@@ -2,13 +2,16 @@ $(document).ready(function () {
     limpiarnotificaciones();
     notificaciones();
 
+    refrescar();
+    var n;
+
  /***//////////////////////////////////////////////////////////////////////////***/
     $('#calendar').fullCalendar({ //INICIO DE LA CONFIGURACIÓN DEL CALENDARIO
     
         /*Configuración General*/
         //Idioma fullCalendar
         locale: 'es',
-        //Vista por defecto: Agenda del dia
+        //Vista por defecto: Calendario del mes
         defaultView: 'month',
         //Los eventos se puede arrastrar
          editable:false,
@@ -187,12 +190,7 @@ $(document).ready(function () {
             else {
                 
            return false;
-                Swal.fire({
-                    title: "¡Atención!",
-                    text: "No se puede crear una cita en fechas pasadas a la fecha actual.",
-                    type: "warning",
-                    confirmButtonColor: "#28a745",
-                });
+              
             }
 
         },
@@ -865,6 +863,7 @@ $(document).ready(function () {
                         confirmButtonColor: "#28a745",
                     }).then(function() {
                         EnviarInformacion(accion,nuevaCita);
+                        n=false;
                         limpiarnotificaciones();
                         notificaciones();
                     })
@@ -900,7 +899,11 @@ $(document).ready(function () {
                         notificaciones();
                         if(historial==1)
                         {
-                            $('#modal-historial').modal();
+                            
+                            $("#modal-historial").modal({ 
+                                backdrop: "static", 
+                                keyboard: false 
+                            });
                         }
                         else
                         {
@@ -908,7 +911,10 @@ $(document).ready(function () {
                             if(auth ==1)
                             {
                             limpiarModalPago();
-                             $('#modal-pagarCita').modal();
+                            $("#modal-pagarCita").modal({ 
+                                backdrop: "static", 
+                                keyboard: false 
+                            });
                              pagoCita();
                            }
                           
@@ -2199,7 +2205,10 @@ $("#radioNo").change(function () {
                             confirmButtonColor: "#28a745",
                         }).then(function() {
                             limpiarModalPago();
-                            $('#modal-pagarCita').modal();
+                            $("#modal-pagarCita").modal({ 
+                                backdrop: "static", 
+                                keyboard: false 
+                            });
                             pagoCita();
                          });
                         $('#modal-historial').modal('toggle');
@@ -2277,13 +2286,13 @@ function limpiarModalPago()
 /**
  * 
  * Función para no cerrar el modal de pago de cita
- * 
+ 
  
 $("#modal-pagarCita").modal({ 
     backdrop: "static", 
-    keyboard: false 
-});*/
-
+    //keyboard: false 
+});
+*/
 
 
 
@@ -2328,7 +2337,15 @@ function notificaciones()
                 numN+=1;
                 }
 
-                $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/"><i style="color:#28A745;" class="fas fa-clock mr-2"></i><small>Cita a las ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                if(horaHoy < item.hora)
+                {
+                    $("#notificaciones").append('<div class="dropdown-divider"></div> <a class="dropdown-item" href="http://localhost:8888/tienda/agenda/"><i style="color:#28A745;" class="fas fa-clock mr-2"></i><small>Cita a las ' + moment(item.hora,'HH:mm:ss').format('hh:mm a')+'</small></a>');
+                    
+                }
+                else
+                {
+                    numN-=1;
+                }
                 
             });
 
@@ -2389,8 +2406,16 @@ function limpiarnotificaciones()
 }
 
 
-
-    setInterval(notificaciones, 60000);
+function refrescar() {
+    
+    if(!n)
+    {
+        setInterval(notificaciones, 60000);
+    }
+   
+   
+  }
+ 
 
 
 
