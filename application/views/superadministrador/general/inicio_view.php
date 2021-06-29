@@ -118,14 +118,40 @@
                         </div>
                         <div class="card-body">
 
-                        
-                            <div class="contenedorchart">
-                                <canvas id="barChartc" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Año</label>
+
+                                    <?php
+                                    echo "<select  class='form-control' id='ano' name='ano'>";
+                                        for($i=2019;$i<=date("Y");$i++)
+                                        {   echo "<option selected hidden value='".date("Y")."'>".date("Y")."</option>";                                               
+                                            echo "<option value='".$i."'>".$i."</option>";
+                                        }
+                                    echo "</select>";
+                                    ?>
+
+
+                                </div>
+
                             </div>
+
+                            <div id="contenedor_grafico">
+                                <canvas id="myChart"></canvas>
+                            </div>
+
+
+
+
+
+
+
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
+                        <!-- /.card -->
 
 
 
