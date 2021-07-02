@@ -1,17 +1,6 @@
 $(document).ready(function(){
 
   
- 
-
-
-
-
-
-
-
-
-
-  
     $("#ano").change(function(){
 
        
