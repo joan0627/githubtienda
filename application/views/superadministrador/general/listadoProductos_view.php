@@ -248,14 +248,14 @@ Swal.fire({
 
 <?php } ?>
 
-<?php if ($this->session->flashdata('actualizar')) { ?>
+<?php if ($this->session->flashdata('actualizar') != '' ) { ?>
 <script>
 Swal.fire({
     type: 'success',
     title: '¡Proceso completado!',
     confirmButtonColor: "#28a745",
     text: '<?= $this->session->flashdata('actualizar'); ?>',
-
+    $this->session->set_flashdata('actualizar', '');
 });
 </script>
 

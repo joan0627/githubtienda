@@ -41,13 +41,6 @@
 
     <div class="login-dark">
 
-            <div style="text-align:left; position: relative; top: 20px;" class="col-12 col-md-12 ">
-                        
-                <a href="<?php echo base_url();?>" class="btn btn-success">Inicio</a>
-    
-    
-            </div>          
-
 
         <form action="<?php echo base_url();?>login/iniciarsesion" method="post">
 
