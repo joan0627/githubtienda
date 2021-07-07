@@ -46,7 +46,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-5 text-center">
-                                    <img src="<?php echo base_url();?>assets/img/joan.jpg" alt="" class="img-circle img-fluid">
+                                    <img src="<?php echo base_url();?>assets/img/joan.jpeg" alt="" class="img-circle img-fluid">
                                     </div>
                                 </div>
                             </div>

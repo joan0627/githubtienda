@@ -150,13 +150,11 @@
             </div><!-- /.container-fluid -->
     </section>
 </div>
-<?php if ($this->session->flashdata('authiniciosesion')) { ?>
+<?php if ($this->session->flashdata('authiniciosesion') != '' ) { ?>
 <script>
 $.toaster({
     settings: {
         'timeout': 6500,
-
-
     }
 });
 $.toaster({
@@ -167,7 +165,9 @@ $.toaster({
 });
 </script>
 
-<?php } ?>
+<?php 
+$this->session->set_flashdata('authiniciosesion', '');
+} ?>
 
 
 
