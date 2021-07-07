@@ -331,9 +331,12 @@ class Model_agenda extends Ci_model {
 
 	
 		$this->db->where($this->idTiposervicio ,$idTipo);
+		$this->db->where('estado != 0');
 		$this->db->order_by('nombreServicio','ASC');
 		$consulta = $this->db->get('servicio');
-		
+
+		if($consulta->num_rows() > 0){
+			
 		$respuesta = '<option hidden value ="">-Seleccione un servicio-</option>';
 
 		foreach($consulta->result() as $row)
@@ -341,6 +344,17 @@ class Model_agenda extends Ci_model {
 			$respuesta .= '<option value="'.$row->idServicio.'">'.$row->nombreServicio.'</option>';
 		}
 
+		
+		}
+
+		else{
+
+		
+			$respuesta = '<option hidden value ="">-No hay ningún servicio habilitado-</option>';
+
+		}
+		
+	
 
 	
 		return $respuesta;
@@ -356,18 +370,30 @@ class Model_agenda extends Ci_model {
 		//$this->db->join('tipomascota as tm', 'm.idTipoMascota = tm.idTipoMascota');
 		//$this->db->join('raza as r', 'm.idraza = r.idraza');
 		$this->db->where('documentoCliente',$documento);
+		$this->db->where('estadoMascota != 0');
 		$this->db->order_by('m.nombreMascota','ASC');
 
 		$consulta = $this->db->get();
-		
-		$respuesta= '<option hidden value ="">-Seleccione una mascota-</option>';
 
-		foreach($consulta->result() as $row)
-		{
-			$respuesta.= '<option value="'.$row->idMascota.'">'.$row->nombreMascota.'</option>';
-			
-			
+
+		if($consulta->num_rows() > 0){
+
+			$respuesta= '<option hidden value ="">-Seleccione una mascota-</option>';
+
+			foreach($consulta->result() as $row)
+			{
+				$respuesta.= '<option value="'.$row->idMascota.'">'.$row->nombreMascota.'</option>';
+				
+				
+			}
+
+
 		}
+		else{
+				$respuesta = '<option hidden value ="">-No hay ninguna mascota habilitada-</option>';
+		}
+		
+	
 
 		
 

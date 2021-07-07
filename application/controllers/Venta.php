@@ -245,6 +245,8 @@ class Venta extends CI_controller
 		$mpdf = new \Mpdf\Mpdf();
 		
 		$mpdf->SetDisplayMode('fullpage');
+	
+		$mpdf->SetTitle('Factura de venta');
 		$html=$this->load->view('superadministrador/informes/venta_view',$consulta,TRUE);
 		$mpdf->WriteHTML($stylesheet,1);
 		

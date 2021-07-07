@@ -1,3 +1,5 @@
+<link rel="icon" href="demo_icon.gif" type="image/gif" sizes="16x16">
+
 <body>
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">

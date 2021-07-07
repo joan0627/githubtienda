@@ -43,6 +43,7 @@
                                                         class="fas fa-lg fa-building"></i></span> Medellín, Colombia</li>
                                             <li class="small"><span class="fa-li"><i
                                                         class="fas fa-lg fa-phone"></i></span> Celular #: 3217576548</li>
+                                                        <li class="small"><span class="fa-li"><i class="fas fa-feather-alt"></i></span> "Para vos... mi amigo del alma"</li>
                                         </ul>
                                     </div>
                                     <div class="col-5 text-center">
@@ -114,4 +115,6 @@
 
 
     </section><!-- Fin seccion contenido -->
+
+
 </div><!-- Fin content-wrapper -->

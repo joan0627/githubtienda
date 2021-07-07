@@ -39,7 +39,7 @@
 
                 <p class="card-text">Pensando en su comodidad y en la seguridad de la información, el manual de usuario se encuentra alojado en un repositorio seguro en la nube,
                 al cual podrá acceder en cualquier momento para consultarlo. Recuerde que para acceder debe contar con conexión a internet.</p>
-                <a href="http://globho.com/ayuda/CrearMovimientoContable.html" target="_blank" class="btn btn-success">Ver manual</a>
+                <a href="https://mega.nz/folder/y5VwHRxT#79GJN4mq-Gq44yT-HPyXdg" target="_blank" class="btn btn-success">Ver manual</a>
               </div>
             </div>
 
