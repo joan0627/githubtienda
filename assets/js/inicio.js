@@ -176,7 +176,7 @@ $(document).ready(function(){
                                 var venta_servicio = item.numVentas_servicio;
                                 var total = Number(venta) + Number(venta_servicio);
 
-                                $("#totalventas").html('Total de ventas: '+total);
+                                $("#totalventas").html('Numero de ventas: '+total);
                             })
 
                         },

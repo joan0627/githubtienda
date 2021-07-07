@@ -35,12 +35,13 @@
                                 <li class="nav-item "><a class="nav-link active" href="#compras"
                                         data-toggle="tab">Compras</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#ventas" data-toggle="tab">Ventas de productos</a>
+                                <li class="nav-item"><a class="nav-link" href="#ventas" data-toggle="tab">Ventas de
+                                        productos</a>
                                 </li>
                                 <li class="nav-item "><a class="nav-link" href="#ventas_servicio"
                                         data-toggle="tab">Ventas de servicios</a>
                                 </li>
-                               
+
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
@@ -49,11 +50,11 @@
 
                                 <div class=" active tab-pane " id="compras">
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Año</label>
-                                              
-                                                <?php
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Año</label>
+
+                                            <?php
                                                     echo "<select  class='form-control' id='ano' name='ano'>";
                                                         for($i=2019;$i<=date("Y");$i++)
                                                         {   echo "<option selected hidden value='".date("Y")."'>".date("Y")."</option>";                                               
@@ -61,31 +62,31 @@
                                                         }
                                                     echo "</select>";
                                                     ?>
-                                                
-                                
-                                            </div>
+
 
                                         </div>
 
-                                        <div id="contenedor_grafico">
-                                         <canvas id="myChart"></canvas>
-                                        </div>
+                                    </div>
+
+                                    <div id="contenedor_grafico">
+                                        <canvas id="myChart"></canvas>
+                                    </div>
 
 
-                                   
 
 
 
-								</div>
-								
-								<div class=" tab-pane " id="ventas">
+
+                                </div>
+
+                                <div class=" tab-pane " id="ventas">
                                     <form class="form-horizontal">
 
-                                       
+
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Año</label>
-                                              
+
                                                 <?php
                                                     echo "<select  class='form-control' id='anoVenta' name='anoVenta'>";
                                                         for($i=2019;$i<=date("Y");$i++)
@@ -94,14 +95,14 @@
                                                         }
                                                     echo "</select>";
                                                     ?>
-                                                
-                                
+
+
                                             </div>
 
                                         </div>
 
                                         <div id="contenedor_grafico_venta">
-                                         <canvas id="myChart_venta"></canvas>
+                                            <canvas id="myChart_venta"></canvas>
                                         </div>
 
 
@@ -115,11 +116,11 @@
                                 <div class=" tab-pane " id="ventas_servicio">
                                     <form class="form-horizontal">
 
-                                       
+
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Año</label>
-                                              
+
                                                 <?php
                                                     echo "<select  class='form-control' id='anoVentaS' name='anoVentaS'>";
                                                         for($i=2019;$i<=date("Y");$i++)
@@ -128,14 +129,14 @@
                                                         }
                                                     echo "</select>";
                                                     ?>
-                                                
-                                
+
+
                                             </div>
 
                                         </div>
 
                                         <div id="contenedor_grafico_ventaS">
-                                         <canvas id="myChart_ventaS"></canvas>
+                                            <canvas id="myChart_ventaS"></canvas>
                                         </div>
 
 

@@ -84,8 +84,8 @@
                         <div class="inner">
                             <h3 id="valorTotalventa"></h3>
 
-                            <p id="ventasmes">Ventas de: </p>
-                            <span id="totalventas">Total de ventas: </span>
+                            <p>Total de ventas </p>
+                            <span id="totalventas">Numero de ventas: </span>
 
                         </div>
                         <div class="icon">
@@ -101,13 +101,16 @@
             <!-- Main row -->
             <div class="row">
                 <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
+
+                
+                <div class="col-lg-6 connectedSortable">
                     <!-- Custom tabs (Charts with tabs)-->
 
-                    <!-- BAR CHART -->
+                    <!-- /Inicio reporte ventas productos -->
+                    
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Reporte de ventas</h3>
+                            <h3 class="card-title">Ventas de productos</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -118,50 +121,36 @@
                         </div>
                         <div class="card-body">
 
-
-
-
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Año</label>
 
                                     <?php
-                                    echo "<select  class='form-control' id='ano' name='ano'>";
-                                        for($i=2019;$i<=date("Y");$i++)
-                                        {   echo "<option selected hidden value='".date("Y")."'>".date("Y")."</option>";                                               
-                                            echo "<option value='".$i."'>".$i."</option>";
-                                        }
-                                    echo "</select>";
-                                    ?>
+                                                    echo "<select  class='form-control' id='anoVenta' name='anoVenta'>";
+                                                        for($i=2019;$i<=date("Y");$i++)
+                                                        {   echo "<option selected hidden value='".date("Y")."'>".date("Y")."</option>";                                               
+                                                            echo "<option value='".$i."'>".$i."</option>";
+                                                        }
+                                                    echo "</select>";
+                                                    ?>
 
 
                                 </div>
 
                             </div>
 
-                            <div id="contenedor_grafico">
-                                <canvas id="myChart"></canvas>
+                            <div id="contenedor_grafico_venta">
+                                <canvas id="myChart_venta"></canvas>
                             </div>
 
-
-
-
-
-
-
-                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
+
+                    </div>
+                    <!-- /Fin reporte ventas productos -->
+
+                    
 
 
-
-
-
-
-                </section>
-                <!-- /.Left col -->
-                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                <section class="col-lg-5 connectedSortable">
 
 
 
@@ -169,10 +158,51 @@
 
 
 
-                </section>
-                <!-- right col -->
+                </div>
+                <div class="col-lg-6">
+                <!-- /Inicio reporte ventas servicios -->
+                <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Ventas de servicios</h3>
 
-                <!-- /.row (main row) -->
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-minus"></i>
+                                </button>
+
+                            </div>
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Año</label>
+
+                                    <?php
+                                        echo "<select  class='form-control' id='anoVentaS' name='anoVentaS'>";
+                                            for($i=2019;$i<=date("Y");$i++)
+                                                {   echo "<option selected hidden value='".date("Y")."'>".date("Y")."</option>";                                               
+                                                    echo "<option value='".$i."'>".$i."</option>";
+                                                }
+                                                echo "</select>";
+                                                ?>
+
+
+                                </div>
+
+                            </div>
+
+                            <div id="contenedor_grafico_ventaS">
+                                <canvas id="myChart_ventaS"></canvas>
+                            </div>
+
+                        </div>
+                        <!-- /Fin reporte ventas servicios -->
+                    </div>
+                </div>
+    
             </div><!-- /.container-fluid -->
     </section>
 </div>
